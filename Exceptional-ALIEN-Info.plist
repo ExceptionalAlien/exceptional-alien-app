@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MBXAccessToken</key>
+	<string>pk.eyJ1IjoiZXhjZXB0aW9uYWxhbGllbiIsImEiOiJjbHJlZm5lMnIxazc3MmpsaGZsbHZ3ODJyIn0.uHERh3Ep-lIqQh2bKuCAzg</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Helvetica-Monospaced-W06-Rg.ttf</string>
+		<string>NHaasGroteskDSStd-55Rg.ttf</string>
+		<string>NHaasGroteskDSStd-65Md.ttf</string>
+	</array>
+</dict>
+</plist>
