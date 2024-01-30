@@ -15,13 +15,17 @@ export default function Input(props: InputProps) {
     <View style={[styles.container, themeContainerStyle]}>
       <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
 
-      <TextInput
-        style={styles.input}
-        onChangeText={props.setQuery}
-        value={props.query}
-        placeholder="Destinations, Playbooks & more"
-        placeholderTextColor={styleVars.eaPlaceholderBlue}
-      />
+      <View style={styles.inputWrapper}>
+        <TextInput
+          style={styles.input}
+          onChangeText={props.setQuery}
+          value={props.query}
+          placeholder="Destinations, Playbooks & more"
+          placeholderTextColor={styleVars.eaPlaceholderBlue}
+          returnKeyType="search"
+          allowFontScaling={false}
+        />
+      </View>
     </View>
   );
 }
@@ -29,6 +33,7 @@ export default function Input(props: InputProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
+    columnGap: 4,
     padding: 16,
     paddingTop: 0,
     alignItems: "center",
@@ -39,10 +44,13 @@ const styles = StyleSheet.create({
   darkContainer: {
     backgroundColor: styleVars.eaGrey,
   },
+  inputWrapper: {
+    flex: 1,
+    flexGrow: 1,
+  },
   input: {
     fontSize: 24,
-    flexGrow: 1,
-    marginLeft: 4,
+    fontFamily: "Neue-Haas-Grotesk",
     borderBottomWidth: 1,
     paddingBottom: 2,
     borderColor: styleVars.eaBlue,

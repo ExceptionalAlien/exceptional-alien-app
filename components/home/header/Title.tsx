@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontFamily: "Neue-Haas-Grotesk-Med",
     fontSize: 24,
     color: styleVars.eaBlue,
+    textTransform: "uppercase",
   },
   coords: {
     fontFamily: "Helvetica-Monospaced",

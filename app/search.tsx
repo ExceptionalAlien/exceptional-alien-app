@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, SafeAreaView } from "react-native";
+import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import Destinations from "components/search/Destinations";
 import Input from "components/search/Input";
@@ -8,7 +8,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Stack.Screen
         options={{
           title: "Search",
@@ -22,3 +22,9 @@ export default function Search() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
