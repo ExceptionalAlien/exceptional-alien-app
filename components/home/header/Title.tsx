@@ -15,7 +15,7 @@ export default function Title(props: TitleProps) {
     <View style={styles.container}>
       <Image source={require("assets/img/logo-icon.svg")} style={styles.logo} />
 
-      <View>
+      <View style={styles.text}>
         <Text style={styles.destination} allowFontScaling={false}>
           {props.destination.name}
         </Text>
@@ -40,15 +40,20 @@ const styles = StyleSheet.create({
     height: 36,
     tintColor: styleVars.eaBlue,
   },
+  text: {
+    rowGap: 2,
+  },
   destination: {
     fontFamily: "Neue-Haas-Grotesk-Med",
     fontSize: 24,
+    lineHeight: 24,
     color: styleVars.eaBlue,
     textTransform: "uppercase",
   },
   coords: {
     fontFamily: "Helvetica-Monospaced",
     fontSize: 12,
+    lineHeight: 12,
   },
   lightCoords: {
     color: styleVars.eaGrey,

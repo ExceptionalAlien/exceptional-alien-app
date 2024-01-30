@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import destinationsData from "data/destinations.json";
-import { Destination } from "context/destination";
+import { Destination, DestinationContext, DestinationContextType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
 
 interface DestinationsProps {
@@ -12,6 +12,7 @@ interface DestinationsProps {
 
 export default function Destinations(props: DestinationsProps) {
   const router = useRouter();
+  const { setDestination } = useContext<DestinationContextType>(DestinationContext);
   const [destinations, setDestinations] = useState<Destination[]>([]);
 
   useEffect(() => {
@@ -20,7 +21,8 @@ export default function Destinations(props: DestinationsProps) {
     setDestinations(JSON.parse(data));
   }, []);
 
-  const destinationClick = (name: Destination) => {
+  const destinationClick = (destination: Destination) => {
+    setDestination(destination);
     router.back();
   };
 

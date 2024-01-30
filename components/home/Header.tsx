@@ -1,4 +1,5 @@
 import { SafeAreaView, StyleSheet } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { Destination } from "context/destination";
 import Title from "./header/Title";
@@ -9,8 +10,10 @@ interface HeaderProps {
 }
 
 export default function Header(props: HeaderProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <BlurView style={styles.container}>
+    <BlurView style={[styles.container, { paddingTop: insets.top + 12 }]}>
       <SafeAreaView style={styles.wrapper}>
         <Title destination={props.destination} />
         <Nav />
@@ -25,7 +28,6 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 16,
     paddingBottom: 12,
-    paddingTop: 12,
   },
   wrapper: {
     flexDirection: "row",
