@@ -4,8 +4,6 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "utils/*": ["utils/*"],
-      "assets/*": ["assets/*"],
       "components/*": ["components/*"]
     }
   }

@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
-import { Destination } from "../Map";
+import { Destination } from "context/destination";
 import { styleVars } from "utils/styles";
 
 interface TitleProps {

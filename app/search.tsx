@@ -1,39 +1,24 @@
-import { View, StyleSheet, Text, useColorScheme } from "react-native";
+import { useState } from "react";
+import { ScrollView, SafeAreaView } from "react-native";
 import { Stack } from "expo-router";
-import { styleVars } from "utils/styles";
+import Destinations from "components/search/Destinations";
+import Input from "components/search/Input";
 
-export default function Profile() {
-  const colorScheme = useColorScheme();
-  const themeContainerStyle = colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
+export default function Search() {
+  const [query, setQuery] = useState("");
 
   return (
-    <View style={[styles.container, themeContainerStyle]}>
+    <SafeAreaView>
       <Stack.Screen
         options={{
           title: "Search",
         }}
       />
 
-      <Text style={styles.text}>Hello world!</Text>
-    </View>
+      <ScrollView stickyHeaderIndices={[0]}>
+        <Input query={query} setQuery={setQuery} />
+        <Destinations query={query} />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white",
-  },
-  lightContainer: {
-    backgroundColor: "white",
-  },
-  darkContainer: {
-    backgroundColor: styleVars.eaGrey,
-  },
-  text: {
-    fontFamily: "Neue-Haas-Grotesk",
-    color: styleVars.eaBlue,
-  },
-});

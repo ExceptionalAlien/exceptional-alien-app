@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     columnGap: 24,
-    paddingRight: 8,
+    marginRight: 8,
   },
   profile: {
     width: 24,

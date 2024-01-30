@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
+import { DestinationContext, DestinationContextType } from "context/destination";
 import Map from "components/home/Map";
 import Header from "components/home/Header";
-import { DestinationContext, DestinationContextType } from "context/destination";
 
 export default function Home() {
   const { destination } = useContext<DestinationContextType>(DestinationContext);

@@ -1,8 +1,8 @@
 import { SafeAreaView, StyleSheet } from "react-native";
 import { BlurView } from "expo-blur";
+import { Destination } from "context/destination";
 import Title from "./header/Title";
 import Nav from "./header/Nav";
-import { Destination } from "./Map";
 
 interface HeaderProps {
   destination: Destination;

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useColorScheme } from "react-native";
 import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
 import { DestinationContext, Destination } from "context/destination";
@@ -7,6 +8,8 @@ import { styleVars } from "utils/styles";
 SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
+  const colorScheme = useColorScheme();
+
   // Sydney is default destination
   const [destination, setDestination] = useState<Destination>({
     name: "Sydney",
@@ -39,8 +42,13 @@ export default function Layout() {
     <DestinationContext.Provider value={{ destination, setDestination }}>
       <Stack
         screenOptions={{
+          contentStyle: { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey },
           headerTintColor: styleVars.eaBlue,
           headerTitleStyle: {
+            fontFamily: "Neue-Haas-Grotesk-Med",
+          },
+          headerLargeTitle: true,
+          headerLargeTitleStyle: {
             fontFamily: "Neue-Haas-Grotesk-Med",
           },
           headerTransparent: true,

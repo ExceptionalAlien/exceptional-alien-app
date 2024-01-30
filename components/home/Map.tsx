@@ -1,16 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { Destination } from "context/destination";
 import mapStyle from "assets/map-style.json";
-
-export interface Destination {
-  name: string;
-  region: {
-    latitude: number;
-    longitude: number;
-    latitudeDelta: number;
-    longitudeDelta: number;
-  };
-}
 
 interface MapProps {
   region: Destination["region"];
