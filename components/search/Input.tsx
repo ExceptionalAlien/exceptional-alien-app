@@ -31,6 +31,7 @@ export default function Input(props: InputProps) {
           returnKeyType="search"
           allowFontScaling={false}
           onSubmitEditing={searchClick}
+          clearButtonMode="always"
         />
       </View>
     </View>
@@ -54,12 +55,12 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flex: 1,
     flexGrow: 1,
+    borderBottomWidth: 1,
+    paddingBottom: 4,
+    borderColor: styleVars.eaBlue,
   },
   input: {
     fontSize: 24,
     fontFamily: "Neue-Haas-Grotesk",
-    borderBottomWidth: 1,
-    paddingBottom: 2,
-    borderColor: styleVars.eaBlue,
   },
 });
