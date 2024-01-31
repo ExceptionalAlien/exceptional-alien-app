@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
     color: styleVars.eaGrey,
   },
   darkCoords: {
-    color: "white",
+    color: "rgba(255,255,255,0.75)",
   },
 });

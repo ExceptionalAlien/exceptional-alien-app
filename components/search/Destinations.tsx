@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
+import * as Device from "expo-device";
 import destinationsData from "data/destinations.json";
 import { Destination, DestinationContext, DestinationContextType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
@@ -27,7 +28,7 @@ export default function Destinations(props: DestinationsProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, Device.deviceType === 2 ? styles.tabletContainer : null]}>
       {destinations.map((item, i) => (
         <Pressable
           key={i}
@@ -47,6 +48,11 @@ export default function Destinations(props: DestinationsProps) {
 const styles = StyleSheet.create({
   container: {
     margin: 16,
+  },
+  tabletContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    columnGap: 20,
   },
   destination: {
     flexDirection: "row",
