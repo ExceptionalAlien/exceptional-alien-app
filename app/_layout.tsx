@@ -13,6 +13,8 @@ export default function Layout() {
   // Sydney is default destination
   const [destination, setDestination] = useState<Destination>({
     name: "Sydney",
+    uid: "sydney",
+    country: "Australia",
     region: {
       latitude: -33.865143,
       longitude: 151.2099,

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
-import Destinations from "components/search/Destinations";
+import Results from "components/search/Results";
 import Input from "components/search/Input";
 
 export default function Search() {
@@ -17,7 +17,7 @@ export default function Search() {
 
       <ScrollView stickyHeaderIndices={[0]}>
         <Input query={query} setQuery={setQuery} />
-        <Destinations query={query} />
+        <Results query={query} />
       </ScrollView>
     </SafeAreaView>
   );

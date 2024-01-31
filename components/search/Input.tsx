@@ -11,6 +11,12 @@ export default function Input(props: InputProps) {
   const colorScheme = useColorScheme();
   const themeContainerStyle = colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
 
+  const searchClick = () => {
+    if (props.query.length > 1) {
+      alert("WIP - will query Prismic");
+    }
+  };
+
   return (
     <View style={[styles.container, themeContainerStyle]}>
       <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
@@ -24,6 +30,7 @@ export default function Input(props: InputProps) {
           placeholderTextColor={styleVars.eaPlaceholderBlue}
           returnKeyType="search"
           allowFontScaling={false}
+          onSubmitEditing={searchClick}
         />
       </View>
     </View>
