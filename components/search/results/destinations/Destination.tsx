@@ -2,18 +2,18 @@ import { useContext } from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { Destination, DestinationContext, DestinationContextType } from "context/destination";
+import { DestinationType, DestinationContext, DestinationContextType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
 
-interface DestinationLinkProps {
-  item: Destination;
+interface DestinationProps {
+  item: DestinationType;
 }
 
-export default function DestinationLink(props: DestinationLinkProps) {
+export default function Destination(props: DestinationProps) {
   const router = useRouter();
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
 
-  const destinationClick = (destination: Destination) => {
+  const destinationClick = (destination: DestinationType) => {
     setDestination(destination);
     router.back();
   };

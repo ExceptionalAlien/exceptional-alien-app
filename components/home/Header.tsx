@@ -1,12 +1,12 @@
 import { SafeAreaView, StyleSheet } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
-import { Destination } from "context/destination";
+import { DestinationType } from "context/destination";
 import Title from "./header/Title";
 import Nav from "./header/Nav";
 
 interface HeaderProps {
-  destination: Destination;
+  destination: DestinationType;
 }
 
 export default function Header(props: HeaderProps) {

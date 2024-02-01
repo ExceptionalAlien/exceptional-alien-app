@@ -19,7 +19,7 @@ export default function Input(props: InputProps) {
 
   return (
     <View style={[styles.container, themeContainerStyle]}>
-      <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
+      <Ionicons name="search-outline" size={28} color={styleVars.eaBlue} />
 
       <View style={styles.inputWrapper}>
         <TextInput

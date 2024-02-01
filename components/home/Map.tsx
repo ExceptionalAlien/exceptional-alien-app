@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import { Destination } from "context/destination";
+import { DestinationType } from "context/destination";
 import mapStyle from "assets/map-style.json";
 
 interface MapProps {
-  region: Destination["region"];
+  region: DestinationType["region"];
 }
 
 export default function Map(props: MapProps) {
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "100%",
-    height: "100%",
+    height: "75%",
   },
 });
