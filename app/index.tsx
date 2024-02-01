@@ -29,6 +29,7 @@ export default function Home() {
         snapPoints={snapPoints}
         backgroundStyle={{ borderRadius: 0, backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey }}
         handleIndicatorStyle={{ backgroundColor: styleVars.eaBlue }}
+        animateOnMount={false}
       >
         <Playbooks destination={destination} />
       </BottomSheet>
