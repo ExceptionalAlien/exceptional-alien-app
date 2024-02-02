@@ -2,10 +2,10 @@ import { StyleSheet, View, TextInput, useColorScheme } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styleVars } from "utils/styles";
 
-interface InputProps {
+type InputProps = {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
-}
+};
 
 export default function Input(props: InputProps) {
   const colorScheme = useColorScheme();

@@ -3,10 +3,10 @@ import { StyleSheet, Text, useColorScheme, View } from "react-native";
 import Animated, { useSharedValue, withTiming, Easing } from "react-native-reanimated";
 import { styleVars } from "utils/styles";
 
-interface CoordsProps {
+type CoordsProps = {
   lat: number;
   lng: number;
-}
+};
 
 export default function Coords(props: CoordsProps) {
   const colorScheme = useColorScheme();

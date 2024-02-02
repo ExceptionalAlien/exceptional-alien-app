@@ -5,9 +5,9 @@ import { DestinationType } from "context/destination";
 import Title from "./header/Title";
 import Nav from "./header/Nav";
 
-interface HeaderProps {
+type HeaderProps = {
   destination: DestinationType;
-}
+};
 
 export default function Header(props: HeaderProps) {
   const insets = useSafeAreaInsets();

@@ -5,9 +5,9 @@ import Destination from "./title/Destination";
 import Coords from "./title/Coords";
 import { styleVars } from "utils/styles";
 
-interface TitleProps {
+type TitleProps = {
   destination: DestinationType;
-}
+};
 
 export default function Title(props: TitleProps) {
   return (

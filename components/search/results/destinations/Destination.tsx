@@ -5,9 +5,9 @@ import { useRouter } from "expo-router";
 import { DestinationType, DestinationContext, DestinationContextType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
 
-interface DestinationProps {
+type DestinationProps = {
   item: DestinationType;
-}
+};
 
 export default function Destination(props: DestinationProps) {
   const router = useRouter();

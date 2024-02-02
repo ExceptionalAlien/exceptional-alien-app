@@ -1,9 +1,9 @@
 import { StyleSheet, View } from "react-native";
 import Destinations from "./results/Destinations";
 
-interface ResultsProps {
+type ResultsProps = {
   query: string;
-}
+};
 
 export default function Results(props: ResultsProps) {
   return (

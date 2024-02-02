@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { styleVars } from "utils/styles";
 
-interface DestinationProps {
+type DestinationProps = {
   name: string;
-}
+};
 
 export default function Destination(props: DestinationProps) {
   const [name, setName] = useState("");

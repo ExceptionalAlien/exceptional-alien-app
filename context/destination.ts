@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export interface DestinationType {
+export type DestinationType = {
   name: string;
   uid: string;
   country: string;
@@ -10,7 +10,7 @@ export interface DestinationType {
     latitudeDelta: number;
     longitudeDelta: number;
   };
-}
+};
 
 export type DestinationContextType = {
   destination: DestinationType;

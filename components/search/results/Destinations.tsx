@@ -5,9 +5,9 @@ import destinationsData from "data/destinations.json";
 import { DestinationType } from "context/destination";
 import Destination from "./destinations/Destination";
 
-interface DestinationsProps {
+type DestinationsProps = {
   query: string;
-}
+};
 
 export default function Destinations(props: DestinationsProps) {
   const [destinations, setDestinations] = useState<DestinationType[]>([]);
