@@ -28,11 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     columnGap: 24,
-    marginRight: 8,
   },
   profile: {
     width: 24,
     height: 24,
-    tintColor: styleVars.eaBlue,
   },
 });

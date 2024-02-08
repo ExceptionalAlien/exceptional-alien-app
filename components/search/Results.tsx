@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import Destinations from "./results/Destinations";
 
 type ResultsProps = {
@@ -7,12 +7,8 @@ type ResultsProps = {
 
 export default function Results(props: ResultsProps) {
   return (
-    <View style={styles.container}>
+    <View>
       <Destinations query={props.query} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {},
-});

@@ -9,7 +9,6 @@ type InputProps = {
 
 export default function Input(props: InputProps) {
   const colorScheme = useColorScheme();
-  const themeContainerStyle = colorScheme === "light" ? styles.lightContainer : styles.darkContainer;
 
   const searchClick = () => {
     if (props.query.length > 1) {
@@ -18,16 +17,15 @@ export default function Input(props: InputProps) {
   };
 
   return (
-    <View style={[styles.container, themeContainerStyle]}>
+    <View style={[styles.container, { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey }]}>
       <Ionicons name="search-outline" size={28} color={styleVars.eaBlue} />
 
       <View style={styles.inputWrapper}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, colorScheme !== "light" && { color: "white" }]}
           onChangeText={props.setQuery}
           value={props.query}
           placeholder="Destinations, Playbooks & more"
-          placeholderTextColor={styleVars.eaPlaceholderBlue}
           returnKeyType="search"
           allowFontScaling={false}
           onSubmitEditing={searchClick}
@@ -45,12 +43,6 @@ const styles = StyleSheet.create({
     padding: 16,
     paddingTop: 0,
     alignItems: "center",
-  },
-  lightContainer: {
-    backgroundColor: "white",
-  },
-  darkContainer: {
-    backgroundColor: styleVars.eaGrey,
   },
   inputWrapper: {
     flex: 1,

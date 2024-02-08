@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
+import * as Device from "expo-device";
+import * as ScreenOrientation from "expo-screen-orientation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DestinationContext, DestinationType } from "context/destination";
 import { styleVars } from "utils/styles";
@@ -39,6 +41,15 @@ export default function Layout() {
   // Show splash until fonts ready
   if (!fontsLoaded && !fontError) {
     return null;
+  }
+
+  const changeScreenOrientation = async () => {
+    await ScreenOrientation.unlockAsync();
+  };
+
+  // Allow landscape on tablets
+  if (Device.deviceType === 2) {
+    changeScreenOrientation();
   }
 
   return (

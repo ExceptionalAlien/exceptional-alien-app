@@ -3,7 +3,6 @@ import { Image } from "expo-image";
 import { DestinationType } from "context/destination";
 import Destination from "./title/Destination";
 import Coords from "./title/Coords";
-import { styleVars } from "utils/styles";
 
 type TitleProps = {
   destination: DestinationType;
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
   logo: {
     width: 29,
     height: 36,
-    tintColor: styleVars.eaBlue,
   },
   text: {
     rowGap: 2,

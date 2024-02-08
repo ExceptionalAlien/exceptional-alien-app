@@ -1,63 +1,41 @@
-import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, FlatList, ActivityIndicator } from "react-native";
+import { useMemo, useRef } from "react";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import { DestinationType } from "context/destination";
-
-type PlaybookData = {
-  title: string;
-};
-
-type Playbook = {
-  uid: string;
-  data: PlaybookData;
-};
-
-type Data = {
-  playbook: Playbook;
-};
+import Slider from "./playbooks/Slider";
+import { styleVars } from "utils/styles";
 
 type PlaybooksProps = {
   destination: DestinationType;
 };
 
 export default function Playbooks(props: PlaybooksProps) {
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState<Data[]>([]);
-
-  const getPlaybooks = async (uid: string) => {
-    try {
-      const response = await fetch("https://www.exceptionalalien.com/api/playbooks/" + uid);
-      const json = await response.json();
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    setLoading(true);
-    getPlaybooks(props.destination.uid);
-  }, [props.destination]);
+  const insets = useSafeAreaInsets();
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ["35%", "50%", "75%"], []);
 
   return (
-    <View style={styles.container}>
-      {isLoading ? (
-        <ActivityIndicator />
-      ) : (
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.playbook.uid}
-          renderItem={({ item }) => <Text>{item.playbook.data.title}</Text>}
-        />
-      )}
-    </View>
+    <BottomSheet
+      ref={bottomSheetRef}
+      snapPoints={snapPoints}
+      backgroundStyle={{ borderRadius: 0, backgroundColor: styleVars.eaBlue }}
+      handleIndicatorStyle={{ backgroundColor: styleVars.eaLightGrey }}
+      animateOnMount={false}
+    >
+      <BottomSheetScrollView>
+        <View style={[styles.container, { paddingBottom: insets.bottom + 16 }]}>
+          <Slider destination={props.destination} />
+          <Slider destination={props.destination} />
+        </View>
+      </BottomSheetScrollView>
+    </BottomSheet>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    marginLeft: 16,
+    gap: 16,
+    marginTop: 12,
   },
 });
