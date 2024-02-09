@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
   },
   text: {
     textTransform: "uppercase",
-    fontSize: 14,
-    lineHeight: 14,
+    fontSize: 12,
+    lineHeight: 12,
     fontFamily: "Neue-Haas-Grotesk",
     color: "white",
   },

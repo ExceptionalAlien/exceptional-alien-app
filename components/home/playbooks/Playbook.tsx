@@ -17,14 +17,22 @@ type Creator = {
   };
 };
 
+type Destination = {
+  data: {
+    title: string;
+  };
+};
+
 export type PlaybookData = {
   title: string;
   image: PlaybookImage;
   creator: Creator;
+  destination: Destination;
 };
 
 type PlaybookProps = {
   data: PlaybookData;
+  latest: boolean;
 };
 
 export default function Playbook(props: PlaybookProps) {
@@ -36,7 +44,9 @@ export default function Playbook(props: PlaybookProps) {
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.35)"]} style={styles.textBackground} />
 
         <Text style={styles.text} allowFontScaling={false}>
-          {props.data.creator.data.first_name} {props.data.creator.data.last_name}
+          {props.latest && props.data.destination && `${props.data.destination.data.title} with `}
+          {props.data.creator.data.first_name}{" "}
+          {props.data.creator.data.last_name ? props.data.creator.data.last_name?.toUpperCase() : ""}
         </Text>
       </View>
 
@@ -50,7 +60,7 @@ export default function Playbook(props: PlaybookProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    width: 176,
+    width: 168,
   },
   image: {
     aspectRatio: "4/3",
@@ -69,14 +79,13 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 20,
+    fontSize: 18,
     color: "white",
     padding: 4,
   },
   title: {
     color: "white",
-    fontFamily: "Helvetica-Monospaced",
-    fontSize: 12,
-    textTransform: "uppercase",
+    fontFamily: "Neue-Haas-Grotesk",
+    fontSize: 14,
   },
 });
