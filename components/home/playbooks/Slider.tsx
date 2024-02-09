@@ -56,7 +56,7 @@ export default function Slider(props: SliderProps) {
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <Playbook data={item.playbook.data} />}
           horizontal={true}
-          contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
+          contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
         />
       )}

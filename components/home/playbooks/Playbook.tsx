@@ -50,7 +50,7 @@ export default function Playbook(props: PlaybookProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    width: 160,
+    width: 176,
   },
   image: {
     aspectRatio: "4/3",
@@ -77,5 +77,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Helvetica-Monospaced",
     fontSize: 12,
+    textTransform: "uppercase",
   },
 });
