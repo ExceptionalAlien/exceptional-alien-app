@@ -61,9 +61,7 @@ export default function Destination(props: DestinationProps) {
         setName(updated);
 
         // Loop until destination name revealed
-        if (updated !== final) {
-          generateName(final, updated);
-        }
+        if (updated !== final) generateName(final, updated);
       }, 25);
     };
 

@@ -11,9 +11,7 @@ export default function Input(props: InputProps) {
   const colorScheme = useColorScheme();
 
   const searchClick = () => {
-    if (props.query.length > 1) {
-      alert("WIP - will query Prismic");
-    }
+    if (props.query.length > 1) alert("WIP - will query Prismic");
   };
 
   return (

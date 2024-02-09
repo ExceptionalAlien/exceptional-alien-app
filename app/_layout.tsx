@@ -33,24 +33,18 @@ export default function Layout() {
   });
 
   useEffect(() => {
-    if (fontsLoaded || fontError) {
-      SplashScreen.hideAsync();
-    }
+    if (fontsLoaded || fontError) SplashScreen.hideAsync();
   }, [fontsLoaded, fontError]);
 
   // Show splash until fonts ready
-  if (!fontsLoaded && !fontError) {
-    return null;
-  }
+  if (!fontsLoaded && !fontError) return null;
 
   const changeScreenOrientation = async () => {
     await ScreenOrientation.unlockAsync();
   };
 
   // Allow landscape on tablets
-  if (Device.deviceType === 2) {
-    changeScreenOrientation();
-  }
+  if (Device.deviceType === 2) changeScreenOrientation();
 
   return (
     <DestinationContext.Provider value={{ destination, setDestination }}>

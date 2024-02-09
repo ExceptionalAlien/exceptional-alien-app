@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { useEffect, useState, useRef } from "react";
+import { ActivityIndicator, FlatList, View, StyleSheet } from "react-native";
 import { DestinationType } from "context/destination";
 import Playbook from "./Playbook";
 import { PlaybookData } from "./Playbook";
@@ -15,36 +15,41 @@ type Data = {
 };
 
 type SliderProps = {
-  destination: DestinationType;
+  title: string;
+  destination?: DestinationType;
 };
 
 export default function Slider(props: SliderProps) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
+  const mountedUID = useRef<string | undefined>();
 
-  const getPlaybooks = async (uid: string) => {
+  const getPlaybooks = async (uid?: string) => {
+    const route = uid ? uid : "latest"; // Get latest playbooks if destination not included
+
     try {
-      const response = await fetch("https://www.exceptionalalien.com/api/playbooks/" + uid);
+      const response = await fetch(`https://www.exceptionalalien.com/api/playbooks/${route}?max=12`);
       const json = await response.json();
-      setData(json);
+      if (!uid || uid === mountedUID.current) setData(json);
     } catch (error) {
-      console.error(error);
+      if (!uid || uid === mountedUID.current) console.error(error);
     } finally {
-      setLoading(false);
+      if (!uid || uid === mountedUID.current) setLoading(false);
     }
   };
 
   useEffect(() => {
+    mountedUID.current = props.destination ? props.destination.uid : undefined; // Used to make sure correct destination shows if user switches during load
     setLoading(true);
-    getPlaybooks(props.destination.uid);
+    getPlaybooks(props.destination && props.destination.uid);
   }, [props.destination]);
 
   return (
-    <View>
-      <Tab title={`${props.destination.name} PLAYBOOKS`} />
+    <View style={styles.container}>
+      <Tab title={props.title} />
 
       {isLoading ? (
-        <ActivityIndicator />
+        <ActivityIndicator color="#FFFFFF" style={styles.loading} />
       ) : (
         <FlatList
           data={data}
@@ -58,3 +63,12 @@ export default function Slider(props: SliderProps) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    minHeight: 208,
+  },
+  loading: {
+    flex: 1,
+  },
+});
