@@ -1,5 +1,6 @@
 import { StyleSheet, View, TextInput, useColorScheme } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import * as Device from "expo-device";
 import { styleVars } from "utils/styles";
 
 type InputProps = {
@@ -18,7 +19,7 @@ export default function Input(props: InputProps) {
     <View style={[styles.container, { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey }]}>
       <Ionicons name="search-outline" size={28} color={styleVars.eaBlue} />
 
-      <View style={styles.inputWrapper}>
+      <View style={[styles.inputWrapper, Device.deviceType === 2 && { maxWidth: 384 }]}>
         <TextInput
           style={[styles.input, colorScheme !== "light" && { color: "white" }]}
           onChangeText={props.setQuery}

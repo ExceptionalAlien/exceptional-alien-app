@@ -19,7 +19,7 @@ export default function Destinations(props: DestinationsProps) {
   }, []);
 
   return (
-    <View style={[styles.container, Device.deviceType === 2 ? styles.tabletContainer : null]}>
+    <View style={[styles.container, Device.deviceType === 2 && styles.tabletContainer]}>
       {destinations.map((item, i) => {
         if (
           props.query.length <= 1 ||

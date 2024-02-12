@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderBottomWidth: 0,
-    padding: 6,
+    padding: 8,
     borderColor: "white",
     marginHorizontal: 16,
     marginBottom: 12,
