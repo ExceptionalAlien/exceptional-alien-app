@@ -50,7 +50,7 @@ export default function Destination(props: DestinationProps) {
         var currentChar = updated.charAt(i);
 
         // Replace if characters don't match
-        if (finalChar !== currentChar) {
+        if (finalChar.replace("Ñ", "N") !== currentChar) {
           let index = alphabet.indexOf(currentChar);
           let replacement = alphabet[index === 25 ? 0 : index + 1]; // Loop alphabet if index is Z
           updated = updated.substring(0, i) + replacement + updated.substring(i + 1); // Replace char

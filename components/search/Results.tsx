@@ -1,4 +1,5 @@
 import { View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Destinations from "./results/Destinations";
 
 type ResultsProps = {
@@ -6,8 +7,10 @@ type ResultsProps = {
 };
 
 export default function Results(props: ResultsProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View>
+    <View style={{ paddingBottom: insets.bottom }}>
       <Destinations query={props.query} />
     </View>
   );

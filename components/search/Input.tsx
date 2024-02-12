@@ -17,14 +17,14 @@ export default function Input(props: InputProps) {
 
   return (
     <View style={[styles.container, { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey }]}>
-      <Ionicons name="search-outline" size={28} color={styleVars.eaBlue} />
+      <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
 
       <View style={[styles.inputWrapper, Device.deviceType === 2 && { maxWidth: 384 }]}>
         <TextInput
-          style={[styles.input, colorScheme !== "light" && { color: "white" }]}
+          style={[styles.input, colorScheme === "dark" && { color: "white" }]}
           onChangeText={props.setQuery}
           value={props.query}
-          placeholder="Destinations, Playbooks & more"
+          placeholder="Destinations, Playbooks, Gems & more"
           returnKeyType="search"
           allowFontScaling={false}
           onSubmitEditing={searchClick}
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderColor: styleVars.eaBlue,
   },
   input: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: "Neue-Haas-Grotesk",
   },
 });

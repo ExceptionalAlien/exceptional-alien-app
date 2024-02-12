@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { ScrollView, SafeAreaView, StyleSheet } from "react-native";
+import { ScrollView, SafeAreaView, View } from "react-native";
 import { Stack } from "expo-router";
+import { useHeaderHeight } from "@react-navigation/elements";
 import Results from "components/search/Results";
 import Input from "components/search/Input";
 
 export default function Search() {
+  const headerHeight = useHeaderHeight();
   const [query, setQuery] = useState("");
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={{ paddingTop: headerHeight }}>
       <Stack.Screen
         options={{
           title: "Search",
@@ -16,15 +18,12 @@ export default function Search() {
       />
 
       <ScrollView stickyHeaderIndices={[0]}>
-        <Input query={query} setQuery={setQuery} />
+        <SafeAreaView>
+          <Input query={query} setQuery={setQuery} />
+        </SafeAreaView>
+
         <Results query={query} />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
