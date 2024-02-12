@@ -1,22 +1,319 @@
 [
   {
-    "name": "Sydney",
-    "uid": "sydney",
-    "country": "Australia",
+    "name": "A Coruña",
+    "uid": "a-coruna",
+    "keywords": "Spain Europe",
     "region": {
-      "latitude": -33.86833081055127,
-      "longitude": 151.20795374306286,
+      "latitude": 43.362344,
+      "longitude": -8.41154,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     }
   },
   {
-    "name": "New York",
-    "uid": "new-york",
-    "country": "America United States USA",
+    "name": "Accra",
+    "uid": "accra",
+    "keywords": "Ghana",
     "region": {
-      "latitude": 40.71159236311252,
-      "longitude": -74.02230032573972,
+      "latitude": 5.559285,
+      "longitude": -0.197431,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Adelaide",
+    "uid": "adelaide",
+    "keywords": "Australia South SA",
+    "region": {
+      "latitude": -34.928499,
+      "longitude": 138.600746,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Alaska",
+    "uid": "alaska",
+    "keywords": "America United States USA",
+    "region": {
+      "latitude": 63.588753,
+      "longitude": -154.493062,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Alice Springs",
+    "uid": "alice-springs",
+    "keywords": "Australia NT Northern Territory",
+    "region": {
+      "latitude": -23.698042,
+      "longitude": 133.880747,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Amsterdam",
+    "uid": "amsterdam",
+    "keywords": "Netherlands Europe",
+    "region": {
+      "latitude": 52.367573,
+      "longitude": 4.904139,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Auckland",
+    "uid": "auckland",
+    "keywords": "New Zealand NZ",
+    "region": {
+      "latitude": -36.850883,
+      "longitude": 174.764488,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Austin",
+    "uid": "austin",
+    "keywords": "America United States USA Texas",
+    "region": {
+      "latitude": 30.267153,
+      "longitude": -97.743061,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Bali",
+    "uid": "bali",
+    "keywords": "Indonesia",
+    "region": {
+      "latitude": -8.409518,
+      "longitude": 115.188916,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Bangalore",
+    "uid": "bangalore",
+    "keywords": "India",
+    "region": {
+      "latitude": 12.971599,
+      "longitude": 77.594563,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Bangkok",
+    "uid": "bangkok",
+    "keywords": "Thailand",
+    "region": {
+      "latitude": 13.756331,
+      "longitude": 100.501765,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Barbados",
+    "uid": "barbados",
+    "keywords": "",
+    "region": {
+      "latitude": 13.193887,
+      "longitude": -59.543198,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Barcelona",
+    "uid": "barcelona",
+    "keywords": "Spain Europe",
+    "region": {
+      "latitude": 41.387397,
+      "longitude": 2.168568,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Beirut",
+    "uid": "beirut",
+    "keywords": "Lebanon",
+    "region": {
+      "latitude": 33.893791,
+      "longitude": 35.501777,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Benigo",
+    "uid": "bendigo",
+    "keywords": "Australia VIC Victoria",
+    "region": {
+      "latitude": -36.757016,
+      "longitude": 144.279391,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Berlin",
+    "uid": "berlin",
+    "keywords": "Germany Europe",
+    "region": {
+      "latitude": 52.520007,
+      "longitude": 13.404954,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Bhutan",
+    "uid": "bhutan",
+    "keywords": "",
+    "region": {
+      "latitude": 27.514162,
+      "longitude": 90.433601,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Biarritz",
+    "uid": "biarritz",
+    "keywords": "France Europe",
+    "region": {
+      "latitude": 43.483152,
+      "longitude": -1.558626,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Bordeaux",
+    "uid": "bordeaux",
+    "keywords": "France Europe",
+    "region": {
+      "latitude": 44.837789,
+      "longitude": -0.57918,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Brighton",
+    "uid": "brighton",
+    "keywords": "UK England United Kingdom",
+    "region": {
+      "latitude": 50.82294,
+      "longitude": -0.136267,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Brisbane",
+    "uid": "brisbane",
+    "keywords": "Australia QLD Queensland",
+    "region": {
+      "latitude": -27.470453,
+      "longitude": 153.026034,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Byron Bay",
+    "uid": "byron-bay",
+    "keywords": "Australia NSW New South Wales",
+    "region": {
+      "latitude": -28.641912,
+      "longitude": 153.610517,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Canberra",
+    "uid": "canberra",
+    "keywords": "Australia ACT Australian Capital Territory",
+    "region": {
+      "latitude": -35.280185,
+      "longitude": 149.131032,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Cape Town",
+    "uid": "cape-town",
+    "keywords": "South Africa",
+    "region": {
+      "latitude": -33.924868,
+      "longitude": 18.424055,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Castlemaine",
+    "uid": "castlemaine",
+    "keywords": "Australia VIC Victoria",
+    "region": {
+      "latitude": -37.058136,
+      "longitude": 144.218501,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Chennai",
+    "uid": "chennai",
+    "keywords": "India",
+    "region": {
+      "latitude": 13.08268,
+      "longitude": 80.270718,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Chiang Mai",
+    "uid": "chiang-mai",
+    "keywords": "Thailand",
+    "region": {
+      "latitude": 18.796464,
+      "longitude": 98.660059,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Chicago",
+    "uid": "chicago",
+    "keywords": "America United States USA Illinois",
+    "region": {
+      "latitude": 41.878114,
+      "longitude": -87.629798,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Copenhagen",
+    "uid": "copenhagen",
+    "keywords": "Denmark Europe",
+    "region": {
+      "latitude": 55.676097,
+      "longitude": 12.568337,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     }
@@ -24,21 +321,10 @@
   {
     "name": "Los Angeles",
     "uid": "los-angeles",
-    "country": "America United States USA",
+    "keywords": "America United States USA",
     "region": {
-      "latitude": 34.06100421714512,
-      "longitude": -118.25660299440071,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
-    }
-  },
-  {
-    "name": "Tokyo",
-    "uid": "tokyo",
-    "country": "Japan",
-    "region": {
-      "latitude": 35.818910461468356,
-      "longitude": 139.79645720350823,
+      "latitude": 34.054908,
+      "longitude": -118.242643,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     }
@@ -46,10 +332,43 @@
   {
     "name": "Melbourne",
     "uid": "melbourne",
-    "country": "Australia",
+    "keywords": "Australia VIC Victoria",
     "region": {
-      "latitude": -37.818998128621814,
-      "longitude": 144.96230118209684,
+      "latitude": -37.813628,
+      "longitude": 144.963058,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "New York",
+    "uid": "new-york",
+    "keywords": "America United States USA",
+    "region": {
+      "latitude": 40.712775,
+      "longitude": -74.005973,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Sydney",
+    "uid": "sydney",
+    "keywords": "Australia NSW New South Wales",
+    "region": {
+      "latitude": -33.86882,
+      "longitude": 151.209296,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    }
+  },
+  {
+    "name": "Tokyo",
+    "uid": "tokyo",
+    "keywords": "Japan",
+    "region": {
+      "latitude": 35.676423,
+      "longitude": 139.650027,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     }

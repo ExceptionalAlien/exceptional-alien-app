@@ -28,11 +28,14 @@ export default function Slider(props: SliderProps) {
     const route = uid ? uid : "latest"; // Get latest playbooks if destination not included
 
     try {
-      const response = await fetch(`https://www.exceptionalalien.com/api/playbooks/${route}?max=12`);
+      const response = await fetch(`https://www.exceptionalalien.com/api/playbooks/${route}?max=10`);
       const json = await response.json();
       if (!uid || uid === mountedUID.current) setData(json);
     } catch (error) {
-      if (!uid || uid === mountedUID.current) console.error(error);
+      if (!uid || uid === mountedUID.current) {
+        setData([]); // Empty
+        console.error(error);
+      }
     } finally {
       if (!uid || uid === mountedUID.current) setLoading(false);
     }
@@ -54,8 +57,8 @@ export default function Slider(props: SliderProps) {
         <FlatList
           data={data}
           keyExtractor={(item) => item.playbook.uid}
-          renderItem={({ item }) => <Playbook data={item.playbook.data} latest={!props.destination ? true : false} />}
-          horizontal={true}
+          renderItem={({ item }) => <Playbook data={item.playbook.data} />}
+          horizontal
           contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
         />

@@ -3,7 +3,7 @@ import { createContext } from "react";
 export type DestinationType = {
   name: string;
   uid: string;
-  country: string;
+  keywords: string;
   region: {
     latitude: number;
     longitude: number;
@@ -21,7 +21,7 @@ export const DestinationContext = createContext<DestinationContextType>({
   destination: {
     name: "",
     uid: "",
-    country: "",
+    keywords: "",
     region: {
       latitude: 0,
       longitude: 0,

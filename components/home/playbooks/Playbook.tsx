@@ -32,7 +32,6 @@ export type PlaybookData = {
 
 type PlaybookProps = {
   data: PlaybookData;
-  latest: boolean;
 };
 
 export default function Playbook(props: PlaybookProps) {
@@ -44,9 +43,9 @@ export default function Playbook(props: PlaybookProps) {
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.35)"]} style={styles.textBackground} />
 
         <Text style={styles.text} allowFontScaling={false}>
-          {props.latest && props.data.destination && `${props.data.destination.data.title} with `}
+          {props.data.destination?.data.title ? props.data.destination?.data.title : "Global"} with{" "}
           {props.data.creator.data.first_name}{" "}
-          {props.data.creator.data.last_name ? props.data.creator.data.last_name?.toUpperCase() : ""}
+          {props.data.creator.data.last_name && props.data.creator.data.last_name?.toUpperCase()}
         </Text>
       </View>
 
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 18,
+    fontSize: 16,
     color: "white",
     padding: 4,
   },

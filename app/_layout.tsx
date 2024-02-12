@@ -17,7 +17,7 @@ export default function Layout() {
   const [destination, setDestination] = useState<DestinationType>({
     name: "Sydney",
     uid: "sydney",
-    country: "Australia",
+    keywords: "Australia NSW New South Wales",
     region: {
       latitude: -33.865143,
       longitude: 151.2099,

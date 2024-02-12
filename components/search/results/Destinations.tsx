@@ -24,7 +24,7 @@ export default function Destinations(props: DestinationsProps) {
         if (
           props.query.length <= 1 ||
           item.name.match(new RegExp(props.query, "gi")) !== null ||
-          item.country.match(new RegExp(props.query, "gi")) !== null
+          item.keywords.match(new RegExp(props.query, "gi")) !== null
         )
           return <Destination key={i} item={item} />;
       })}

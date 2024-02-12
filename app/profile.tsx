@@ -14,8 +14,8 @@ export default function Profile() {
           options={{
             title: "Profile",
             headerRight: () => (
-              <Pressable onPress={() => router.push("/")} style={({ pressed }) => pressedDefault(pressed)} hitSlop={12}>
-                <Ionicons name="settings-outline" size={28} color={styleVars.eaBlue} />
+              <Pressable onPress={() => router.push("/")} style={({ pressed }) => pressedDefault(pressed)}>
+                <Ionicons name="settings-outline" size={24} color={styleVars.eaBlue} />
               </Pressable>
             ),
           }}
