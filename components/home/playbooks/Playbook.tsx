@@ -35,9 +35,11 @@ type PlaybookProps = {
 };
 
 export default function Playbook(props: PlaybookProps) {
+  const blurhash = "L0EMLDxufQxu-;fQfQfQfQfQfQfQ";
+
   return (
     <View style={styles.container}>
-      <Image source={props.data.image.mobile.url} style={styles.image} transition={500} />
+      <Image source={props.data.image.mobile.url} style={styles.image} placeholder={blurhash} transition={500} />
 
       <View style={styles.textContainer}>
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.35)"]} style={styles.textBackground} />
@@ -63,7 +65,6 @@ const styles = StyleSheet.create({
   },
   image: {
     aspectRatio: "4/3",
-    backgroundColor: styleVars.eaLightGrey,
   },
   textContainer: {
     position: "absolute",

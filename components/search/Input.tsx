@@ -29,6 +29,7 @@ export default function Input(props: InputProps) {
           allowFontScaling={false}
           onSubmitEditing={searchClick}
           clearButtonMode="always"
+          cursorColor={styleVars.eaBlue}
         />
       </View>
     </View>

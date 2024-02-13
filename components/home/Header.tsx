@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet } from "react-native";
+import { StyleSheet, Platform, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { DestinationType } from "context/destination";
@@ -11,13 +11,20 @@ type HeaderProps = {
 
 export default function Header(props: HeaderProps) {
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
 
   return (
-    <BlurView style={[styles.container, { paddingTop: insets.top + 12 }]}>
-      <SafeAreaView style={styles.wrapper}>
-        <Title destination={props.destination} />
-        <Nav />
-      </SafeAreaView>
+    <BlurView
+      style={[
+        styles.container,
+        { paddingTop: insets.top + 12 },
+        Platform.OS === "android" && {
+          backgroundColor: colorScheme === "light" ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)",
+        },
+      ]}
+    >
+      <Title destination={props.destination} />
+      <Nav />
     </BlurView>
   );
 }
@@ -26,10 +33,8 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     width: "100%",
-    padding: 16,
+    paddingHorizontal: 16,
     paddingBottom: 12,
-  },
-  wrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

@@ -12,7 +12,7 @@ export default function Coords(props: CoordsProps) {
   const colorScheme = useColorScheme();
   const [topCoords, setTopCoords] = useState("");
   const [bottomCoords, setBottomCoords] = useState("");
-  const themeCoordsStyle = colorScheme === "light" ? styles.lightCoords : styles.darkCoords;
+  const themeCoords = colorScheme === "light" ? styles.lightCoords : styles.darkCoords;
   const top = useSharedValue(-12);
 
   useEffect(() => {
@@ -47,11 +47,11 @@ export default function Coords(props: CoordsProps) {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.wrapper, { top }]}>
-        <Text style={[styles.coords, themeCoordsStyle]} allowFontScaling={false}>
+        <Text style={[styles.coords, themeCoords]} allowFontScaling={false}>
           {topCoords}
         </Text>
 
-        <Text style={[styles.coords, themeCoordsStyle]} allowFontScaling={false}>
+        <Text style={[styles.coords, themeCoords]} allowFontScaling={false}>
           {bottomCoords}
         </Text>
       </Animated.View>
@@ -62,7 +62,7 @@ export default function Coords(props: CoordsProps) {
 const styles = StyleSheet.create({
   container: {
     height: 12,
-    width: 160,
+    width: 180,
     overflow: "hidden",
   },
   wrapper: {

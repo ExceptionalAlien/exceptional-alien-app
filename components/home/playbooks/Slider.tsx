@@ -1,8 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, FlatList, View, StyleSheet } from "react-native";
-import { DestinationType } from "context/destination";
-import Playbook from "./Playbook";
-import { PlaybookData } from "./Playbook";
+import Playbook, { PlaybookData } from "./Playbook";
 import Tab from "./Tab";
 
 type Playbook = {
@@ -16,7 +14,7 @@ type Data = {
 
 type SliderProps = {
   title: string;
-  destination?: DestinationType;
+  destinationUID?: string;
 };
 
 export default function Slider(props: SliderProps) {
@@ -42,10 +40,10 @@ export default function Slider(props: SliderProps) {
   };
 
   useEffect(() => {
-    mountedUID.current = props.destination ? props.destination.uid : undefined; // Used to make sure correct destination shows if user switches during load
+    mountedUID.current = props.destinationUID ? props.destinationUID : undefined; // Used to make sure correct destination shows if user switches during load
     setLoading(true);
-    getPlaybooks(props.destination && props.destination.uid);
-  }, [props.destination]);
+    getPlaybooks(props.destinationUID && props.destinationUID);
+  }, [props.destinationUID]);
 
   return (
     <View style={styles.container}>
@@ -59,7 +57,7 @@ export default function Slider(props: SliderProps) {
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <Playbook data={item.playbook.data} />}
           horizontal
-          contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
+          contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
         />
       )}
