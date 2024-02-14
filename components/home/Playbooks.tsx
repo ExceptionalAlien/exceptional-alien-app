@@ -10,8 +10,8 @@ type PlaybooksProps = {
 export default function Playbooks(props: PlaybooksProps) {
   return (
     <View style={[styles.container]}>
-      <Slider title={`${props.destination.name} PLAYBOOKS`} destinationUID={props.destination.uid} />
-      <Slider title="LATEST TRAVEL PLAYBOOKS" />
+      <Slider destination={props.destination} />
+      <Slider />
       <CreateButton title="Create a Playbook" />
     </View>
   );

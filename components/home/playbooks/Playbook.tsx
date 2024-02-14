@@ -42,7 +42,7 @@ export default function Playbook(props: PlaybookProps) {
       <Image source={props.data.image.mobile.url} style={styles.image} placeholder={blurhash} transition={500} />
 
       <View style={styles.textContainer}>
-        <LinearGradient colors={["transparent", "rgba(0,0,0,0.35)"]} style={styles.textBackground} />
+        <LinearGradient colors={["transparent", "rgba(0,0,0,0.5)"]} style={styles.textBackground} />
 
         <Text style={styles.text} allowFontScaling={false}>
           {props.data.destination?.data.title ? props.data.destination?.data.title : "Global"} with{" "}
@@ -61,7 +61,7 @@ export default function Playbook(props: PlaybookProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    width: 168,
+    width: 160,
   },
   image: {
     aspectRatio: "4/3",

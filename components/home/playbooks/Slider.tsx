@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { DestinationType } from "context/destination";
 import Playbook, { PlaybookData } from "./Playbook";
 import Tab from "./Tab";
 
@@ -14,8 +15,7 @@ type Data = {
 };
 
 type SliderProps = {
-  title: string;
-  destinationUID?: string;
+  destination?: DestinationType;
 };
 
 export default function Slider(props: SliderProps) {
@@ -41,14 +41,18 @@ export default function Slider(props: SliderProps) {
   };
 
   useEffect(() => {
-    mountedUID.current = props.destinationUID ? props.destinationUID : undefined; // Used to make sure correct destination shows if user switches during load
+    mountedUID.current = props.destination ? props.destination.uid : undefined; // Used to make sure correct destination shows if user switches during load
     setLoading(true);
-    getPlaybooks(props.destinationUID && props.destinationUID);
-  }, [props.destinationUID]);
+    getPlaybooks(props.destination && props.destination.uid);
+  }, [props.destination]);
 
   return (
     <View style={styles.container}>
-      <Tab title={props.title} />
+      <Tab
+        title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
+        pageTitle={props.destination ? props.destination.name : "Latest Playbooks"}
+        destinationUID={props.destination && props.destination.uid}
+      />
 
       {isLoading ? (
         <ActivityIndicator color="#FFFFFF" style={styles.loading} />
@@ -68,7 +72,7 @@ export default function Slider(props: SliderProps) {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 208,
+    minHeight: 200,
   },
   loading: {
     flex: 1,

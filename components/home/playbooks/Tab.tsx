@@ -5,6 +5,8 @@ import { pressedDefault } from "utils/helpers";
 
 type TabProps = {
   title: string;
+  pageTitle: string;
+  destinationUID?: string;
 };
 
 export default function Tab(props: TabProps) {
@@ -17,7 +19,12 @@ export default function Tab(props: TabProps) {
       </Text>
 
       <Pressable
-        onPress={() => router.push("/playbooks")}
+        onPress={() =>
+          router.push({
+            pathname: "/playbooks",
+            params: { title: props.pageTitle, destinationUID: props.destinationUID },
+          })
+        }
         style={({ pressed }) => [pressedDefault(pressed), styles.link]}
         hitSlop={8}
       >
