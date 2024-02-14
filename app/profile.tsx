@@ -4,6 +4,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
+export type Creator = {
+  data: {
+    first_name: string;
+    last_name: string;
+    title: string;
+  };
+};
+
 export default function Profile() {
   const router = useRouter();
 

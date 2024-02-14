@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, SafeAreaView, View } from "react-native";
+import { ScrollView, SafeAreaView, View, StyleSheet } from "react-native";
 import { Stack } from "expo-router";
 import { useHeaderHeight } from "@react-navigation/elements";
 import Results from "components/search/Results";
@@ -10,7 +10,7 @@ export default function Search() {
   const [query, setQuery] = useState("");
 
   return (
-    <View style={{ paddingTop: headerHeight }}>
+    <View style={[styles.container, { paddingTop: headerHeight }]}>
       <Stack.Screen
         options={{
           title: "Search",
@@ -27,3 +27,9 @@ export default function Search() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

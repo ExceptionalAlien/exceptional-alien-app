@@ -10,7 +10,7 @@ import Animated, {
   measure,
 } from "react-native-reanimated";
 import { DestinationType } from "context/destination";
-import Playbooks from "./Playbooks";
+import Playbooks from "./bottom-sheet/Playbooks";
 import { styleVars } from "utils/styles";
 
 type BottomSheetProps = {

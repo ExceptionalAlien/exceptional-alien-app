@@ -10,6 +10,7 @@ export type DestinationType = {
     latitudeDelta: number;
     longitudeDelta: number;
   };
+  trending?: boolean;
 };
 
 export type DestinationContextType = {

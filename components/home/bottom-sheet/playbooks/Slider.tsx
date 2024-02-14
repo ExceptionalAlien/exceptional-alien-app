@@ -2,16 +2,12 @@ import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { DestinationType } from "context/destination";
-import Playbook, { PlaybookData } from "./Playbook";
+import { PlaybookType } from "app/playbook";
+import PlaybookThumb from "components/shared/PlaybookThumb";
 import Tab from "./Tab";
 
-type Playbook = {
-  uid: string;
-  data: PlaybookData;
-};
-
 type Data = {
-  playbook: Playbook;
+  playbook: PlaybookType;
 };
 
 type SliderProps = {
@@ -60,7 +56,7 @@ export default function Slider(props: SliderProps) {
         <FlatList
           data={data}
           keyExtractor={(item) => item.playbook.uid}
-          renderItem={({ item }) => <Playbook data={item.playbook.data} />}
+          renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} />}
           horizontal
           contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}

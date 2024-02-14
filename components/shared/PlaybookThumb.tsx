@@ -1,58 +1,36 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { styleVars } from "utils/styles";
+import { PlaybookType } from "app/playbook";
 
-type PlaybookImage = {
-  mobile: {
-    url: string;
-  };
+type PlaybookThumbProps = {
+  playbook: PlaybookType;
 };
 
-type Creator = {
-  data: {
-    first_name: string;
-    last_name: string;
-    title: string;
-  };
-};
-
-type Destination = {
-  data: {
-    title: string;
-  };
-};
-
-export type PlaybookData = {
-  title: string;
-  image: PlaybookImage;
-  creator: Creator;
-  destination: Destination;
-};
-
-type PlaybookProps = {
-  data: PlaybookData;
-};
-
-export default function Playbook(props: PlaybookProps) {
+export default function PlaybookThumb(props: PlaybookThumbProps) {
   const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   return (
     <View style={styles.container}>
-      <Image source={props.data.image.mobile.url} style={styles.image} placeholder={blurhash} transition={500} />
+      <Image
+        source={props.playbook.data.image.mobile.url}
+        style={styles.image}
+        placeholder={blurhash}
+        transition={500}
+      />
 
       <View style={styles.textContainer}>
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.5)"]} style={styles.textBackground} />
 
         <Text style={styles.text} allowFontScaling={false}>
-          {props.data.destination?.data.title ? props.data.destination?.data.title : "Global"} with{" "}
-          {props.data.creator.data.first_name}{" "}
-          {props.data.creator.data.last_name && props.data.creator.data.last_name?.toUpperCase()}
+          {props.playbook.data.destination?.data.title ? props.playbook.data.destination?.data.title : "Global"} with{" "}
+          {props.playbook.data.creator.data.first_name}{" "}
+          {props.playbook.data.creator.data.last_name && props.playbook.data.creator.data.last_name?.toUpperCase()}
         </Text>
       </View>
 
       <Text style={styles.title} allowFontScaling={false}>
-        {props.data.creator.data.title.substring(0, 40)}
+        {props.playbook.data.creator.data.title.substring(0, 40)}
       </Text>
     </View>
   );

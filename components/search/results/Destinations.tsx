@@ -22,9 +22,9 @@ export default function Destinations(props: DestinationsProps) {
     <View style={[styles.container, Device.deviceType === 2 && styles.tabletContainer]}>
       {destinations.map((item, i) => {
         if (
-          props.query.length <= 1 ||
-          item.name.match(new RegExp(props.query, "gi")) !== null ||
-          item.keywords.match(new RegExp(props.query, "gi")) !== null
+          (props.query.length <= 1 && item.trending) ||
+          (props.query.length > 1 && item.name.match(new RegExp(props.query, "gi")) !== null) ||
+          (props.query.length > 1 && item.keywords.match(new RegExp(props.query, "gi")) !== null)
         )
           return <Destination key={i} item={item} />;
       })}
