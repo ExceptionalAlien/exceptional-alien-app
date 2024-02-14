@@ -46,10 +46,10 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
     <View style={styles.container}>
       <Tab
         title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
+        cta="VIEW ALL"
         route={{
           pathname: "/playbooks",
           params: {
-            cta: "VIEW ALL",
             headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
             destinationUID: props.destination?.uid,
           },
@@ -64,7 +64,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} />}
           horizontal
-          contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
+          contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
         />
       )}
@@ -74,7 +74,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 200,
+    minHeight: 208,
   },
   loading: {
     flex: 1,

@@ -39,7 +39,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    width: 160,
+    width: 176,
   },
   image: {
     aspectRatio: "4/3",
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 16,
+    fontSize: 18,
     color: "white",
     padding: 4,
   },

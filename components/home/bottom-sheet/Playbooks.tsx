@@ -12,7 +12,14 @@ export default function Playbooks(props: PlaybooksProps) {
     <View style={[styles.container]}>
       <PlaybookSlider destination={props.destination} />
       <PlaybookSlider />
-      <BigButton title="Create a Playbook" />
+
+      <BigButton
+        title="Create a Playbook"
+        icon="playbook"
+        route={{
+          pathname: "/create-playbook",
+        }}
+      />
     </View>
   );
 }

@@ -2,24 +2,41 @@ import { StyleSheet, Text, Pressable, View } from "react-native";
 import { useRouter } from "expo-router";
 import * as Device from "expo-device";
 import { Image } from "expo-image";
+import { Href } from "expo-router/build/link/href";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
+type BigButtonRoute = {
+  pathname: string;
+};
+
 type BigButtonProps = {
   title: string;
+  route?: BigButtonRoute;
+  icon?: string; // playbook
 };
 
 export default function BigButton(props: BigButtonProps) {
   const router = useRouter();
 
+  const icons = {
+    playbook: require("assets/img/icon-playbook.svg"),
+  };
+
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => router.push("/playbooks")}
+        onPress={() => router.push(props.route as Href)}
         style={({ pressed }) => [pressedDefault(pressed), styles.button, Device.deviceType === 2 && { width: 256 }]}
-        hitSlop={16}
+        hitSlop={8}
       >
-        <Image source={require("assets/img/icon-playbook.svg")} style={styles.icon} contentFit="contain" />
+        {props.icon && (
+          <Image
+            source={icons[props.icon as keyof typeof icons]}
+            style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
+            contentFit="contain"
+          />
+        )}
 
         <Text style={styles.text} allowFontScaling={false}>
           {props.title}
@@ -44,7 +61,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   icon: {
-    width: 28,
+    width: 20,
     height: 20,
     marginRight: 8,
   },

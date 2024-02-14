@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     top: "65%",
     backgroundColor: styleVars.eaBlue,
     width: "100%",
-    paddingTop: 28,
+    paddingTop: 24,
   },
   handle: {
     position: "absolute",

@@ -7,7 +7,6 @@ import { pressedDefault } from "utils/helpers";
 type TabRoute = {
   pathname: string;
   params: {
-    cta: string;
     headerTitle?: string;
     destinationUID?: string;
   };
@@ -15,6 +14,7 @@ type TabRoute = {
 
 type TabProps = {
   title: string;
+  cta?: string;
   route?: TabRoute;
 };
 
@@ -34,7 +34,7 @@ export default function Tab(props: TabProps) {
           hitSlop={8}
         >
           <Text style={styles.text} allowFontScaling={false}>
-            {props.route.params.cta}
+            {props.cta}
           </Text>
 
           <Ionicons name="arrow-forward-sharp" size={12} color="white" />
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderColor: "white",
     marginHorizontal: 16,
-    marginBottom: 12,
+    marginBottom: 8,
     flexDirection: "row",
     justifyContent: "space-between",
   },
