@@ -5,11 +5,11 @@ import { Image } from "expo-image";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
-type CreateButtonProps = {
+type BigButtonProps = {
   title: string;
 };
 
-export default function CreateButton(props: CreateButtonProps) {
+export default function BigButton(props: BigButtonProps) {
   const router = useRouter();
 
   return (

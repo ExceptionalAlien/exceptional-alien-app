@@ -9,8 +9,8 @@ type Data = {
 };
 
 export default function Profile() {
-  const params = useLocalSearchParams<{ title: string; destinationUID: string }>();
-  const { title, destinationUID } = params;
+  const params = useLocalSearchParams<{ headerTitle: string; destinationUID: string }>();
+  const { headerTitle, destinationUID } = params;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
 
@@ -38,7 +38,7 @@ export default function Profile() {
     <SafeAreaView>
       <Stack.Screen
         options={{
-          title: title,
+          title: headerTitle,
         }}
       />
 

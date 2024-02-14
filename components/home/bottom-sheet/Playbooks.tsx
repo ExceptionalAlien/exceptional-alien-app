@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { DestinationType } from "context/destination";
-import Slider from "./playbooks/Slider";
-import CreateButton from "./playbooks/CreateButton";
+import PlaybookSlider from "components/shared/PlaybookSlider";
+import BigButton from "components/shared/BigButton";
 
 type PlaybooksProps = {
   destination: DestinationType;
@@ -10,9 +10,9 @@ type PlaybooksProps = {
 export default function Playbooks(props: PlaybooksProps) {
   return (
     <View style={[styles.container]}>
-      <Slider destination={props.destination} />
-      <Slider />
-      <CreateButton title="Create a Playbook" />
+      <PlaybookSlider destination={props.destination} />
+      <PlaybookSlider />
+      <BigButton title="Create a Playbook" />
     </View>
   );
 }

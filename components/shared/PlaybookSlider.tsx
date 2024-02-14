@@ -10,11 +10,11 @@ type Data = {
   playbook: PlaybookType;
 };
 
-type SliderProps = {
+type PlaybookSliderProps = {
   destination?: DestinationType;
 };
 
-export default function Slider(props: SliderProps) {
+export default function PlaybookSlider(props: PlaybookSliderProps) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
   const mountedUID = useRef<string | undefined>();
@@ -46,8 +46,14 @@ export default function Slider(props: SliderProps) {
     <View style={styles.container}>
       <Tab
         title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
-        pageTitle={props.destination ? props.destination.name : "Latest Playbooks"}
-        destinationUID={props.destination && props.destination.uid}
+        route={{
+          pathname: "/playbooks",
+          params: {
+            cta: "VIEW ALL",
+            headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
+            destinationUID: props.destination?.uid,
+          },
+        }}
       />
 
       {isLoading ? (

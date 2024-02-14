@@ -1,12 +1,21 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { pressedDefault } from "utils/helpers";
 
+type TabRoute = {
+  pathname: string;
+  params: {
+    cta: string;
+    headerTitle?: string;
+    destinationUID?: string;
+  };
+};
+
 type TabProps = {
   title: string;
-  pageTitle: string;
-  destinationUID?: string;
+  route?: TabRoute;
 };
 
 export default function Tab(props: TabProps) {
@@ -18,22 +27,19 @@ export default function Tab(props: TabProps) {
         {props.title}
       </Text>
 
-      <Pressable
-        onPress={() =>
-          router.push({
-            pathname: "/playbooks",
-            params: { title: props.pageTitle, destinationUID: props.destinationUID },
-          })
-        }
-        style={({ pressed }) => [pressedDefault(pressed), styles.link]}
-        hitSlop={8}
-      >
-        <Text style={styles.text} allowFontScaling={false}>
-          VIEW ALL
-        </Text>
+      {props.route && (
+        <Pressable
+          onPress={() => router.push(props.route as Href)}
+          style={({ pressed }) => [pressedDefault(pressed), styles.link]}
+          hitSlop={8}
+        >
+          <Text style={styles.text} allowFontScaling={false}>
+            {props.route.params.cta}
+          </Text>
 
-        <Ionicons name="arrow-forward-sharp" size={12} color="white" />
-      </Pressable>
+          <Ionicons name="arrow-forward-sharp" size={12} color="white" />
+        </Pressable>
+      )}
     </View>
   );
 }
