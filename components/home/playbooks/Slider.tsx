@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { ActivityIndicator, FlatList, View, StyleSheet } from "react-native";
+import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import Playbook, { PlaybookData } from "./Playbook";
 import Tab from "./Tab";
 
@@ -57,7 +58,7 @@ export default function Slider(props: SliderProps) {
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <Playbook data={item.playbook.data} />}
           horizontal
-          contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
+          contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
         />
       )}

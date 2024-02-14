@@ -12,7 +12,7 @@ export default function Nav() {
     <View style={styles.container}>
       {/* Search */}
       <Pressable onPress={() => router.push("/search")} style={({ pressed }) => pressedDefault(pressed)} hitSlop={12}>
-        <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
+        <Ionicons name="search-outline" size={28} color={styleVars.eaBlue} />
       </Pressable>
 
       {/* Profile */}

@@ -19,13 +19,13 @@ export default function Tab(props: TabProps) {
       <Pressable
         onPress={() => router.push("/playbooks")}
         style={({ pressed }) => [pressedDefault(pressed), styles.link]}
-        hitSlop={6}
+        hitSlop={8}
       >
         <Text style={styles.text} allowFontScaling={false}>
           VIEW ALL
         </Text>
 
-        <Ionicons name="arrow-forward-sharp" size={14} color="white" />
+        <Ionicons name="arrow-forward-sharp" size={12} color="white" />
       </Pressable>
     </View>
   );
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
     borderBottomWidth: 0,
-    padding: 6,
+    padding: 8,
     borderColor: "white",
     marginHorizontal: 16,
     marginBottom: 12,
@@ -51,5 +51,6 @@ const styles = StyleSheet.create({
   link: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 2,
   },
 });

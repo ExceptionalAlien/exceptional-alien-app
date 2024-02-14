@@ -35,7 +35,7 @@ type PlaybookProps = {
 };
 
 export default function Playbook(props: PlaybookProps) {
-  const blurhash = "L0EMLDxufQxu-;fQfQfQfQfQfQfQ";
+  const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   return (
     <View style={styles.container}>
