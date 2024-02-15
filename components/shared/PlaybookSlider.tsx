@@ -64,7 +64,12 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} width={176} titleColor="white" />}
           horizontal
-          contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
+          contentContainerStyle={{
+            gap: 8,
+            paddingLeft: 16,
+            paddingRight: 16,
+            minWidth: "100%",
+          }}
           showsHorizontalScrollIndicator={false}
         />
       )}
