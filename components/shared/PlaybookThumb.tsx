@@ -15,7 +15,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   return (
-    <View style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 44) / 2 }]}>
+    <View style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 40) / 2 }]}>
       <Image
         source={props.playbook.data.image.mobile.url}
         style={styles.image}

@@ -52,7 +52,7 @@ export default function Profile() {
           data={data}
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} />}
-          columnWrapperStyle={{ gap: 12 }}
+          columnWrapperStyle={{ gap: 8 }}
           contentContainerStyle={{
             gap: 16,
             padding: 16,
