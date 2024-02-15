@@ -34,7 +34,7 @@ export default function Destinations(props: DestinationsProps) {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 16,
+    marginHorizontal: 16,
   },
   tabletContainer: {
     flexDirection: "row",

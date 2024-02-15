@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { SafeAreaView, ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { PlaybookType } from "./playbook";
 import PlaybookThumb from "components/shared/PlaybookThumb";
+import { styleVars } from "utils/styles";
 
 type Data = {
   playbook: PlaybookType;
@@ -11,6 +13,7 @@ type Data = {
 export default function Profile() {
   const params = useLocalSearchParams<{ headerTitle: string; destinationUID: string }>();
   const { headerTitle, destinationUID } = params;
+  const headerHeight = useHeaderHeight();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
 
@@ -35,7 +38,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <SafeAreaView>
+    <View style={[styles.container, { paddingTop: headerHeight }]}>
       <Stack.Screen
         options={{
           title: headerTitle,
@@ -43,22 +46,28 @@ export default function Profile() {
       />
 
       {isLoading ? (
-        <ActivityIndicator color="#FFFFFF" style={styles.loading} />
+        <ActivityIndicator color={styleVars.eaBlue} style={styles.loading} />
       ) : (
         <FlatList
           data={data}
           keyExtractor={(item) => item.playbook.uid}
           renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} />}
-          contentContainerStyle={{ gap: 12, paddingLeft: 16, paddingRight: 16 }}
+          columnWrapperStyle={{ gap: 12 }}
+          contentContainerStyle={{
+            gap: 16,
+            padding: 16,
+          }}
+          numColumns={2}
+          contentInsetAdjustmentBehavior="automatic"
         />
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    minHeight: 200,
+    flex: 1,
   },
   loading: {
     flex: 1,

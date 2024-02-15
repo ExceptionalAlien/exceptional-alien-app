@@ -1,5 +1,4 @@
-import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View, StyleSheet } from "react-native";
 import Destinations from "./results/Destinations";
 
 type ResultsProps = {
@@ -7,11 +6,15 @@ type ResultsProps = {
 };
 
 export default function Results(props: ResultsProps) {
-  const insets = useSafeAreaInsets();
-
   return (
-    <View style={{ paddingBottom: insets.bottom }}>
+    <View style={styles.container}>
       <Destinations query={props.query} />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    paddingVertical: 16,
+  },
+});

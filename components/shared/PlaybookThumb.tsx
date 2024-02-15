@@ -1,17 +1,21 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, useColorScheme, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { PlaybookType } from "app/playbook";
 
 type PlaybookThumbProps = {
   playbook: PlaybookType;
+  width?: number;
+  titleColor?: string;
 };
 
 export default function PlaybookThumb(props: PlaybookThumbProps) {
+  const colorScheme = useColorScheme();
+  const { width } = useWindowDimensions();
   const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 44) / 2 }]}>
       <Image
         source={props.playbook.data.image.mobile.url}
         style={styles.image}
@@ -29,7 +33,13 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
         </Text>
       </View>
 
-      <Text style={styles.title} allowFontScaling={false}>
+      <Text
+        style={[
+          styles.title,
+          { color: props.titleColor ? props.titleColor : colorScheme === "light" ? "black" : "white" },
+        ]}
+        allowFontScaling={false}
+      >
         {props.playbook.data.creator.data.title.substring(0, 40)}
       </Text>
     </View>
@@ -39,7 +49,6 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 4,
-    width: 176,
   },
   image: {
     aspectRatio: "4/3",
@@ -62,7 +71,6 @@ const styles = StyleSheet.create({
     padding: 4,
   },
   title: {
-    color: "white",
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 14,
   },

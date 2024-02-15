@@ -62,7 +62,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
         <FlatList
           data={data}
           keyExtractor={(item) => item.playbook.uid}
-          renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} />}
+          renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} width={176} titleColor="white" />}
           horizontal
           contentContainerStyle={{ gap: 8, paddingLeft: 16, paddingRight: 16 }}
           showsHorizontalScrollIndicator={false}
