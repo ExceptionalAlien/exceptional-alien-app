@@ -3,7 +3,7 @@ import { StyleSheet, Text, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { DestinationType, DestinationContext, DestinationContextType } from "context/destination";
-import { pressedDefault } from "utils/helpers";
+import { pressedDefault, storeData } from "utils/helpers";
 
 type DestinationProps = {
   item: DestinationType;
@@ -15,6 +15,7 @@ export default function Destination(props: DestinationProps) {
 
   const destinationClick = (destination: DestinationType) => {
     setDestination(destination);
+    storeData("destination", destination);
     router.back();
   };
 

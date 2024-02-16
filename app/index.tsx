@@ -5,10 +5,13 @@ import { DestinationContext, DestinationContextType } from "context/destination"
 import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
+import { storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 export default function Home() {
   const { destination } = useContext<DestinationContextType>(DestinationContext);
+
+  storeData("onboarding", true); // !!! Will remove this
 
   return (
     <View style={styles.container}>

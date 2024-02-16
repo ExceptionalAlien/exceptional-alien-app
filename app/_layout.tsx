@@ -13,16 +13,15 @@ SplashScreen.preventAutoHideAsync();
 export default function Layout() {
   const colorScheme = useColorScheme();
 
-  // Sydney is default destination
   const [destination, setDestination] = useState<DestinationType>({
-    name: "Sydney",
-    uid: "sydney",
-    keywords: "Australia NSW New South Wales",
+    name: "",
+    uid: "",
+    keywords: "",
     region: {
-      latitude: -33.865143,
-      longitude: 151.2099,
-      latitudeDelta: 0.05,
-      longitudeDelta: 0.05,
+      latitude: 0,
+      longitude: 0,
+      latitudeDelta: 0,
+      longitudeDelta: 0,
     },
   });
 
