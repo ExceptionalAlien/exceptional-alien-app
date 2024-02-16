@@ -10,7 +10,7 @@ type PlaybooksProps = {
 export default function Playbooks(props: PlaybooksProps) {
   return (
     <View style={[styles.container]}>
-      <PlaybookSlider destination={props.destination} />
+      {props.destination.uid && <PlaybookSlider destination={props.destination} />}
       <PlaybookSlider />
 
       <BigButton

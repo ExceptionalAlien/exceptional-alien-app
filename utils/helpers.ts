@@ -26,3 +26,11 @@ export const getData = async (item: string) => {
     console.log(error);
   }
 };
+
+export const removeData = async (item: string) => {
+  try {
+    await AsyncStorage.removeItem(item);
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -13,10 +13,12 @@ export default function Title(props: TitleProps) {
     <View style={styles.container}>
       <Image source={require("assets/img/logo-icon.svg")} style={styles.logo} />
 
-      <View style={styles.text}>
-        <Destination name={props.destination.name} />
-        <Coords lat={props.destination.region.latitude} lng={props.destination.region.longitude} />
-      </View>
+      {props.destination.name && (
+        <View style={styles.text}>
+          <Destination name={props.destination.name} />
+          <Coords lat={props.destination.region.latitude} lng={props.destination.region.longitude} />
+        </View>
+      )}
     </View>
   );
 }

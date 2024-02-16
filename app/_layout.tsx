@@ -12,18 +12,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function Layout() {
   const colorScheme = useColorScheme();
-
-  const [destination, setDestination] = useState<DestinationType>({
-    name: "",
-    uid: "",
-    keywords: "",
-    region: {
-      latitude: 0,
-      longitude: 0,
-      latitudeDelta: 0,
-      longitudeDelta: 0,
-    },
-  });
+  const [destination, setDestination] = useState<DestinationType>();
 
   const [fontsLoaded, fontError] = useFonts({
     "Helvetica-Monospaced": require("../assets/fonts/Helvetica-Monospaced-W06-Rg.ttf"),

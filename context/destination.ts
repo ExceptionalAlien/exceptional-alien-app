@@ -14,21 +14,11 @@ export type DestinationType = {
 };
 
 export type DestinationContextType = {
-  destination: DestinationType;
+  destination: DestinationType | undefined;
   setDestination: (destination: DestinationType) => void;
 };
 
 export const DestinationContext = createContext<DestinationContextType>({
-  destination: {
-    name: "",
-    uid: "",
-    keywords: "",
-    region: {
-      latitude: 0,
-      longitude: 0,
-      latitudeDelta: 0,
-      longitudeDelta: 0,
-    },
-  },
+  destination: undefined,
   setDestination: () => null,
 });
