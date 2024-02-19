@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ScrollView, Platform } from "react-native";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useNavigation } from "expo-router";
 import { useHeaderHeight } from "@react-navigation/elements";
 import Results from "components/search/Results";
 import Input from "components/search/Input";
@@ -8,21 +8,29 @@ import Input from "components/search/Input";
 export default function Search() {
   const params = useLocalSearchParams<{ destinationsOnly: any }>();
   const { destinationsOnly } = params;
+  const navigation = useNavigation<any>();
   const headerHeight = useHeaderHeight();
   const [query, setQuery] = useState("");
-  const [offset, setOffset] = useState(0); // Hack - used to stop scrollview animating on load on iOS
+  const [offset, setOffset] = useState(0);
 
   const searchClick = () => {
     if (query.length > 1 && !destinationsOnly) alert("WIP - will query Prismic");
   };
+
+  useEffect(() => {
+    // Hack - used to stop scrollview animating on load on iOS
+    const unsubscribe = navigation.addListener("transitionEnd", () => {
+      setOffset(headerHeight);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
 
   return (
     <ScrollView
       stickyHeaderIndices={[1]}
       contentInsetAdjustmentBehavior="automatic"
       style={{ marginTop: Platform.OS === "android" ? headerHeight : offset }}
-      onScroll={() => setOffset(headerHeight)}
-      scrollEventThrottle={16}
     >
       <Stack.Screen
         options={{

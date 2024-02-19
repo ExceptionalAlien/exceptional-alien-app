@@ -10,10 +10,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 43.337341,
+      "longitudeStart": -8.438259,
+      "latitudeEnd": 43.386407,
+      "longitudeEnd": -8.387108
     }
   },
   {
@@ -27,10 +27,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 5.513987,
+      "longitudeStart": -0.29912,
+      "latitudeEnd": 5.66843,
+      "longitudeEnd": -0.060339
     }
   },
   {
@@ -44,10 +44,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -35.34897,
+      "longitudeStart": 138.44213,
+      "latitudeEnd": -34.652564,
+      "longitudeEnd": 138.78019
     }
   },
   {
@@ -61,10 +61,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 51.175092,
+      "longitudeStart": 172.347846,
+      "latitudeEnd": 71.439786,
+      "longitudeEnd": -129.974194
     }
   },
   {
@@ -78,10 +78,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -23.707093,
+      "longitudeStart": 133.874263,
+      "latitudeEnd": -23.691614,
+      "longitudeEnd": 133.885997
     }
   },
   {
@@ -95,10 +95,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 52.278174,
+      "longitudeStart": 4.728759,
+      "latitudeEnd": 52.431157,
+      "longitudeEnd": 5.079162
     }
   },
   {
@@ -112,10 +112,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -37.05902,
+      "longitudeStart": 174.443816,
+      "latitudeEnd": -36.660602,
+      "longitudeEnd": 174.968426
     },
     "trending": true
   },
@@ -130,10 +130,10 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 30.098659,
+      "longitudeStart": -97.938383,
+      "latitudeEnd": 30.516863,
+      "longitudeEnd": -97.573102
     }
   },
   {

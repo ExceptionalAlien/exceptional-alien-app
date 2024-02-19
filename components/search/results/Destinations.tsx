@@ -24,7 +24,7 @@ export default function Destinations(props: DestinationsProps) {
         if (
           (props.query.length <= 1 && item.trending) ||
           (props.query.length > 1 && item.name.match(new RegExp(props.query, "gi")) !== null) ||
-          (props.query.length > 1 && item.keywords.match(new RegExp(props.query, "gi")) !== null)
+          (props.query.length > 1 && item.keywords?.match(new RegExp(props.query, "gi")) !== null)
         )
           return <Destination key={i} item={item} />;
       })}

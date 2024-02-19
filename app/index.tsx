@@ -3,7 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
 import destinationsData from "data/destinations.json";
-import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
+import { DestinationContext, DestinationContextType } from "context/destination";
 import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
@@ -16,6 +16,7 @@ export default function Home() {
   const { destination, setDestination } = useContext<DestinationContextType>(DestinationContext);
   const [onboardingComplete, setOnboardingComplete] = useState<boolean | undefined>();
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showChooseDestination, setShowChooseDestination] = useState(false);
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
 
@@ -30,14 +31,24 @@ export default function Home() {
 
   useEffect(() => {
     const getLocation = async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      const { status } = await Location.requestForegroundPermissionsAsync(); // Request
 
       if (status === "granted") {
         // Device location access granted
         const location = await Location.getCurrentPositionAsync({});
         const data = JSON.stringify(destinationsData);
         const json = JSON.parse(data);
-        var userDestination: DestinationType;
+
+        const userDestination = {
+          name: "",
+          uid: "",
+          region: {
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+            latitudeDelta: 0.05,
+            longitudeDelta: 0.05,
+          },
+        };
 
         // Loop destinations and detect if device is within a destination's bounds
         for (let i = 0; i < json.length; i++) {
@@ -49,31 +60,24 @@ export default function Home() {
             location.coords.longitude >= bounds.longitudeStart &&
             location.coords.longitude <= bounds.longitudeEnd
           ) {
-            userDestination = json[i];
+            userDestination.name = json[i].name;
+            userDestination.uid = json[i].uid;
             break;
           }
         }
 
-        setDestination({
-          name: userDestination! ? userDestination.name : "",
-          uid: userDestination! ? userDestination.uid : "",
-          region: {
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          },
-        });
+        setDestination(userDestination);
       } else {
         // Location access not granted
         const storedDestination = await getData("destination");
 
         if (storedDestination) {
-          // Use stored destination
+          // Use stored destination from previous session
           setDestination(storedDestination);
         } else {
           // User must select a destination
           router.push({ pathname: "/search", params: { destinationsOnly: true } });
+          setShowChooseDestination(true);
           setShowOnboarding(true); // Show select destination button
         }
       }
@@ -103,7 +107,7 @@ export default function Home() {
       )}
 
       {showOnboarding && (
-        <Onboarding onboardingComplete={onboardingComplete} setOnboardingComplete={setOnboardingComplete} />
+        <Onboarding setOnboardingComplete={setOnboardingComplete} showChooseDestination={showChooseDestination} />
       )}
     </View>
   );
