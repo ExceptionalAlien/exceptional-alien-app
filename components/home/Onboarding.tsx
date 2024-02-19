@@ -1,19 +1,30 @@
 import { StyleSheet, View, Button } from "react-native";
+import { useRouter } from "expo-router";
 import { storeData } from "utils/helpers";
 
 type OnboardingProps = {
-  setOnboardingShown: React.Dispatch<React.SetStateAction<boolean | undefined>>;
+  onboardingComplete: boolean | undefined;
+  setOnboardingComplete: React.Dispatch<React.SetStateAction<boolean | undefined>>;
 };
 
 export default function Onboarding(props: OnboardingProps) {
-  const close = () => {
+  const router = useRouter();
+
+  const complete = () => {
     storeData("onboarding", true);
-    props.setOnboardingShown(true);
+    props.setOnboardingComplete(true);
   };
 
   return (
     <View style={styles.container}>
-      <Button title="Close onboarding" onPress={close} />
+      {!props.onboardingComplete && <Button title="Complete onboarding" onPress={complete} />}
+
+      {props.onboardingComplete && (
+        <Button
+          title="Choose destination"
+          onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
+        />
+      )}
     </View>
   );
 }
@@ -21,7 +32,6 @@ export default function Onboarding(props: OnboardingProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
     justifyContent: "center",
   },
 });

@@ -6,6 +6,8 @@ import { styleVars } from "utils/styles";
 type InputProps = {
   query: string;
   setQuery: React.Dispatch<React.SetStateAction<string>>;
+  placeholder: string;
+  searchClick: () => void;
 };
 
 export default function Input(props: InputProps) {
@@ -24,10 +26,10 @@ export default function Input(props: InputProps) {
           style={[styles.input, colorScheme === "dark" && { color: "white" }]}
           onChangeText={props.setQuery}
           value={props.query}
-          placeholder="Destinations, Playbooks, Gems & more"
+          placeholder={props.placeholder}
           returnKeyType="search"
           allowFontScaling={false}
-          onSubmitEditing={searchClick}
+          onSubmitEditing={props.searchClick}
           clearButtonMode="always"
           cursorColor={styleVars.eaBlue}
         />

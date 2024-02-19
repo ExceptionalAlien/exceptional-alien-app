@@ -1,27 +1,30 @@
 import { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
-import { DestinationContext, DestinationContextType } from "context/destination";
+import destinationsData from "data/destinations.json";
+import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
 import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
 import Onboarding from "components/home/Onboarding";
-import { storeData, getData, removeData } from "utils/helpers";
+import { getData, removeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 export default function Home() {
+  const router = useRouter();
   const { destination, setDestination } = useContext<DestinationContextType>(DestinationContext);
-  const [onboardingShown, setOnboardingShown] = useState<boolean | undefined>();
-
-  //storeData("onboarding", true); // !!! Will remove this
-  //removeData("onboarding");
+  const [onboardingComplete, setOnboardingComplete] = useState<boolean | undefined>();
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  //removeData("onboarding"); // Used for testing
+  //removeData("destination"); // Used for testing
 
   useEffect(() => {
     // Check if onboarding already shown on init
     (async () => {
-      const status = await getData("onboarding");
-      setOnboardingShown(status ? true : false);
+      const shown = await getData("onboarding");
+      setOnboardingComplete(shown ? true : false); // Get location if onboarding already complete
+      setShowOnboarding(!shown ? true : false); // Show onboarding view if not seen already
     })();
   }, []);
 
@@ -30,15 +33,30 @@ export default function Home() {
       const { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status === "granted") {
-        // Location access granted
-        let location = await Location.getCurrentPositionAsync({});
+        // Device location access granted
+        const location = await Location.getCurrentPositionAsync({});
+        const data = JSON.stringify(destinationsData);
+        const json = JSON.parse(data);
+        var userDestination: DestinationType;
 
-        // !!! Detect if location is a destination
+        // Loop destinations and detect if device is within a destination's bounds
+        for (let i = 0; i < json.length; i++) {
+          let bounds = json[i].bounds;
+
+          if (
+            location.coords.latitude >= bounds.latitudeStart &&
+            location.coords.latitude <= bounds.latitudeEnd &&
+            location.coords.longitude >= bounds.longitudeStart &&
+            location.coords.longitude <= bounds.longitudeEnd
+          ) {
+            userDestination = json[i];
+            break;
+          }
+        }
 
         setDestination({
-          name: "",
-          uid: "",
-          keywords: "",
+          name: userDestination! ? userDestination.name : "",
+          uid: userDestination! ? userDestination.uid : "",
           region: {
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -54,24 +72,19 @@ export default function Home() {
           // Use stored destination
           setDestination(storedDestination);
         } else {
-          // Use Sydney (needed incase user removes location access later)
-          setDestination({
-            name: "Sydney",
-            uid: "sydney",
-            keywords: "Australia NSW New South Wales",
-            region: {
-              latitude: -33.86882,
-              longitude: 151.209296,
-              latitudeDelta: 0.05,
-              longitudeDelta: 0.05,
-            },
-          });
+          // User must select a destination
+          router.push({ pathname: "/search", params: { destinationsOnly: true } });
+          setShowOnboarding(true); // Show select destination button
         }
       }
     };
 
-    if (onboardingShown) getLocation();
-  }, [onboardingShown]);
+    if (onboardingComplete) getLocation();
+  }, [onboardingComplete]);
+
+  useEffect(() => {
+    if (destination) setShowOnboarding(false); // Hide
+  }, [destination]);
 
   return (
     <View style={styles.container}>
@@ -89,7 +102,9 @@ export default function Home() {
         </>
       )}
 
-      {!onboardingShown && <Onboarding setOnboardingShown={setOnboardingShown} />}
+      {showOnboarding && (
+        <Onboarding onboardingComplete={onboardingComplete} setOnboardingComplete={setOnboardingComplete} />
+      )}
     </View>
   );
 }

@@ -8,6 +8,12 @@
       "longitude": -8.41154,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -19,6 +25,12 @@
       "longitude": -0.197431,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -30,6 +42,12 @@
       "longitude": 138.600746,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -41,6 +59,12 @@
       "longitude": -154.493062,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -52,6 +76,12 @@
       "longitude": 133.880747,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -63,6 +93,12 @@
       "longitude": 4.904139,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -75,6 +111,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
+    },
     "trending": true
   },
   {
@@ -86,6 +128,12 @@
       "longitude": -97.743061,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -97,6 +145,12 @@
       "longitude": 115.188916,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -108,6 +162,12 @@
       "longitude": 77.594563,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -119,6 +179,12 @@
       "longitude": 100.501765,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -130,6 +196,12 @@
       "longitude": -59.543198,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -141,6 +213,12 @@
       "longitude": 2.168568,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -152,6 +230,12 @@
       "longitude": 35.501777,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -163,6 +247,12 @@
       "longitude": 144.279391,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -175,6 +265,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
+    },
     "trending": true
   },
   {
@@ -186,6 +282,12 @@
       "longitude": 90.433601,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -197,6 +299,12 @@
       "longitude": -1.558626,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -208,6 +316,12 @@
       "longitude": -0.57918,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -219,6 +333,12 @@
       "longitude": -0.136267,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -230,6 +350,12 @@
       "longitude": 153.026034,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -241,6 +367,12 @@
       "longitude": 153.610517,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -252,6 +384,12 @@
       "longitude": 149.131032,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -264,6 +402,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
+    },
     "trending": true
   },
   {
@@ -275,6 +419,12 @@
       "longitude": 144.218501,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -286,6 +436,12 @@
       "longitude": 80.270718,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -297,6 +453,12 @@
       "longitude": 98.660059,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -308,6 +470,12 @@
       "longitude": -87.629798,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -320,6 +488,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
+    },
     "trending": true
   },
   {
@@ -331,6 +505,12 @@
       "longitude": -17.467686,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -342,6 +522,12 @@
       "longitude": -83.045754,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -353,6 +539,12 @@
       "longitude": 55.270783,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -364,6 +556,12 @@
       "longitude": -6.26031,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -375,6 +573,12 @@
       "longitude": 31.02184,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -386,6 +590,12 @@
       "longitude": 0.290472,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -397,6 +607,12 @@
       "longitude": -117.291982,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -408,6 +624,12 @@
       "longitude": 11.252379,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -419,6 +641,12 @@
       "longitude": 28.112268,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -430,6 +658,12 @@
       "longitude": 3.730335,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -441,6 +675,12 @@
       "longitude": -4.258334,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -452,6 +692,12 @@
       "longitude": 74.123996,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -463,6 +709,12 @@
       "longitude": 153.4,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -474,6 +726,12 @@
       "longitude": 105.83416,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -485,6 +743,12 @@
       "longitude": -82.366596,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -497,6 +761,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
+    },
     "trending": true
   },
   {
@@ -508,6 +778,12 @@
       "longitude": 106.629664,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -519,6 +795,12 @@
       "longitude": 147.32572,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -530,6 +812,12 @@
       "longitude": 114.169361,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -541,6 +829,12 @@
       "longitude": -1.397687,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -552,6 +846,12 @@
       "longitude": 1.420598,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -563,6 +863,12 @@
       "longitude": 28.978359,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 0,
+      "longitudeStart": 0,
+      "latitudeEnd": 0,
+      "longitudeEnd": 0
     }
   },
   {
@@ -574,6 +880,12 @@
       "longitude": -118.242643,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 33.703652,
+      "longitudeStart": -118.668176,
+      "latitudeEnd": 34.337306,
+      "longitudeEnd": -118.155289
     },
     "trending": true
   },
@@ -587,6 +899,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": -38.433859,
+      "longitudeStart": 144.593742,
+      "latitudeEnd": -37.511274,
+      "longitudeEnd": 145.512529
+    },
     "trending": true
   },
   {
@@ -598,6 +916,12 @@
       "longitude": -74.005973,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 40.477399,
+      "longitudeStart": -74.25909,
+      "latitudeEnd": 40.917577,
+      "longitudeEnd": -73.700272
     },
     "trending": true
   },
@@ -611,6 +935,12 @@
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
     },
+    "bounds": {
+      "latitudeStart": -34.118347,
+      "longitudeStart": 150.520929,
+      "latitudeEnd": -33.578141,
+      "longitudeEnd": 151.343021
+    },
     "trending": true
   },
   {
@@ -622,6 +952,12 @@
       "longitude": 139.650027,
       "latitudeDelta": 0.05,
       "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 20.423122,
+      "longitudeStart": 136.069683,
+      "latitudeEnd": 35.898407,
+      "longitudeEnd": 153.986795
     },
     "trending": true
   }

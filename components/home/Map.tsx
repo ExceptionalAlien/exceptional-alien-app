@@ -16,6 +16,7 @@ export default function Map(props: MapProps) {
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         region={props.region}
+        showsUserLocation
       />
     </View>
   );

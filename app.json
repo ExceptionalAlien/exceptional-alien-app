@@ -12,11 +12,6 @@
       "backgroundColor": "#2220C1"
     },
     "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.exceptionalalien.app",
-      "buildNumber": "1"
-    },
     "android": {
       "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
