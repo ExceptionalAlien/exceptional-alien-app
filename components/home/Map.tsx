@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
-import { StyleSheet, View, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView from "react-native-map-clustering";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
-import GemMarker from "./map/GemMarker";
 import mapStyle from "assets/map-style.json";
 import { styleVars } from "utils/styles";
 
@@ -12,11 +12,35 @@ type MapProps = {
   destination: DestinationType;
 };
 
+const icons = {
+  FoodAndDrink: require("assets/img/markers/food-and-drink.png"),
+  FoodAndDrinkSelected: require("assets/img/markers/food-and-drink-selected.png"),
+  Culture: require("assets/img/markers/culture.png"),
+  CultureSelected: require("assets/img/markers/culture-selected.png"),
+  Nature: require("assets/img/markers/nature.png"),
+  NatureSelected: require("assets/img/markers/nature-selected.png"),
+  Retail: require("assets/img/markers/retail.png"),
+  RetailSelected: require("assets/img/markers/retail-selected.png"),
+  Neighbourhoods: require("assets/img/markers/neighbourhoods.png"),
+  NeighbourhoodsSelected: require("assets/img/markers/neighbourhoods-selected.png"),
+  Wellness: require("assets/img/markers/wellness.png"),
+  WellnessSelected: require("assets/img/markers/wellness-selected.png"),
+  Events: require("assets/img/markers/events.png"),
+  EventsSelected: require("assets/img/markers/events-selected.png"),
+  Accommodation: require("assets/img/markers/accommodation.png"),
+  AccommodationSelected: require("assets/img/markers/accommodation-selected.png"),
+};
+
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
   const [isLoading, setLoading] = useState(true);
+  const [selectedMarker, setSelectedMarker] = useState<string>();
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
+
+  const pressed = (uid: string) => {
+    setSelectedMarker(uid);
+  };
 
   const getGems = async (id: string) => {
     try {
@@ -46,10 +70,51 @@ export default function Map(props: MapProps) {
         customMapStyle={mapStyle}
         region={props.destination.region}
         showsUserLocation
+        edgePadding={{ top: 144, left: 40, bottom: 64, right: 40 }}
+        renderCluster={(cluster) => {
+          const { id, geometry, onPress, properties } = cluster;
+          const points = properties.point_count;
+
+          return (
+            <Marker
+              key={`cluster-${id}`}
+              coordinate={{
+                longitude: geometry.coordinates[0],
+                latitude: geometry.coordinates[1],
+              }}
+              onPress={onPress}
+            >
+              <View
+                style={{
+                  width: points < 10 ? 40 : 56,
+                  height: points < 10 ? 40 : 56,
+                  justifyContent: "center",
+                  alignItems: "center",
+                  backgroundColor: styleVars.eaBlue,
+                  borderRadius: 999,
+                }}
+              >
+                <Text style={{ color: "white", fontFamily: "Helvetica-Monospaced", fontSize: 14 }}>{points}</Text>
+              </View>
+            </Marker>
+          );
+        }}
       >
-        {data.map((item, index) => {
+        {data.map((item) => {
           if (item.data.location.latitude && item.data.location.longitude) {
-            return <GemMarker key={index} marker={item} />;
+            return (
+              <Marker
+                key={item.uid}
+                coordinate={item.data.location}
+                icon={
+                  selectedMarker === item.uid
+                    ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
+                    : icons[item.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+                }
+                tracksViewChanges={false}
+                onPress={() => pressed(item.uid)}
+              />
+            );
           }
         })}
       </MapView>
