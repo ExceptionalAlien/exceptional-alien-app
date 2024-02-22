@@ -40,7 +40,9 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
         ]}
         allowFontScaling={false}
       >
-        {props.playbook.data.creator.data.title.substring(0, 40)}
+        {props.playbook.data.sub_title
+          ? props.playbook.data.sub_title.substring(0, 40)
+          : props.playbook.data.creator.data.title.substring(0, 40)}
       </Text>
     </View>
   );

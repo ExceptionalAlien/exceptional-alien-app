@@ -16,6 +16,7 @@ type Destination = {
 
 type PlaybookData = {
   title: string;
+  sub_title: string;
   image: PlaybookImage;
   creator: Creator;
   destination: Destination;

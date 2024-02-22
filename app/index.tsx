@@ -40,6 +40,7 @@ export default function Home() {
         const json = JSON.parse(data);
 
         const userDestination = {
+          id: "",
           name: "",
           uid: "",
           region: {
@@ -60,6 +61,7 @@ export default function Home() {
             location.coords.longitude >= bounds.longitudeStart &&
             location.coords.longitude <= bounds.longitudeEnd
           ) {
+            userDestination.id = json[i].id;
             userDestination.name = json[i].name;
             userDestination.uid = json[i].uid;
             break;
@@ -100,7 +102,7 @@ export default function Home() {
 
       {destination && (
         <>
-          <Map region={destination.region} />
+          <Map destination={destination} />
           <BottomSheet destination={destination} />
           <Header destination={destination} />
         </>

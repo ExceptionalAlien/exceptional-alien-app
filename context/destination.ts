@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 export type DestinationType = {
+  id: string;
   name: string;
   uid: string;
   keywords?: string;

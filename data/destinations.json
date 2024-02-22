@@ -1,13 +1,14 @@
 [
   {
+    "id": "ZSaIoxAAADNdr4V6",
     "name": "A Coruña",
     "uid": "a-coruna",
     "keywords": "Spain Europe",
     "region": {
       "latitude": 43.362344,
       "longitude": -8.41154,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.375,
+      "longitudeDelta": 0.375
     },
     "bounds": {
       "latitudeStart": 43.337341,
@@ -17,14 +18,15 @@
     }
   },
   {
+    "id": "ZSaIXhAAAM1cr4Ql",
     "name": "Accra",
     "uid": "accra",
     "keywords": "Ghana Africa",
     "region": {
       "latitude": 5.559285,
       "longitude": -0.197431,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.2,
+      "longitudeDelta": 0.2
     },
     "bounds": {
       "latitudeStart": 5.513987,
@@ -34,14 +36,15 @@
     }
   },
   {
+    "id": "ZSaIERAAACVdr4Kt",
     "name": "Adelaide",
     "uid": "adelaide",
     "keywords": "Australia South SA",
     "region": {
       "latitude": -34.928499,
       "longitude": 138.600746,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.3,
+      "longitudeDelta": 0.3
     },
     "bounds": {
       "latitudeStart": -35.34897,
@@ -51,14 +54,15 @@
     }
   },
   {
+    "id": "ZSaH1xAAAM1cr4Ga",
     "name": "Alaska",
     "uid": "alaska",
     "keywords": "America United States USA",
     "region": {
       "latitude": 63.588753,
       "longitude": -154.493062,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 27.5,
+      "longitudeDelta": 27.5
     },
     "bounds": {
       "latitudeStart": 51.175092,
@@ -68,14 +72,15 @@
     }
   },
   {
+    "id": "ZSaHjBAAAO9cr4A7",
     "name": "Alice Springs",
     "uid": "alice-springs",
     "keywords": "Australia NT Northern Territory",
     "region": {
       "latitude": -23.698042,
       "longitude": 133.880747,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 7.5,
+      "longitudeDelta": 7.5
     },
     "bounds": {
       "latitudeStart": -23.707093,
@@ -85,14 +90,15 @@
     }
   },
   {
+    "id": "ZSaHNxAAACVdr36d",
     "name": "Amsterdam",
     "uid": "amsterdam",
     "keywords": "Netherlands Europe",
     "region": {
       "latitude": 52.367573,
       "longitude": 4.904139,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.1,
+      "longitudeDelta": 0.1
     },
     "bounds": {
       "latitudeStart": 52.278174,
@@ -102,14 +108,15 @@
     }
   },
   {
+    "id": "ZSaG8BAAADNdr31L",
     "name": "Auckland",
     "uid": "auckland",
     "keywords": "New Zealand NZ",
     "region": {
       "latitude": -36.850883,
       "longitude": 174.764488,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.8,
+      "longitudeDelta": 0.8
     },
     "bounds": {
       "latitudeStart": -37.05902,
@@ -120,14 +127,15 @@
     "trending": true
   },
   {
+    "id": "ZSaGrhAAAIFcr3wJ",
     "name": "Austin",
     "uid": "austin",
     "keywords": "America United States USA Texas",
     "region": {
       "latitude": 30.267153,
       "longitude": -97.743061,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.2,
+      "longitudeDelta": 0.2
     },
     "bounds": {
       "latitudeStart": 30.098659,
@@ -137,6 +145,7 @@
     }
   },
   {
+    "id": "ZSaGXxAAACBdr3tL",
     "name": "Bali",
     "uid": "bali",
     "keywords": "Indonesia Asia",
@@ -147,13 +156,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -8.849261,
+      "longitudeStart": 114.431626,
+      "latitudeEnd": -8.061682,
+      "longitudeEnd": 115.711528
     }
   },
   {
+    "id": "ZSaGHxAAAIVcr3pW",
     "name": "Bangalore",
     "uid": "bangalore",
     "keywords": "India Asia",
@@ -164,13 +174,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 12.734289,
+      "longitudeStart": 77.379198,
+      "latitudeEnd": 13.173706,
+      "longitudeEnd": 77.882681
     }
   },
   {
+    "id": "ZSaFfhAAACVdr3el",
     "name": "Bangkok",
     "uid": "bangkok",
     "keywords": "Thailand Asia",
@@ -181,13 +192,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 13.494088,
+      "longitudeStart": 100.327814,
+      "latitudeEnd": 13.955111,
+      "longitudeEnd": 100.938408
     }
   },
   {
+    "id": "ZSaE_RAAAKFcr3VM",
     "name": "Barbados",
     "uid": "barbados",
     "keywords": "Caribbean",
@@ -198,13 +210,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 13.039844,
+      "longitudeStart": -59.653015,
+      "latitudeEnd": 13.336509,
+      "longitudeEnd": -59.417496
     }
   },
   {
+    "id": "ZSaEhhAAAM1cr3L6",
     "name": "Barcelona",
     "uid": "barcelona",
     "keywords": "Spain Europe",
@@ -215,13 +228,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 41.317039,
+      "longitudeStart": 2.052333,
+      "latitudeEnd": 41.468297,
+      "longitudeEnd": 2.228045
     }
   },
   {
+    "id": "ZSaD2xAAADNdr2-1",
     "name": "Beirut",
     "uid": "beirut",
     "keywords": "Lebanon Middle East",
@@ -232,13 +246,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 33.862328,
+      "longitudeStart": 35.466928,
+      "latitudeEnd": 33.916109,
+      "longitudeEnd": 35.541636
     }
   },
   {
+    "id": "ZSaDthAAAM1cr272",
     "name": "Benigo",
     "uid": "bendigo",
     "keywords": "Australia VIC Victoria",
@@ -249,13 +264,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -36.833285,
+      "longitudeStart": 144.183904,
+      "latitudeEnd": -36.641032,
+      "longitudeEnd": 144.380745
     }
   },
   {
+    "id": "ZSaDYBAAADNdr21K",
     "name": "Berlin",
     "uid": "berlin",
     "keywords": "Germany Europe",
@@ -266,14 +282,15 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 52.338234,
+      "longitudeStart": 13.088346,
+      "latitudeEnd": 52.675454,
+      "longitudeEnd": 13.761118
     },
     "trending": true
   },
   {
+    "id": "ZRygOREAADMDjU2V",
     "name": "Bhutan",
     "uid": "bhutan",
     "keywords": "Asia",
@@ -284,13 +301,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 26.702021,
+      "longitudeStart": 88.745522,
+      "latitudeEnd": 28.247806,
+      "longitudeEnd": 92.125232
     }
   },
   {
+    "id": "ZSaDFBAAACBdr2vn",
     "name": "Biarritz",
     "uid": "biarritz",
     "keywords": "France Europe",
@@ -301,13 +319,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 43.447407,
+      "longitudeStart": -1.577191,
+      "latitudeEnd": 43.494513,
+      "longitudeEnd": -1.534389
     }
   },
   {
+    "id": "ZSaCyRAAAIFcr2qG",
     "name": "Bordeaux",
     "uid": "bordeaux",
     "keywords": "France Europe",
@@ -318,13 +337,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 44.810741,
+      "longitudeStart": -0.638699,
+      "latitudeEnd": 44.916694,
+      "longitudeEnd": -0.533325
     }
   },
   {
+    "id": "ZSaCRRAAAKFcr2fw",
     "name": "Brighton",
     "uid": "brighton",
     "keywords": "UK England United Kingdom",
@@ -335,13 +355,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 50.79525,
+      "longitudeStart": -0.247016,
+      "latitudeEnd": 50.915037,
+      "longitudeEnd": -0.009909
     }
   },
   {
+    "id": "ZSaB9BAAACVdr2Ze",
     "name": "Brisbane",
     "uid": "brisbane",
     "keywords": "Australia QLD Queensland",
@@ -352,13 +373,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -27.767441,
+      "longitudeStart": 152.668523,
+      "latitudeEnd": -26.996845,
+      "longitudeEnd": 153.31787
     }
   },
   {
+    "id": "ZXu8PhAAACAADEEh",
     "name": "Byron Bay",
     "uid": "byron-bay",
     "keywords": "Australia NSW New South Wales",
@@ -369,13 +391,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -28.679357,
+      "longitudeStart": 153.566967,
+      "latitudeEnd": -28.61438,
+      "longitudeEnd": 153.638832
     }
   },
   {
+    "id": "ZSaBgBAAACBdr2Qq",
     "name": "Canberra",
     "uid": "canberra",
     "keywords": "Australia ACT Australian Capital Territory",
@@ -386,13 +409,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -35.48026,
+      "longitudeStart": 148.995922,
+      "latitudeEnd": -35.147699,
+      "longitudeEnd": 149.263643
     }
   },
   {
+    "id": "ZSaBNhAAAIFcr2LD",
     "name": "Cape Town",
     "uid": "cape-town",
     "keywords": "South Africa",
@@ -403,14 +427,15 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -34.359806,
+      "longitudeStart": 18.307449,
+      "latitudeEnd": -33.47127,
+      "longitudeEnd": 19.00467
     },
     "trending": true
   },
   {
+    "id": "ZSaAthAAAIVcr2BZ",
     "name": "Castlemaine",
     "uid": "castlemaine",
     "keywords": "Australia VIC Victoria",
@@ -421,13 +446,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -37.106867,
+      "longitudeStart": 144.167985,
+      "latitudeEnd": -37.034882,
+      "longitudeEnd": 144.271028
     }
   },
   {
+    "id": "ZSZ_5RAAAM1cr1y6",
     "name": "Chennai",
     "uid": "chennai",
     "keywords": "India Asia",
@@ -438,13 +464,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 12.833885,
+      "longitudeStart": 80.081701,
+      "latitudeEnd": 13.261166,
+      "longitudeEnd": 80.336323
     }
   },
   {
+    "id": "ZSZ_lBAAAO9cr1sr",
     "name": "Chiang Mai",
     "uid": "chiang-mai",
     "keywords": "Thailand Asia",
@@ -455,13 +482,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 17.242275,
+      "longitudeStart": 98.008039,
+      "latitudeEnd": 20.14758,
+      "longitudeEnd": 99.572913
     }
   },
   {
+    "id": "ZSZ-5RAAAKFcr1hG",
     "name": "Chicago",
     "uid": "chicago",
     "keywords": "America United States USA Illinois",
@@ -472,13 +500,14 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 41.644335,
+      "longitudeStart": -87.940267,
+      "latitudeEnd": 42.023131,
+      "longitudeEnd": -87.523661
     }
   },
   {
+    "id": "ZSZzXhAAAO9crx8P",
     "name": "Copenhagen",
     "uid": "copenhagen",
     "keywords": "Denmark Europe",
@@ -489,14 +518,15 @@
       "longitudeDelta": 0.05
     },
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 55.615441,
+      "longitudeStart": 12.453382,
+      "latitudeEnd": 55.727094,
+      "longitudeEnd": 12.734265
     },
     "trending": true
   },
   {
+    "id": "",
     "name": "Dakar",
     "uid": "dakar",
     "keywords": "Senegal Africa",
@@ -514,6 +544,7 @@
     }
   },
   {
+    "id": "",
     "name": "Detroit",
     "uid": "detroit",
     "keywords": "America United States USA Michigan",
@@ -531,6 +562,7 @@
     }
   },
   {
+    "id": "",
     "name": "Dubai",
     "uid": "dubai",
     "keywords": "United Arab Emirates UAE Middle East",
@@ -548,6 +580,7 @@
     }
   },
   {
+    "id": "",
     "name": "Dublin",
     "uid": "dublin",
     "keywords": "Ireland UK United Kingdom",
@@ -565,6 +598,7 @@
     }
   },
   {
+    "id": "",
     "name": "Durban",
     "uid": "durban",
     "keywords": "South Africa",
@@ -582,6 +616,7 @@
     }
   },
   {
+    "id": "",
     "name": "Eastbourne",
     "uid": "eastbourne",
     "keywords": "UK United Kingdom England Britain",
@@ -599,6 +634,7 @@
     }
   },
   {
+    "id": "",
     "name": "Encinitas",
     "uid": "encinitas",
     "keywords": "America United States USA California",
@@ -616,6 +652,7 @@
     }
   },
   {
+    "id": "",
     "name": "Florence",
     "uid": "florence",
     "keywords": "Italy Europe",
@@ -633,6 +670,7 @@
     }
   },
   {
+    "id": "",
     "name": "Gauteng",
     "uid": "gauteng",
     "keywords": "South Africa",
@@ -650,6 +688,7 @@
     }
   },
   {
+    "id": "",
     "name": "Ghent",
     "uid": "ghent",
     "keywords": "Belgium Europe",
@@ -667,6 +706,7 @@
     }
   },
   {
+    "id": "",
     "name": "Glasgow",
     "uid": "glasgow",
     "keywords": "UK United Kingdom England Britain",
@@ -684,6 +724,7 @@
     }
   },
   {
+    "id": "",
     "name": "Goa",
     "uid": "goa",
     "keywords": "Indi Asia",
@@ -701,6 +742,7 @@
     }
   },
   {
+    "id": "",
     "name": "Gold Coast",
     "uid": "gold-coast",
     "keywords": "Australia QLD Queensland",
@@ -718,6 +760,7 @@
     }
   },
   {
+    "id": "",
     "name": "Hanoi",
     "uid": "hanoi",
     "keywords": "Vietnam Asia",
@@ -735,6 +778,7 @@
     }
   },
   {
+    "id": "",
     "name": "Havana",
     "uid": "havana",
     "keywords": "Cuba Caribbean",
@@ -752,6 +796,7 @@
     }
   },
   {
+    "id": "",
     "name": "Hawaii",
     "uid": "hawaii",
     "keywords": "America United States USA Oahu Waikiki",
@@ -770,6 +815,7 @@
     "trending": true
   },
   {
+    "id": "",
     "name": "Ho Chi Minh City",
     "uid": "ho-chi-minh-city",
     "keywords": "Vietnam Asia",
@@ -787,6 +833,7 @@
     }
   },
   {
+    "id": "",
     "name": "Hobart",
     "uid": "hobart",
     "keywords": "Australia Tasmania",
@@ -804,6 +851,7 @@
     }
   },
   {
+    "id": "",
     "name": "Hong Kong",
     "uid": "hong-kong",
     "keywords": "China Asia",
@@ -821,6 +869,7 @@
     }
   },
   {
+    "id": "",
     "name": "Hossegor",
     "uid": "hossegor",
     "keywords": "France Europe",
@@ -838,6 +887,7 @@
     }
   },
   {
+    "id": "",
     "name": "Ibiza",
     "uid": "ibiza",
     "keywords": "Spain Europe",
@@ -855,6 +905,7 @@
     }
   },
   {
+    "id": "",
     "name": "Istanbul",
     "uid": "istanbul",
     "keywords": "Turkey Middle East",
@@ -872,6 +923,7 @@
     }
   },
   {
+    "id": "ZSY6khAAAFRZrgub",
     "name": "Los Angeles",
     "uid": "los-angeles",
     "keywords": "America United States USA California",
@@ -890,6 +942,7 @@
     "trending": true
   },
   {
+    "id": "ZSY4VxAAAAtargFC",
     "name": "Melbourne",
     "uid": "melbourne",
     "keywords": "Australia VIC Victoria",
@@ -908,6 +961,7 @@
     "trending": true
   },
   {
+    "id": "ZSXp2RAAAG9QrJvl",
     "name": "New York",
     "uid": "new-york",
     "keywords": "America United States USA",
@@ -926,6 +980,7 @@
     "trending": true
   },
   {
+    "id": "ZP6qOxIAACIAkMGl",
     "name": "Sydney",
     "uid": "sydney",
     "keywords": "Australia NSW New South Wales",
@@ -944,6 +999,7 @@
     "trending": true
   },
   {
+    "id": "ZSYiQxAAAMdXrZyc",
     "name": "Tokyo",
     "uid": "tokyo",
     "keywords": "Japan Asia",
