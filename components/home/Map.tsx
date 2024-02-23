@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { StyleSheet, View, ActivityIndicator, Text } from "react-native";
+import { StyleSheet, View, ActivityIndicator, Text, Alert } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapView from "react-native-map-clustering";
@@ -48,7 +48,10 @@ export default function Map(props: MapProps) {
       const json = await response.json();
       if (id === mountedID.current) setData(json);
     } catch (error) {
-      if (id === mountedID.current) console.error(error);
+      if (id === mountedID.current) {
+        console.error(error);
+        Alert.alert("Error", `Unable to load Gems`);
+      }
     } finally {
       if (id === mountedID.current) setLoading(false);
     }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View, Alert } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { PlaybookType } from "./playbook";
@@ -27,6 +27,7 @@ export default function Profile() {
     } catch (error) {
       setData([]); // Empty
       console.error(error);
+      Alert.alert("Error", "Unable to load Playbooks");
     } finally {
       setLoading(false);
     }

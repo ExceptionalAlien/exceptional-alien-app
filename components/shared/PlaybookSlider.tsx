@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { ActivityIndicator, View, StyleSheet, Alert } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { DestinationType } from "context/destination";
 import { PlaybookType } from "app/playbook";
@@ -30,6 +30,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
       if (!uid || uid === mountedUID.current) {
         setData([]); // Empty
         console.error(error);
+        Alert.alert("Error", `Unable to load ${uid ? "destination" : "latest"} Playbooks`);
       }
     } finally {
       if (!uid || uid === mountedUID.current) setLoading(false);
