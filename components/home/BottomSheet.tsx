@@ -46,7 +46,11 @@ export default function BottomSheet(props: BottomSheetProps) {
     <GestureDetector gesture={flingUp}>
       <GestureDetector gesture={flingDown}>
         <Animated.View
-          style={[styles.container, animatedStyles, { paddingBottom: insets.bottom + 16 }]}
+          style={[
+            styles.container,
+            animatedStyles,
+            { paddingBottom: insets.bottom + 16, minHeight: (height / 100) * 35 },
+          ]}
           ref={container}
         >
           <View style={styles.handle} />

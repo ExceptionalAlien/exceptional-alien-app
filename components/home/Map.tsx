@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, Text, Alert } from "react-native";
+import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import MapView from "react-native-map-clustering";
@@ -43,16 +44,25 @@ export default function Map(props: MapProps) {
   };
 
   const getGems = async (id: string) => {
-    try {
-      const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
-      const json = await response.json();
-      if (id === mountedID.current) setData(json);
-    } catch (error) {
-      if (id === mountedID.current) {
-        console.error(error);
-        Alert.alert("Error", `Unable to load Gems`);
+    const network = await Network.getNetworkStateAsync();
+
+    // Check if device is online
+    if (network.isInternetReachable) {
+      // Online
+      try {
+        const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
+        const json = await response.json();
+        if (id === mountedID.current) setData(json);
+      } catch (error) {
+        if (id === mountedID.current) {
+          console.error(error);
+          Alert.alert("Error", `Unable to load Gems`);
+        }
+      } finally {
+        if (id === mountedID.current) setLoading(false);
       }
-    } finally {
+    } else {
+      // Offline - do not load Gems
       if (id === mountedID.current) setLoading(false);
     }
   };

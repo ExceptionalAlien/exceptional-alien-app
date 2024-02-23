@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, View, StyleSheet, Alert } from "react-native";
+import * as Network from "expo-network";
 import { FlatList } from "react-native-gesture-handler";
 import { DestinationType } from "context/destination";
 import { PlaybookType } from "app/playbook";
@@ -16,24 +17,36 @@ type PlaybookSliderProps = {
 
 export default function PlaybookSlider(props: PlaybookSliderProps) {
   const [isLoading, setLoading] = useState(true);
+  const [isOffline, setIsOffline] = useState(false);
   const [data, setData] = useState<Data[]>([]);
   const mountedUID = useRef<string | undefined>();
 
   const getPlaybooks = async (uid?: string) => {
     const route = uid ? uid : "latest"; // Get latest playbooks if destination not included
+    const network = await Network.getNetworkStateAsync();
 
-    try {
-      const response = await fetch(`https://www.exceptionalalien.com/api/playbooks/${route}?max=10`);
-      const json = await response.json();
-      if (!uid || uid === mountedUID.current) setData(json);
-    } catch (error) {
-      if (!uid || uid === mountedUID.current) {
-        setData([]); // Empty
-        console.error(error);
-        Alert.alert("Error", `Unable to load ${uid ? "destination" : "latest"} Playbooks`);
+    // Check if device is online
+    if (network.isInternetReachable) {
+      // Online
+      setIsOffline(false);
+
+      try {
+        const response = await fetch(`https://www.exceptionalalien.com/api/playbooks/${route}?max=10`);
+        const json = await response.json();
+        if (!uid || uid === mountedUID.current) setData(json);
+      } catch (error) {
+        if (!uid || uid === mountedUID.current) {
+          setData([]); // Empty
+          console.error(error);
+          Alert.alert("Error", `Unable to load ${uid ? "destination" : "latest"} Playbooks`);
+        }
+      } finally {
+        if (!uid || uid === mountedUID.current) setLoading(false);
       }
-    } finally {
+    } else {
+      // Offline - hide slider
       if (!uid || uid === mountedUID.current) setLoading(false);
+      setIsOffline(true);
     }
   };
 
@@ -44,7 +57,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
   }, [props.destination]);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isOffline && { display: "none" }]}>
       <Tab
         title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
         cta="VIEW ALL"
