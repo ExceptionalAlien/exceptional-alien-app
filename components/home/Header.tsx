@@ -19,7 +19,7 @@ export default function Header(props: HeaderProps) {
         styles.container,
         { paddingTop: insets.top + 12 },
         Platform.OS === "android" && {
-          backgroundColor: colorScheme === "light" ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.5)",
+          backgroundColor: colorScheme === "light" ? "rgba(255, 255, 255, 0.8)" : "rgba(124, 124, 124, 0.8)",
         },
       ]}
     >

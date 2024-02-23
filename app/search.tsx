@@ -14,7 +14,7 @@ export default function Search() {
   const [offset, setOffset] = useState(0);
 
   const searchClick = () => {
-    if (query.length > 1 && !destinationsOnly) alert("WIP - will query Prismic");
+    if (query.length > 1 && !destinationsOnly) alert("WIP - will query Prismic and Supabase");
   };
 
   useEffect(() => {
@@ -30,6 +30,8 @@ export default function Search() {
     <ScrollView
       stickyHeaderIndices={[1]}
       contentInsetAdjustmentBehavior="automatic"
+      keyboardDismissMode="on-drag"
+      keyboardShouldPersistTaps="handled"
       style={{ marginTop: Platform.OS === "android" ? headerHeight : offset }}
     >
       <Stack.Screen
@@ -44,6 +46,7 @@ export default function Search() {
         placeholder={destinationsOnly ? "Search" : "Destinations, Playbooks, Gems & more"}
         searchClick={searchClick}
       />
+
       <Results query={query} />
     </ScrollView>
   );

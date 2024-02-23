@@ -69,6 +69,7 @@ export default function Map(props: MapProps) {
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         region={props.destination.region}
+        toolbarEnabled={false}
         showsUserLocation
         edgePadding={{ top: 144, left: 40, bottom: 64, right: 40 }}
         renderCluster={(cluster) => {
