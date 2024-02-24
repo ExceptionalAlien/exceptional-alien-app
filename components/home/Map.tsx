@@ -11,6 +11,8 @@ import { styleVars } from "utils/styles";
 
 type MapProps = {
   destination: DestinationType;
+  selectedGem: string | undefined;
+  setSelectedGem: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
 const icons = {
@@ -35,12 +37,11 @@ const icons = {
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
   const [isLoading, setLoading] = useState(true);
-  const [selectedMarker, setSelectedMarker] = useState<string>();
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
 
   const pressed = (uid: string) => {
-    setSelectedMarker(uid);
+    props.setSelectedGem(props.selectedGem === uid ? "" : uid);
   };
 
   const getGems = async (id: string) => {
@@ -71,18 +72,22 @@ export default function Map(props: MapProps) {
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
     setLoading(true);
     setData([]); // Empty
+    props.setSelectedGem(""); // Reset
     getGems(props.destination.id);
   }, [props.destination]);
 
   return (
     <View style={styles.container}>
       <MapView
-        onPanDrag={() => {}} // Hack! - helps smooth dragging on iOS
+        onPanDrag={() => props.setSelectedGem("")} // Hack! - helps smooth dragging on iOS
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         region={props.destination.region}
         toolbarEnabled={false}
+        onPress={(e) => {
+          if (e.nativeEvent.action !== "marker-press") props.setSelectedGem("");
+        }}
         showsUserLocation
       >
         {data.map((item) => {
@@ -91,8 +96,9 @@ export default function Map(props: MapProps) {
               <Marker
                 key={item.uid}
                 coordinate={item.data.location}
+                zIndex={props.selectedGem === item.uid ? 1 : undefined}
                 icon={
-                  selectedMarker === item.uid
+                  props.selectedGem === item.uid
                     ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
                     : icons[item.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
                 }

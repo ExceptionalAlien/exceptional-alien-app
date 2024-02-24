@@ -17,6 +17,7 @@ export default function Home() {
   const [onboardingComplete, setOnboardingComplete] = useState<boolean | undefined>();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showChooseDestination, setShowChooseDestination] = useState(false);
+  const [selectedGem, setSelectedGem] = useState<string>();
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
 
@@ -71,8 +72,8 @@ export default function Home() {
 
       {destination && (
         <>
-          <Map destination={destination} />
-          <BottomSheet destination={destination} />
+          <Map destination={destination} selectedGem={selectedGem} setSelectedGem={setSelectedGem} />
+          <BottomSheet destination={destination} selectedGem={selectedGem} />
           <Header destination={destination} />
         </>
       )}

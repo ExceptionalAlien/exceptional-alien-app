@@ -5,11 +5,12 @@ import BigButton from "components/shared/BigButton";
 
 type PlaybooksProps = {
   destination: DestinationType;
+  selectedGem: string | undefined;
 };
 
 export default function Playbooks(props: PlaybooksProps) {
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container, props.selectedGem !== "" && { display: "none" }]}>
       {props.destination.uid && <PlaybookSlider destination={props.destination} />}
       <PlaybookSlider />
 

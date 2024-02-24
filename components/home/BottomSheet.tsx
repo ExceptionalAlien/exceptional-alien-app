@@ -15,6 +15,7 @@ import { styleVars } from "utils/styles";
 
 type BottomSheetProps = {
   destination: DestinationType;
+  selectedGem: string | undefined;
 };
 
 export default function BottomSheet(props: BottomSheetProps) {
@@ -54,7 +55,7 @@ export default function BottomSheet(props: BottomSheetProps) {
           ref={container}
         >
           <View style={styles.handle} />
-          <Playbooks destination={props.destination} />
+          <Playbooks destination={props.destination} selectedGem={props.selectedGem} />
         </Animated.View>
       </GestureDetector>
     </GestureDetector>
