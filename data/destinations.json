@@ -208,8 +208,8 @@
     "region": {
       "latitude": 13.193887,
       "longitude": -59.543198,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.3,
+      "longitudeDelta": 0.3
     },
     "bounds": {
       "latitudeStart": 13.039844,
@@ -226,15 +226,16 @@
     "region": {
       "latitude": 41.387397,
       "longitude": 2.168568,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 4,
+      "longitudeDelta": 4
     },
     "bounds": {
       "latitudeStart": 41.317039,
       "longitudeStart": 2.052333,
       "latitudeEnd": 41.468297,
       "longitudeEnd": 2.228045
-    }
+    },
+    "trending": true
   },
   {
     "id": "ZSaD2xAAADNdr2-1",

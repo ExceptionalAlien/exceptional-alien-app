@@ -22,7 +22,7 @@ export default function Profile() {
           title: "Profile",
           headerRight: () => (
             <Pressable onPress={() => router.push("/settings")} style={({ pressed }) => pressedDefault(pressed)}>
-              <Ionicons name="settings-outline" size={24} color={styleVars.eaBlue} />
+              <Ionicons name="settings-outline" size={28} color={styleVars.eaBlue} />
             </Pressable>
           ),
         }}

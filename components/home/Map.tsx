@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef } from "react";
-import { StyleSheet, View, ActivityIndicator, Text, Alert } from "react-native";
+import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
-import MapView from "react-native-map-clustering";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
+import Controls from "./map/Controls";
 import mapStyle from "assets/map-style.json";
 import { styleVars } from "utils/styles";
 
@@ -84,35 +84,6 @@ export default function Map(props: MapProps) {
         region={props.destination.region}
         toolbarEnabled={false}
         showsUserLocation
-        edgePadding={{ top: 144, left: 40, bottom: 64, right: 40 }}
-        renderCluster={(cluster) => {
-          const { id, geometry, onPress, properties } = cluster;
-          const points = properties.point_count;
-
-          return (
-            <Marker
-              key={`cluster-${id}`}
-              coordinate={{
-                longitude: geometry.coordinates[0],
-                latitude: geometry.coordinates[1],
-              }}
-              onPress={onPress}
-            >
-              <View
-                style={{
-                  width: points < 10 ? 40 : 56,
-                  height: points < 10 ? 40 : 56,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: styleVars.eaBlue,
-                  borderRadius: 999,
-                }}
-              >
-                <Text style={{ color: "white", fontFamily: "Helvetica-Monospaced", fontSize: 14 }}>{points}</Text>
-              </View>
-            </Marker>
-          );
-        }}
       >
         {data.map((item) => {
           if (item.data.location.latitude && item.data.location.longitude) {
@@ -132,6 +103,8 @@ export default function Map(props: MapProps) {
           }
         })}
       </MapView>
+
+      <Controls />
 
       {isLoading && (
         <ActivityIndicator

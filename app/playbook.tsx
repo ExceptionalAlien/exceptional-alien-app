@@ -1,5 +1,5 @@
-import { ScrollView, SafeAreaView } from "react-native";
-import { Stack } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { Creator } from "./profile";
 
 type PlaybookImage = {
@@ -28,15 +28,27 @@ export type PlaybookType = {
 };
 
 export default function Playbook() {
+  const params = useLocalSearchParams<{ uid: string; title: string }>();
+  const { uid, title } = params;
+
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Stack.Screen
-          options={{
-            title: "Playbook",
-          }}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Stack.Screen
+        options={{
+          title: title,
+        }}
+      />
+
+      <Text style={{ textAlign: "center" }}>WIP - will show contributor info (name, photo etc.) and Gems</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+});

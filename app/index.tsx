@@ -2,13 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
-import destinationsData from "data/destinations.json";
 import { DestinationContext, DestinationContextType } from "context/destination";
 import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
 import Onboarding from "components/home/Onboarding";
 import { getData, removeData } from "utils/helpers";
+import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
 
 export default function Home() {
@@ -36,39 +36,8 @@ export default function Home() {
       if (status === "granted") {
         // Device location access granted
         const location = await Location.getCurrentPositionAsync({});
-        const data = JSON.stringify(destinationsData);
-        const json = JSON.parse(data);
-
-        const userDestination = {
-          id: "",
-          name: "",
-          uid: "",
-          region: {
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          },
-        };
-
-        // Loop destinations and detect if device is within a destination's bounds
-        for (let i = 0; i < json.length; i++) {
-          let bounds = json[i].bounds;
-
-          if (
-            location.coords.latitude >= bounds.latitudeStart &&
-            location.coords.latitude <= bounds.latitudeEnd &&
-            location.coords.longitude >= bounds.longitudeStart &&
-            location.coords.longitude <= bounds.longitudeEnd
-          ) {
-            userDestination.id = json[i].id;
-            userDestination.name = json[i].name;
-            userDestination.uid = json[i].uid;
-            break;
-          }
-        }
-
-        setDestination(userDestination);
+        const destination = detectDestination(location);
+        setDestination(destination);
       } else {
         // Location access not granted
         const storedDestination = await getData("destination");

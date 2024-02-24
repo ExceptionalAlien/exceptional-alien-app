@@ -1,5 +1,6 @@
-import { StyleSheet, View, Text, useColorScheme, useWindowDimensions } from "react-native";
+import { StyleSheet, View, Text, useColorScheme, useWindowDimensions, Pressable } from "react-native";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { PlaybookType } from "app/playbook";
 
@@ -12,10 +13,22 @@ type PlaybookThumbProps = {
 export default function PlaybookThumb(props: PlaybookThumbProps) {
   const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
+  const router = useRouter();
   const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   return (
-    <View style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 40) / 2 }]}>
+    <Pressable
+      onPress={() =>
+        router.push({
+          pathname: "/playbook",
+          params: {
+            uid: props.playbook.uid,
+            title: props.playbook.data.destination?.data.title ? props.playbook.data.destination?.data.title : "Global",
+          },
+        })
+      }
+      style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 40) / 2 }]}
+    >
       <Image
         source={props.playbook.data.image.mobile.url}
         style={styles.image}
@@ -44,7 +57,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           ? props.playbook.data.sub_title.substring(0, 40)
           : props.playbook.data.creator.data.title.substring(0, 40)}
       </Text>
-    </View>
+    </Pressable>
   );
 }
 

@@ -88,6 +88,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 24,
     color: styleVars.eaBlue,
-    textTransform: "uppercase",
   },
 });
