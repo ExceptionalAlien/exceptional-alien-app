@@ -3,7 +3,9 @@ import { Stack } from "expo-router";
 
 type GemData = {
   title: string;
+  description: string;
   category: string;
+  address: string;
   location: { latitude: number; longitude: number };
 };
 
