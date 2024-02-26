@@ -1,4 +1,5 @@
-import { StyleSheet, View, useWindowDimensions } from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, View, useWindowDimensions, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GestureDetector, Gesture, Directions } from "react-native-gesture-handler";
 import Animated, {
@@ -8,21 +9,26 @@ import Animated, {
   useAnimatedStyle,
   useAnimatedRef,
   measure,
+  interpolateColor,
 } from "react-native-reanimated";
 import { DestinationType } from "context/destination";
+import { GemType } from "app/gem";
 import Playbooks from "./bottom-sheet/Playbooks";
+import Gem from "./bottom-sheet/Gem";
 import { styleVars } from "utils/styles";
 
 type BottomSheetProps = {
   destination: DestinationType;
-  selectedGem: string | undefined;
+  selectedGem: GemType | undefined;
 };
 
 export default function BottomSheet(props: BottomSheetProps) {
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
   const { height } = useWindowDimensions();
   const container = useAnimatedRef();
   const offset = useSharedValue(0);
+  const bgColor = useSharedValue(0);
 
   const flingUp = Gesture.Fling()
     .direction(Directions.UP)
@@ -41,7 +47,21 @@ export default function BottomSheet(props: BottomSheetProps) {
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [{ translateY: offset.value }],
+    backgroundColor: interpolateColor(
+      bgColor.value,
+      [0, 1],
+      [styleVars.eaBlue, colorScheme === "light" ? "white" : styleVars.eaGrey]
+    ),
   }));
+
+  useEffect(() => {
+    // Sheet bg should be white when a Gem is selected
+    bgColor.value = withTiming(props.selectedGem ? 1 : 0, {
+      duration: 300,
+    });
+
+    offset.value = 0; // Close/reset
+  }, [props.selectedGem]);
 
   return (
     <GestureDetector gesture={flingUp}>
@@ -56,6 +76,7 @@ export default function BottomSheet(props: BottomSheetProps) {
         >
           <View style={styles.handle} />
           <Playbooks destination={props.destination} selectedGem={props.selectedGem} />
+          <Gem selectedGem={props.selectedGem} />
         </Animated.View>
       </GestureDetector>
     </GestureDetector>
@@ -66,13 +87,12 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     top: "65%",
-    backgroundColor: styleVars.eaBlue,
     width: "100%",
     paddingTop: 24,
   },
   handle: {
     position: "absolute",
-    backgroundColor: styleVars.eaGrey,
+    backgroundColor: styleVars.eaLightGrey,
     width: 32,
     height: 4,
     top: 8,

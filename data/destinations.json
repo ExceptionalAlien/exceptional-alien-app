@@ -245,32 +245,14 @@
     "region": {
       "latitude": 33.893791,
       "longitude": 35.501777,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 1.5,
+      "longitudeDelta": 1.5
     },
     "bounds": {
       "latitudeStart": 33.862328,
       "longitudeStart": 35.466928,
       "latitudeEnd": 33.916109,
       "longitudeEnd": 35.541636
-    }
-  },
-  {
-    "id": "ZSaDthAAAM1cr272",
-    "name": "Benigo",
-    "uid": "bendigo",
-    "keywords": "Australia VIC Victoria",
-    "region": {
-      "latitude": -36.757016,
-      "longitude": 144.279391,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
-    },
-    "bounds": {
-      "latitudeStart": -36.833285,
-      "longitudeStart": 144.183904,
-      "latitudeEnd": -36.641032,
-      "longitudeEnd": 144.380745
     }
   },
   {
@@ -281,8 +263,8 @@
     "region": {
       "latitude": 52.520007,
       "longitude": 13.404954,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.4,
+      "longitudeDelta": 0.4
     },
     "bounds": {
       "latitudeStart": 52.338234,
@@ -300,8 +282,8 @@
     "region": {
       "latitude": 27.514162,
       "longitude": 90.433601,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 3,
+      "longitudeDelta": 3
     },
     "bounds": {
       "latitudeStart": 26.702021,
@@ -318,8 +300,8 @@
     "region": {
       "latitude": 43.483152,
       "longitude": -1.558626,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
+      "latitudeDelta": 0.6,
+      "longitudeDelta": 0.6
     },
     "bounds": {
       "latitudeStart": 43.447407,

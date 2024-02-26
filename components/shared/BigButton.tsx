@@ -13,7 +13,8 @@ type BigButtonRoute = {
 type BigButtonProps = {
   title: string;
   route?: BigButtonRoute;
-  icon?: string; // playbook
+  icon?: string; // playbook, gem
+  bgColor?: string;
 };
 
 export default function BigButton(props: BigButtonProps) {
@@ -21,13 +22,19 @@ export default function BigButton(props: BigButtonProps) {
 
   const icons = {
     playbook: require("assets/img/icon-playbook.svg"),
+    gem: require("assets/img/icon-gem.svg"),
   };
 
   return (
     <View style={styles.container}>
       <Pressable
         onPress={() => router.push(props.route as Href)}
-        style={({ pressed }) => [pressedDefault(pressed), styles.button, Device.deviceType === 2 && { width: 256 }]}
+        style={({ pressed }) => [
+          pressedDefault(pressed),
+          styles.button,
+          Device.deviceType === 2 && { width: 256 },
+          props.bgColor !== "" && { backgroundColor: props.bgColor },
+        ]}
         hitSlop={8}
       >
         {props.icon && (
@@ -57,8 +64,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    backgroundColor: "white",
     flexDirection: "row",
+    borderWidth: 1,
+    borderColor: styleVars.eaBlue,
   },
   icon: {
     width: 20,

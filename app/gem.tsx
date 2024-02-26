@@ -1,4 +1,4 @@
-import { ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Stack } from "expo-router";
 
 type GemData = {
@@ -14,14 +14,23 @@ export type GemType = {
 
 export default function Gem() {
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <Stack.Screen
-          options={{
-            title: "Gem",
-          }}
-        />
-      </ScrollView>
-    </SafeAreaView>
+    <View>
+      <Stack.Screen
+        options={{
+          title: "Gem",
+        }}
+      />
+
+      <Text style={{ textAlign: "center" }}>WIP - will show full Gem details</Text>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+  },
+});

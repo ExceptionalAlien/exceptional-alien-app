@@ -2,7 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView from "react-native-map-clustering";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
@@ -11,8 +12,8 @@ import { styleVars } from "utils/styles";
 
 type MapProps = {
   destination: DestinationType;
-  selectedGem: string | undefined;
-  setSelectedGem: React.Dispatch<React.SetStateAction<string | undefined>>;
+  selectedGem: GemType | undefined;
+  setSelectedGem: React.Dispatch<React.SetStateAction<GemType | undefined>>;
 };
 
 const icons = {
@@ -40,8 +41,8 @@ export default function Map(props: MapProps) {
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
 
-  const pressed = (uid: string) => {
-    props.setSelectedGem(props.selectedGem === uid ? "" : uid);
+  const pressed = (gem: GemType) => {
+    props.setSelectedGem(props.selectedGem?.uid === gem.uid ? undefined : gem);
   };
 
   const getGems = async (id: string) => {
@@ -72,21 +73,25 @@ export default function Map(props: MapProps) {
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
     setLoading(true);
     setData([]); // Empty
-    props.setSelectedGem(""); // Reset
+    props.setSelectedGem(undefined); // Reset
     getGems(props.destination.id);
   }, [props.destination]);
 
   return (
     <View style={styles.container}>
       <MapView
-        onPanDrag={() => props.setSelectedGem("")} // Hack! - helps smooth dragging on iOS
+        onPanDrag={() => props.setSelectedGem(undefined)} // Hack! - helps smooth dragging on iOS
         style={styles.map}
         provider={PROVIDER_GOOGLE}
         customMapStyle={mapStyle}
         region={props.destination.region}
         toolbarEnabled={false}
+        clusterColor={styleVars.eaBlue}
+        clusterFontFamily="Helvetica-Monospaced"
+        edgePadding={{ top: 160, left: 48, bottom: 64, right: 48 }}
+        animationEnabled={false} // Hack! - fixes issue on iOS where changing stack view/route would fade in
         onPress={(e) => {
-          if (e.nativeEvent.action !== "marker-press") props.setSelectedGem("");
+          if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);
         }}
         showsUserLocation
       >
@@ -96,14 +101,14 @@ export default function Map(props: MapProps) {
               <Marker
                 key={item.uid}
                 coordinate={item.data.location}
-                zIndex={props.selectedGem === item.uid ? 1 : undefined}
+                zIndex={props.selectedGem?.uid === item.uid ? 1 : undefined}
                 icon={
-                  props.selectedGem === item.uid
+                  props.selectedGem?.uid === item.uid
                     ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
                     : icons[item.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
                 }
                 tracksViewChanges={false}
-                onPress={() => pressed(item.uid)}
+                onPress={() => pressed(item)}
               />
             );
           }

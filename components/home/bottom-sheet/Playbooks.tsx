@@ -1,16 +1,17 @@
 import { StyleSheet, View } from "react-native";
 import { DestinationType } from "context/destination";
+import { GemType } from "app/gem";
 import PlaybookSlider from "components/shared/PlaybookSlider";
 import BigButton from "components/shared/BigButton";
 
 type PlaybooksProps = {
   destination: DestinationType;
-  selectedGem: string | undefined;
+  selectedGem: GemType | undefined;
 };
 
 export default function Playbooks(props: PlaybooksProps) {
   return (
-    <View style={[styles.container, props.selectedGem !== "" && { display: "none" }]}>
+    <View style={[styles.container, props.selectedGem && { display: "none" }]}>
       {props.destination.uid && <PlaybookSlider destination={props.destination} />}
       <PlaybookSlider />
 
@@ -20,6 +21,7 @@ export default function Playbooks(props: PlaybooksProps) {
         route={{
           pathname: "/create-playbook",
         }}
+        bgColor="white"
       />
     </View>
   );

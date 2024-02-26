@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
 import { DestinationContext, DestinationContextType } from "context/destination";
+import { GemType } from "./gem";
 import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
@@ -17,7 +18,7 @@ export default function Home() {
   const [onboardingComplete, setOnboardingComplete] = useState<boolean | undefined>();
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showChooseDestination, setShowChooseDestination] = useState(false);
-  const [selectedGem, setSelectedGem] = useState<string>();
+  const [selectedGem, setSelectedGem] = useState<GemType>();
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
 
