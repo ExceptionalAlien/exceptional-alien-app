@@ -2,8 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import RNMap, { PROVIDER_GOOGLE, Marker, LatLng } from "react-native-maps";
-import MapView from "react-native-map-clustering";
+import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
@@ -40,7 +39,7 @@ export default function Map(props: MapProps) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
-  const mapRef = useRef<RNMap>(null);
+  const mapRef = useRef<MapView>(null);
   const edges = { top: 160, left: 48, bottom: 64, right: 48 };
 
   const pressed = (gem: GemType) => {
@@ -102,14 +101,10 @@ export default function Map(props: MapProps) {
         customMapStyle={mapStyle}
         region={props.destination.region ? props.destination.region : undefined}
         toolbarEnabled={false}
-        clusterColor={styleVars.eaBlue}
-        clusterFontFamily="Helvetica-Monospaced"
-        edgePadding={edges}
-        animationEnabled={false} // Hack! - fixes issue on iOS where changing stack view/route would fade in
+        showsUserLocation
         onPress={(e) => {
           if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);
         }}
-        showsUserLocation
       >
         {data.map((item) => {
           if (item.data.location.latitude && item.data.location.longitude) {

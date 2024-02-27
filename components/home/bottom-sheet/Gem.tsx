@@ -31,8 +31,14 @@ export default function Gem(props: GemProps) {
             style={styles.icon}
           />
 
-          <View>
-            <Text style={styles.title} allowFontScaling={false}>
+          <View style={styles.text}>
+            <Text
+              style={[
+                styles.title,
+                { fontSize: props.selectedGem?.data.title && props.selectedGem?.data.title.length > 20 ? 20 : 24 },
+              ]}
+              allowFontScaling={false}
+            >
               {props.selectedGem?.data.title}
             </Text>
 
@@ -74,13 +80,15 @@ const styles = StyleSheet.create({
     gap: 8,
     alignItems: "center",
   },
+  text: {
+    flex: 1,
+  },
   icon: {
     width: 48,
     height: 48,
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 24,
     color: styleVars.eaBlue,
   },
   description: {
