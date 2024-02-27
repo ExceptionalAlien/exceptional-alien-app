@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { StyleSheet, View, useWindowDimensions, useColorScheme } from "react-native";
+import { StyleSheet, View, useWindowDimensions, useColorScheme, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GestureDetector, Gesture, Directions } from "react-native-gesture-handler";
 import Animated, {
@@ -29,12 +29,13 @@ export default function BottomSheet(props: BottomSheetProps) {
   const container = useAnimatedRef();
   const offset = useSharedValue(0);
   const bgColor = useSharedValue(0);
+  const statusBar = StatusBar.currentHeight ? StatusBar.currentHeight : 0; // Android only
+  const collapsedHeight = ((height + statusBar) / 100) * 35; // 35% of window height
 
   const flingUp = Gesture.Fling()
     .direction(Directions.UP)
     .onStart(() => {
       const containerMeasurement = measure(container);
-      const collapsedHeight = (height / 100) * 35; // 35% of window
       const expandedOffset = 0 - (containerMeasurement!.height - collapsedHeight); // Calculate offset to show full container
       offset.value = withTiming(expandedOffset, { duration: 200, easing: Easing.out(Easing.quad) }); // Expand
     });
@@ -67,11 +68,7 @@ export default function BottomSheet(props: BottomSheetProps) {
     <GestureDetector gesture={flingUp}>
       <GestureDetector gesture={flingDown}>
         <Animated.View
-          style={[
-            styles.container,
-            animatedStyles,
-            { paddingBottom: insets.bottom + 16, minHeight: (height / 100) * 35 },
-          ]}
+          style={[styles.container, animatedStyles, { paddingBottom: insets.bottom + 16, minHeight: collapsedHeight }]}
           ref={container}
         >
           <View style={styles.handle} />
