@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import RNMap, { PROVIDER_GOOGLE, Marker, LatLng } from "react-native-maps";
 import MapView from "react-native-map-clustering";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
@@ -40,6 +40,8 @@ export default function Map(props: MapProps) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
+  const mapRef = useRef<RNMap>(null);
+  const edges = { top: 160, left: 48, bottom: 64, right: 48 };
 
   const pressed = (gem: GemType) => {
     props.setSelectedGem(props.selectedGem?.uid === gem.uid ? undefined : gem);
@@ -69,26 +71,40 @@ export default function Map(props: MapProps) {
     }
   };
 
+  const setBounds = async () => {
+    const coords = [
+      { latitude: props.destination.bounds!.latitudeStart, longitude: props.destination.bounds!.longitudeStart },
+      { latitude: props.destination.bounds!.latitudeEnd, longitude: props.destination.bounds!.longitudeEnd },
+    ];
+
+    mapRef.current?.fitToCoordinates(coords, {
+      edgePadding: edges,
+    });
+  };
+
   useEffect(() => {
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
     setLoading(true);
     setData([]); // Empty
     props.setSelectedGem(undefined); // Reset
+    if (!props.destination.region) setBounds(); // Only if destination isn't device location
     getGems(props.destination.id);
   }, [props.destination]);
 
   return (
     <View style={styles.container}>
       <MapView
+        ref={mapRef}
         onPanDrag={() => props.setSelectedGem(undefined)} // Hack! - helps smooth dragging on iOS
         style={styles.map}
         provider={PROVIDER_GOOGLE}
+        showsMyLocationButton={false}
         customMapStyle={mapStyle}
-        region={props.destination.region}
+        region={props.destination.region ? props.destination.region : undefined}
         toolbarEnabled={false}
         clusterColor={styleVars.eaBlue}
         clusterFontFamily="Helvetica-Monospaced"
-        edgePadding={{ top: 160, left: 48, bottom: 64, right: 48 }}
+        edgePadding={edges}
         animationEnabled={false} // Hack! - fixes issue on iOS where changing stack view/route would fade in
         onPress={(e) => {
           if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);

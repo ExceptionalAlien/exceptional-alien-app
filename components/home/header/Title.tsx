@@ -16,7 +16,7 @@ export default function Title(props: TitleProps) {
       {props.destination.name && (
         <View style={styles.text}>
           <Destination name={props.destination.name} />
-          <Coords lat={props.destination.region.latitude} lng={props.destination.region.longitude} />
+          <Coords lat={props.destination.lat} lng={props.destination.lng} />
         </View>
       )}
     </View>

@@ -9,6 +9,8 @@ export const detectDestination = (location: LocationObject) => {
     id: "",
     name: "",
     uid: "",
+    lat: location.coords.latitude,
+    lng: location.coords.longitude,
     region: {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,

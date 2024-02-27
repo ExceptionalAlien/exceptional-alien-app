@@ -5,11 +5,19 @@ export type DestinationType = {
   name: string;
   uid: string;
   keywords?: string;
-  region: {
+  lat: number;
+  lng: number;
+  region?: {
     latitude: number;
     longitude: number;
     latitudeDelta: number;
     longitudeDelta: number;
+  };
+  bounds?: {
+    latitudeStart: number;
+    longitudeStart: number;
+    latitudeEnd: number;
+    longitudeEnd: number;
   };
   trending?: boolean;
 };
