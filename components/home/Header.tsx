@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, Platform, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";

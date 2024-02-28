@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { Href } from "expo-router/build/link/href";

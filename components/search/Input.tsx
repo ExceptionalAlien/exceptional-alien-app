@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View, TextInput, useColorScheme } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Device from "expo-device";

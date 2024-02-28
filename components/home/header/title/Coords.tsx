@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, useColorScheme, View } from "react-native";
 import Animated, { useSharedValue, withTiming, Easing } from "react-native-reanimated";
 import { styleVars } from "utils/styles";

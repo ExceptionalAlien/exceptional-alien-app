@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ActivityIndicator, View, StyleSheet, Alert } from "react-native";
 import * as Network from "expo-network";
 import { FlatList } from "react-native-gesture-handler";

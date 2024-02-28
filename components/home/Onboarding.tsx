@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View, Button } from "react-native";
 import { useRouter } from "expo-router";
 import { storeData } from "utils/helpers";

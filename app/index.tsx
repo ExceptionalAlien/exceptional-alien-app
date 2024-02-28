@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
@@ -38,7 +38,7 @@ export default function Home() {
       if (status === "granted") {
         // Device location access granted
         const location = await Location.getCurrentPositionAsync({});
-        const destination = detectDestination(location);
+        const destination = detectDestination(location.coords.latitude, location.coords.longitude);
         setDestination(destination);
       } else {
         // Location access not granted
@@ -73,7 +73,13 @@ export default function Home() {
 
       {destination && (
         <>
-          <Map destination={destination} selectedGem={selectedGem} setSelectedGem={setSelectedGem} />
+          <Map
+            destination={destination}
+            setDestination={setDestination}
+            selectedGem={selectedGem}
+            setSelectedGem={setSelectedGem}
+          />
+
           <BottomSheet destination={destination} selectedGem={selectedGem} />
           <Header destination={destination} />
         </>

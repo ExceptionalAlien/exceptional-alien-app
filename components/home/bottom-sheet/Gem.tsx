@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
 import { GemType } from "app/gem";

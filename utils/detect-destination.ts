@@ -1,7 +1,6 @@
-import { LocationObject } from "expo-location";
 import destinationsData from "data/destinations.json";
 
-export const detectDestination = (location: LocationObject) => {
+export const detectDestination = (lat: number, lng: number, latDelta?: number, lngDelta?: number) => {
   const data = JSON.stringify(destinationsData);
   const json = JSON.parse(data);
 
@@ -9,13 +8,13 @@ export const detectDestination = (location: LocationObject) => {
     id: "",
     name: "",
     uid: "",
-    lat: location.coords.latitude,
-    lng: location.coords.longitude,
+    lat: lat,
+    lng: lng,
     region: {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      latitudeDelta: 0.05,
-      longitudeDelta: 0.05,
+      latitude: lat,
+      longitude: lng,
+      latitudeDelta: latDelta ? latDelta : 0.05,
+      longitudeDelta: lngDelta ? lngDelta : 0.05,
     },
   };
 
@@ -24,10 +23,10 @@ export const detectDestination = (location: LocationObject) => {
     let bounds = json[i].bounds;
 
     if (
-      location.coords.latitude >= bounds.latitudeStart &&
-      location.coords.latitude <= bounds.latitudeEnd &&
-      location.coords.longitude >= bounds.longitudeStart &&
-      location.coords.longitude <= bounds.longitudeEnd
+      lat >= bounds.latitudeStart &&
+      lat <= bounds.latitudeEnd &&
+      lng >= bounds.longitudeStart &&
+      lng <= bounds.longitudeEnd
     ) {
       userDestination.id = json[i].id;
       userDestination.name = json[i].name;

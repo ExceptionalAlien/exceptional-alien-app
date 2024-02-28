@@ -307,10 +307,10 @@
     "lat": -35.280185,
     "lng": 149.131032,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -35.48026,
+      "longitudeStart": 148.995922,
+      "latitudeEnd": -35.147699,
+      "longitudeEnd": 149.263643
     }
   },
   {
@@ -321,10 +321,10 @@
     "lat": -33.924868,
     "lng": 18.424055,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -34.359806,
+      "longitudeStart": 18.307449,
+      "latitudeEnd": -33.47127,
+      "longitudeEnd": 19.00467
     },
     "trending": true
   },
@@ -336,10 +336,10 @@
     "lat": -37.058136,
     "lng": 144.218501,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -37.106867,
+      "longitudeStart": 144.167985,
+      "latitudeEnd": -37.034882,
+      "longitudeEnd": 144.271028
     }
   },
   {
@@ -350,10 +350,10 @@
     "lat": 13.08268,
     "lng": 80.270718,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 12.699852,
+      "longitudeStart": 79.968435,
+      "latitudeEnd": 13.261166,
+      "longitudeEnd": 80.336323
     }
   },
   {
@@ -364,10 +364,10 @@
     "lat": 18.796464,
     "lng": 98.660059,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 17.242275,
+      "longitudeStart": 98.008039,
+      "latitudeEnd": 20.14758,
+      "longitudeEnd": 99.572913
     }
   },
   {
@@ -378,10 +378,10 @@
     "lat": 41.878114,
     "lng": -87.629798,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 41.644335,
+      "longitudeStart": -87.940267,
+      "latitudeEnd": 42.023131,
+      "longitudeEnd": -87.523661
     }
   },
   {
@@ -392,320 +392,308 @@
     "lat": 55.676097,
     "lng": 12.568337,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 55.615441,
+      "longitudeStart": 12.453382,
+      "latitudeEnd": 55.727094,
+      "longitudeEnd": 12.734265
     },
     "trending": true
   },
   {
-    "id": "",
+    "id": "ZSZy6BAAAO9crxzD",
     "name": "Dakar",
     "uid": "dakar",
     "keywords": "Senegal Africa",
     "lat": 14.716677,
     "lng": -17.467686,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 14.641935,
+      "longitudeStart": -17.536581,
+      "latitudeEnd": 14.780114,
+      "longitudeEnd": -17.395069
     }
   },
   {
-    "id": "",
+    "id": "ZSYdVBAAAKZWrYZZ",
     "name": "Detroit",
     "uid": "detroit",
     "keywords": "America United States USA Michigan",
     "lat": 42.331427,
     "lng": -83.045754,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 42.255192,
+      "longitudeStart": -83.287959,
+      "latitudeEnd": 42.45023,
+      "longitudeEnd": -82.910451
     }
   },
   {
-    "id": "",
+    "id": "ZSZyUBAAAM1crxn3",
     "name": "Dubai",
     "uid": "dubai",
     "keywords": "United Arab Emirates UAE Middle East",
     "lat": 25.204849,
     "lng": 55.270783,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 24.793484,
+      "longitudeStart": 54.890454,
+      "latitudeEnd": 25.358561,
+      "longitudeEnd": 55.564522
     }
   },
   {
-    "id": "",
+    "id": "ZSZyDxAAACVdrxim",
     "name": "Dublin",
     "uid": "dublin",
     "keywords": "Ireland UK United Kingdom",
     "lat": 53.349805,
     "lng": -6.26031,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
-    }
+      "latitudeStart": 53.22343,
+      "longitudeStart": -6.447485,
+      "latitudeEnd": 53.42521,
+      "longitudeEnd": -6.043923
+    },
+    "trending": true
   },
   {
-    "id": "",
+    "id": "ZSZxoBAAAKFcrxaA",
     "name": "Durban",
     "uid": "durban",
     "keywords": "South Africa",
     "lat": -29.85868,
     "lng": 31.02184,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -29.95704,
+      "longitudeStart": 30.921808,
+      "latitudeEnd": -29.779907,
+      "longitudeEnd": 31.060096
     }
   },
   {
-    "id": "",
+    "id": "ZSZwXBAAAO9crxBL",
     "name": "Eastbourne",
     "uid": "eastbourne",
     "keywords": "UK United Kingdom England Britain",
     "lat": 50.768035,
     "lng": 0.290472,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 50.748668,
+      "longitudeStart": 0.235079,
+      "latitudeEnd": 50.815833,
+      "longitudeEnd": 0.341555
     }
   },
   {
-    "id": "",
+    "id": "ZSZwPhAAAKFcrw-5",
     "name": "Encinitas",
     "uid": "encinitas",
     "keywords": "America United States USA California",
     "lat": 33.036987,
     "lng": -117.291982,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 32.999272,
+      "longitudeStart": -117.312903,
+      "latitudeEnd": 33.088808,
+      "longitudeEnd": -117.195566
     }
   },
   {
-    "id": "",
+    "id": "ZSZvsRAAAIVcrwzR",
     "name": "Florence",
     "uid": "florence",
     "keywords": "Italy Europe",
     "lat": 43.767918,
     "lng": 11.252379,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 43.72698,
+      "longitudeStart": 11.154037,
+      "latitudeEnd": 43.832937,
+      "longitudeEnd": 11.327899
     }
   },
   {
-    "id": "",
-    "name": "Gauteng",
-    "uid": "gauteng",
-    "keywords": "South Africa",
-    "lat": -26.270759,
-    "lng": 28.112268,
-    "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
-    }
-  },
-  {
-    "id": "",
+    "id": "ZSZukBAAAO9crwdI",
     "name": "Ghent",
     "uid": "ghent",
     "keywords": "Belgium Europe",
     "lat": 51.050018,
     "lng": 3.730335,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 50.979539,
+      "longitudeStart": 3.579782,
+      "latitudeEnd": 51.188892,
+      "longitudeEnd": 3.849342
     }
   },
   {
-    "id": "",
+    "id": "ZSZuOhAAAM1crwWe",
     "name": "Glasgow",
     "uid": "glasgow",
     "keywords": "UK United Kingdom England Britain",
     "lat": 55.86167,
     "lng": -4.258334,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 55.781279,
+      "longitudeStart": -4.3932,
+      "latitudeEnd": 55.929641,
+      "longitudeEnd": -4.071717
     }
   },
   {
-    "id": "",
+    "id": "ZSZt5hAAAIVcrwPq",
     "name": "Goa",
     "uid": "goa",
-    "keywords": "Indi Asia",
+    "keywords": "India Asia",
     "lat": 15.299327,
     "lng": 74.123996,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 14.89844,
+      "longitudeStart": 73.676952,
+      "latitudeEnd": 15.801017,
+      "longitudeEnd": 74.336437
     }
   },
   {
-    "id": "",
+    "id": "ZSZtdRAAAO9crwF-",
     "name": "Gold Coast",
     "uid": "gold-coast",
     "keywords": "Australia QLD Queensland",
     "lat": -28.016667,
     "lng": 153.4,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -28.200317,
+      "longitudeStart": 153.186552,
+      "latitudeEnd": -27.708126,
+      "longitudeEnd": 153.552171
     }
   },
   {
-    "id": "",
+    "id": "ZSZs1RAAAIFcrv5h",
     "name": "Hanoi",
     "uid": "hanoi",
     "keywords": "Vietnam Asia",
     "lat": 21.027764,
     "lng": 105.83416,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 20.995099,
+      "longitudeStart": 105.797482,
+      "latitudeEnd": 21.05038,
+      "longitudeEnd": 105.876446
     }
   },
   {
-    "id": "",
+    "id": "ZXqTZRAAACcAbFM7",
     "name": "Havana",
     "uid": "havana",
     "keywords": "Cuba Caribbean",
     "lat": 23.113593,
     "lng": -82.366596,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 22.920057,
+      "longitudeStart": -82.574873,
+      "latitudeEnd": 23.181316,
+      "longitudeEnd": -82.091131
     }
   },
   {
-    "id": "",
+    "id": "ZSZnpBAAADNdruSX",
     "name": "Hawaii",
     "uid": "hawaii",
     "keywords": "America United States USA Oahu Waikiki",
     "lat": 21.438912,
     "lng": -158.000056,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
-    },
-    "trending": true
+      "latitudeStart": 18.55,
+      "longitudeStart": -160.53,
+      "latitudeEnd": 22.37,
+      "longitudeEnd": -154.48
+    }
   },
   {
-    "id": "",
+    "id": "ZSZnVhAAAIFcruME",
     "name": "Ho Chi Minh City",
     "uid": "ho-chi-minh-city",
     "keywords": "Vietnam Asia",
     "lat": 10.823099,
     "lng": 106.629664,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 10.34937,
+      "longitudeStart": 106.363878,
+      "latitudeEnd": 11.160214,
+      "longitudeEnd": 107.026577
     }
   },
   {
-    "id": "",
+    "id": "ZSZm1BAAAM1cruCL",
     "name": "Hobart",
     "uid": "hobart",
     "keywords": "Australia Tasmania",
     "lat": -42.882605,
     "lng": 147.32572,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
-    }
+      "latitudeStart": -43.014123,
+      "longitudeStart": 147.13366,
+      "latitudeEnd": -42.655376,
+      "longitudeEnd": 147.613383
+    },
+    "trending": true
   },
   {
-    "id": "",
+    "id": "ZSZmZRAAAIVcrt4u",
     "name": "Hong Kong",
     "uid": "hong-kong",
     "keywords": "China Asia",
     "lat": 22.319304,
     "lng": 114.169361,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
-    }
+      "latitudeStart": 22.1435,
+      "longitudeStart": 113.8259,
+      "latitudeEnd": 22.561949,
+      "longitudeEnd": 114.4529
+    },
+    "trending": true
   },
   {
-    "id": "",
+    "id": "ZSZmExAAAO9crtyf",
     "name": "Hossegor",
     "uid": "hossegor",
     "keywords": "France Europe",
     "lat": 43.664619,
     "lng": -1.397687,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 43.652244,
+      "longitudeStart": -1.44625,
+      "latitudeEnd": 43.683638,
+      "longitudeEnd": -1.370558
     }
   },
   {
-    "id": "",
+    "id": "ZXk4EhAAACkAZhWb",
     "name": "Ibiza",
     "uid": "ibiza",
     "keywords": "Spain Europe",
     "lat": 38.906734,
     "lng": 1.420598,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 38.891247,
+      "longitudeStart": 1.404325,
+      "latitudeEnd": 38.92341,
+      "longitudeEnd": 1.454971
     }
   },
   {
-    "id": "",
+    "id": "ZSY9sxAAAPdZrhoR",
     "name": "Istanbul",
     "uid": "istanbul",
     "keywords": "Turkey Middle East",
     "lat": 41.008238,
     "lng": 28.978359,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 40.811404,
+      "longitudeStart": 28.595554,
+      "latitudeEnd": 41.199239,
+      "longitudeEnd": 29.428805
     }
   },
   {
@@ -716,10 +704,10 @@
     "lat": 34.054908,
     "lng": -118.242643,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 33.703652,
+      "longitudeStart": -118.668176,
+      "latitudeEnd": 34.337306,
+      "longitudeEnd": -118.155289
     },
     "trending": true
   },
@@ -731,10 +719,10 @@
     "lat": -37.813628,
     "lng": 144.963058,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": -38.433859,
+      "longitudeStart": 144.593742,
+      "latitudeEnd": -37.511274,
+      "longitudeEnd": 145.512529
     },
     "trending": true
   },
@@ -746,10 +734,10 @@
     "lat": 40.712775,
     "lng": -74.005973,
     "bounds": {
-      "latitudeStart": 0,
-      "longitudeStart": 0,
-      "latitudeEnd": 0,
-      "longitudeEnd": 0
+      "latitudeStart": 40.477399,
+      "longitudeStart": -74.25909,
+      "latitudeEnd": 40.917577,
+      "longitudeEnd": -73.700272
     },
     "trending": true
   },

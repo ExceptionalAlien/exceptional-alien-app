@@ -1,16 +1,18 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import MapView, { PROVIDER_GOOGLE, Marker } from "react-native-maps";
+import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import mapStyle from "assets/map-style.json";
+import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
 
 type MapProps = {
   destination: DestinationType;
+  setDestination: (destination: DestinationType) => void;
   selectedGem: GemType | undefined;
   setSelectedGem: React.Dispatch<React.SetStateAction<GemType | undefined>>;
 };
@@ -70,7 +72,7 @@ export default function Map(props: MapProps) {
     }
   };
 
-  const setBounds = async () => {
+  const setBounds = () => {
     const coords = [
       { latitude: props.destination.bounds!.latitudeStart, longitude: props.destination.bounds!.longitudeStart },
       { latitude: props.destination.bounds!.latitudeEnd, longitude: props.destination.bounds!.longitudeEnd },
@@ -79,6 +81,16 @@ export default function Map(props: MapProps) {
     mapRef.current?.fitToCoordinates(coords, {
       edgePadding: edges,
     });
+  };
+
+  const regionChanged = (region: Region) => {
+    const destination = detectDestination(
+      region.latitude,
+      region.longitude,
+      region.latitudeDelta,
+      region.longitudeDelta
+    );
+    if (destination.uid && destination.uid !== props.destination.uid) props.setDestination(destination);
   };
 
   useEffect(() => {
@@ -101,6 +113,7 @@ export default function Map(props: MapProps) {
         customMapStyle={mapStyle}
         region={props.destination.region ? props.destination.region : undefined}
         toolbarEnabled={false}
+        onRegionChangeComplete={(region) => regionChanged(region)}
         showsUserLocation
         onPress={(e) => {
           if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);

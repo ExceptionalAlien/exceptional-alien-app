@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Pressable, Alert, Linking } from "react-native";
 import * as Location from "expo-location";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -22,7 +22,7 @@ export default function Controls(props: ControlsProps) {
     if (status === "granted") {
       // Device location access granted
       const location = await Location.getCurrentPositionAsync({});
-      const destination = detectDestination(location);
+      const destination = detectDestination(location.coords.latitude, location.coords.longitude);
       setDestination(destination);
     } else {
       // Location access not granted

@@ -1,3 +1,4 @@
+import React from "react";
 import { StyleSheet, View, Text, useColorScheme, useWindowDimensions, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useColorScheme } from "react-native";
 import { Stack, SplashScreen } from "expo-router";
 import { useFonts } from "expo-font";
