@@ -38,11 +38,10 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<GemType[]>([]);
   const mountedID = useRef<string | undefined>();
   const mapRef = useRef<MapView>(null);
-  const edges = { top: 160, left: 48, bottom: 64, right: 48 };
 
   const pressed = (gem: GemType) => {
     props.setSelectedGem(props.selectedGem?.uid === gem.uid ? undefined : gem);
@@ -64,11 +63,11 @@ export default function Map(props: MapProps) {
           Alert.alert("Error", `Unable to load Gems`);
         }
       } finally {
-        if (id === mountedID.current) setLoading(false);
+        if (id === mountedID.current) setIsLoading(false);
       }
     } else {
       // Offline - do not load Gems
-      if (id === mountedID.current) setLoading(false);
+      if (id === mountedID.current) setIsLoading(false);
     }
   };
 
@@ -79,7 +78,7 @@ export default function Map(props: MapProps) {
     ];
 
     mapRef.current?.fitToCoordinates(coords, {
-      edgePadding: edges,
+      edgePadding: { top: 160, left: 48, bottom: 64, right: 48 },
     });
   };
 
@@ -95,7 +94,7 @@ export default function Map(props: MapProps) {
 
   useEffect(() => {
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
-    setLoading(true);
+    setIsLoading(true);
     setData([]); // Empty
     props.setSelectedGem(undefined); // Reset
     if (!props.destination.region) setBounds(); // Only if destination isn't device location
@@ -119,11 +118,11 @@ export default function Map(props: MapProps) {
           if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);
         }}
       >
-        {data.map((item) => {
+        {data.map((item, index) => {
           if (item.data.location.latitude && item.data.location.longitude) {
             return (
               <Marker
-                key={item.uid}
+                key={index}
                 coordinate={item.data.location}
                 zIndex={props.selectedGem?.uid === item.uid ? 1 : undefined}
                 icon={
@@ -139,7 +138,7 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
-      <Controls />
+      <Controls setDestination={props.setDestination} setIsLoading={setIsLoading} />
 
       {isLoading && (
         <ActivityIndicator

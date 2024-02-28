@@ -86,7 +86,11 @@ export default function Home() {
       )}
 
       {showOnboarding && (
-        <Onboarding setOnboardingComplete={setOnboardingComplete} showChooseDestination={showChooseDestination} />
+        <Onboarding
+          onboardingComplete={onboardingComplete}
+          setOnboardingComplete={setOnboardingComplete}
+          showChooseDestination={showChooseDestination}
+        />
       )}
     </View>
   );

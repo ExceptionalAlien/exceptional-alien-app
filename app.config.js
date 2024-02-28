@@ -3,8 +3,8 @@ module.exports = ({ config }) => {
     ...config,
     ios: {
       supportsTablet: true,
-      bundleIdentifier: "com.awj5.exceptional-alien-app",
-      buildNumber: "1",
+      bundleIdentifier: "com.exceptionalalien.app",
+      buildNumber: "121",
       config: {
         googleMapsApiKey: process.env.MAPS_IOS_API_KEY,
       },

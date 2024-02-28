@@ -5,6 +5,7 @@
     "version": "2.0.0",
     "icon": "./assets/icon.png",
     "scheme": "ea-app-scheme",
+    "userInterfaceStyle": "automatic",
     "orientation": "portrait",
     "splash": {
       "image": "./assets/splash.png",
@@ -13,7 +14,6 @@
     },
     "assetBundlePatterns": ["**/*"],
     "android": {
-      "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -30,6 +30,11 @@
           "locationAlwaysAndWhenInUsePermission": "Allow Exceptional ALIEN to use your location."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b8d714e2-e3d7-4787-816a-cc7e47bca4bd"
+      }
+    }
   }
 }

@@ -1,29 +1,31 @@
-import React, { useContext } from "react";
+import React from "react";
 import { StyleSheet, View, Pressable, Alert, Linking } from "react-native";
 import * as Location from "expo-location";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { DestinationContext, DestinationContextType } from "context/destination";
+import { DestinationType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
 
-type ControlsProps = {};
+type ControlsProps = {
+  setDestination: (destination: DestinationType) => void;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export default function Controls(props: ControlsProps) {
-  const { setDestination } = useContext<DestinationContextType>(DestinationContext);
-
   const options = () => {
     alert("WIP - will show filters including Gem categories");
   };
 
   const locate = async () => {
+    props.setIsLoading(true);
     const { status } = await Location.requestForegroundPermissionsAsync(); // Request location
 
     if (status === "granted") {
       // Device location access granted
       const location = await Location.getCurrentPositionAsync({});
       const destination = detectDestination(location.coords.latitude, location.coords.longitude);
-      setDestination(destination);
+      props.setDestination(destination);
     } else {
       // Location access not granted
       Alert.alert("Location Access", "Allow Exceptional ALIEN to use your location in your device settings.", [

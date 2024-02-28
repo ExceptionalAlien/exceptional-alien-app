@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { storeData } from "utils/helpers";
 
 type OnboardingProps = {
+  onboardingComplete: boolean | undefined;
   setOnboardingComplete: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   showChooseDestination: boolean;
 };
@@ -24,7 +25,10 @@ export default function Onboarding(props: OnboardingProps) {
           onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
         />
       ) : (
-        <Button title="Complete onboarding" onPress={complete} />
+        <>
+          <Button title="Complete onboarding" onPress={complete} disabled={props.onboardingComplete ? true : false} />
+          {props.onboardingComplete && <ActivityIndicator color="white" />}
+        </>
       )}
     </View>
   );
