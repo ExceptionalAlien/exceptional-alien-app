@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Stack } from "expo-router";
+import { PlaybookType } from "./playbook";
 
 type GemData = {
   title: string;
@@ -8,11 +9,13 @@ type GemData = {
   category: string;
   address: string;
   location: { latitude: number; longitude: number };
+  playbooks: PlaybookType[];
 };
 
 export type GemType = {
   uid: string;
   data: GemData;
+  hidden: boolean;
 };
 
 export default function Gem() {

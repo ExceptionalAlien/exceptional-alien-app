@@ -23,7 +23,7 @@ export default function Controls(props: ControlsProps) {
 
     if (status === "granted") {
       // Device location access granted
-      const location = await Location.getCurrentPositionAsync({});
+      const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
       const destination = detectDestination(location.coords.latitude, location.coords.longitude);
       props.setDestination(destination);
     } else {

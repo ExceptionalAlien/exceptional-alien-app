@@ -34,14 +34,17 @@ const icons = {
   EventsSelected: require("assets/img/markers/events-selected.png"),
   Accommodation: require("assets/img/markers/accommodation.png"),
   AccommodationSelected: require("assets/img/markers/accommodation-selected.png"),
+  Hidden: require("assets/img/markers/hidden.png"),
 };
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<GemType[]>([]);
+  const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
   const mountedID = useRef<string | undefined>();
   const mapRef = useRef<MapView>(null);
+  const hiddenGems = useRef<GemType[]>([]);
 
   const pressed = (gem: GemType) => {
     props.setSelectedGem(props.selectedGem?.uid === gem.uid ? undefined : gem);
@@ -56,7 +59,31 @@ export default function Map(props: MapProps) {
       try {
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const json = await response.json();
-        if (id === mountedID.current) setData(json);
+
+        if (id === mountedID.current) {
+          const gems = [];
+
+          // Loop all returned Gems
+          for (let i = 0; i < json.length; i++) {
+            let gem = json[i];
+            let hiddenPBCount = 0;
+
+            // Loop Playbooks Gem is featured in
+            for (let i = 0; i < gem.data.playbooks.length; i++) {
+              if (gem.data.playbooks[i].playbook.data.locked) hiddenPBCount++; // Playbook is locked
+            }
+
+            if (gem.data.playbooks.length && hiddenPBCount === gem.data.playbooks.length) {
+              // Gem is only featured in locked Playbooks
+              gem.hidden = true;
+              hiddenGems.current.push(gem);
+            }
+
+            if (gem.data.location.latitude && gem.data.location.longitude) gems.push(gem);
+          }
+
+          setData(gems);
+        }
       } catch (error) {
         if (id === mountedID.current) {
           console.error(error);
@@ -83,13 +110,42 @@ export default function Map(props: MapProps) {
   };
 
   const regionChanged = (region: Region) => {
+    // Detect if location is within a destination
     const destination = detectDestination(
       region.latitude,
       region.longitude,
       region.latitudeDelta,
       region.longitudeDelta
     );
+
     if (destination.uid && destination.uid !== props.destination.uid) props.setDestination(destination);
+
+    // Detect hidden Gems
+    const gems: string[] = [];
+
+    mapRef.current
+      ?.getMapBoundaries()
+      .then((bounds) => {
+        for (let i = 0; i < hiddenGems.current.length; i++) {
+          let lat = hiddenGems.current[i].data.location.latitude;
+          let lng = hiddenGems.current[i].data.location.longitude;
+
+          if (
+            lat >= bounds.southWest.latitude &&
+            lat <= bounds.northEast.latitude &&
+            lng >= bounds.southWest.longitude &&
+            lng <= bounds.northEast.longitude &&
+            region.latitudeDelta <= 0.025 &&
+            region.longitudeDelta <= 0.025
+          ) {
+            gems.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
+          }
+        }
+
+        if (gems.length && !visibleHiddenGems.length) alert("Hidden Gems detected");
+        setVisibleHiddenGems(gems);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -119,14 +175,16 @@ export default function Map(props: MapProps) {
         }}
       >
         {data.map((item, index) => {
-          if (item.data.location.latitude && item.data.location.longitude) {
+          if (!item.hidden || (item.hidden && visibleHiddenGems.includes(item.uid))) {
             return (
               <Marker
                 key={index}
                 coordinate={item.data.location}
                 zIndex={props.selectedGem?.uid === item.uid ? 1 : undefined}
                 icon={
-                  props.selectedGem?.uid === item.uid
+                  item.hidden
+                    ? icons["Hidden"]
+                    : props.selectedGem?.uid === item.uid
                     ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
                     : icons[item.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
                 }

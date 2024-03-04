@@ -21,6 +21,7 @@ type PlaybookData = {
   image: PlaybookImage;
   creator: Creator;
   destination: Destination;
+  locked: boolean;
 };
 
 export type PlaybookType = {

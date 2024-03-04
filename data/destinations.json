@@ -90,6 +90,12 @@
     "keywords": "New Zealand NZ",
     "lat": -36.850883,
     "lng": 174.764488,
+    "region": {
+      "latitude": -36.850883,
+      "longitude": 174.764488,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": -37.05902,
       "longitudeStart": 174.443816,
@@ -119,6 +125,12 @@
     "keywords": "Indonesia Asia",
     "lat": -8.409518,
     "lng": 115.188916,
+    "region": {
+      "latitude": -8.409518,
+      "longitude": 115.188916,
+      "latitudeDelta": 0.5,
+      "longitudeDelta": 0.5
+    },
     "bounds": {
       "latitudeStart": -8.849261,
       "longitudeStart": 114.431626,
@@ -148,6 +160,12 @@
     "keywords": "Thailand Asia",
     "lat": 13.756331,
     "lng": 100.501765,
+    "region": {
+      "latitude": 13.736151,
+      "longitude": 100.513589,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 13.494088,
       "longitudeStart": 100.327814,
@@ -177,6 +195,12 @@
     "keywords": "Spain Europe",
     "lat": 41.387397,
     "lng": 2.168568,
+    "region": {
+      "latitude": 41.387397,
+      "longitude": 2.168568,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 41.317039,
       "longitudeStart": 2.052333,
@@ -206,6 +230,12 @@
     "keywords": "Germany Europe",
     "lat": 52.520007,
     "lng": 13.404954,
+    "region": {
+      "latitude": 52.520007,
+      "longitude": 13.404954,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 52.338234,
       "longitudeStart": 13.088346,
@@ -277,6 +307,12 @@
     "keywords": "Australia QLD Queensland",
     "lat": -27.470453,
     "lng": 153.026034,
+    "region": {
+      "latitude": -27.470453,
+      "longitude": 153.026034,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": -27.767441,
       "longitudeStart": 152.668523,
@@ -320,6 +356,12 @@
     "keywords": "South Africa",
     "lat": -33.924868,
     "lng": 18.424055,
+    "region": {
+      "latitude": -33.911798,
+      "longitude": 18.422698,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": -34.359806,
       "longitudeStart": 18.307449,
@@ -748,6 +790,12 @@
     "keywords": "Australia NSW New South Wales",
     "lat": -33.86882,
     "lng": 151.209296,
+    "region": {
+      "latitude": -33.86882,
+      "longitude": 151.209296,
+      "latitudeDelta": 0.03,
+      "longitudeDelta": 0.03
+    },
     "bounds": {
       "latitudeStart": -34.118347,
       "longitudeStart": 150.520929,
