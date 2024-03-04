@@ -28,6 +28,8 @@ export default function Controls(props: ControlsProps) {
       props.setDestination(destination);
     } else {
       // Location access not granted
+      props.setIsLoading(false);
+
       Alert.alert("Location Access", "Allow Exceptional ALIEN to use your location in your device settings.", [
         {
           text: "Cancel",

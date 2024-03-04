@@ -6,6 +6,7 @@ import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
+import HiddenMarker from "./map/HiddenMarker";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -62,6 +63,7 @@ export default function Map(props: MapProps) {
 
         if (id === mountedID.current) {
           const gems = [];
+          hiddenGems.current = []; // Reset
 
           // Loop all returned Gems
           for (let i = 0; i < json.length; i++) {
@@ -135,8 +137,8 @@ export default function Map(props: MapProps) {
             lat <= bounds.northEast.latitude &&
             lng >= bounds.southWest.longitude &&
             lng <= bounds.northEast.longitude &&
-            region.latitudeDelta <= 0.025 &&
-            region.longitudeDelta <= 0.025
+            region.latitudeDelta <= 0.03 &&
+            region.longitudeDelta <= 0.03
           ) {
             gems.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
           }
@@ -175,7 +177,7 @@ export default function Map(props: MapProps) {
         }}
       >
         {data.map((item, index) => {
-          if (!item.hidden || (item.hidden && visibleHiddenGems.includes(item.uid))) {
+          if (!item.hidden) {
             return (
               <Marker
                 key={index}
@@ -191,6 +193,12 @@ export default function Map(props: MapProps) {
                 tracksViewChanges={false}
                 onPress={() => pressed(item)}
               />
+            );
+          } else if (item.hidden && visibleHiddenGems.includes(item.uid)) {
+            return (
+              <Marker key={index} coordinate={item.data.location} onPress={() => pressed(item)}>
+                <HiddenMarker />
+              </Marker>
             );
           }
         })}
