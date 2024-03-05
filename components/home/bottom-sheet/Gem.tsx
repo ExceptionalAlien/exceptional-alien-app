@@ -25,50 +25,71 @@ export default function Gem(props: GemProps) {
 
   return (
     <View style={[styles.container, !props.selectedGem && { display: "none" }]}>
-      <View style={styles.header}>
-        <View style={styles.iconAndText}>
-          <Image
-            source={icons[props.selectedGem?.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]}
-            style={styles.icon}
-          />
+      {!props.selectedGem?.hidden ? (
+        <>
+          <View style={styles.header}>
+            <View style={styles.iconAndText}>
+              <Image
+                source={
+                  icons[props.selectedGem?.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+                }
+                style={styles.icon}
+              />
 
-          <View style={styles.text}>
+              <View style={styles.text}>
+                <Text
+                  style={[
+                    styles.title,
+                    { fontSize: props.selectedGem?.data.title && props.selectedGem?.data.title.length > 20 ? 20 : 24 },
+                  ]}
+                  allowFontScaling={false}
+                >
+                  {props.selectedGem?.data.title}
+                </Text>
+
+                <Text style={styles.description} allowFontScaling={false}>
+                  {props.selectedGem?.data.description}
+                </Text>
+              </View>
+            </View>
+
             <Text
-              style={[
-                styles.title,
-                { fontSize: props.selectedGem?.data.title && props.selectedGem?.data.title.length > 20 ? 20 : 24 },
-              ]}
+              style={[styles.address, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
               allowFontScaling={false}
             >
-              {props.selectedGem?.data.title}
-            </Text>
-
-            <Text style={styles.description} allowFontScaling={false}>
-              {props.selectedGem?.data.description}
+              {props.selectedGem?.data.address}
             </Text>
           </View>
-        </View>
 
-        <Text
-          style={[styles.address, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
-          allowFontScaling={false}
-        >
-          {props.selectedGem?.data.address}
-        </Text>
-      </View>
+          <Text style={styles.placeholderText}>WIP - Will show contributer quotes/comments</Text>
 
-      <BigButton
-        title="More Info"
-        icon="gem"
-        route={{
-          pathname: "/gem",
-        }}
-      />
+          <BigButton
+            title="More Info"
+            icon="gem"
+            route={{
+              pathname: "/gem",
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <Text style={styles.placeholderText}>
+            WIP - Will show purchasable Playbooks that hidden gem is featured in
+          </Text>
+        </>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  placeholderText: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
+    textAlign: "center",
+  },
   container: {
     gap: 24,
   },

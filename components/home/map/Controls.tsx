@@ -44,12 +44,12 @@ export default function Controls(props: ControlsProps) {
     <View style={styles.container}>
       {/* Options */}
       <Pressable onPress={options} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={6}>
-        <Ionicons name="options-outline" size={24} color="white" />
+        <Ionicons name="options-outline" size={24} color="black" />
       </Pressable>
 
       {/* Locate */}
       <Pressable onPress={locate} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={6}>
-        <Ionicons name="locate-outline" size={24} color="white" />
+        <Ionicons name="locate-outline" size={24} color="black" />
       </Pressable>
     </View>
   );
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   button: {
-    backgroundColor: styleVars.eaGrey,
+    backgroundColor: styleVars.eaLightGrey,
     padding: 8,
     borderRadius: 999,
   },
