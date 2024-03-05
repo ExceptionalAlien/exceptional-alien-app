@@ -7,6 +7,7 @@ import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenMarker from "./map/HiddenMarker";
+import HiddenGemsDetected from "./map/HiddenGemsDetected";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -144,7 +145,8 @@ export default function Map(props: MapProps) {
           }
         }
 
-        if (gems.length && !visibleHiddenGems.length) alert("Hidden Gems detected");
+        //if (gems.length && !visibleHiddenGems.length)
+        //alert("Hidden Gems detected");
         setVisibleHiddenGems(gems);
       })
       .catch((err) => console.log(err));
@@ -204,6 +206,7 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
+      <HiddenGemsDetected />
       <Controls setDestination={props.setDestination} setIsLoading={setIsLoading} />
 
       {isLoading && (
