@@ -115,7 +115,6 @@ export default function Map(props: MapProps) {
   const detectHiddenGems = async () => {
     const gems: string[] = [];
     const coords = await mapRef?.current?.getCamera();
-    console.log(coords);
 
     mapRef.current
       ?.getMapBoundaries()
