@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import * as Location from "expo-location";
+import * as Network from "expo-network";
 import { DestinationContext, DestinationContextType } from "context/destination";
 import { GemType } from "./gem";
 import Map from "components/home/Map";
@@ -34,9 +35,10 @@ export default function Home() {
   useEffect(() => {
     const getLocation = async () => {
       const { status } = await Location.requestForegroundPermissionsAsync(); // Request
+      const network = await Network.getNetworkStateAsync();
 
-      if (status === "granted") {
-        // Device location access granted
+      if (status === "granted" && network.isInternetReachable) {
+        // Online and device location access granted
         setShowOnboarding(true); // Show loader while waiting for location
         const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
         const destination = detectDestination(location.coords.latitude, location.coords.longitude);

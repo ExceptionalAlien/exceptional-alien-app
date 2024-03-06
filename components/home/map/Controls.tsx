@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Pressable, Alert, Linking } from "react-native";
 import * as Location from "expo-location";
+import * as Network from "expo-network";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { DestinationType } from "context/destination";
 import { pressedDefault } from "utils/helpers";
@@ -20,8 +21,13 @@ export default function Controls(props: ControlsProps) {
   const locate = async () => {
     props.setIsLoading(true);
     const { status } = await Location.requestForegroundPermissionsAsync(); // Request location
+    const network = await Network.getNetworkStateAsync();
 
-    if (status === "granted") {
+    if (status === "granted" && !network.isInternetReachable) {
+      // Offline
+      props.setIsLoading(false);
+      Alert.alert("Cannot Access Location", "Your device location cannot be accessed while offline.");
+    } else if (status === "granted") {
       // Device location access granted
       const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
       const destination = detectDestination(location.coords.latitude, location.coords.longitude);
