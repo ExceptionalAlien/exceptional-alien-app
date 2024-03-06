@@ -40,7 +40,7 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
   const mountedID = useRef<string | undefined>();
@@ -52,6 +52,7 @@ export default function Map(props: MapProps) {
   };
 
   const getGems = async (id: string) => {
+    setIsLoading(true);
     const network = await Network.getNetworkStateAsync();
 
     // Check if device is online
@@ -63,7 +64,6 @@ export default function Map(props: MapProps) {
 
         if (id === mountedID.current) {
           const gems = [];
-          hiddenGems.current = []; // Reset
 
           // Loop all returned Gems
           for (let i = 0; i < json.length; i++) {
@@ -85,6 +85,7 @@ export default function Map(props: MapProps) {
           }
 
           setData(gems);
+          detectHiddenGems();
         }
       } catch (error) {
         if (id === mountedID.current) {
@@ -111,19 +112,10 @@ export default function Map(props: MapProps) {
     });
   };
 
-  const regionChanged = (region: Region) => {
-    // Detect if location is within a destination
-    const destination = detectDestination(
-      region.latitude,
-      region.longitude,
-      region.latitudeDelta,
-      region.longitudeDelta
-    );
-
-    if (destination.uid && destination.uid !== props.destination.uid) props.setDestination(destination);
-
-    // Detect hidden Gems
+  const detectHiddenGems = async () => {
     const gems: string[] = [];
+    const coords = await mapRef?.current?.getCamera();
+    console.log(coords);
 
     mapRef.current
       ?.getMapBoundaries()
@@ -137,27 +129,42 @@ export default function Map(props: MapProps) {
             lat <= bounds.northEast.latitude &&
             lng >= bounds.southWest.longitude &&
             lng <= bounds.northEast.longitude &&
-            region.latitudeDelta <= 0.03 &&
-            region.longitudeDelta <= 0.03
+            coords?.zoom &&
+            coords.zoom >= 14.5
           ) {
             gems.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
           }
         }
 
-        //if (gems.length && !visibleHiddenGems.length)
-        //alert("Hidden Gems detected");
         setVisibleHiddenGems(gems);
       })
       .catch((err) => console.log(err));
   };
 
+  const regionChanged = (region: Region) => {
+    // Detect if location is within a destination
+    const destination = detectDestination(
+      region.latitude,
+      region.longitude,
+      region.latitudeDelta,
+      region.longitudeDelta
+    );
+
+    if (destination.uid && destination.uid !== props.destination.uid) {
+      props.setDestination(destination);
+    } else {
+      detectHiddenGems();
+    }
+  };
+
   useEffect(() => {
+    setIsLoading(false);
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
-    setIsLoading(true);
     setData([]); // Empty
     props.setSelectedGem(undefined); // Reset
+    hiddenGems.current = []; // Reset
     if (!props.destination.region) setBounds(); // Only if destination isn't device location
-    getGems(props.destination.id);
+    if (props.destination.id) getGems(props.destination.id);
   }, [props.destination]);
 
   return (
@@ -169,7 +176,7 @@ export default function Map(props: MapProps) {
         provider={PROVIDER_GOOGLE}
         showsMyLocationButton={false}
         customMapStyle={mapStyle}
-        region={props.destination.region ? props.destination.region : undefined}
+        region={props.destination.region ? props.destination.region : undefined} // Will use Gem boundaries if device location not provided
         toolbarEnabled={false}
         onRegionChangeComplete={(region) => regionChanged(region)}
         showsUserLocation
