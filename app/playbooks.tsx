@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, FlatList, StyleSheet, View, Alert } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { PlaybookType } from "./playbook";
 import PlaybookThumb from "components/shared/PlaybookThumb";
 import { styleVars } from "utils/styles";
@@ -13,7 +12,6 @@ type Data = {
 export default function Profile() {
   const params = useLocalSearchParams<{ headerTitle: string; destinationUID: string }>();
   const { headerTitle, destinationUID } = params;
-  const headerHeight = useHeaderHeight();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
 
@@ -39,7 +37,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <View style={[styles.container, { paddingTop: headerHeight }]}>
+    <View style={styles.container}>
       <Stack.Screen
         options={{
           title: headerTitle,

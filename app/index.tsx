@@ -37,6 +37,7 @@ export default function Home() {
 
       if (status === "granted") {
         // Device location access granted
+        setShowOnboarding(true); // Show loader while waiting for location
         const location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low });
         const destination = detectDestination(location.coords.latitude, location.coords.longitude);
         setDestination(destination);
@@ -71,7 +72,7 @@ export default function Home() {
         }}
       />
 
-      {destination && (
+      {destination ? (
         <>
           <Map
             destination={destination}
@@ -83,14 +84,14 @@ export default function Home() {
           <BottomSheet destination={destination} selectedGem={selectedGem} />
           <Header destination={destination} />
         </>
-      )}
-
-      {showOnboarding && (
-        <Onboarding
-          onboardingComplete={onboardingComplete}
-          setOnboardingComplete={setOnboardingComplete}
-          showChooseDestination={showChooseDestination}
-        />
+      ) : (
+        showOnboarding && (
+          <Onboarding
+            onboardingComplete={onboardingComplete}
+            setOnboardingComplete={setOnboardingComplete}
+            showChooseDestination={showChooseDestination}
+          />
+        )
       )}
     </View>
   );

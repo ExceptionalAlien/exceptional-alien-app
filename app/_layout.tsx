@@ -48,12 +48,15 @@ export default function Layout() {
             headerLargeTitleStyle: {
               fontFamily: "Neue-Haas-Grotesk-Med",
             },
-            headerTransparent: true,
+            //headerTransparent: true,
             headerBackTitle: "Back",
             headerBackTitleStyle: {
               fontFamily: "Neue-Haas-Grotesk",
             },
             headerShadowVisible: false,
+            headerStyle: {
+              backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey,
+            },
           }}
         />
       </GestureHandlerRootView>

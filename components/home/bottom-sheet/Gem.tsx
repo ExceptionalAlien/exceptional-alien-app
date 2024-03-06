@@ -61,8 +61,6 @@ export default function Gem(props: GemProps) {
             </Text>
           </View>
 
-          <Text style={styles.placeholderText}>WIP - Will show contributer quotes/comments</Text>
-
           <BigButton
             title="More Info"
             icon="gem"
@@ -72,24 +70,15 @@ export default function Gem(props: GemProps) {
           />
         </>
       ) : (
-        <>
-          <Text style={styles.placeholderText}>
-            WIP - Will show purchasable Playbooks that hidden gem is featured in
-          </Text>
-        </>
+        <Text style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 16, textAlign: "center" }}>
+          WIP - Will show purchasable Playbooks that hidden gem is featured in
+        </Text>
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  placeholderText: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
-    textAlign: "center",
-  },
   container: {
     gap: 24,
   },

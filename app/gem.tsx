@@ -20,7 +20,7 @@ export type GemType = {
 
 export default function Gem() {
   return (
-    <View>
+    <View style={styles.container}>
       <Stack.Screen
         options={{
           title: "Gem",
