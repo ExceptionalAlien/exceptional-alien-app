@@ -13,17 +13,6 @@
       "backgroundColor": "#2220C1"
     },
     "assetBundlePatterns": ["**/*"],
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#2220C1"
-      },
-      "package": "com.exceptionalalien.app",
-      "versionCode": 1
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "plugins": [
       "expo-router",
       [

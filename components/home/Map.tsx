@@ -36,6 +36,7 @@ const icons = {
   Accommodation: require("assets/img/markers/accommodation.png"),
   AccommodationSelected: require("assets/img/markers/accommodation-selected.png"),
   Hidden: require("assets/img/markers/hidden.png"),
+  HiddenSelected: require("assets/img/markers/hidden-selected.png"),
 };
 
 export default function Map(props: MapProps) {
@@ -191,7 +192,9 @@ export default function Map(props: MapProps) {
                 coordinate={item.data.location}
                 zIndex={props.selectedGem?.uid === item.uid ? 1 : undefined}
                 icon={
-                  item.hidden
+                  item.hidden && props.selectedGem?.uid === item.uid
+                    ? icons["HiddenSelected"]
+                    : item.hidden
                     ? icons["Hidden"]
                     : props.selectedGem?.uid === item.uid
                     ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
