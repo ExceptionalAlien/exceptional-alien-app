@@ -32,7 +32,7 @@ export default function Search() {
       contentInsetAdjustmentBehavior="automatic"
       keyboardDismissMode="on-drag"
       keyboardShouldPersistTaps="handled"
-      style={{ marginTop: Platform.OS === "android" ? headerHeight : offset }}
+      style={Platform.OS === "ios" && { marginTop: offset }}
     >
       <Stack.Screen
         options={{
