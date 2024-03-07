@@ -14,7 +14,7 @@ export default function Search() {
   const [offset, setOffset] = useState(0);
 
   const searchClick = () => {
-    if (query.length > 1 && !destinationsOnly) alert("WIP - will query Prismic and Supabase");
+    if (query.length > 1 && !destinationsOnly) alert("WIP - will query EA database");
   };
 
   useEffect(() => {

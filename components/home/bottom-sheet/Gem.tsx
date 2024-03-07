@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
 import { GemType } from "app/gem";
 import BigButton from "components/shared/BigButton";
+import QuoteSlider from "components/shared/QuoteSlider";
 import { styleVars } from "utils/styles";
 
 type GemProps = {
@@ -28,38 +29,34 @@ export default function Gem(props: GemProps) {
       {!props.selectedGem?.hidden ? (
         <>
           <View style={styles.header}>
-            <View style={styles.iconAndText}>
-              <Image
-                source={
-                  icons[props.selectedGem?.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
-                }
-                style={styles.icon}
-              />
+            <Image
+              source={
+                icons[props.selectedGem?.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+              }
+              style={styles.icon}
+            />
 
-              <View style={styles.text}>
-                <Text
-                  style={[
-                    styles.title,
-                    { fontSize: props.selectedGem?.data.title && props.selectedGem?.data.title.length > 20 ? 20 : 24 },
-                  ]}
-                  allowFontScaling={false}
-                >
-                  {props.selectedGem?.data.title}
-                </Text>
+            <View style={styles.text}>
+              <Text style={styles.title} allowFontScaling={false}>
+                {props.selectedGem?.data.title}
+              </Text>
 
-                <Text style={styles.description} allowFontScaling={false}>
-                  {props.selectedGem?.data.description}
-                </Text>
-              </View>
+              <Text style={styles.description} allowFontScaling={false}>
+                {props.selectedGem?.data.description}
+              </Text>
+
+              <Text
+                style={[styles.address, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
+                allowFontScaling={false}
+              >
+                {props.selectedGem?.data.address}
+              </Text>
             </View>
-
-            <Text
-              style={[styles.address, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
-              allowFontScaling={false}
-            >
-              {props.selectedGem?.data.address}
-            </Text>
           </View>
+
+          {props.selectedGem?.data.playbooks.length && (
+            <QuoteSlider gem={props.selectedGem.uid} playbooks={props.selectedGem.data.playbooks} size="sml" />
+          )}
 
           <BigButton
             title="More Info"
@@ -80,31 +77,30 @@ export default function Gem(props: GemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 24,
+    gap: 16,
   },
   header: {
     marginHorizontal: 16,
-    gap: 12,
-  },
-  iconAndText: {
-    flexDirection: "row",
     gap: 8,
+    flexDirection: "row",
     alignItems: "center",
-  },
-  text: {
-    flex: 1,
   },
   icon: {
     width: 48,
     height: 48,
   },
+  text: {
+    flex: 1,
+  },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
     color: styleVars.eaBlue,
+    fontSize: 20,
   },
   description: {
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 16,
+    lineHeight: 16,
     color: styleVars.eaBlue,
   },
   address: {

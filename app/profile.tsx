@@ -5,11 +5,12 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
-export type Creator = {
+export type CreatorType = {
   data: {
     first_name: string;
     last_name: string;
     title: string;
+    profile_image: { url: string };
   };
 };
 

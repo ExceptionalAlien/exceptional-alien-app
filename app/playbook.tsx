@@ -1,7 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Creator } from "./profile";
+import { GemType } from "./gem";
+import { CreatorType } from "./profile";
 
 type PlaybookImage = {
   mobile: {
@@ -15,12 +16,25 @@ type Destination = {
   };
 };
 
+type Primary = {
+  description: [{ text: string }];
+  gem: GemType;
+  creator: CreatorType;
+  playbookCreator: CreatorType;
+};
+
+export type Slice = {
+  id: string;
+  primary: Primary;
+};
+
 type PlaybookData = {
   title: string;
   sub_title: string;
   image: PlaybookImage;
-  creator: Creator;
+  creator: CreatorType;
   destination: Destination;
+  slices: Slice[];
   locked: boolean;
 };
 
@@ -41,7 +55,7 @@ export default function Playbook() {
         }}
       />
 
-      <Text style={{ textAlign: "center" }}>WIP - will show contributor info (name, photo etc.) and Gems</Text>
+      <Text style={{ textAlign: "center" }}>WIP - will show contributor info (name, photo etc.) and Playbook Gems</Text>
     </View>
   );
 }

@@ -15,7 +15,9 @@ type ControlsProps = {
 
 export default function Controls(props: ControlsProps) {
   const options = () => {
-    alert("WIP - will show filters including Gem categories");
+    alert(
+      "WIP - will show filters including Gem categories, favourite Playbooks only and option to only show your Playbooks"
+    );
   };
 
   const locate = async () => {

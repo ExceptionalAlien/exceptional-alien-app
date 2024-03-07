@@ -9,7 +9,7 @@ type GemData = {
   category: string;
   address: string;
   location: { latitude: number; longitude: number };
-  playbooks: PlaybookType[];
+  playbooks: [{ playbook: PlaybookType }];
 };
 
 export type GemType = {
