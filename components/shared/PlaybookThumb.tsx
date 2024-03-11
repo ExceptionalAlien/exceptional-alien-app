@@ -24,7 +24,9 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           pathname: "/playbook",
           params: {
             uid: props.playbook.uid,
-            title: props.playbook.data.destination?.data.title ? props.playbook.data.destination?.data.title : "Global",
+            title: props.playbook.data.destination?.data.title
+              ? props.playbook.data.destination?.data.title
+              : "Playbook",
           },
         })
       }
@@ -41,7 +43,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.5)"]} style={styles.textBackground} />
 
         <Text style={styles.text} allowFontScaling={false}>
-          {props.playbook.data.destination?.data.title ? props.playbook.data.destination?.data.title : "Global"} with{" "}
+          {props.playbook.data.destination?.data.title && `${props.playbook.data.destination?.data.title} with `}
           {props.playbook.data.creator.data.first_name}{" "}
           {props.playbook.data.creator.data.last_name && props.playbook.data.creator.data.last_name?.toUpperCase()}
         </Text>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { StyleSheet, View, useWindowDimensions, useColorScheme, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as ScreenOrientation from "expo-screen-orientation";
 import { GestureDetector, Gesture, Directions } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
@@ -63,6 +64,17 @@ export default function BottomSheet(props: BottomSheetProps) {
 
     offset.value = 0; // Close/reset
   }, [props.selectedGem]);
+
+  useEffect(() => {
+    // Detect orientation change
+    const subscription = ScreenOrientation.addOrientationChangeListener(() => {
+      offset.value = 0; // Close/reset
+    });
+
+    return () => {
+      ScreenOrientation.removeOrientationChangeListener(subscription);
+    };
+  }, []);
 
   return (
     <GestureDetector gesture={flingUp}>
