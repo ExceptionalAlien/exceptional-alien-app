@@ -23,7 +23,9 @@ export default function BigButton(props: BigButtonProps) {
 
   const icons = {
     playbook: require("assets/img/icon-playbook.svg"),
+    playbookBlue: require("assets/img/icon-playbook-blue.svg"),
     gem: require("assets/img/icon-gem.svg"),
+    gemBlue: require("assets/img/icon-gem-blue.svg"),
   };
 
   return (
@@ -34,19 +36,22 @@ export default function BigButton(props: BigButtonProps) {
           pressedDefault(pressed),
           styles.button,
           Device.deviceType === 2 && { width: 256 },
-          props.bgColor !== "" && { backgroundColor: props.bgColor },
+          { backgroundColor: props.bgColor ? props.bgColor : styleVars.eaBlue },
         ]}
         hitSlop={8}
       >
         {props.icon && (
           <Image
-            source={icons[props.icon as keyof typeof icons]}
+            source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : undefined}` as keyof typeof icons]}
             style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
             contentFit="contain"
           />
         )}
 
-        <Text style={styles.text} allowFontScaling={false}>
+        <Text
+          style={[styles.text, { color: props.bgColor === "white" ? styleVars.eaBlue : "white" }]}
+          allowFontScaling={false}
+        >
           {props.title}
         </Text>
       </Pressable>
@@ -66,8 +71,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     flexDirection: "row",
-    borderWidth: 1,
-    borderColor: styleVars.eaBlue,
   },
   icon: {
     width: 20,
@@ -77,6 +80,5 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontFamily: "Neue-Haas-Grotesk",
-    color: styleVars.eaBlue,
   },
 });

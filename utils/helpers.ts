@@ -9,7 +9,7 @@ export const pressedDefault = (pressed: boolean) => {
 };
 
 /* Async Storage */
-export const storeData = async (item: string, value: string | boolean | DestinationType) => {
+export const storeData = async (item: string, value: string | boolean | string[] | DestinationType) => {
   try {
     const json = JSON.stringify(value);
     await AsyncStorage.setItem(item, json);

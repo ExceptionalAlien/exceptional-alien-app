@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, Pressable } from "react-native";
+import { StyleSheet, Text, Pressable, useColorScheme } from "react-native";
 import { useRouter } from "expo-router";
 import { Image } from "expo-image";
 import { CreatorType } from "app/profile";
@@ -12,6 +12,7 @@ type CreatorIconProps = {
 
 export default function CreatorIcon(props: CreatorIconProps) {
   const router = useRouter();
+  const colorScheme = useColorScheme();
 
   return (
     <Pressable
@@ -23,7 +24,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
       style={({ pressed }) => [styles.container, pressedDefault(pressed)]}
       hitSlop={8}
     >
-      <Text style={styles.text}>
+      <Text style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}>
         {props.creator.data.first_name}
         {props.creator.data.last_name && ` ${props.creator.data.last_name?.toUpperCase()}`}
       </Text>
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk",
-    color: styleVars.eaBlue,
     fontSize: 12,
     textAlign: "right",
   },

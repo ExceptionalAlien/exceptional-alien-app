@@ -51,7 +51,7 @@ export default function BottomSheet(props: BottomSheetProps) {
     backgroundColor: interpolateColor(
       bgColor.value,
       [0, 1],
-      [styleVars.eaBlue, colorScheme === "light" ? "white" : styleVars.eaLightGrey]
+      [styleVars.eaBlue, colorScheme === "light" ? "white" : styleVars.eaGrey]
     ),
   }));
 
@@ -71,14 +71,9 @@ export default function BottomSheet(props: BottomSheetProps) {
           style={[styles.container, animatedStyles, { paddingBottom: insets.bottom + 16, minHeight: collapsedHeight }]}
           ref={container}
         >
-          <View
-            style={[
-              styles.handle,
-              { backgroundColor: colorScheme === "light" ? styleVars.eaLightGrey : styleVars.eaGrey },
-            ]}
-          />
           <Playbooks destination={props.destination} selectedGem={props.selectedGem} />
           <Gem selectedGem={props.selectedGem} />
+          <View style={styles.handle} />
         </Animated.View>
       </GestureDetector>
     </GestureDetector>
@@ -90,7 +85,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "65%",
     width: "100%",
-    paddingTop: 24,
   },
   handle: {
     position: "absolute",
@@ -100,5 +94,6 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     left: "50%",
     marginLeft: -16,
+    backgroundColor: styleVars.eaLightGrey,
   },
 });

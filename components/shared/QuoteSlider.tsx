@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, useColorScheme } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { PlaybookType, Slice } from "app/playbook";
 import CreatorIcon from "./CreatorIcon";
@@ -8,17 +8,22 @@ import { styleVars } from "utils/styles";
 
 type QuoteProps = {
   slice: Slice["primary"];
-  size?: string;
 };
 
 function Quote(props: QuoteProps) {
+  const colorScheme = useColorScheme();
+  const description = props.slice.description[0].text;
+
   return (
-    <View style={[styles.quote, { aspectRatio: props.size === "sml" ? "6/4" : "4/4" }]}>
-      <Text style={[styles.text, { fontSize: props.slice.description[0].text.length > 140 ? 14 : 16 }]}>
-        {props.size === "sml"
-          ? props.slice.description[0].text.substring(0, 240).trimEnd()
-          : props.slice.description[0].text}
-        {props.size === "sml" && props.slice.description[0].text.length > 240 && "..."}
+    <View style={[styles.quote, { borderColor: colorScheme === "light" ? styleVars.eaBlue : "white" }]}>
+      <Text
+        style={[
+          styles.text,
+          { fontSize: description.length > 160 ? 14 : 16, color: colorScheme === "light" ? styleVars.eaBlue : "white" },
+        ]}
+      >
+        {description.substring(0, 320).trimEnd()}
+        {description.length > 320 && "..."}
       </Text>
 
       <View style={styles.creator}>
@@ -33,7 +38,6 @@ function Quote(props: QuoteProps) {
 type QuoteSliderProps = {
   gem: string;
   playbooks: [{ playbook: PlaybookType }];
-  size?: string; // sml or med (default)
 };
 
 export default function QuoteSlider(props: QuoteSliderProps) {
@@ -74,7 +78,7 @@ export default function QuoteSlider(props: QuoteSliderProps) {
     <FlatList
       data={quotes}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <Quote slice={item.primary} size={props.size} />}
+      renderItem={({ item }) => <Quote slice={item.primary} />}
       horizontal
       decelerationRate="fast"
       snapToInterval={248}
@@ -84,6 +88,7 @@ export default function QuoteSlider(props: QuoteSliderProps) {
         paddingRight: 16,
       }}
       showsHorizontalScrollIndicator={false}
+      style={!quotes.length && { display: "none" }}
     />
   );
 }
@@ -91,13 +96,12 @@ export default function QuoteSlider(props: QuoteSliderProps) {
 const styles = StyleSheet.create({
   quote: {
     borderWidth: 1,
-    borderColor: styleVars.eaBlue,
     padding: 8,
     width: 240,
+    aspectRatio: "4/4",
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk",
-    color: styleVars.eaBlue,
   },
   creator: {
     position: "absolute",

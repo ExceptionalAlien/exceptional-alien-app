@@ -10,6 +10,7 @@ type GemData = {
   address: string;
   location: { latitude: number; longitude: number };
   playbooks: [{ playbook: PlaybookType }];
+  image: { url: string };
 };
 
 export type GemType = {
