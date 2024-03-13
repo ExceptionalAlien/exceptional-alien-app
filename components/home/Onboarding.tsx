@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, View, Button, ActivityIndicator, Text } from "react-native";
+import { StyleSheet, View, Button, ActivityIndicator, Text, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { storeData } from "utils/helpers";
+import { pressedDefault } from "utils/helpers";
 
 type OnboardingProps = {
   onboardingComplete: boolean | undefined;
@@ -20,10 +21,12 @@ export default function Onboarding(props: OnboardingProps) {
   return (
     <View style={styles.container}>
       {props.showChooseDestination ? (
-        <Button
-          title="Choose destination"
+        <Pressable
           onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
-        />
+          style={({ pressed }) => pressedDefault(pressed)}
+        >
+          <Text style={styles.text}>Choose a destination</Text>
+        </Pressable>
       ) : !props.onboardingComplete ? (
         <>
           <Text style={{ color: "white" }}>WIP - will show onboarding slides</Text>
@@ -41,5 +44,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text: {
+    color: "white",
+    fontSize: 18,
+    fontFamily: "Neue-Haas-Grotesk",
   },
 });

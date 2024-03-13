@@ -86,6 +86,7 @@ export default function QuoteSlider(props: QuoteSliderProps) {
         gap: 8,
         paddingLeft: 16,
         paddingRight: 16,
+        minWidth: "100%",
       }}
       showsHorizontalScrollIndicator={false}
       style={!quotes.length && { display: "none" }}

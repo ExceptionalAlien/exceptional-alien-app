@@ -42,7 +42,7 @@ export default function BigButton(props: BigButtonProps) {
       >
         {props.icon && (
           <Image
-            source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : undefined}` as keyof typeof icons]}
+            source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : ""}` as keyof typeof icons]}
             style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
             contentFit="contain"
           />

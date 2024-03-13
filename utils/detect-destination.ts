@@ -13,8 +13,8 @@ export const detectDestination = (lat: number, lng: number, latDelta?: number, l
     region: {
       latitude: lat,
       longitude: lng,
-      latitudeDelta: latDelta ? latDelta : 0.02,
-      longitudeDelta: lngDelta ? lngDelta : 0.02,
+      latitudeDelta: latDelta ? latDelta : 0.015,
+      longitudeDelta: lngDelta ? lngDelta : 0.015,
     },
   };
 

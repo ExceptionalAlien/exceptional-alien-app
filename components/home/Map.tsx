@@ -7,6 +7,7 @@ import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenGemsDetected from "./map/HiddenGemsDetected";
+import NoGems from "./map/NoGems";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -130,7 +131,7 @@ export default function Map(props: MapProps) {
             lng >= bounds.southWest.longitude &&
             lng <= bounds.northEast.longitude &&
             coords?.zoom &&
-            coords.zoom >= 14.5
+            coords.zoom >= 15
           ) {
             gems.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
           }
@@ -208,8 +209,15 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
+      <NoGems visible={!props.destination.uid ? true : false} />
       <HiddenGemsDetected hiddenGemCount={visibleHiddenGems.length} />
-      <Controls setDestination={props.setDestination} setIsLoading={setIsLoading} />
+
+      <Controls
+        destination={props.destination}
+        setDestination={props.setDestination}
+        setIsLoading={setIsLoading}
+        mapRef={mapRef}
+      />
 
       {isLoading && (
         <ActivityIndicator
