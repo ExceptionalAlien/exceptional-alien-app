@@ -9,7 +9,7 @@ import Map from "components/home/Map";
 import Header from "components/home/Header";
 import BottomSheet from "components/home/BottomSheet";
 import Onboarding from "components/home/Onboarding";
-import { getData, removeData } from "utils/helpers";
+import { getData, removeData, storeData } from "utils/helpers";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
 
@@ -22,6 +22,7 @@ export default function Home() {
   const [selectedGem, setSelectedGem] = useState<GemType>();
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
+  //storeData("unlockedPBs", []); // Used for testing
 
   useEffect(() => {
     // Check if onboarding already shown on init

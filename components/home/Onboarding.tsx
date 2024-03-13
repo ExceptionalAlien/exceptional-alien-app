@@ -25,7 +25,9 @@ export default function Onboarding(props: OnboardingProps) {
           onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
           style={({ pressed }) => pressedDefault(pressed)}
         >
-          <Text style={styles.text}>Choose a destination</Text>
+          <Text style={styles.text} allowFontScaling={false}>
+            Choose destination
+          </Text>
         </Pressable>
       ) : !props.onboardingComplete ? (
         <>

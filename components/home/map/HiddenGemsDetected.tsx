@@ -48,7 +48,9 @@ export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
 
   return (
     <Animated.View style={[styles.container, { marginBottom }]}>
-      <Text style={styles.text}>Hidden Gems detected</Text>
+      <Text style={styles.text} allowFontScaling={false}>
+        Hidden Gems detected
+      </Text>
 
       <Animated.View style={animatedStyles}>
         <MaterialCommunityIcons name="radar" size={24} color="white" />

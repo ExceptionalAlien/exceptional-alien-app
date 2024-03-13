@@ -24,7 +24,10 @@ export default function CreatorIcon(props: CreatorIconProps) {
       style={({ pressed }) => [styles.container, pressedDefault(pressed)]}
       hitSlop={8}
     >
-      <Text style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}>
+      <Text
+        style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}
+        allowFontScaling={false}
+      >
         {props.creator.data.first_name}
         {props.creator.data.last_name && ` ${props.creator.data.last_name?.toUpperCase()}`}
       </Text>

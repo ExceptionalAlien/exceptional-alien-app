@@ -13,8 +13,8 @@ type PlaybooksProps = {
 export default function Playbooks(props: PlaybooksProps) {
   return (
     <View style={[styles.container, props.selectedGem && { display: "none" }]}>
-      {props.destination.uid && <PlaybookSlider destination={props.destination} />}
-      <PlaybookSlider />
+      {props.destination.uid && <PlaybookSlider destination={props.destination} blueBg />}
+      <PlaybookSlider blueBg />
 
       <BigButton
         title="Create a Playbook"

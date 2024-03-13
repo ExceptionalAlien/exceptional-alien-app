@@ -21,6 +21,7 @@ function Quote(props: QuoteProps) {
           styles.text,
           { fontSize: description.length > 160 ? 14 : 16, color: colorScheme === "light" ? styleVars.eaBlue : "white" },
         ]}
+        allowFontScaling={false}
       >
         {description.substring(0, 320).trimEnd()}
         {description.length > 320 && "..."}

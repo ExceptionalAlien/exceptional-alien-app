@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, useWindowDimensions, Pressable } from "react-native";
+import { StyleSheet, View, Text, useWindowDimensions, Pressable, Linking, Platform } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { GemType } from "app/gem";
 import { storeData, getData } from "utils/helpers";
 import { styleVars } from "utils/styles";
@@ -52,6 +53,15 @@ export default function Header(props: HeaderProps) {
     setIsFav(favs && favs.includes(props.gem.uid) ? true : false);
   };
 
+  const openMaps = () => {
+    const url = Platform.select({
+      ios: `maps:0,0?q=${props.gem.data.address}`,
+      android: `geo:0,0?q=${props.gem.data.address}`,
+    });
+
+    Linking.openURL(url as string);
+  };
+
   useEffect(() => {
     setFav();
   }, [props.gem]);
@@ -76,9 +86,17 @@ export default function Header(props: HeaderProps) {
             {props.gem.data.description}
           </Text>
 
-          <Text style={styles.address} allowFontScaling={false}>
-            {props.gem.data.address}
-          </Text>
+          <Pressable
+            onPress={openMaps}
+            style={({ pressed }) => [pressedDefault(pressed), styles.directions]}
+            hitSlop={8}
+          >
+            <Text style={styles.address} allowFontScaling={false}>
+              {props.gem.data.address}
+            </Text>
+
+            <MaterialCommunityIcons name="arrow-u-right-top" size={16} color={styleVars.eaLightGrey} />
+          </Pressable>
         </View>
       </View>
 
@@ -124,6 +142,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 16,
     color: "white",
+  },
+  directions: {
+    flexDirection: "row",
+    gap: 2,
   },
   address: {
     fontFamily: "Neue-Haas-Grotesk",

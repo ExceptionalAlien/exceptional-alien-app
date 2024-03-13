@@ -11,6 +11,7 @@ import NoGems from "./map/NoGems";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
+import { getData } from "utils/helpers";
 
 type MapProps = {
   destination: DestinationType;
@@ -61,6 +62,7 @@ export default function Map(props: MapProps) {
     if (network.isInternetReachable) {
       // Online
       try {
+        const unlocked = await getData("unlockedPBs");
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const json = await response.json();
 
@@ -74,7 +76,13 @@ export default function Map(props: MapProps) {
 
             // Loop Playbooks Gem is featured in
             for (let i = 0; i < gem.data.playbooks.length; i++) {
-              if (gem.data.playbooks[i].playbook.data.locked) hiddenPBCount++; // Playbook is locked
+              if (
+                (!unlocked && gem.data.playbooks[i].playbook.data.locked) ||
+                (unlocked &&
+                  gem.data.playbooks[i].playbook.data.locked &&
+                  !unlocked.includes(gem.data.playbooks[i].playbook.uid))
+              )
+                hiddenPBCount++; // Playbook is locked
             }
 
             if (gem.data.playbooks.length && hiddenPBCount === gem.data.playbooks.length) {

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, useColorScheme, useWindowDimensions, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { PlaybookType } from "app/playbook";
+import { getData } from "utils/helpers";
+import { styleVars } from "utils/styles";
 
 type PlaybookThumbProps = {
   playbook: PlaybookType;
@@ -15,7 +18,17 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
   const router = useRouter();
+  const [isUnlocked, setIsUnlocked] = useState(!props.playbook.data.locked ? true : false);
   const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
+
+  const checkIfOwned = async () => {
+    const unlocked = await getData("unlockedPBs");
+    if (unlocked && unlocked.includes(props.playbook.uid)) setIsUnlocked(true);
+  };
+
+  useEffect(() => {
+    if (!isUnlocked) checkIfOwned();
+  }, []);
 
   return (
     <Pressable
@@ -47,6 +60,12 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           {props.playbook.data.creator.data.first_name}{" "}
           {props.playbook.data.creator.data.last_name && props.playbook.data.creator.data.last_name?.toUpperCase()}
         </Text>
+
+        {!isUnlocked && (
+          <View style={styles.locked}>
+            <Ionicons name="lock-closed" size={16} color={styleVars.eaBlue} />
+          </View>
+        )}
       </View>
 
       <Text
@@ -87,6 +106,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
     padding: 4,
+  },
+  locked: {
+    position: "absolute",
+    backgroundColor: "white",
+    borderRadius: 999,
+    width: 24,
+    height: 24,
+    alignItems: "center",
+    justifyContent: "center",
+    top: 8,
+    right: 8,
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk",

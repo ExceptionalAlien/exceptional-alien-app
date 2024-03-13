@@ -26,26 +26,38 @@ export default function NoGems(props: NoGemsProps) {
     } else {
       // Hide
       marginBottom.value = withTiming(-52, { duration: 200, easing: Easing.in(Easing.quad) });
-      opacity.value = withTiming(0, { duration: 300, easing: Easing.inOut(Easing.quad) });
+      opacity.value = 0;
     }
   }, [props.visible]);
 
   return (
     <>
       <Animated.View
-        style={[styles.bannerTop, { opacity, marginTop: insets.top + 60 + 16 /* Header height + margin */ }]}
+        style={[
+          styles.bannerTop,
+          {
+            opacity,
+            display: props.visible ? "flex" : "none",
+            marginTop: insets.top + 60 + 16 /* Header height + margin */,
+          },
+        ]}
       >
         <Pressable
           onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
           style={({ pressed }) => [pressedDefault(pressed), styles.button]}
         >
-          <Text style={styles.topText}>Explore a destination</Text>
+          <Text style={styles.topText} allowFontScaling={false}>
+            Select a destination
+          </Text>
+
           <Ionicons name="arrow-forward-sharp" size={16} color={styleVars.eaBlue} />
         </Pressable>
       </Animated.View>
 
       <Animated.View style={[styles.bannerBottom, { marginBottom }]}>
-        <Text style={styles.bottomText}>No Gems nearby</Text>
+        <Text style={styles.bottomText} allowFontScaling={false}>
+          No Gems nearby
+        </Text>
       </Animated.View>
     </>
   );

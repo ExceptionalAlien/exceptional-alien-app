@@ -433,6 +433,12 @@
     "keywords": "Denmark Europe",
     "lat": 55.676097,
     "lng": 12.568337,
+    "region": {
+      "latitude": 55.676097,
+      "longitude": 12.568337,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 55.615441,
       "longitudeStart": 12.453382,

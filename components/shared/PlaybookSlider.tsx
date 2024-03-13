@@ -6,6 +6,7 @@ import { DestinationType } from "context/destination";
 import { PlaybookType } from "app/playbook";
 import PlaybookThumb from "components/shared/PlaybookThumb";
 import Tab from "./Tab";
+import { styleVars } from "utils/styles";
 
 type Data = {
   playbook: PlaybookType;
@@ -13,6 +14,8 @@ type Data = {
 
 type PlaybookSliderProps = {
   destination?: DestinationType;
+  hideTab?: boolean;
+  blueBg?: boolean;
 };
 
 export default function PlaybookSlider(props: PlaybookSliderProps) {
@@ -57,26 +60,30 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
   }, [props.destination]);
 
   return (
-    <View style={[styles.container, isOffline && { display: "none" }]}>
-      <Tab
-        title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
-        cta="VIEW ALL"
-        route={{
-          pathname: "/playbooks",
-          params: {
-            headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
-            destinationUID: props.destination?.uid,
-          },
-        }}
-      />
+    <View style={{ minHeight: props.hideTab ? 176 : 208, display: isOffline ? "none" : "flex" }}>
+      {!props.hideTab && (
+        <Tab
+          title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
+          cta="VIEW ALL"
+          route={{
+            pathname: "/playbooks",
+            params: {
+              headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
+              destinationUID: props.destination?.uid,
+            },
+          }}
+        />
+      )}
 
       {isLoading ? (
-        <ActivityIndicator color="#FFFFFF" style={styles.loading} />
+        <ActivityIndicator color={props.blueBg ? "#FFFFFF" : styleVars.eaBlue} style={styles.loading} />
       ) : (
         <FlatList
           data={data}
           keyExtractor={(item) => item.playbook.uid}
-          renderItem={({ item }) => <PlaybookThumb playbook={item.playbook} width={176} titleColor="white" />}
+          renderItem={({ item }) => (
+            <PlaybookThumb playbook={item.playbook} width={176} titleColor={props.blueBg ? "white" : undefined} />
+          )}
           horizontal
           decelerationRate="fast"
           snapToInterval={184}
@@ -94,9 +101,6 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    minHeight: 208,
-  },
   loading: {
     flex: 1,
   },
