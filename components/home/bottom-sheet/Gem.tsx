@@ -53,7 +53,7 @@ export default function Gem(props: GemProps) {
               </View>
             </View>
 
-            <PlaybookSlider hideTab />
+            <PlaybookSlider playbooks={props.selectedGem.data.playbooks} hideTab />
           </View>
         )
       )}

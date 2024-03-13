@@ -14,12 +14,13 @@ type Data = {
 
 type PlaybookSliderProps = {
   destination?: DestinationType;
+  playbooks?: Data[];
   hideTab?: boolean;
   blueBg?: boolean;
 };
 
 export default function PlaybookSlider(props: PlaybookSliderProps) {
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
   const [data, setData] = useState<Data[]>([]);
   const mountedUID = useRef<string | undefined>();
@@ -54,10 +55,16 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
   };
 
   useEffect(() => {
-    mountedUID.current = props.destination ? props.destination.uid : undefined; // Used to make sure correct destination shows if user switches during load
-    setLoading(true);
-    getPlaybooks(props.destination && props.destination.uid);
-  }, [props.destination]);
+    if (props.playbooks) {
+      // Gem Playbooks
+      setData(props.playbooks);
+    } else {
+      // Destination or latest Playbooks
+      mountedUID.current = props.destination ? props.destination.uid : undefined; // Used to make sure correct destination shows if user switches during load
+      setLoading(true);
+      getPlaybooks(props.destination && props.destination.uid);
+    }
+  }, [props.destination, props.playbooks]);
 
   return (
     <View style={{ minHeight: props.hideTab ? 176 : 208, display: isOffline ? "none" : "flex" }}>

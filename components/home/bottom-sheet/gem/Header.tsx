@@ -28,7 +28,6 @@ const icons = {
 export default function Header(props: HeaderProps) {
   const { width, height } = useWindowDimensions();
   const [isFav, setIsFav] = useState(false);
-  const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   const toggleFav = async () => {
     const favs = await getData("favs");
@@ -68,7 +67,8 @@ export default function Header(props: HeaderProps) {
 
   return (
     <View style={{ aspectRatio: Device.deviceType !== 2 ? "4/2" : width >= height ? "6/1" : "5/2" }}>
-      <Image source={props.gem.data.image.url} placeholder={blurhash} transition={500} style={styles.hero} />
+      <View style={styles.bg} />
+      <Image source={props.gem.data.image.url} transition={500} style={styles.hero} />
       <LinearGradient colors={["rgba(0,0,0,0.5)", "transparent", "rgba(0,0,0,0.75)"]} style={styles.gradient} />
 
       <View style={styles.heading}>
@@ -108,6 +108,12 @@ export default function Header(props: HeaderProps) {
 }
 
 const styles = StyleSheet.create({
+  bg: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "black",
+  },
   hero: {
     width: "100%",
     height: "100%",

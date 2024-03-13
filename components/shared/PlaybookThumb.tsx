@@ -19,7 +19,6 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   const { width } = useWindowDimensions();
   const router = useRouter();
   const [isUnlocked, setIsUnlocked] = useState(!props.playbook.data.locked ? true : false);
-  const blurhash = "L0MtaO?bfQ?b~qj[fQj[fQfQfQfQ";
 
   const checkIfOwned = async () => {
     const unlocked = await getData("unlockedPBs");
@@ -37,20 +36,14 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           pathname: "/playbook",
           params: {
             uid: props.playbook.uid,
-            title: props.playbook.data.destination?.data.title
-              ? props.playbook.data.destination?.data.title
-              : "Playbook",
+            title: "Playbook",
           },
         })
       }
       style={[styles.container, props.width ? { width: props.width } : { flex: 1, maxWidth: (width - 40) / 2 }]}
     >
-      <Image
-        source={props.playbook.data.image.mobile.url}
-        style={styles.image}
-        placeholder={blurhash}
-        transition={500}
-      />
+      <View style={styles.bg} />
+      <Image source={props.playbook.data.image.mobile.url} style={styles.image} transition={500} />
 
       <View style={styles.textContainer}>
         <LinearGradient colors={["transparent", "rgba(0,0,0,0.5)"]} style={styles.textBackground} />
@@ -87,6 +80,12 @@ const styles = StyleSheet.create({
   container: {
     gap: 4,
   },
+  bg: {
+    position: "absolute",
+    aspectRatio: "4/3",
+    width: "100%",
+    backgroundColor: "black",
+  },
   image: {
     aspectRatio: "4/3",
   },
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
   },
   locked: {
     position: "absolute",
-    backgroundColor: "white",
+    backgroundColor: "rgba(255,255,255,0.75)",
     borderRadius: 999,
     width: 24,
     height: 24,
