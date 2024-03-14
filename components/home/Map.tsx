@@ -8,6 +8,7 @@ import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenGemsDetected from "./map/HiddenGemsDetected";
 import NoGems from "./map/NoGems";
+import SelectDestination from "./map/SelectDestination";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -217,6 +218,7 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
+      <SelectDestination visible={!props.destination.uid ? true : false} />
       <NoGems visible={!props.destination.uid ? true : false} />
       <HiddenGemsDetected hiddenGemCount={visibleHiddenGems.length} />
 

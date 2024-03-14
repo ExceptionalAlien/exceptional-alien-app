@@ -16,6 +16,7 @@ import { DestinationType } from "context/destination";
 import { GemType } from "app/gem";
 import Playbooks from "./bottom-sheet/Playbooks";
 import Gem from "./bottom-sheet/Gem";
+import HiddenGem from "./bottom-sheet/HiddenGem";
 import { styleVars } from "utils/styles";
 
 type BottomSheetProps = {
@@ -84,7 +85,13 @@ export default function BottomSheet(props: BottomSheetProps) {
           ref={container}
         >
           <Playbooks destination={props.destination} selectedGem={props.selectedGem} />
-          <Gem selectedGem={props.selectedGem} />
+
+          {props.selectedGem && !props.selectedGem.hidden ? (
+            <Gem selectedGem={props.selectedGem} />
+          ) : (
+            props.selectedGem && <HiddenGem selectedGem={props.selectedGem} />
+          )}
+
           <View style={styles.handle} />
         </Animated.View>
       </GestureDetector>
