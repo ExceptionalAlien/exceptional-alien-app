@@ -29,7 +29,7 @@ export type Slice = {
 };
 
 type PlaybookData = {
-  title: string;
+  app_title: string;
   sub_title: string;
   image: PlaybookImage;
   creator: CreatorType;

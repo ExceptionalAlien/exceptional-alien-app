@@ -78,8 +78,9 @@ export default function Map(props: MapProps) {
             // Loop Playbooks Gem is featured in
             for (let i = 0; i < gem.data.playbooks.length; i++) {
               if (
-                (!unlocked && gem.data.playbooks[i].playbook.data.locked) ||
+                (!unlocked && gem.data.playbooks[i].playbook.uid && gem.data.playbooks[i].playbook.data.locked) ||
                 (unlocked &&
+                  gem.data.playbooks[i].playbook.uid &&
                   gem.data.playbooks[i].playbook.data.locked &&
                   !unlocked.includes(gem.data.playbooks[i].playbook.uid))
               )

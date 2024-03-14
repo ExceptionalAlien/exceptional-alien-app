@@ -26,7 +26,7 @@ export default function HiddenGem(props: HiddenGemProps) {
             style={[styles.description, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
             allowFontScaling={false}
           >
-            This Gem is included in the Playbooks below. Unlock a Playbook to reveal the Gem.
+            This hidden Gem is included in the Playbooks below. Unlock a Playbook to reveal the Gem.
           </Text>
         </View>
       </View>
@@ -62,6 +62,5 @@ const styles = StyleSheet.create({
   description: {
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 14,
-    color: styleVars.eaGrey,
   },
 });

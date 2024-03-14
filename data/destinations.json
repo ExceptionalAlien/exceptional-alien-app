@@ -496,6 +496,12 @@
     "keywords": "Ireland UK United Kingdom",
     "lat": 53.349805,
     "lng": -6.26031,
+    "region": {
+      "latitude": 53.349805,
+      "longitude": -6.26031,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 53.22343,
       "longitudeStart": -6.447485,
@@ -679,6 +685,12 @@
     "keywords": "Australia Tasmania",
     "lat": -42.882605,
     "lng": 147.32572,
+    "region": {
+      "latitude": -42.882605,
+      "longitude": 147.32572,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": -43.014123,
       "longitudeStart": 147.13366,
@@ -724,10 +736,10 @@
     "lat": 38.906734,
     "lng": 1.420598,
     "bounds": {
-      "latitudeStart": 38.891247,
-      "longitudeStart": 1.404325,
-      "latitudeEnd": 38.92341,
-      "longitudeEnd": 1.454971
+      "latitudeStart": 38.830416,
+      "longitudeStart": 1.213264,
+      "latitudeEnd": 39.11827,
+      "longitudeEnd": 1.621512
     }
   },
   {
@@ -745,12 +757,39 @@
     }
   },
   {
+    "id": "ZSY65xAAAE5arg0c",
+    "name": "London",
+    "uid": "london",
+    "keywords": "UK United Kingdom England Britain",
+    "lat": 51.507218,
+    "lng": -0.127586,
+    "region": {
+      "latitude": 51.52649,
+      "longitude": -0.107875,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 51.38494,
+      "longitudeStart": -0.351468,
+      "latitudeEnd": 51.672343,
+      "longitudeEnd": 0.148271
+    },
+    "trending": true
+  },
+  {
     "id": "ZSY6khAAAFRZrgub",
     "name": "Los Angeles",
     "uid": "los-angeles",
     "keywords": "America United States USA California",
     "lat": 34.054908,
     "lng": -118.242643,
+    "region": {
+      "latitude": 34.054908,
+      "longitude": -118.242643,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 33.703652,
       "longitudeStart": -118.668176,
@@ -766,6 +805,12 @@
     "keywords": "Australia VIC Victoria",
     "lat": -37.813628,
     "lng": 144.963058,
+    "region": {
+      "latitude": -37.813628,
+      "longitude": 144.963058,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": -38.433859,
       "longitudeStart": 144.593742,
@@ -781,6 +826,12 @@
     "keywords": "America United States USA",
     "lat": 40.712775,
     "lng": -74.005973,
+    "region": {
+      "latitude": 40.725257,
+      "longitude": -73.990349,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 40.477399,
       "longitudeStart": -74.25909,
@@ -817,6 +868,12 @@
     "keywords": "Japan Asia",
     "lat": 35.676423,
     "lng": 139.650027,
+    "region": {
+      "latitude": 35.661971,
+      "longitude": 139.703795,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
     "bounds": {
       "latitudeStart": 34.577633,
       "longitudeStart": 138.29911,

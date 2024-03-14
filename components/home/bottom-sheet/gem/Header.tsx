@@ -86,16 +86,11 @@ export default function Header(props: HeaderProps) {
             {props.gem.data.description}
           </Text>
 
-          <Pressable
-            onPress={openMaps}
-            style={({ pressed }) => [pressedDefault(pressed), styles.directions]}
-            hitSlop={8}
-          >
+          <Pressable onPress={openMaps} style={({ pressed }) => pressedDefault(pressed)} hitSlop={8}>
             <Text style={styles.address} allowFontScaling={false}>
-              {props.gem.data.address}
+              {props.gem.data.address}{" "}
+              <MaterialCommunityIcons name="arrow-u-right-top" size={16} color={styleVars.eaLightGrey} />
             </Text>
-
-            <MaterialCommunityIcons name="arrow-u-right-top" size={16} color={styleVars.eaLightGrey} />
           </Pressable>
         </View>
       </View>
@@ -148,10 +143,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 16,
     color: "white",
-  },
-  directions: {
-    flexDirection: "row",
-    gap: 2,
   },
   address: {
     fontFamily: "Neue-Haas-Grotesk",
