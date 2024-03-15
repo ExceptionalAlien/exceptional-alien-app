@@ -121,7 +121,7 @@ export default function Header(props: HeaderProps) {
       </View>
 
       <Pressable onPress={toggleFav} style={({ pressed }) => [pressedDefault(pressed), styles.fav]}>
-        <Ionicons name={isFav ? "heart" : "heart-outline"} size={28} color={isFav ? "pink" : "white"} />
+        <Ionicons name={isFav ? "heart" : "heart-outline"} size={28} color={isFav ? styleVars.eaRed : "white"} />
       </Pressable>
     </View>
   );
