@@ -46,7 +46,11 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
       <Image source={props.playbook.data.image.mobile.url} style={styles.image} transition={500} />
 
       <View style={styles.textContainer}>
-        <LinearGradient colors={["transparent", "rgba(0,0,0,0.5)"]} style={styles.textBackground} />
+        <LinearGradient
+          colors={["transparent", "rgba(0,0,0,0.25)", "rgba(0,0,0,0.5)"]}
+          locations={[0, 0.5, 1]}
+          style={styles.textBackground}
+        />
 
         <Text style={styles.text} allowFontScaling={false}>
           {props.playbook.data.app_title
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     aspectRatio: "4/3",
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: styleVars.eaLightGrey,
   },
   image: {
     aspectRatio: "4/3",

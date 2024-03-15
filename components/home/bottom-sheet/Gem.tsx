@@ -28,6 +28,6 @@ export default function Gem(props: GemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 24,
+    gap: 16,
   },
 });

@@ -757,6 +757,356 @@
     }
   },
   {
+    "id": "ZSY9YBAAAKlZrhiQ",
+    "name": "Jakarta",
+    "uid": "jakarta",
+    "keywords": "Indonesia Asia",
+    "lat": -6.194449,
+    "lng": 106.82292,
+    "bounds": {
+      "latitudeStart": -6.370833,
+      "longitudeStart": 106.686211,
+      "latitudeEnd": -6.08866,
+      "longitudeEnd": 106.972825
+    }
+  },
+  {
+    "id": "ZSY9KRAAAFRZrheR",
+    "name": "Jeffreys Bay",
+    "uid": "jeffreys-bay",
+    "keywords": "South Africa",
+    "lat": -34.050671,
+    "lng": 24.910154,
+    "bounds": {
+      "latitudeStart": -34.117749,
+      "longitudeStart": 24.86978,
+      "latitudeEnd": -33.996319,
+      "longitudeEnd": 24.935501
+    }
+  },
+  {
+    "id": "ZSY82xAAAI9ZrhYb",
+    "name": "Jericoacoara",
+    "uid": "jericoacoara",
+    "keywords": "Brazil South America",
+    "lat": -2.797388,
+    "lng": -40.512403,
+    "bounds": {
+      "latitudeStart": -2.802638,
+      "longitudeStart": -40.520594,
+      "latitudeEnd": -2.788885,
+      "longitudeEnd": -40.503744
+    }
+  },
+  {
+    "id": "ZSY8lBAAAE5arhTR",
+    "name": "Johannesburg",
+    "uid": "johannesburg",
+    "keywords": "South Africa",
+    "lat": -26.204103,
+    "lng": 28.047305,
+    "region": {
+      "latitude": -26.164872,
+      "longitude": 28.062518,
+      "latitudeDelta": 0.2,
+      "longitudeDelta": 0.2
+    },
+    "bounds": {
+      "latitudeStart": -26.238923,
+      "longitudeStart": 27.942449,
+      "latitudeEnd": -26.10412,
+      "longitudeEnd": 28.1376
+    },
+    "trending": true
+  },
+  {
+    "id": "ZSY8WhAAAFRZrhPI",
+    "name": "Kathmandu",
+    "uid": "kathmandu",
+    "keywords": "Nepal Asia",
+    "lat": 27.717245,
+    "lng": 85.323961,
+    "bounds": {
+      "latitudeStart": 27.667984,
+      "longitudeStart": 85.279098,
+      "latitudeEnd": 27.749937,
+      "longitudeEnd": 85.373168
+    }
+  },
+  {
+    "id": "ZSY8CRAAAIlZrhJD",
+    "name": "Kuala Lumpur",
+    "uid": "kuala-lumpur",
+    "keywords": "Malaysia Asia",
+    "lat": 3.13192,
+    "lng": 101.684059,
+    "bounds": {
+      "latitudeStart": 3.033633,
+      "longitudeStart": 101.61545,
+      "latitudeEnd": 3.243379,
+      "longitudeEnd": 101.758529
+    }
+  },
+  {
+    "id": "ZYUvoRIAAH-D_Fqj",
+    "name": "Kuching",
+    "uid": "kuching",
+    "keywords": "Malaysia Asia",
+    "lat": 1.553379,
+    "lng": 110.359503,
+    "bounds": {
+      "latitudeStart": 1.431599,
+      "longitudeStart": 110.126061,
+      "latitudeEnd": 1.804763,
+      "longitudeEnd": 110.526076
+    }
+  },
+  {
+    "id": "ZSY75hAAAIlZrhGo",
+    "name": "Lagos",
+    "uid": "lagos",
+    "keywords": "Nigeria Africa",
+    "lat": 6.524379,
+    "lng": 3.379206,
+    "region": {
+      "latitude": 6.454879,
+      "longitude": 3.424598,
+      "latitudeDelta": 0.5,
+      "longitudeDelta": 0.5
+    },
+    "bounds": {
+      "latitudeStart": 6.393351,
+      "longitudeStart": 3.098273,
+      "latitudeEnd": 6.702759,
+      "longitudeEnd": 3.564808
+    },
+    "trending": true
+  },
+  {
+    "id": "ZSYiuRAAAPhWrZ63",
+    "name": "Lake District",
+    "uid": "the-lake-district",
+    "keywords": "UK United Kingdom England Britain",
+    "lat": 54.46087,
+    "lng": -3.088625,
+    "bounds": {
+      "latitudeStart": 54.235746,
+      "longitudeStart": -3.414869,
+      "latitudeEnd": 54.717123,
+      "longitudeEnd": -2.756446
+    }
+  },
+  {
+    "id": "ZSY7qxAAAI9ZrhCY",
+    "name": "Le Marche",
+    "uid": "le-marche",
+    "keywords": "Italy Europe",
+    "lat": 43.462735,
+    "lng": 13.358729,
+    "bounds": {
+      "latitudeStart": 42.687156,
+      "longitudeStart": 12.185454,
+      "latitudeEnd": 43.969564,
+      "longitudeEnd": 13.916725
+    }
+  },
+  {
+    "id": "ZSY7OBAAAIlZrg6Q",
+    "name": "Lisbon",
+    "uid": "lisbon",
+    "keywords": "Portugal Europe",
+    "lat": 38.722252,
+    "lng": -9.139337,
+    "bounds": {
+      "latitudeStart": 38.691399,
+      "longitudeStart": -9.229836,
+      "latitudeEnd": 38.79676,
+      "longitudeEnd": -9.089636
+    }
+  },
+  {
+    "id": "ZSY6GBAAADFarglw",
+    "name": "Madison",
+    "uid": "madison",
+    "keywords": "America United States USA Wisconsin",
+    "lat": 43.072166,
+    "lng": -89.40075,
+    "bounds": {
+      "latitudeStart": 42.998071,
+      "longitudeStart": -89.566389,
+      "latitudeEnd": 43.171916,
+      "longitudeEnd": -89.246795
+    }
+  },
+  {
+    "id": "ZSY50xAAAKlZrggz",
+    "name": "Madrid",
+    "uid": "madrid",
+    "keywords": "Spain Europe",
+    "lat": 40.416775,
+    "lng": -3.70379,
+    "bounds": {
+      "latitudeStart": 40.312064,
+      "longitudeStart": -3.834162,
+      "latitudeEnd": 40.563845,
+      "longitudeEnd": -3.524911
+    }
+  },
+  {
+    "id": "ZSY5mBAAAPdZrgcc",
+    "name": "Manchester",
+    "uid": "manchester",
+    "keywords": "UK United Kingdom England Britain",
+    "lat": 53.480759,
+    "lng": -2.24263,
+    "bounds": {
+      "latitudeStart": 53.399903,
+      "longitudeStart": -2.300097,
+      "latitudeEnd": 53.544588,
+      "longitudeEnd": -2.146829
+    }
+  },
+  {
+    "id": "ZSYXwxAAAEZWrW0g",
+    "name": "Marbella",
+    "uid": "marbella",
+    "keywords": "Spain Europe",
+    "lat": 36.510283,
+    "lng": -4.885258,
+    "bounds": {
+      "latitudeStart": 36.469255,
+      "longitudeStart": -4.997958,
+      "latitudeEnd": 36.532446,
+      "longitudeEnd": -4.732042
+    }
+  },
+  {
+    "id": "ZSY5PhAAAI9ZrgWH",
+    "name": "Margate",
+    "uid": "margate",
+    "keywords": "UK United Kingdom England Britain",
+    "lat": 51.389646,
+    "lng": 1.386834,
+    "bounds": {
+      "latitudeStart": 51.360872,
+      "longitudeStart": 1.342371,
+      "latitudeEnd": 51.393624,
+      "longitudeEnd": 1.423782
+    }
+  },
+  {
+    "id": "ZSY45BAAAG1argPU",
+    "name": "Marrakesh",
+    "uid": "marrakesh",
+    "keywords": "Morocco Africa",
+    "lat": 31.622522,
+    "lng": -7.989826,
+    "bounds": {
+      "latitudeStart": 31.552976,
+      "longitudeStart": -8.12808,
+      "latitudeEnd": 31.716267,
+      "longitudeEnd": -7.887626
+    }
+  },
+  {
+    "id": "ZSY4fxAAAKlZrgH6",
+    "name": "Marseille",
+    "uid": "marseille",
+    "keywords": "France Europe",
+    "lat": 43.296482,
+    "lng": 5.36978,
+    "bounds": {
+      "latitudeStart": 43.169634,
+      "longitudeStart": 5.228753,
+      "latitudeEnd": 43.391057,
+      "longitudeEnd": 5.532543
+    }
+  },
+  {
+    "id": "ZSY4ERAAAE5arf_q",
+    "name": "Mexico City",
+    "uid": "mexico-city",
+    "keywords": "Mexico North America",
+    "lat": 19.432608,
+    "lng": -99.133208,
+    "bounds": {
+      "latitudeStart": 19.18871,
+      "longitudeStart": -99.326777,
+      "latitudeEnd": 19.592757,
+      "longitudeEnd": -98.960448
+    }
+  },
+  {
+    "id": "ZSYYoBAAAKZWrXEX",
+    "name": "Milan",
+    "uid": "milan",
+    "keywords": "Italy Europe",
+    "lat": 45.464204,
+    "lng": 9.189982,
+    "bounds": {
+      "latitudeStart": 45.389779,
+      "longitudeStart": 9.065118,
+      "latitudeEnd": 45.535689,
+      "longitudeEnd": 9.290346
+    }
+  },
+  {
+    "id": "ZXqPixAAACgAbEHp",
+    "name": "Minnesota",
+    "uid": "minnesota",
+    "keywords": "America United States USA",
+    "lat": 46.729553,
+    "lng": -94.6859,
+    "bounds": {
+      "latitudeStart": 43.499361,
+      "longitudeStart": -97.239093,
+      "latitudeEnd": 49.384472,
+      "longitudeEnd": -89.483812
+    }
+  },
+  {
+    "id": "ZSY3rRAAAKlZrf4m",
+    "name": "Mojave Desert",
+    "uid": "mojave-desert",
+    "keywords": "America United States USA California",
+    "lat": 35.010991,
+    "lng": -115.473355,
+    "bounds": {
+      "latitudeStart": 32.528832,
+      "longitudeStart": -121.438176,
+      "latitudeEnd": 35.809236,
+      "longitudeEnd": -114.131211
+    }
+  },
+  {
+    "id": "ZSY3bRAAAAtarf0J",
+    "name": "Montreal",
+    "uid": "montreal",
+    "keywords": "Canada North America",
+    "lat": 45.501887,
+    "lng": -73.567392,
+    "bounds": {
+      "latitudeStart": 45.414588,
+      "longitudeStart": -73.947543,
+      "latitudeEnd": 45.703778,
+      "longitudeEnd": -73.476204
+    }
+  },
+  {
+    "id": "ZSY20RAAAIlZrfo6",
+    "name": "Mumbai",
+    "uid": "mumbai",
+    "keywords": "India Asia",
+    "lat": 19.075984,
+    "lng": 72.877656,
+    "bounds": {
+      "latitudeStart": 18.892868,
+      "longitudeStart": 72.775873,
+      "latitudeEnd": 19.271634,
+      "longitudeEnd": 72.986499
+    }
+  },
+  {
     "id": "ZSY65xAAAE5arg0c",
     "name": "London",
     "uid": "london",

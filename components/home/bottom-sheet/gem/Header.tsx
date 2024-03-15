@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, useWindowDimensions, Pressable, Linking, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  useWindowDimensions,
+  Pressable,
+  Linking,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
@@ -28,6 +37,7 @@ const icons = {
 export default function Header(props: HeaderProps) {
   const { width, height } = useWindowDimensions();
   const [isFav, setIsFav] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   const toggleFav = async () => {
     const favs = await getData("favs");
@@ -68,8 +78,23 @@ export default function Header(props: HeaderProps) {
   return (
     <View style={{ aspectRatio: Device.deviceType !== 2 ? "4/2" : width >= height ? "6/1" : "5/2" }}>
       <View style={styles.bg} />
-      <Image source={props.gem.data.image.url} transition={500} style={styles.hero} />
-      <LinearGradient colors={["rgba(0,0,0,0.5)", "transparent", "rgba(0,0,0,0.75)"]} style={styles.gradient} />
+
+      <Image
+        source={props.gem.data.image.url}
+        transition={500}
+        style={styles.hero}
+        recyclingKey={props.gem.uid}
+        onLoadStart={() => setShowLoader(true)}
+        onLoadEnd={() => setShowLoader(false)}
+      />
+
+      <ActivityIndicator style={styles.loader} color="white" animating={showLoader} />
+
+      <LinearGradient
+        colors={["rgba(0,0,0,0.5)", "transparent", "transparent", "rgba(0,0,0,0.5)", "rgba(0,0,0,0.75)"]}
+        locations={[0, 0.25, 0.5, 0.75, 1]}
+        style={styles.gradient}
+      />
 
       <View style={styles.heading}>
         <Image
@@ -107,7 +132,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: "100%",
-    backgroundColor: "black",
+    backgroundColor: styleVars.eaBlue,
   },
   hero: {
     width: "100%",
@@ -153,5 +178,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     padding: 8,
+  },
+  loader: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
   },
 });

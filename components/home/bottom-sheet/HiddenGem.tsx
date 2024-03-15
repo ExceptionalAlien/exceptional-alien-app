@@ -38,7 +38,7 @@ export default function HiddenGem(props: HiddenGemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 24,
+    gap: 16,
   },
   header: {
     marginHorizontal: 16,
