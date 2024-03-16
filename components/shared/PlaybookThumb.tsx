@@ -36,7 +36,6 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
           pathname: "/playbook",
           params: {
             uid: props.playbook.uid,
-            title: "Playbook",
           },
         })
       }

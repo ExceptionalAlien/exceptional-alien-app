@@ -1069,13 +1069,13 @@
     "name": "Mojave Desert",
     "uid": "mojave-desert",
     "keywords": "America United States USA California",
-    "lat": 35.010991,
-    "lng": -115.473355,
+    "lat": 33.873415,
+    "lng": -115.900992,
     "bounds": {
-      "latitudeStart": 32.528832,
-      "longitudeStart": -121.438176,
-      "latitudeEnd": 35.809236,
-      "longitudeEnd": -114.131211
+      "latitudeStart": 33.617301,
+      "longitudeStart": -116.251297,
+      "latitudeEnd": 34.182663,
+      "longitudeEnd": -115.470064
     }
   },
   {

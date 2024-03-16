@@ -138,6 +138,11 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  loader: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
   gradient: {
     position: "absolute",
     width: "100%",
@@ -178,10 +183,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     padding: 8,
-  },
-  loader: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
   },
 });
