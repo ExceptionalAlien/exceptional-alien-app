@@ -706,6 +706,12 @@
     "keywords": "China Asia",
     "lat": 22.319304,
     "lng": 114.169361,
+    "region": {
+      "latitude": 22.319304,
+      "longitude": 114.169361,
+      "latitudeDelta": 0.1,
+      "longitudeDelta": 0.1
+    },
     "bounds": {
       "latitudeStart": 22.1435,
       "longitudeStart": 113.8259,
@@ -925,6 +931,48 @@
     }
   },
   {
+    "id": "ZSY65xAAAE5arg0c",
+    "name": "London",
+    "uid": "london",
+    "keywords": "UK United Kingdom England Britain",
+    "lat": 51.507218,
+    "lng": -0.127586,
+    "region": {
+      "latitude": 51.52649,
+      "longitude": -0.107875,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 51.38494,
+      "longitudeStart": -0.351468,
+      "latitudeEnd": 51.672343,
+      "longitudeEnd": 0.148271
+    },
+    "trending": true
+  },
+  {
+    "id": "ZSY6khAAAFRZrgub",
+    "name": "Los Angeles",
+    "uid": "los-angeles",
+    "keywords": "America United States USA California",
+    "lat": 34.054908,
+    "lng": -118.242643,
+    "region": {
+      "latitude": 34.054908,
+      "longitude": -118.242643,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 33.703652,
+      "longitudeStart": -118.668176,
+      "latitudeEnd": 34.337306,
+      "longitudeEnd": -118.155289
+    },
+    "trending": true
+  },
+  {
     "id": "ZSY6GBAAADFarglw",
     "name": "Madison",
     "uid": "madison",
@@ -1023,6 +1071,27 @@
     }
   },
   {
+    "id": "ZSY4VxAAAAtargFC",
+    "name": "Melbourne",
+    "uid": "melbourne",
+    "keywords": "Australia VIC Victoria",
+    "lat": -37.813628,
+    "lng": 144.963058,
+    "region": {
+      "latitude": -37.813628,
+      "longitude": 144.963058,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": -38.433859,
+      "longitudeStart": 144.593742,
+      "latitudeEnd": -37.511274,
+      "longitudeEnd": 145.512529
+    },
+    "trending": true
+  },
+  {
     "id": "ZSY4ERAAAE5arf_q",
     "name": "Mexico City",
     "uid": "mexico-city",
@@ -1107,67 +1176,32 @@
     }
   },
   {
-    "id": "ZSY65xAAAE5arg0c",
-    "name": "London",
-    "uid": "london",
-    "keywords": "UK United Kingdom England Britain",
-    "lat": 51.507218,
-    "lng": -0.127586,
-    "region": {
-      "latitude": 51.52649,
-      "longitude": -0.107875,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
-    },
+    "id": "ZSY2lRAAAKlZrfkV",
+    "name": "Nantes",
+    "uid": "nantes",
+    "keywords": "France Europe",
+    "lat": 47.218371,
+    "lng": -1.553621,
     "bounds": {
-      "latitudeStart": 51.38494,
-      "longitudeStart": -0.351468,
-      "latitudeEnd": 51.672343,
-      "longitudeEnd": 0.148271
-    },
-    "trending": true
+      "latitudeStart": 47.180628,
+      "longitudeStart": -1.641774,
+      "latitudeEnd": 47.295838,
+      "longitudeEnd": -1.478895
+    }
   },
   {
-    "id": "ZSY6khAAAFRZrgub",
-    "name": "Los Angeles",
-    "uid": "los-angeles",
-    "keywords": "America United States USA California",
-    "lat": 34.054908,
-    "lng": -118.242643,
-    "region": {
-      "latitude": 34.054908,
-      "longitude": -118.242643,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
-    },
+    "id": "ZSYWNxAAAFNWrWYV",
+    "name": "Nashville",
+    "uid": "nashville",
+    "keywords": "America United States USA Tennessee",
+    "lat": 36.162664,
+    "lng": -86.781602,
     "bounds": {
-      "latitudeStart": 33.703652,
-      "longitudeStart": -118.668176,
-      "latitudeEnd": 34.337306,
-      "longitudeEnd": -118.155289
-    },
-    "trending": true
-  },
-  {
-    "id": "ZSY4VxAAAAtargFC",
-    "name": "Melbourne",
-    "uid": "melbourne",
-    "keywords": "Australia VIC Victoria",
-    "lat": -37.813628,
-    "lng": 144.963058,
-    "region": {
-      "latitude": -37.813628,
-      "longitude": 144.963058,
-      "latitudeDelta": 0.05,
-      "longitudeDelta": 0.05
-    },
-    "bounds": {
-      "latitudeStart": -38.433859,
-      "longitudeStart": 144.593742,
-      "latitudeEnd": -37.511274,
-      "longitudeEnd": 145.512529
-    },
-    "trending": true
+      "latitudeStart": 35.967785,
+      "longitudeStart": -87.054903,
+      "latitudeEnd": 36.405496,
+      "longitudeEnd": -86.515588
+    }
   },
   {
     "id": "ZSXp2RAAAG9QrJvl",
@@ -1189,6 +1223,55 @@
       "longitudeEnd": -73.700272
     },
     "trending": true
+  },
+  {
+    "id": "ZSY17hAAAIlZrfYJ",
+    "name": "North Island",
+    "uid": "north-island",
+    "keywords": "New Zealand NZ",
+    "lat": -39.237836,
+    "lng": 175.602364,
+    "region": {
+      "latitude": -36.758709,
+      "longitude": 175.498121,
+      "latitudeDelta": 6,
+      "longitudeDelta": 6
+    },
+    "bounds": {
+      "latitudeStart": -41.61375,
+      "longitudeStart": 172.64325,
+      "latitudeEnd": -34.393391,
+      "longitudeEnd": 178.550512
+    },
+    "trending": true
+  },
+  {
+    "id": "ZSY1axAAANxZrfO4",
+    "name": "Northern Kenya",
+    "uid": "northern-kenya",
+    "keywords": "Africa",
+    "lat": -0.023559,
+    "lng": 37.906193,
+    "bounds": {
+      "latitudeStart": -4.7243,
+      "longitudeStart": 33.909821,
+      "latitudeEnd": 5.033421,
+      "longitudeEnd": 41.906945
+    }
+  },
+  {
+    "id": "ZXpA_hAAACkAat8C",
+    "name": "Osaka",
+    "uid": "osaka",
+    "keywords": "Japan",
+    "lat": 34.693725,
+    "lng": 135.502254,
+    "bounds": {
+      "latitudeStart": 34.586437,
+      "longitudeStart": 135.372906,
+      "latitudeEnd": 34.768759,
+      "longitudeEnd": 135.599169
+    }
   },
   {
     "id": "ZP6qOxIAACIAkMGl",

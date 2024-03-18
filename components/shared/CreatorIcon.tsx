@@ -2,12 +2,16 @@ import React from "react";
 import { StyleSheet, Text, Pressable, useColorScheme } from "react-native";
 import { useRouter } from "expo-router";
 import { Image } from "expo-image";
+import * as Device from "expo-device";
 import { CreatorType } from "app/profile";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type CreatorIconProps = {
   creator: CreatorType;
+  iconOnly?: boolean;
+  border?: boolean;
+  size?: string; // lrg
 };
 
 export default function CreatorIcon(props: CreatorIconProps) {
@@ -24,15 +28,27 @@ export default function CreatorIcon(props: CreatorIconProps) {
       style={({ pressed }) => [styles.container, pressedDefault(pressed)]}
       hitSlop={8}
     >
-      <Text
-        style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}
-        allowFontScaling={false}
-      >
-        {props.creator.data.first_name}
-        {props.creator.data.last_name && ` ${props.creator.data.last_name?.toUpperCase()}`}
-      </Text>
+      {!props.iconOnly && (
+        <Text
+          style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}
+          allowFontScaling={false}
+        >
+          {props.creator.data.first_name}
+          {props.creator.data.last_name && ` ${props.creator.data.last_name?.toUpperCase()}`}
+        </Text>
+      )}
 
-      <Image source={props.creator.data.profile_image.url} style={styles.image} />
+      <Image
+        source={props.creator.data.profile_image.url}
+        style={[
+          styles.image,
+          props.border && { borderWidth: 1, borderColor: "white" },
+          {
+            width: props.size !== "lrg" ? 40 : Device.deviceType === 2 ? 56 : 48,
+            height: props.size !== "lrg" ? 40 : Device.deviceType === 2 ? 56 : 48,
+          },
+        ]}
+      />
     </Pressable>
   );
 }
@@ -41,7 +57,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 4,
+    gap: 8,
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk",
@@ -49,8 +65,6 @@ const styles = StyleSheet.create({
     textAlign: "right",
   },
   image: {
-    width: 32,
-    height: 32,
     borderRadius: 999,
   },
 });

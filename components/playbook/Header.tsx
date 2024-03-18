@@ -3,11 +3,14 @@ import { StyleSheet, View, ActivityIndicator, Text, useWindowDimensions } from "
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
+import { CreatorType } from "app/profile";
+import CreatorIcon from "components/shared/CreatorIcon";
 import { styleVars } from "utils/styles";
 
 type HeaderProps = {
   image: string;
   title: string;
+  creator: CreatorType;
 };
 
 export default function Header(props: HeaderProps) {
@@ -34,9 +37,19 @@ export default function Header(props: HeaderProps) {
         style={styles.gradient}
       />
 
-      <Text style={[styles.text, { fontSize: Device.deviceType === 2 ? 48 : 30 }]} allowFontScaling={false}>
+      <Text
+        style={[
+          styles.text,
+          { fontSize: Device.deviceType === 2 ? 48 : 30, paddingRight: Device.deviceType === 2 ? 76 : 68 },
+        ]}
+        allowFontScaling={false}
+      >
         {props.title}
       </Text>
+
+      <View style={styles.creator}>
+        <CreatorIcon creator={props.creator} iconOnly border size="lrg" />
+      </View>
     </View>
   );
 }
@@ -67,6 +80,12 @@ const styles = StyleSheet.create({
     fontFamily: "Neue-Haas-Grotesk-Med",
     color: "white",
     bottom: 0,
+    padding: 12,
+  },
+  creator: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
     padding: 12,
   },
 });
