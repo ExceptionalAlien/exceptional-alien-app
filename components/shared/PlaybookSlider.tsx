@@ -79,6 +79,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
               destinationUID: props.destination?.uid,
             },
           }}
+          blueBg={props.blueBg}
         />
       )}
 

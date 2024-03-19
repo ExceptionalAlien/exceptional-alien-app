@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, ActivityIndicator, Text, useWindowDimensions } from "react-native";
+import { StyleSheet, View, ActivityIndicator, Text, useWindowDimensions, LayoutChangeEvent } from "react-native";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
@@ -7,18 +7,22 @@ import { CreatorType } from "app/profile";
 import CreatorIcon from "components/shared/CreatorIcon";
 import { styleVars } from "utils/styles";
 
-type HeaderProps = {
+type CoverProps = {
   image: string;
   title: string;
   creator: CreatorType;
+  setCoverHeight: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export default function Header(props: HeaderProps) {
+export default function Cover(props: CoverProps) {
   const { width, height } = useWindowDimensions();
   const [showLoader, setShowLoader] = useState(false);
 
   return (
-    <View style={{ aspectRatio: Device.deviceType !== 2 ? "4/3" : width >= height ? "5/2" : "5/3" }}>
+    <View
+      style={[styles.container, { aspectRatio: Device.deviceType !== 2 ? "4/3" : width >= height ? "3/1" : "5/3" }]}
+      onLayout={(e: LayoutChangeEvent) => props.setCoverHeight(e.nativeEvent.layout.height)}
+    >
       <View style={styles.bg} />
 
       <Image
@@ -55,6 +59,10 @@ export default function Header(props: HeaderProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    position: "absolute",
+    width: "100%",
+  },
   bg: {
     position: "absolute",
     width: "100%",

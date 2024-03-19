@@ -57,7 +57,7 @@ export default function Gem(props: GemProps) {
         </Text>
       </View>
 
-      <Ionicons name="chevron-forward" size={24} color={styleVars.eaLightGrey} />
+      <Ionicons name="chevron-forward" size={20} color={styleVars.eaLightGrey} />
     </Pressable>
   );
 }

@@ -9,15 +9,19 @@ import {
   Text,
   ScrollView,
   useColorScheme,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
 import { Ionicons } from "@expo/vector-icons";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { GemType } from "./gem";
 import { CreatorType } from "./profile";
-import Header from "components/playbook/Header";
+import Cover from "components/playbook/Cover";
 import Gem from "components/playbook/Gem";
+import Tab from "components/shared/Tab";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -66,8 +70,11 @@ export default function Playbook() {
   const { uid } = params;
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
+  const headerHeight = useHeaderHeight();
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [coverHeight, setCoverHeight] = useState(0);
+  const [headerBgOpacity, setHeaderBgOpacity] = useState(0);
   const [playbook, setPlaybook] = useState<PlaybookType>();
 
   const getPlaybook = async () => {
@@ -89,8 +96,13 @@ export default function Playbook() {
     } else {
       // Offline
       setIsOffline(true);
-      setIsloading(false);
     }
+  };
+
+  const scrolling = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    // Set header bg opacity
+    const percentage = Math.floor((e.nativeEvent.contentOffset.y / (coverHeight - headerHeight)) * 100);
+    setHeaderBgOpacity(percentage >= 100 ? 1 : percentage / 100);
   };
 
   useEffect(() => {
@@ -99,15 +111,16 @@ export default function Playbook() {
   }, []);
 
   return (
-    <>
+    <View style={styles.container}>
       <StatusBar barStyle="light-content" />
 
       <Stack.Screen
         options={{
           title: "",
           headerTransparent: true,
+          headerLargeTitle: false,
           headerStyle: {
-            backgroundColor: "transparent",
+            backgroundColor: `rgba(34,32,193,${isLoading ? 1 : headerBgOpacity})`,
           },
           headerTintColor: "white",
           headerRight: () =>
@@ -121,14 +134,14 @@ export default function Playbook() {
 
       {isOffline ? (
         <View style={styles.offline}>
-          <Ionicons name="cloud-offline-outline" size={32} color="white" />
+          <Ionicons name="cloud-offline-outline" size={40} color={styleVars.eaBlue} />
         </View>
       ) : isLoading ? (
-        <ActivityIndicator color="white" size="large" style={styles.loader} />
+        <ActivityIndicator color={styleVars.eaBlue} size="large" style={styles.loader} />
       ) : (
         playbook && (
-          <View style={styles.container}>
-            <Header
+          <>
+            <Cover
               image={playbook.data.image.mobile.url}
               title={
                 playbook.data.app_title
@@ -146,17 +159,26 @@ export default function Playbook() {
                     }`
               }
               creator={playbook.data.creator}
+              setCoverHeight={setCoverHeight}
             />
 
-            <ScrollView scrollIndicatorInsets={{ right: 1 }}>
-              <View style={[styles.wrapper, { paddingBottom: insets.bottom + 16 }]}>
+            <ScrollView onScroll={scrolling} scrollEventThrottle={16}>
+              <View
+                style={[
+                  styles.wrapper,
+                  {
+                    marginTop: coverHeight,
+                    paddingBottom: insets.bottom + 16,
+                    backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey,
+                    display: coverHeight ? "flex" : "none",
+                  },
+                ]}
+              >
                 <Text style={[styles.description, { color: colorScheme === "light" ? "black" : "white" }]}>
                   {playbook.data.description[0].text}
                 </Text>
 
-                <Text style={styles.count} allowFontScaling={false}>
-                  {playbook.data.slices.length} Gems
-                </Text>
+                <Tab title={`${playbook.data.slices.length} GEMS`} />
 
                 <View style={styles.gems}>
                   {playbook.data.slices.map((item, index) => (
@@ -165,10 +187,10 @@ export default function Playbook() {
                 </View>
               </View>
             </ScrollView>
-          </View>
+          </>
         )
       )}
-    </>
+    </View>
   );
 }
 
@@ -178,29 +200,23 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     gap: 16,
-    marginHorizontal: 16,
-    marginTop: 16,
+    paddingTop: 16,
   },
   description: {
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 16,
-  },
-  count: {
-    fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 20,
-    color: styleVars.eaBlue,
+    marginHorizontal: 16,
   },
   gems: {
     gap: 16,
+    marginHorizontal: 16,
   },
   offline: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: styleVars.eaBlue,
   },
   loader: {
     flex: 1,
-    backgroundColor: styleVars.eaBlue,
   },
 });
