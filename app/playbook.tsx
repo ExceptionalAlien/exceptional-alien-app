@@ -11,10 +11,14 @@ import {
   useColorScheme,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Platform,
+  useWindowDimensions,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
+import { BlurView } from "expo-blur";
+import * as Device from "expo-device";
 import { Ionicons } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { GemType } from "./gem";
@@ -71,10 +75,12 @@ export default function Playbook() {
   const insets = useSafeAreaInsets();
   const colorScheme = useColorScheme();
   const headerHeight = useHeaderHeight();
+  const { width, height } = useWindowDimensions();
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const [coverHeight, setCoverHeight] = useState(0);
-  const [headerBgOpacity, setHeaderBgOpacity] = useState(0);
+  const [scrollOffset, setScrollOffset] = useState(0);
   const [playbook, setPlaybook] = useState<PlaybookType>();
 
   const getPlaybook = async () => {
@@ -102,7 +108,7 @@ export default function Playbook() {
   const scrolling = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     // Set header bg opacity
     const percentage = Math.floor((e.nativeEvent.contentOffset.y / (coverHeight - headerHeight)) * 100);
-    setHeaderBgOpacity(percentage >= 100 ? 1 : percentage / 100);
+    setScrollOffset(percentage >= 100 ? 1 : percentage / 100);
   };
 
   useEffect(() => {
@@ -120,7 +126,7 @@ export default function Playbook() {
           headerTransparent: true,
           headerLargeTitle: false,
           headerStyle: {
-            backgroundColor: `rgba(34,32,193,${isLoading ? 1 : headerBgOpacity})`,
+            backgroundColor: `rgba(34,32,193,${isLoading ? 1 : scrollOffset})`,
           },
           headerTintColor: "white",
           headerRight: () =>
@@ -141,28 +147,40 @@ export default function Playbook() {
       ) : (
         playbook && (
           <>
-            <Cover
-              image={playbook.data.image.mobile.url}
-              title={
-                playbook.data.app_title
-                  ? playbook.data.app_title
-                  : playbook.data.destination?.data.title
-                  ? `${playbook.data.destination?.data.title} with ${playbook.data.creator.data.first_name}${
-                      playbook.data.creator.data.last_name
-                        ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
-                        : ""
-                    }`
-                  : `Global with ${playbook.data.creator.data.first_name}${
-                      playbook.data.creator.data.last_name
-                        ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
-                        : ""
-                    }`
-              }
-              creator={playbook.data.creator}
-              setCoverHeight={setCoverHeight}
-            />
+            <View style={scrollOffset === 0 && !isScrolling && { zIndex: 1 }}>
+              <Cover
+                image={playbook.data.image.mobile.url}
+                title={
+                  playbook.data.app_title
+                    ? playbook.data.app_title
+                    : playbook.data.destination?.data.title
+                    ? `${playbook.data.destination?.data.title} with ${playbook.data.creator.data.first_name}${
+                        playbook.data.creator.data.last_name
+                          ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
+                          : ""
+                      }`
+                    : `Global with ${playbook.data.creator.data.first_name}${
+                        playbook.data.creator.data.last_name
+                          ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
+                          : ""
+                      }`
+                }
+                creator={playbook.data.creator}
+                setCoverHeight={setCoverHeight}
+              />
+            </View>
 
-            <ScrollView onScroll={scrolling} scrollEventThrottle={16}>
+            {Platform.OS === "ios" && (
+              <BlurView
+                style={[
+                  styles.blur,
+                  { aspectRatio: Device.deviceType !== 2 ? "4/3" : width >= height ? "3/1" : "5/3" },
+                ]}
+                intensity={scrollOffset * 100}
+              />
+            )}
+
+            <ScrollView onScroll={scrolling} scrollEventThrottle={16} onScrollEndDrag={() => setIsScrolling(false)}>
               <View
                 style={[
                   styles.wrapper,
@@ -173,6 +191,7 @@ export default function Playbook() {
                     display: coverHeight ? "flex" : "none",
                   },
                 ]}
+                onTouchStart={() => setIsScrolling(true)}
               >
                 <Text style={[styles.description, { color: colorScheme === "light" ? "black" : "white" }]}>
                   {playbook.data.description[0].text}
@@ -197,6 +216,10 @@ export default function Playbook() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  blur: {
+    position: "absolute",
+    width: "100%",
   },
   wrapper: {
     gap: 16,
