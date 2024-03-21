@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Text, Pressable, useColorScheme } from "react-native";
 import { useRouter } from "expo-router";
+import { Image } from "expo-image";
 import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { pressedDefault } from "utils/helpers";
+import destinationsData from "data/destinations.json";
+import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
+import { pressedDefault, storeData } from "utils/helpers";
 
 type TabRoute = {
   pathname: string;
@@ -13,16 +16,36 @@ type TabRoute = {
   };
 };
 
+const icons = {
+  Place: require("assets/img/icon-place.svg"),
+  PlaceWhite: require("assets/img/icon-place-white.svg"),
+};
+
 type TabProps = {
   title: string;
   cta?: string;
   route?: TabRoute;
+  destination?: string;
   blueBg?: boolean;
 };
 
 export default function Tab(props: TabProps) {
   const router = useRouter();
   const colorScheme = useColorScheme();
+  const { setDestination } = useContext<DestinationContextType>(DestinationContext);
+
+  const destinationClick = () => {
+    const data = JSON.stringify(destinationsData);
+    const destinations: DestinationType[] = JSON.parse(data);
+    const destination = destinations.filter((item) => item.uid === props.destination); // Find destination by uid
+    setDestination(destination[0]); // Set context
+    storeData("destination", destination[0]);
+
+    // Back to home
+    router.navigate({
+      pathname: "/",
+    });
+  };
 
   return (
     <View style={[styles.container, { borderColor: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}>
@@ -33,7 +56,7 @@ export default function Tab(props: TabProps) {
         {props.title}
       </Text>
 
-      {props.route && (
+      {props.route ? (
         <Pressable
           onPress={() => router.push(props.route as Href)}
           style={({ pressed }) => [pressedDefault(pressed), styles.link]}
@@ -52,6 +75,27 @@ export default function Tab(props: TabProps) {
             color={props.blueBg || colorScheme === "dark" ? "white" : "black"}
           />
         </Pressable>
+      ) : (
+        props.destination && (
+          <Pressable
+            onPress={destinationClick}
+            style={({ pressed }) => [pressedDefault(pressed), styles.link]}
+            hitSlop={8}
+          >
+            <Image
+              source={icons[colorScheme === "light" ? "Place" : "PlaceWhite"]}
+              style={styles.icon}
+              contentFit="contain"
+            />
+
+            <Text
+              style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}
+              allowFontScaling={false}
+            >
+              {props.cta}
+            </Text>
+          </Pressable>
+        )
       )}
     </View>
   );
@@ -76,5 +120,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 2,
+  },
+  icon: {
+    width: 16,
+    height: 16,
   },
 });

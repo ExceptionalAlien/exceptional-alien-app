@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, Pressable } from "react-native";
+import { StyleSheet, Text, Pressable, useWindowDimensions } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { DestinationType, DestinationContext, DestinationContextType } from "context/destination";
@@ -11,6 +11,7 @@ type DestinationProps = {
 
 export default function Destination(props: DestinationProps) {
   const router = useRouter();
+  const { width } = useWindowDimensions();
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
 
   const destinationClick = (destination: DestinationType) => {
@@ -22,7 +23,7 @@ export default function Destination(props: DestinationProps) {
   return (
     <Pressable
       onPress={() => destinationClick(props.item)}
-      style={({ pressed }) => [pressedDefault(pressed), styles.container]}
+      style={({ pressed }) => [pressedDefault(pressed), styles.container, { maxWidth: width - 64 }]}
     >
       <Text style={styles.name} allowFontScaling={false}>
         {props.item.name}
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 36,
+    lineHeight: 36,
     fontFamily: "Neue-Haas-Grotesk-Med",
     textTransform: "uppercase",
   },

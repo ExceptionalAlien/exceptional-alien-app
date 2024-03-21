@@ -36,6 +36,7 @@ type PlaybookImage = {
 };
 
 type Destination = {
+  uid: string;
   data: {
     title: string;
   };
@@ -197,7 +198,11 @@ export default function Playbook() {
                   {playbook.data.description[0].text}
                 </Text>
 
-                <Tab title={`${playbook.data.slices.length} GEMS`} />
+                <Tab
+                  title={`${playbook.data.slices.length} GEMS`}
+                  cta={playbook.data.destination.data?.title}
+                  destination={playbook.data.destination.uid}
+                />
 
                 <View style={styles.gems}>
                   {playbook.data.slices.map((item, index) => (
