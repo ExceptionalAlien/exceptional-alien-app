@@ -24,7 +24,7 @@ export default function BigButton(props: BigButtonProps) {
   const icons = {
     playbook: require("assets/img/icon-playbook.svg"),
     playbookBlue: require("assets/img/icon-playbook-blue.svg"),
-    gem: require("assets/img/icon-gem.svg"),
+    gem: require("assets/img/icon-gem-white.svg"),
     gemBlue: require("assets/img/icon-gem-blue.svg"),
   };
 

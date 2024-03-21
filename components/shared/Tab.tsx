@@ -17,8 +17,10 @@ type TabRoute = {
 };
 
 const icons = {
-  Place: require("assets/img/icon-place.svg"),
-  PlaceWhite: require("assets/img/icon-place-white.svg"),
+  place: require("assets/img/icon-place.svg"),
+  placeWhite: require("assets/img/icon-place-white.svg"),
+  gem: require("assets/img/icon-gem.svg"),
+  gemWhite: require("assets/img/icon-gem-white.svg"),
 };
 
 type TabProps = {
@@ -27,6 +29,7 @@ type TabProps = {
   route?: TabRoute;
   destination?: string;
   blueBg?: boolean;
+  icon?: string;
 };
 
 export default function Tab(props: TabProps) {
@@ -49,17 +52,27 @@ export default function Tab(props: TabProps) {
 
   return (
     <View style={[styles.container, { borderColor: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}>
-      <Text
-        style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}
-        allowFontScaling={false}
-      >
-        {props.title}
-      </Text>
+      <View style={styles.iconText}>
+        {props.icon && (
+          <Image
+            source={icons[colorScheme === "light" ? "gem" : "gemWhite"]}
+            style={styles.icon}
+            contentFit="contain"
+          />
+        )}
+
+        <Text
+          style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}
+          allowFontScaling={false}
+        >
+          {props.title}
+        </Text>
+      </View>
 
       {props.route ? (
         <Pressable
           onPress={() => router.push(props.route as Href)}
-          style={({ pressed }) => [pressedDefault(pressed), styles.link]}
+          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
           hitSlop={8}
         >
           <Text
@@ -79,12 +92,12 @@ export default function Tab(props: TabProps) {
         props.destination && (
           <Pressable
             onPress={destinationClick}
-            style={({ pressed }) => [pressedDefault(pressed), styles.link]}
+            style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
             hitSlop={8}
           >
             <Image
-              source={icons[colorScheme === "light" ? "Place" : "PlaceWhite"]}
-              style={styles.icon}
+              source={icons[colorScheme === "light" ? "place" : "placeWhite"]}
+              style={[styles.icon, { width: 12 }]}
               contentFit="contain"
             />
 
@@ -111,18 +124,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  text: {
-    textTransform: "uppercase",
-    fontSize: 12,
-    fontFamily: "Neue-Haas-Grotesk",
-  },
-  link: {
+  iconText: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 2,
+    gap: 4,
   },
   icon: {
     width: 16,
     height: 16,
+  },
+  text: {
+    textTransform: "uppercase",
+    fontSize: 12,
+    fontFamily: "Neue-Haas-Grotesk",
   },
 });

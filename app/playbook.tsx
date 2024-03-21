@@ -202,6 +202,7 @@ export default function Playbook() {
                   title={`${playbook.data.slices.length} GEMS`}
                   cta={playbook.data.destination.data?.title}
                   destination={playbook.data.destination.uid}
+                  icon="gem"
                 />
 
                 <View style={styles.gems}>
