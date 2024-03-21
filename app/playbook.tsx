@@ -26,6 +26,7 @@ import { CreatorType } from "./profile";
 import Cover from "components/playbook/Cover";
 import Gem from "components/playbook/Gem";
 import Tab from "components/shared/Tab";
+import BigButton from "components/shared/BigButton";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -210,6 +211,8 @@ export default function Playbook() {
                     <Gem key={index} gem={item.primary.gem} />
                   ))}
                 </View>
+
+                <BigButton title="View on Map" icon="map" home />
               </View>
             </ScrollView>
           </>
@@ -228,17 +231,19 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   wrapper: {
-    gap: 16,
     paddingTop: 16,
   },
   description: {
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 16,
     marginHorizontal: 16,
+    maxWidth: 768,
+    marginBottom: 16,
   },
   gems: {
     gap: 16,
     marginHorizontal: 16,
+    marginBottom: 24,
   },
   offline: {
     flex: 1,

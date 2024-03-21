@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import * as Device from "expo-device";
 import { Image } from "expo-image";
 import { Href } from "expo-router/build/link/href";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -16,22 +17,31 @@ type BigButtonProps = {
   route?: BigButtonRoute;
   icon?: string; // playbook, gem
   bgColor?: string;
+  home?: boolean;
+};
+
+const icons = {
+  playbook: require("assets/img/icon-playbook.svg"),
+  playbookBlue: require("assets/img/icon-playbook-blue.svg"),
+  gem: require("assets/img/icon-gem-white.svg"),
+  gemBlue: require("assets/img/icon-gem-blue.svg"),
 };
 
 export default function BigButton(props: BigButtonProps) {
   const router = useRouter();
 
-  const icons = {
-    playbook: require("assets/img/icon-playbook.svg"),
-    playbookBlue: require("assets/img/icon-playbook-blue.svg"),
-    gem: require("assets/img/icon-gem-white.svg"),
-    gemBlue: require("assets/img/icon-gem-blue.svg"),
+  const press = () => {
+    if (props.home) {
+      router.navigate("/");
+    } else {
+      router.push(props.route as Href);
+    }
   };
 
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => router.push(props.route as Href)}
+        onPress={press}
         style={({ pressed }) => [
           pressedDefault(pressed),
           styles.button,
@@ -40,12 +50,16 @@ export default function BigButton(props: BigButtonProps) {
         ]}
         hitSlop={8}
       >
-        {props.icon && (
-          <Image
-            source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : ""}` as keyof typeof icons]}
-            style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
-            contentFit="contain"
-          />
+        {props.icon === "map" ? (
+          <Ionicons name="map-outline" size={20} color="white" style={styles.icon} />
+        ) : (
+          props.icon && (
+            <Image
+              source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : ""}` as keyof typeof icons]}
+              style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
+              contentFit="contain"
+            />
+          )
         )}
 
         <Text

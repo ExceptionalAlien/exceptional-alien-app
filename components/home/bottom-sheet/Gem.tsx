@@ -13,7 +13,10 @@ export default function Gem(props: GemProps) {
   return (
     <View style={[styles.container, !props.selectedGem && { display: "none" }]}>
       <Header gem={props.selectedGem} />
-      <QuoteSlider gem={props.selectedGem.uid} playbooks={props.selectedGem.data.playbooks} />
+
+      <View style={styles.quotes}>
+        <QuoteSlider gem={props.selectedGem.uid} playbooks={props.selectedGem.data.playbooks} />
+      </View>
 
       <BigButton
         title="More Info"
@@ -29,5 +32,8 @@ export default function Gem(props: GemProps) {
 const styles = StyleSheet.create({
   container: {
     gap: 16,
+  },
+  quotes: {
+    marginBottom: 8,
   },
 });

@@ -16,13 +16,6 @@ type TabRoute = {
   };
 };
 
-const icons = {
-  place: require("assets/img/icon-place.svg"),
-  placeWhite: require("assets/img/icon-place-white.svg"),
-  gem: require("assets/img/icon-gem.svg"),
-  gemWhite: require("assets/img/icon-gem-white.svg"),
-};
-
 type TabProps = {
   title: string;
   cta?: string;
@@ -30,6 +23,13 @@ type TabProps = {
   destination?: string;
   blueBg?: boolean;
   icon?: string;
+};
+
+const icons = {
+  place: require("assets/img/icon-place.svg"),
+  placeWhite: require("assets/img/icon-place-white.svg"),
+  gem: require("assets/img/icon-gem.svg"),
+  gemWhite: require("assets/img/icon-gem-white.svg"),
 };
 
 export default function Tab(props: TabProps) {

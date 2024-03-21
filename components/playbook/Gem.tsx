@@ -7,6 +7,10 @@ import { GemType } from "app/gem";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
+type GemProps = {
+  gem: GemType;
+};
+
 const icons = {
   FoodAndDrink: require("assets/img/icon-food-and-drink-blue.svg"),
   Culture: require("assets/img/icon-culture-blue.svg"),
@@ -16,10 +20,6 @@ const icons = {
   Wellness: require("assets/img/icon-wellness-blue.svg"),
   Events: require("assets/img/icon-events-blue.svg"),
   Accommodation: require("assets/img/icon-accommodation-blue.svg"),
-};
-
-type GemProps = {
-  gem: GemType;
 };
 
 export default function Gem(props: GemProps) {

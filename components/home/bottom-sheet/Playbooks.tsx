@@ -30,7 +30,7 @@ export default function Playbooks(props: PlaybooksProps) {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 16,
+    gap: 24,
     marginTop: 24,
   },
 });

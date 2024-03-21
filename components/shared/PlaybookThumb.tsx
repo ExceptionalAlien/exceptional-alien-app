@@ -69,7 +69,7 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
 
         {!isUnlocked && (
           <View style={styles.locked}>
-            <Ionicons name="lock-closed" size={16} color={styleVars.eaBlue} style={{ paddingBottom: 1 }} />
+            <Ionicons name="lock-closed" size={12} color={styleVars.eaBlue} style={{ paddingBottom: 1 }} />
           </View>
         )}
       </View>
@@ -123,8 +123,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "rgba(255,255,255,0.75)",
     borderRadius: 999,
-    width: 24,
-    height: 24,
+    width: 20,
+    height: 20,
     alignItems: "center",
     justifyContent: "center",
     top: 8,
