@@ -6,6 +6,7 @@ import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
 export type CreatorType = {
+  uid: string;
   data: {
     first_name: string;
     last_name: string;

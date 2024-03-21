@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   StatusBar,
   Pressable,
-  Text,
   ScrollView,
   useColorScheme,
   NativeSyntheticEvent,
@@ -27,6 +26,7 @@ import Cover from "components/playbook/Cover";
 import Gem from "components/playbook/Gem";
 import Tab from "components/shared/Tab";
 import BigButton from "components/shared/BigButton";
+import Description from "components/playbook/Description";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -84,6 +84,7 @@ export default function Playbook() {
   const [coverHeight, setCoverHeight] = useState(0);
   const [scrollOffset, setScrollOffset] = useState(0);
   const [playbook, setPlaybook] = useState<PlaybookType>();
+  const [curators, setCurators] = useState<CreatorType[]>();
 
   const getPlaybook = async () => {
     const network = await Network.getNetworkStateAsync();
@@ -95,6 +96,16 @@ export default function Playbook() {
         const response = await fetch(`https://www.exceptionalalien.com/api/playbook/${uid}`);
         const json = await response.json();
         setPlaybook(json);
+
+        // Detect if Gems selected by other Creator/s
+        const creators: CreatorType[] = [];
+
+        for (let i = 0; i < json.data.slices.length; i++) {
+          let creator = json.data.slices[i].primary.creator;
+          if (creator.data && !creators.some((item) => item.uid === creator.uid)) creators.push(creator);
+        }
+
+        setCurators(creators);
       } catch (error) {
         console.error(error);
         Alert.alert("Error", "Unable to load Playbook");
@@ -195,9 +206,7 @@ export default function Playbook() {
                 ]}
                 onTouchStart={() => setIsScrolling(true)}
               >
-                <Text style={[styles.description, { color: colorScheme === "light" ? "black" : "white" }]}>
-                  {playbook.data.description[0].text}
-                </Text>
+                <Description text={playbook.data.description[0].text} curators={curators} />
 
                 <Tab
                   title={`${playbook.data.slices.length} GEMS`}
@@ -208,7 +217,15 @@ export default function Playbook() {
 
                 <View style={styles.gems}>
                   {playbook.data.slices.map((item, index) => (
-                    <Gem key={index} gem={item.primary.gem} />
+                    <Gem
+                      key={index}
+                      gem={item.primary.gem}
+                      creator={
+                        curators && item.primary.creator.data && curators.length !== 1
+                          ? item.primary.creator
+                          : undefined
+                      }
+                    />
                   ))}
                 </View>
 
@@ -233,17 +250,11 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingTop: 16,
   },
-  description: {
-    fontFamily: "Neue-Haas-Grotesk",
-    fontSize: 16,
-    marginHorizontal: 16,
-    maxWidth: 768,
-    marginBottom: 16,
-  },
   gems: {
     gap: 16,
     marginHorizontal: 16,
     marginBottom: 24,
+    marginTop: 4,
   },
   offline: {
     flex: 1,

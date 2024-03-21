@@ -3,12 +3,15 @@ import { StyleSheet, View, Text, Pressable, useColorScheme } from "react-native"
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { CreatorType } from "app/profile";
 import { GemType } from "app/gem";
+import CreatorIcon from "components/shared/CreatorIcon";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
 type GemProps = {
   gem: GemType;
+  creator?: CreatorType;
 };
 
 const icons = {
@@ -57,6 +60,7 @@ export default function Gem(props: GemProps) {
         </Text>
       </View>
 
+      {props.creator && <CreatorIcon creator={props.creator} iconOnly size="sml" pressDisabled />}
       <Ionicons name="chevron-forward" size={20} color={styleVars.eaLightGrey} />
     </Pressable>
   );

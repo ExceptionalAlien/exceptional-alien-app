@@ -11,7 +11,8 @@ type CreatorIconProps = {
   creator: CreatorType;
   iconOnly?: boolean;
   border?: boolean;
-  size?: string; // lrg
+  size?: string; // sml, med, lrg
+  pressDisabled?: boolean;
 };
 
 export default function CreatorIcon(props: CreatorIconProps) {
@@ -27,6 +28,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
       }
       style={({ pressed }) => [styles.container, pressedDefault(pressed)]}
       hitSlop={8}
+      disabled={props.pressDisabled ? true : false}
     >
       {!props.iconOnly && (
         <Text
@@ -44,8 +46,10 @@ export default function CreatorIcon(props: CreatorIconProps) {
           styles.image,
           props.border && { borderWidth: 1, borderColor: "white" },
           {
-            width: props.size !== "lrg" ? 40 : Device.deviceType === 2 ? 56 : 48,
-            height: props.size !== "lrg" ? 40 : Device.deviceType === 2 ? 56 : 48,
+            width:
+              !props.size || props.size === "med" ? 40 : props.size === "sml" ? 32 : Device.deviceType === 2 ? 56 : 48,
+            height:
+              !props.size || props.size === "med" ? 40 : props.size === "sml" ? 32 : Device.deviceType === 2 ? 56 : 48,
           },
         ]}
       />

@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import destinationsData from "data/destinations.json";
 import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
 import { pressedDefault, storeData } from "utils/helpers";
+import { styleVars } from "utils/styles";
 
 type TabRoute = {
   pathname: string;
@@ -76,7 +77,7 @@ export default function Tab(props: TabProps) {
           hitSlop={8}
         >
           <Text
-            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}
+            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
             allowFontScaling={false}
           >
             {props.cta}
@@ -85,7 +86,7 @@ export default function Tab(props: TabProps) {
           <Ionicons
             name="arrow-forward-sharp"
             size={12}
-            color={props.blueBg || colorScheme === "dark" ? "white" : "black"}
+            color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
           />
         </Pressable>
       ) : (
@@ -102,7 +103,7 @@ export default function Tab(props: TabProps) {
             />
 
             <Text
-              style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : "black" }]}
+              style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
               allowFontScaling={false}
             >
               {props.cta}
