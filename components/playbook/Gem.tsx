@@ -11,6 +11,7 @@ import { pressedDefault } from "utils/helpers";
 
 type GemProps = {
   gem: GemType;
+  hidden: boolean;
   creator?: CreatorType;
 };
 
@@ -23,6 +24,7 @@ const icons = {
   Wellness: require("assets/img/icon-wellness-blue.svg"),
   Events: require("assets/img/icon-events-blue.svg"),
   Accommodation: require("assets/img/icon-accommodation-blue.svg"),
+  Hidden: require("assets/img/icon-hidden.svg"),
 };
 
 export default function Gem(props: GemProps) {
@@ -41,27 +43,45 @@ export default function Gem(props: GemProps) {
       }
       style={({ pressed }) => [pressedDefault(pressed), styles.container]}
       hitSlop={8}
+      disabled={props.hidden}
     >
       <Image
-        source={icons[props.gem.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]}
+        source={
+          props.hidden
+            ? icons["Hidden"]
+            : icons[props.gem.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+        }
         style={styles.icon}
       />
 
       <View style={styles.text}>
-        <Text style={[styles.title, { color: colorScheme === "light" ? "black" : "white" }]} allowFontScaling={false}>
-          {props.gem.data.title}
+        <Text
+          style={[
+            props.hidden ? styles.titleHidden : styles.title,
+            { color: colorScheme === "light" ? "black" : "white" },
+          ]}
+          allowFontScaling={false}
+        >
+          {!props.hidden && props.gem.data.title}
         </Text>
 
         <Text
-          style={[styles.description, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
+          style={[
+            props.hidden ? styles.descriptionHidden : styles.description,
+            { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey },
+          ]}
           allowFontScaling={false}
         >
-          {props.gem.data.description}
+          {!props.hidden && props.gem.data.description}
         </Text>
       </View>
 
-      {props.creator && <CreatorIcon creator={props.creator} iconOnly size="sml" pressDisabled />}
-      <Ionicons name="chevron-forward" size={20} color={styleVars.eaLightGrey} />
+      {!props.hidden && (
+        <>
+          {props.creator && <CreatorIcon creator={props.creator} iconOnly size="sml" pressDisabled />}
+          <Ionicons name="chevron-forward" size={20} color={styleVars.eaLightGrey} />
+        </>
+      )}
     </Pressable>
   );
 }
@@ -78,13 +98,25 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 1,
+    gap: 4,
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
     fontSize: 20,
   },
+  titleHidden: {
+    backgroundColor: styleVars.eaLightGrey,
+    width: 240,
+    height: 20,
+  },
   description: {
     fontFamily: "Neue-Haas-Grotesk",
     fontSize: 16,
+    lineHeight: 16,
+  },
+  descriptionHidden: {
+    backgroundColor: styleVars.eaLightGrey,
+    width: 128,
+    height: 16,
   },
 });

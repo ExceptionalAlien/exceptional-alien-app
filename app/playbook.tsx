@@ -220,6 +220,7 @@ export default function Playbook() {
                     <Gem
                       key={index}
                       gem={item.primary.gem}
+                      hidden={playbook.data.locked ? true : false}
                       creator={
                         curators && item.primary.creator.data && curators.length !== 1
                           ? item.primary.creator
@@ -229,7 +230,7 @@ export default function Playbook() {
                   ))}
                 </View>
 
-                <BigButton title="View on Map" icon="map" home />
+                <BigButton title="View on Map" icon="map" home disabled={playbook.data.locked ? true : false} />
               </View>
             </ScrollView>
           </>

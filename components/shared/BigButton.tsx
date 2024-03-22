@@ -18,6 +18,7 @@ type BigButtonProps = {
   icon?: string; // playbook, gem
   bgColor?: string;
   home?: boolean;
+  disabled?: boolean;
 };
 
 const icons = {
@@ -39,7 +40,7 @@ export default function BigButton(props: BigButtonProps) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.disabled && { opacity: 0.25 }]}>
       <Pressable
         onPress={press}
         style={({ pressed }) => [
@@ -49,6 +50,7 @@ export default function BigButton(props: BigButtonProps) {
           { backgroundColor: props.bgColor ? props.bgColor : styleVars.eaBlue },
         ]}
         hitSlop={8}
+        disabled={props.disabled ? true : false}
       >
         {props.icon === "map" ? (
           <Ionicons name="map-outline" size={20} color="white" style={styles.icon} />
