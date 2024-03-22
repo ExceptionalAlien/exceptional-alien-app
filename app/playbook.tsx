@@ -28,7 +28,7 @@ import Tab from "components/shared/Tab";
 import BigButton from "components/shared/BigButton";
 import Description from "components/playbook/Description";
 import { styleVars } from "utils/styles";
-import { pressedDefault } from "utils/helpers";
+import { getData, pressedDefault } from "utils/helpers";
 
 type PlaybookImage = {
   mobile: {
@@ -85,6 +85,7 @@ export default function Playbook() {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [playbook, setPlaybook] = useState<PlaybookType>();
   const [curators, setCurators] = useState<CreatorType[]>();
+  const [isUnlocked, setIsUnlocked] = useState(false);
 
   const getPlaybook = async () => {
     const network = await Network.getNetworkStateAsync();
@@ -93,8 +94,12 @@ export default function Playbook() {
     if (network.isInternetReachable) {
       // Online
       try {
+        const unlocked = await getData("unlockedPBs");
         const response = await fetch(`https://www.exceptionalalien.com/api/playbook/${uid}`);
         const json = await response.json();
+        setIsUnlocked(
+          (unlocked && json.data.locked && !unlocked.includes(uid)) || (!unlocked && json.data.locked) ? false : true
+        );
         setPlaybook(json);
 
         // Detect if Gems selected by other Creator/s
@@ -206,7 +211,11 @@ export default function Playbook() {
                 ]}
                 onTouchStart={() => setIsScrolling(true)}
               >
-                <Description text={playbook.data.description[0].text} curators={curators} />
+                <Description
+                  text={playbook.data.description[0].text}
+                  curators={curators}
+                  locked={isUnlocked ? false : true}
+                />
 
                 <Tab
                   title={`${playbook.data.slices.length} GEMS`}
@@ -220,7 +229,7 @@ export default function Playbook() {
                     <Gem
                       key={index}
                       gem={item.primary.gem}
-                      hidden={playbook.data.locked ? true : false}
+                      hidden={isUnlocked ? false : true}
                       creator={
                         curators && item.primary.creator.data && curators.length !== 1
                           ? item.primary.creator
@@ -230,7 +239,7 @@ export default function Playbook() {
                   ))}
                 </View>
 
-                <BigButton title="View on Map" icon="map" home disabled={playbook.data.locked ? true : false} />
+                <BigButton title="View on Map" icon="map" home disabled={isUnlocked ? false : true} />
               </View>
             </ScrollView>
           </>

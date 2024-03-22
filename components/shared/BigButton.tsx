@@ -19,6 +19,7 @@ type BigButtonProps = {
   bgColor?: string;
   home?: boolean;
   disabled?: boolean;
+  price?: string;
 };
 
 const icons = {
@@ -54,6 +55,8 @@ export default function BigButton(props: BigButtonProps) {
       >
         {props.icon === "map" ? (
           <Ionicons name="map-outline" size={20} color="white" style={styles.icon} />
+        ) : props.icon === "lock" ? (
+          <Ionicons name="lock-closed" size={20} color="white" style={styles.icon} />
         ) : (
           props.icon && (
             <Image
@@ -70,6 +73,8 @@ export default function BigButton(props: BigButtonProps) {
         >
           {props.title}
         </Text>
+
+        {props.price && <Text style={styles.price}>${props.price}</Text>}
       </Pressable>
     </View>
   );
@@ -96,5 +101,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontFamily: "Neue-Haas-Grotesk",
+  },
+  price: {
+    fontFamily: "Neue-Haas-Grotesk-Med",
+    fontSize: 18,
+    marginLeft: 4,
+    color: "white",
   },
 });

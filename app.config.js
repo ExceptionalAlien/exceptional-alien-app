@@ -4,7 +4,7 @@ module.exports = ({ config }) => {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.exceptionalalien.app",
-      buildNumber: "123",
+      buildNumber: "124",
       config: {
         googleMapsApiKey: process.env.MAPS_IOS_API_KEY,
       },
