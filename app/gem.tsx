@@ -1,7 +1,12 @@
-import React from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { Stack } from "expo-router";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Pressable, ActivityIndicator, Alert } from "react-native";
+import { Stack, useLocalSearchParams } from "expo-router";
+import * as Network from "expo-network";
+import { Ionicons } from "@expo/vector-icons";
 import { PlaybookType } from "./playbook";
+import Header from "components/gem/Header";
+import { pressedDefault } from "utils/helpers";
+import { styleVars } from "utils/styles";
 
 type GemData = {
   title: string;
@@ -20,15 +25,70 @@ export type GemType = {
 };
 
 export default function Gem() {
+  const params = useLocalSearchParams<{ uid: string }>();
+  const { uid } = params;
+  const [isOffline, setIsOffline] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
+  const [gem, setGem] = useState<GemType>();
+
+  const getGem = async () => {
+    const network = await Network.getNetworkStateAsync();
+
+    // Check if device is online
+    if (network.isInternetReachable) {
+      // Online
+      try {
+        const response = await fetch(`https://www.exceptionalalien.com/api/gem/${uid}`);
+        const json = await response.json();
+        setGem(json);
+      } catch (error) {
+        console.error(error);
+        Alert.alert("Error", "Unable to load Gem");
+      } finally {
+        setIsloading(false);
+      }
+    } else {
+      // Offline
+      setIsOffline(true);
+    }
+  };
+
+  useEffect(() => {
+    setIsloading(true);
+    getGem();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Stack.Screen
         options={{
-          title: "Gem",
+          title: "",
+          headerLargeTitle: false,
+          headerRight: () =>
+            gem && (
+              <Pressable
+                onPress={() => alert("Will open share sheet")}
+                style={({ pressed }) => pressedDefault(pressed)}
+              >
+                <Ionicons name="share-outline" size={28} color={styleVars.eaBlue} />
+              </Pressable>
+            ),
         }}
       />
 
-      <Text style={{ textAlign: "center" }}>WIP - will show full Gem details</Text>
+      {isOffline ? (
+        <View style={styles.offline}>
+          <Ionicons name="cloud-offline-outline" size={40} color={styleVars.eaBlue} />
+        </View>
+      ) : isLoading ? (
+        <ActivityIndicator color={styleVars.eaBlue} size="large" style={styles.loader} />
+      ) : (
+        gem && (
+          <>
+            <Header title={gem.data.title} category={gem.data.category} description={gem.data.description} />
+          </>
+        )
+      )}
     </View>
   );
 }
@@ -36,8 +96,13 @@ export default function Gem() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  offline: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 16,
+  },
+  loader: {
+    flex: 1,
   },
 });

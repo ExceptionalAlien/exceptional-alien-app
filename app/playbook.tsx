@@ -144,7 +144,7 @@ export default function Playbook() {
           headerTransparent: true,
           headerLargeTitle: false,
           headerStyle: {
-            backgroundColor: `rgba(34,32,193,${isLoading ? 1 : scrollOffset})`,
+            backgroundColor: `rgba(34,32,193,${isOffline ? 1 : scrollOffset})`,
           },
           headerTintColor: "white",
           headerRight: () =>

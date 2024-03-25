@@ -1428,6 +1428,55 @@
     "trending": true
   },
   {
+    "id": "ZSYnnxAAADhXrbUX",
+    "name": "Salt Lake City",
+    "uid": "salt-lake-city",
+    "keywords": "America United States USA Utah",
+    "lat": 40.760779,
+    "lng": -111.891047,
+    "bounds": {
+      "latitudeStart": 40.700246,
+      "longitudeStart": -112.101512,
+      "latitudeEnd": 40.85297,
+      "longitudeEnd": -111.739458
+    }
+  },
+  {
+    "id": "ZSYnSBAAAB5YrbOD",
+    "name": "San Francisco",
+    "uid": "san-francisco",
+    "keywords": "America United States USA California",
+    "lat": 37.77493,
+    "lng": -122.419415,
+    "region": {
+      "latitude": 37.77493,
+      "longitude": -122.419415,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 37.7034,
+      "longitudeStart": -122.527,
+      "latitudeEnd": 37.812,
+      "longitudeEnd": -122.3482
+    },
+    "trending": true
+  },
+  {
+    "id": "ZYDErBEAACUAtuE8",
+    "name": "Santiago",
+    "uid": "santiago",
+    "keywords": "Chile South America",
+    "lat": -33.44889,
+    "lng": -70.669265,
+    "bounds": {
+      "latitudeStart": -33.674188,
+      "longitudeStart": -70.832882,
+      "latitudeEnd": -33.271387,
+      "longitudeEnd": -70.426781
+    }
+  },
+  {
     "id": "ZP6qOxIAACIAkMGl",
     "name": "Sydney",
     "uid": "sydney",

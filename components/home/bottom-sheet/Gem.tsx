@@ -23,6 +23,9 @@ export default function Gem(props: GemProps) {
         icon="gem"
         route={{
           pathname: "/gem",
+          params: {
+            uid: props.selectedGem.uid,
+          },
         }}
       />
     </View>
