@@ -149,7 +149,10 @@ export default function Playbook() {
           headerTintColor: "white",
           headerRight: () =>
             playbook && (
-              <Pressable onPress={() => null} style={({ pressed }) => pressedDefault(pressed)}>
+              <Pressable
+                onPress={() => alert("Will open share sheet")}
+                style={({ pressed }) => pressedDefault(pressed)}
+              >
                 <Ionicons name="share-outline" size={28} color="white" />
               </Pressable>
             ),
@@ -239,7 +242,12 @@ export default function Playbook() {
                   ))}
                 </View>
 
-                <BigButton title="View on Map" icon="map" home disabled={isUnlocked ? false : true} />
+                <BigButton
+                  title="View on Map"
+                  icon="map"
+                  disabled={isUnlocked ? false : true}
+                  alert="Will filter map and only show Gems included in this Playbook"
+                />
               </View>
             </ScrollView>
           </>

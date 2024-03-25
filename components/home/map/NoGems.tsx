@@ -22,7 +22,7 @@ export default function NoGems(props: NoGemsProps) {
   return (
     <Animated.View style={[styles.container, { marginBottom }]}>
       <Text style={styles.text} allowFontScaling={false}>
-        No Gems found
+        No Gems nearby
       </Text>
     </Animated.View>
   );

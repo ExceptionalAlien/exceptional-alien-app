@@ -20,6 +20,7 @@ type BigButtonProps = {
   home?: boolean;
   disabled?: boolean;
   price?: string;
+  alert?: string;
 };
 
 const icons = {
@@ -35,6 +36,8 @@ export default function BigButton(props: BigButtonProps) {
   const press = () => {
     if (props.home) {
       router.navigate("/");
+    } else if (props.alert) {
+      alert(props.alert);
     } else {
       router.push(props.route as Href);
     }
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
   price: {
     fontFamily: "Neue-Haas-Grotesk-Med",
     fontSize: 18,
-    marginLeft: 4,
+    marginLeft: 8,
     color: "white",
   },
 });
