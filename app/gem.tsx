@@ -5,6 +5,7 @@ import * as Network from "expo-network";
 import { Ionicons } from "@expo/vector-icons";
 import { PlaybookType } from "./playbook";
 import Header from "components/gem/Header";
+import { storeData, getData } from "utils/helpers";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -29,6 +30,7 @@ export default function Gem() {
   const { uid } = params;
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const [gem, setGem] = useState<GemType>();
 
   const getGem = async () => {
@@ -53,9 +55,33 @@ export default function Gem() {
     }
   };
 
+  const toggleFav = async () => {
+    const favs = await getData("favs");
+    var updated: string[] = favs ? favs : [];
+
+    if (updated.includes(uid as string)) {
+      // Remove
+      const index = updated.indexOf(uid as string);
+      updated.splice(index, 1);
+      setIsFav(false);
+    } else {
+      // Add
+      updated.push(uid as string);
+      setIsFav(true);
+    }
+
+    storeData("favs", updated);
+  };
+
+  const setFav = async () => {
+    const favs = await getData("favs");
+    setIsFav(favs && favs.includes(uid) ? true : false);
+  };
+
   useEffect(() => {
     setIsloading(true);
     getGem();
+    setFav();
   }, []);
 
   return (
@@ -66,12 +92,22 @@ export default function Gem() {
           headerLargeTitle: false,
           headerRight: () =>
             gem && (
-              <Pressable
-                onPress={() => alert("Will open share sheet")}
-                style={({ pressed }) => pressedDefault(pressed)}
-              >
-                <Ionicons name="share-outline" size={28} color={styleVars.eaBlue} />
-              </Pressable>
+              <View style={styles.headerNav}>
+                <Pressable onPress={toggleFav} style={({ pressed }) => pressedDefault(pressed)}>
+                  <Ionicons
+                    name={isFav ? "heart" : "heart-outline"}
+                    size={28}
+                    color={isFav ? styleVars.eaRed : styleVars.eaBlue}
+                  />
+                </Pressable>
+
+                <Pressable
+                  onPress={() => alert("Will open share sheet")}
+                  style={({ pressed }) => pressedDefault(pressed)}
+                >
+                  <Ionicons name="share-outline" size={28} color={styleVars.eaBlue} />
+                </Pressable>
+              </View>
             ),
         }}
       />
@@ -96,6 +132,10 @@ export default function Gem() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  headerNav: {
+    flexDirection: "row",
+    gap: 16,
   },
   offline: {
     flex: 1,

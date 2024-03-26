@@ -430,7 +430,7 @@
     "id": "ZSZzXhAAAO9crx8P",
     "name": "Copenhagen",
     "uid": "copenhagen",
-    "keywords": "Denmark Europe",
+    "keywords": "Denmark Europe Scandinavia",
     "lat": 55.676097,
     "lng": 12.568337,
     "region": {
@@ -1474,6 +1474,139 @@
       "longitudeStart": -70.832882,
       "latitudeEnd": -33.271387,
       "longitudeEnd": -70.426781
+    }
+  },
+  {
+    "id": "ZV1LShAAACYA73QT",
+    "name": "Sardinia",
+    "uid": "sardinia",
+    "keywords": "Italy Europe",
+    "lat": 40.120875,
+    "lng": 9.012893,
+    "bounds": {
+      "latitudeStart": 38.864049,
+      "longitudeStart": 8.130805,
+      "latitudeEnd": 41.259197,
+      "longitudeEnd": 9.827038
+    }
+  },
+  {
+    "id": "ZSYm6hAAAB5YrbHZ",
+    "name": "Seattle",
+    "uid": "seattle",
+    "keywords": "America United States USA Washington State",
+    "lat": 47.606139,
+    "lng": -122.332848,
+    "bounds": {
+      "latitudeStart": 47.491912,
+      "longitudeStart": -122.459696,
+      "latitudeEnd": 47.734172,
+      "longitudeEnd": -122.224433
+    }
+  },
+  {
+    "id": "ZSYmrxAAAFFXrbDK",
+    "name": "Seoul",
+    "uid": "seoul",
+    "keywords": "South Korea Asia",
+    "lat": 37.551891,
+    "lng": 126.991794,
+    "bounds": {
+      "latitudeStart": 37.428297,
+      "longitudeStart": 126.764484,
+      "latitudeEnd": 37.701455,
+      "longitudeEnd": 127.183795
+    }
+  },
+  {
+    "id": "ZSYmehAAAB5Yra_U",
+    "name": "Shanghai",
+    "uid": "shanghai",
+    "keywords": "China Asia",
+    "lat": 31.230416,
+    "lng": 121.473701,
+    "bounds": {
+      "latitudeStart": 30.779801,
+      "longitudeStart": 120.839707,
+      "latitudeEnd": 31.668897,
+      "longitudeEnd": 122.113799
+    }
+  },
+  {
+    "id": "ZSYl1BAAAPRXrazb",
+    "name": "South Island",
+    "uid": "south-island",
+    "keywords": "New Zealand NZ",
+    "lat": -45.152671,
+    "lng": 169.892633,
+    "region": {
+      "latitude": -44.982424,
+      "longitude": 168.809879,
+      "latitudeDelta": 0.5,
+      "longitudeDelta": 0.5
+    },
+    "bounds": {
+      "latitudeStart": -46.675499,
+      "longitudeStart": 166.426148,
+      "latitudeEnd": -40.498011,
+      "longitudeEnd": 174.315863
+    },
+    "trending": true
+  },
+  {
+    "id": "ZSYlRBAAAB5YrapI",
+    "name": "Soweto",
+    "uid": "soweto",
+    "keywords": "South Africa",
+    "lat": -26.248538,
+    "lng": 27.854032,
+    "bounds": {
+      "latitudeStart": -26.312731,
+      "longitudeStart": 27.71427,
+      "latitudeEnd": -26.17506,
+      "longitudeEnd": 27.962273
+    }
+  },
+  {
+    "id": "ZSYdKBAAAAVXrYWO",
+    "name": "Sri Lanka",
+    "uid": "sri-lanka",
+    "keywords": "South Asia",
+    "lat": 7.873054,
+    "lng": 80.771797,
+    "bounds": {
+      "latitudeStart": 5.6816,
+      "longitudeStart": 79.2677,
+      "latitudeEnd": 10.03377,
+      "longitudeEnd": 82.1448
+    }
+  },
+  {
+    "id": "ZSYkHhAAAPlXraUX",
+    "name": "Stockholm",
+    "uid": "stockholm",
+    "keywords": "Sweden Europe Scandinavia",
+    "lat": 59.329323,
+    "lng": 18.068581,
+    "bounds": {
+      "latitudeStart": 59.224443,
+      "longitudeStart": 17.765876,
+      "latitudeEnd": 59.427841,
+      "longitudeEnd": 18.198229
+    }
+  },
+  {
+    "id": "ZSYj0xAAAMdXraPC",
+    "name": "Sun Valley",
+    "uid": "sun-valley",
+    "keywords": "America United States USA Idaho",
+    "lat": 43.697129,
+    "lng": -114.351717,
+    "bounds": {
+      "latitudeStart": 43.640401,
+      "longitudeStart": -114.36147,
+      "latitudeEnd": 43.723832,
+      "longitudeEnd": -114.304883
     }
   },
   {

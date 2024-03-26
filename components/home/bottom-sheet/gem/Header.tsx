@@ -12,6 +12,7 @@ import {
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
+import { useNavigation } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { GemType } from "app/gem";
@@ -36,6 +37,7 @@ const icons = {
 
 export default function Header(props: HeaderProps) {
   const { width, height } = useWindowDimensions();
+  const navigation = useNavigation<any>();
   const [isFav, setIsFav] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -72,7 +74,12 @@ export default function Header(props: HeaderProps) {
   };
 
   useEffect(() => {
+    const focus = navigation.addListener("focus", () => {
+      setFav();
+    });
+
     setFav();
+    return focus;
   }, [props.gem]);
 
   return (
