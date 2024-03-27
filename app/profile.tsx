@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Pressable, Text, StyleSheet } from "react-native";
+import { View, Pressable, Text, StyleSheet, useColorScheme } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { styleVars } from "utils/styles";
@@ -16,6 +16,7 @@ export type CreatorType = {
 };
 
 export default function Profile() {
+  const colorScheme = useColorScheme();
   const router = useRouter();
 
   return (
@@ -25,13 +26,19 @@ export default function Profile() {
           title: "Profile",
           headerRight: () => (
             <Pressable onPress={() => router.push("/settings")} style={({ pressed }) => pressedDefault(pressed)}>
-              <Ionicons name="settings-outline" size={28} color={styleVars.eaBlue} />
+              <Ionicons
+                name="settings-outline"
+                size={28}
+                color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+              />
             </Pressable>
           ),
         }}
       />
 
-      <Text style={{ textAlign: "center" }}>WIP - will show user info (name, photo etc.) and Playbooks</Text>
+      <Text style={{ textAlign: "center", color: colorScheme === "light" ? "black" : "white" }}>
+        WIP - will show user info (name, photo etc.) and Playbooks
+      </Text>
     </View>
   );
 }

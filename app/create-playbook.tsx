@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, useColorScheme } from "react-native";
 import { Stack } from "expo-router";
 
 export default function CreatePlaybook() {
+  const colorScheme = useColorScheme();
+
   return (
     <View style={styles.container}>
       <Stack.Screen
@@ -11,7 +13,9 @@ export default function CreatePlaybook() {
         }}
       />
 
-      <Text style={{ textAlign: "center" }}>WIP - will show Playbook builder</Text>
+      <Text style={{ textAlign: "center", color: colorScheme === "light" ? "black" : "white" }}>
+        WIP - will show Playbook builder
+      </Text>
     </View>
   );
 }

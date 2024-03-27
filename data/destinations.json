@@ -1238,7 +1238,7 @@
       "longitudeDelta": 6
     },
     "bounds": {
-      "latitudeStart": -41.61375,
+      "latitudeStart": -40.828019,
       "longitudeStart": 172.64325,
       "latitudeEnd": -34.393391,
       "longitudeEnd": 178.550512
@@ -1631,6 +1631,20 @@
     "trending": true
   },
   {
+    "id": "ZSYjVhAAAOBXraGJ",
+    "name": "Tahiti",
+    "uid": "tahiti",
+    "keywords": "French Polynesia",
+    "lat": -17.650919,
+    "lng": -149.426042,
+    "bounds": {
+      "latitudeStart": -17.880335,
+      "longitudeStart": -149.62092,
+      "latitudeEnd": -17.494204,
+      "longitudeEnd": -149.124688
+    }
+  },
+  {
     "id": "ZSYiQxAAAMdXrZyc",
     "name": "Tokyo",
     "uid": "tokyo",
@@ -1650,5 +1664,180 @@
       "longitudeEnd": 141.240514
     },
     "trending": true
+  },
+  {
+    "id": "ZSYVzBAAALpVrWQq",
+    "name": "Toronto",
+    "uid": "toronto",
+    "keywords": "Canada North America",
+    "lat": 43.653226,
+    "lng": -79.383184,
+    "bounds": {
+      "latitudeStart": 43.581025,
+      "longitudeStart": -79.639219,
+      "latitudeEnd": 43.855458,
+      "longitudeEnd": -79.116897
+    }
+  },
+  {
+    "id": "ZSYecRAAAFFXrYtM",
+    "name": "Tripoli",
+    "uid": "tripoli",
+    "keywords": "Lebanon Western Asia",
+    "lat": 34.434595,
+    "lng": 35.836163,
+    "bounds": {
+      "latitudeStart": 34.388412,
+      "longitudeStart": 35.816844,
+      "latitudeEnd": 34.466871,
+      "longitudeEnd": 35.874805
+    }
+  },
+  {
+    "id": "ZSYeBhAAAB1XrYlm",
+    "name": "Turin",
+    "uid": "turin",
+    "keywords": "Italy Europe",
+    "lat": 45.211582,
+    "lng": 7.379007,
+    "bounds": {
+      "latitudeStart": 44.713744,
+      "longitudeStart": 6.62672,
+      "latitudeEnd": 45.602321,
+      "longitudeEnd": 8.151851
+    }
+  },
+  {
+    "id": "ZV1KhxAAACgA73Cf",
+    "name": "Tweed Shire",
+    "uid": "tweed-shire",
+    "keywords": "Australia NSW New South Wales",
+    "lat": -28.354128,
+    "lng": 153.344665,
+    "bounds": {
+      "latitudeStart": -28.542732,
+      "longitudeStart": 153.1072,
+      "latitudeEnd": -28.157021,
+      "longitudeEnd": 153.58593
+    }
+  },
+  {
+    "id": "ZV1KaRAAACYA73AQ",
+    "name": "Vancouver",
+    "uid": "vancouver",
+    "keywords": "Canada North America",
+    "lat": 49.282729,
+    "lng": -123.120737,
+    "bounds": {
+      "latitudeStart": 49.198177,
+      "longitudeStart": -123.22474,
+      "latitudeEnd": 49.317294,
+      "longitudeEnd": -123.023068
+    }
+  },
+  {
+    "id": "ZV1KOhAAACgA7289",
+    "name": "Venice",
+    "uid": "venice",
+    "keywords": "Italy Europe",
+    "lat": 45.440379,
+    "lng": 12.315955,
+    "bounds": {
+      "latitudeStart": 45.231112,
+      "longitudeStart": 12.178008,
+      "latitudeEnd": 45.577975,
+      "longitudeEnd": 12.596657
+    }
+  },
+  {
+    "id": "ZV1KGBAAACYA7262",
+    "name": "Verbier",
+    "uid": "verbier",
+    "keywords": "Switzerland Europe",
+    "lat": 46.096081,
+    "lng": 7.228551,
+    "bounds": {
+      "latitudeStart": 46.088602,
+      "longitudeStart": 7.208088,
+      "latitudeEnd": 46.110281,
+      "longitudeEnd": 7.242119
+    }
+  },
+  {
+    "id": "ZV1J2RAAACYA722g",
+    "name": "Warsaw",
+    "uid": "warsaw",
+    "keywords": "Poland Europe",
+    "lat": 52.229676,
+    "lng": 21.012229,
+    "bounds": {
+      "latitudeStart": 52.097877,
+      "longitudeStart": 20.85129,
+      "latitudeEnd": 52.367999,
+      "longitudeEnd": 21.271098
+    }
+  },
+  {
+    "id": "ZSYWixAAAJZWrWeh",
+    "name": "Washington DC",
+    "uid": "washington-dc",
+    "keywords": "America United States USA",
+    "lat": 38.907192,
+    "lng": -77.036871,
+    "bounds": {
+      "latitudeStart": 38.791645,
+      "longitudeStart": -77.119759,
+      "latitudeEnd": 38.995864,
+      "longitudeEnd": -76.909393
+    }
+  },
+  {
+    "id": "ZV1I8BAAACgA72mN",
+    "name": "Wellington",
+    "uid": "wellington",
+    "keywords": "New Zealand NZ",
+    "lat": -41.292381,
+    "lng": 174.778746,
+    "region": {
+      "latitude": -41.292381,
+      "longitude": 174.778746,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": -41.36238,
+      "longitudeStart": 174.613106,
+      "latitudeEnd": -41.14354,
+      "longitudeEnd": 174.895409
+    },
+    "trending": true
+  },
+  {
+    "id": "ZXqRLxAAACYAbElS",
+    "name": "Wisconsin",
+    "uid": "wisconsin",
+    "keywords": "America United States USA",
+    "lat": 43.78444,
+    "lng": -88.787868,
+    "bounds": {
+      "latitudeStart": 42.49172,
+      "longitudeStart": -92.889433,
+      "latitudeEnd": 47.309822,
+      "longitudeEnd": -86.249548
+    }
+  },
+  {
+    "id": "ZXpA6RAAACYAat6i",
+    "name": "Wollongong",
+    "uid": "wollongong",
+    "keywords": "Australia NSW New South Wales",
+    "lat": -34.424834,
+    "lng": 150.893113,
+    "bounds": {
+      "latitudeStart": -34.628602,
+      "longitudeStart": 150.743945,
+      "latitudeEnd": -34.251341,
+      "longitudeEnd": 150.973866
+    }
   }
 ]

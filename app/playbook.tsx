@@ -161,10 +161,18 @@ export default function Playbook() {
 
       {isOffline ? (
         <View style={styles.offline}>
-          <Ionicons name="cloud-offline-outline" size={40} color={styleVars.eaBlue} />
+          <Ionicons
+            name="cloud-offline-outline"
+            size={40}
+            color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+          />
         </View>
       ) : isLoading ? (
-        <ActivityIndicator color={styleVars.eaBlue} size="large" style={styles.loader} />
+        <ActivityIndicator
+          color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+          size="large"
+          style={styles.loader}
+        />
       ) : (
         playbook && (
           <>
@@ -208,7 +216,7 @@ export default function Playbook() {
                   {
                     marginTop: coverHeight,
                     paddingBottom: insets.bottom + 16,
-                    backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey,
+                    backgroundColor: colorScheme === "light" ? "white" : "black",
                     display: coverHeight ? "flex" : "none",
                   },
                 ]}

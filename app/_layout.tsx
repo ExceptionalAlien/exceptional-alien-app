@@ -39,8 +39,8 @@ export default function Layout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <Stack
           screenOptions={{
-            contentStyle: { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey },
-            headerTintColor: styleVars.eaBlue,
+            contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
+            headerTintColor: colorScheme === "light" ? styleVars.eaBlue : "white",
             headerTitleStyle: {
               fontFamily: "Neue-Haas-Grotesk-Med",
             },
@@ -55,7 +55,7 @@ export default function Layout() {
             },
             headerShadowVisible: false,
             headerStyle: {
-              backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey,
+              backgroundColor: colorScheme === "light" ? "white" : "black",
             },
           }}
         />

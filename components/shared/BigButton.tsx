@@ -45,7 +45,7 @@ export default function BigButton(props: BigButtonProps) {
   };
 
   return (
-    <View style={[styles.container, props.disabled && { opacity: 0.25 }]}>
+    <View style={[styles.container, props.disabled && { opacity: 0.5 }]}>
       <Pressable
         onPress={press}
         style={({ pressed }) => [

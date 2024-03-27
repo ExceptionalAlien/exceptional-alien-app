@@ -53,7 +53,7 @@ export default function BottomSheet(props: BottomSheetProps) {
     backgroundColor: interpolateColor(
       bgColor.value,
       [0, 1],
-      [styleVars.eaBlue, colorScheme === "light" ? "white" : styleVars.eaGrey]
+      [styleVars.eaBlue, colorScheme === "light" ? "white" : "black"]
     ),
   }));
 

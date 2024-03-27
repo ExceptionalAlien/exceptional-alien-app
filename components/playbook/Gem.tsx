@@ -16,14 +16,23 @@ type GemProps = {
 };
 
 const icons = {
-  FoodAndDrink: require("assets/img/icon-food-and-drink-blue.svg"),
-  Culture: require("assets/img/icon-culture-blue.svg"),
-  Nature: require("assets/img/icon-nature-blue.svg"),
-  Retail: require("assets/img/icon-retail-blue.svg"),
-  Neighbourhoods: require("assets/img/icon-neighbourhoods-blue.svg"),
-  Wellness: require("assets/img/icon-wellness-blue.svg"),
-  Events: require("assets/img/icon-events-blue.svg"),
-  Accommodation: require("assets/img/icon-accommodation-blue.svg"),
+  FoodAndDrinkBlue: require("assets/img/icon-food-and-drink-blue.svg"),
+  FoodAndDrink: require("assets/img/icon-food-and-drink.svg"),
+  CultureBlue: require("assets/img/icon-culture-blue.svg"),
+  Culture: require("assets/img/icon-culture.svg"),
+  NatureBlue: require("assets/img/icon-nature-blue.svg"),
+  Nature: require("assets/img/icon-nature.svg"),
+  RetailBlue: require("assets/img/icon-retail-blue.svg"),
+  Retail: require("assets/img/icon-retail.svg"),
+  NeighbourhoodsBlue: require("assets/img/icon-neighbourhoods-blue.svg"),
+  Neighbourhoods: require("assets/img/icon-neighbourhoods.svg"),
+  WellnessBlue: require("assets/img/icon-wellness-blue.svg"),
+  Wellness: require("assets/img/icon-wellness.svg"),
+  EventsBlue: require("assets/img/icon-events-blue.svg"),
+  Events: require("assets/img/icon-events.svg"),
+  AccommodationBlue: require("assets/img/icon-accommodation-blue.svg"),
+  Accommodation: require("assets/img/icon-accommodation.svg"),
+  HiddenBlue: require("assets/img/icon-hidden-blue.svg"),
   Hidden: require("assets/img/icon-hidden.svg"),
 };
 
@@ -48,8 +57,12 @@ export default function Gem(props: GemProps) {
       <Image
         source={
           props.hidden
-            ? icons["Hidden"]
-            : icons[props.gem.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+            ? icons[`Hidden${colorScheme === "light" ? "Blue" : ""}`]
+            : icons[
+                `${props.gem.data.category.replace(/ /g, "").replace("&", "And")}${
+                  colorScheme === "light" ? "Blue" : ""
+                }` as keyof typeof icons
+              ]
         }
         style={styles.icon}
       />
@@ -59,6 +72,7 @@ export default function Gem(props: GemProps) {
           style={[
             props.hidden ? styles.titleHidden : styles.title,
             { color: colorScheme === "light" ? "black" : "white" },
+            props.hidden && { backgroundColor: colorScheme === "light" ? styleVars.eaLightGrey : styleVars.eaGrey },
           ]}
           allowFontScaling={false}
         >
@@ -69,6 +83,7 @@ export default function Gem(props: GemProps) {
           style={[
             props.hidden ? styles.descriptionHidden : styles.description,
             { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey },
+            props.hidden && { backgroundColor: colorScheme === "light" ? styleVars.eaLightGrey : styleVars.eaGrey },
           ]}
           allowFontScaling={false}
         >
@@ -105,7 +120,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   titleHidden: {
-    backgroundColor: styleVars.eaLightGrey,
     width: 240,
     height: 20,
   },
@@ -115,7 +129,6 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   descriptionHidden: {
-    backgroundColor: styleVars.eaLightGrey,
     width: 128,
     height: 16,
   },

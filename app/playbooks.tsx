@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ActivityIndicator, FlatList, StyleSheet, View, Alert } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View, Alert, useColorScheme } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { PlaybookType } from "./playbook";
 import PlaybookThumb from "components/shared/PlaybookThumb";
@@ -12,6 +12,7 @@ type Data = {
 export default function Profile() {
   const params = useLocalSearchParams<{ headerTitle: string; destinationUID: string }>();
   const { headerTitle, destinationUID } = params;
+  const colorScheme = useColorScheme();
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState<Data[]>([]);
 
@@ -45,7 +46,11 @@ export default function Profile() {
       />
 
       {isLoading ? (
-        <ActivityIndicator color={styleVars.eaBlue} style={styles.loading} />
+        <ActivityIndicator
+          color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+          style={styles.loading}
+          size="large"
+        />
       ) : (
         <FlatList
           data={data}

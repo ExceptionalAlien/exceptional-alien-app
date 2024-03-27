@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Pressable, ActivityIndicator, Alert } from "react-native";
+import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
+import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { PlaybookType } from "./playbook";
 import Header from "components/gem/Header";
@@ -28,6 +29,7 @@ export type GemType = {
 export default function Gem() {
   const params = useLocalSearchParams<{ uid: string }>();
   const { uid } = params;
+  const colorScheme = useColorScheme();
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [isFav, setIsFav] = useState(false);
@@ -85,7 +87,7 @@ export default function Gem() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Stack.Screen
         options={{
           title: "",
@@ -97,7 +99,7 @@ export default function Gem() {
                   <Ionicons
                     name={isFav ? "heart" : "heart-outline"}
                     size={28}
-                    color={isFav ? styleVars.eaRed : styleVars.eaBlue}
+                    color={isFav ? styleVars.eaRed : colorScheme === "light" ? styleVars.eaBlue : "white"}
                   />
                 </Pressable>
 
@@ -105,7 +107,11 @@ export default function Gem() {
                   onPress={() => alert("Will open share sheet")}
                   style={({ pressed }) => pressedDefault(pressed)}
                 >
-                  <Ionicons name="share-outline" size={28} color={styleVars.eaBlue} />
+                  <Ionicons
+                    name="share-outline"
+                    size={28}
+                    color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+                  />
                 </Pressable>
               </View>
             ),
@@ -114,18 +120,27 @@ export default function Gem() {
 
       {isOffline ? (
         <View style={styles.offline}>
-          <Ionicons name="cloud-offline-outline" size={40} color={styleVars.eaBlue} />
+          <Ionicons
+            name="cloud-offline-outline"
+            size={40}
+            color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+          />
         </View>
       ) : isLoading ? (
-        <ActivityIndicator color={styleVars.eaBlue} size="large" style={styles.loader} />
+        <ActivityIndicator
+          color={colorScheme === "light" ? styleVars.eaBlue : "white"}
+          size="large"
+          style={styles.loader}
+        />
       ) : (
         gem && (
           <>
+            <Image source={gem.data.image.url} transition={500} style={styles.image} />
             <Header title={gem.data.title} category={gem.data.category} description={gem.data.description} />
           </>
         )
       )}
-    </View>
+    </ScrollView>
   );
 }
 
@@ -136,6 +151,10 @@ const styles = StyleSheet.create({
   headerNav: {
     flexDirection: "row",
     gap: 16,
+  },
+  image: {
+    width: "100%",
+    aspectRatio: "4/2",
   },
   offline: {
     flex: 1,

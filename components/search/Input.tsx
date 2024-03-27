@@ -15,10 +15,16 @@ export default function Input(props: InputProps) {
   const colorScheme = useColorScheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: colorScheme === "light" ? "white" : styleVars.eaGrey }]}>
-      <Ionicons name="search-outline" size={24} color={styleVars.eaBlue} />
+    <View style={[styles.container, { backgroundColor: colorScheme === "light" ? "white" : "black" }]}>
+      <Ionicons name="search-outline" size={24} color={colorScheme === "light" ? styleVars.eaBlue : "white"} />
 
-      <View style={[styles.inputWrapper, Device.deviceType === 2 && { maxWidth: 384 }]}>
+      <View
+        style={[
+          styles.inputWrapper,
+          Device.deviceType === 2 && { maxWidth: 384 },
+          { borderColor: colorScheme === "light" ? styleVars.eaBlue : "white" },
+        ]}
+      >
         <TextInput
           style={[styles.input, colorScheme === "dark" && { color: "white" }]}
           onChangeText={props.setQuery}
@@ -48,7 +54,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     borderBottomWidth: 1,
     paddingBottom: 4,
-    borderColor: styleVars.eaBlue,
   },
   input: {
     fontSize: 20,

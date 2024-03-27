@@ -9,16 +9,24 @@ type HiddenGemProps = {
   selectedGem: GemType;
 };
 
+const icons = {
+  Hidden: require("assets/img/icon-hidden.svg"),
+  HiddenBlue: require("assets/img/icon-hidden-blue.svg"),
+};
+
 export default function HiddenGem(props: HiddenGemProps) {
   const colorScheme = useColorScheme();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Image source={require("assets/img/icon-hidden.svg")} style={styles.icon} />
+        <Image source={colorScheme === "light" ? icons["HiddenBlue"] : icons["Hidden"]} style={styles.icon} />
 
         <View style={styles.text}>
-          <Text style={styles.title} allowFontScaling={false}>
+          <Text
+            style={[styles.title, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}
+            allowFontScaling={false}
+          >
             Hidden Gem
           </Text>
 
@@ -56,7 +64,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    color: styleVars.eaBlue,
     fontSize: 20,
   },
   description: {
