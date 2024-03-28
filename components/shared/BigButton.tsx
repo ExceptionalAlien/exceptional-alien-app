@@ -25,7 +25,7 @@ type BigButtonProps = {
 };
 
 const icons = {
-  playbook: require("assets/img/icon-playbook.svg"),
+  playbook: require("assets/img/icon-playbook-white.svg"),
   playbookBlue: require("assets/img/icon-playbook-blue.svg"),
   gem: require("assets/img/icon-gem-white.svg"),
   gemBlue: require("assets/img/icon-gem-blue.svg"),

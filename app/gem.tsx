@@ -10,8 +10,8 @@ import Hero from "components/gem/Hero";
 import QuoteSlider from "components/shared/QuoteSlider";
 import BigButton from "components/shared/BigButton";
 import About from "components/gem/About";
-import { storeData, getData } from "utils/helpers";
-import { pressedDefault } from "utils/helpers";
+import PlaybookSlider from "components/shared/PlaybookSlider";
+import { storeData, getData, pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type GemData = {
@@ -56,6 +56,7 @@ export default function Gem() {
 
         // Order Playbooks
         const gemPlaybooks = [];
+        const unlocked = await getData("unlockedPBs");
 
         // Locate quote from ref Playbook and position first
         if (ref) {
@@ -65,10 +66,14 @@ export default function Gem() {
           }
         }
 
-        // Add all Playbooks excluding ref (if included)
+        // Add all Playbooks excluding ref (if included) and locked
         for (let i = 0; i < json.data.playbooks.length; i++) {
           let pb = json.data.playbooks[i];
-          if (pb.playbook.uid !== ref) gemPlaybooks.push(pb);
+          if (
+            (pb.playbook.uid !== ref && !pb.playbook.data.locked) ||
+            (pb.playbook.uid !== ref && pb.playbook.data.locked && unlocked && unlocked.includes(pb.playbook.uid))
+          )
+            gemPlaybooks.push(pb);
         }
 
         setPlaybooks(gemPlaybooks as [{ playbook: PlaybookType }]);
@@ -184,6 +189,7 @@ export default function Gem() {
             />
 
             <About text={gem.data.about[0].text} website={gem.data.website.url} />
+            <PlaybookSlider playbooks={playbooks} title="Featured In" hideCTA />
           </View>
         )
       )}

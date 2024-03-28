@@ -20,11 +20,10 @@ export default function About(props: AboutProps) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 24,
+    marginVertical: 24,
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk",
     marginHorizontal: 16,
-    fontSize: 14,
   },
 });

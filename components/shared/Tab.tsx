@@ -32,6 +32,8 @@ const icons = {
   placeWhite: require("assets/img/icon-place-white.svg"),
   gem: require("assets/img/icon-gem.svg"),
   gemWhite: require("assets/img/icon-gem-white.svg"),
+  playbook: require("assets/img/icon-playbook.svg"),
+  playbookWhite: require("assets/img/icon-playbook-white.svg"),
 };
 
 export default function Tab(props: TabProps) {
@@ -57,7 +59,13 @@ export default function Tab(props: TabProps) {
       <View style={styles.iconText}>
         {props.icon && (
           <Image
-            source={icons[colorScheme === "light" ? "gem" : "gemWhite"]}
+            source={
+              icons[
+                colorScheme === "light" && !props.blueBg
+                  ? (props.icon as keyof typeof icons)
+                  : (`${props.icon}White` as keyof typeof icons)
+              ]
+            }
             style={styles.icon}
             contentFit="contain"
           />
@@ -118,7 +126,7 @@ export default function Tab(props: TabProps) {
           >
             <Ionicons
               name="globe-outline"
-              size={12}
+              size={16}
               color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
             />
 

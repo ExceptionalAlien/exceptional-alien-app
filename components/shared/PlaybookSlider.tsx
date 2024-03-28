@@ -15,6 +15,8 @@ type Data = {
 type PlaybookSliderProps = {
   destination?: DestinationType;
   playbooks?: Data[];
+  title?: string;
+  hideCTA?: boolean;
   hideTab?: boolean;
   blueBg?: boolean;
 };
@@ -70,16 +72,27 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
     <View style={{ minHeight: props.hideTab ? 176 : 208, display: isOffline ? "none" : "flex" }}>
       {!props.hideTab && (
         <Tab
-          title={props.destination ? `${props.destination.name} PLAYBOOKS` : "LATEST TRAVEL PLAYBOOKS"}
+          title={
+            props.title
+              ? props.title
+              : props.destination
+              ? `${props.destination.name} PLAYBOOKS`
+              : "LATEST TRAVEL PLAYBOOKS"
+          }
           cta="VIEW ALL"
-          route={{
-            pathname: "/playbooks",
-            params: {
-              headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
-              destinationUID: props.destination?.uid,
-            },
-          }}
+          route={
+            !props.hideCTA
+              ? {
+                  pathname: "/playbooks",
+                  params: {
+                    headerTitle: props.destination ? props.destination.name : "Latest Playbooks",
+                    destinationUID: props.destination?.uid,
+                  },
+                }
+              : undefined
+          }
           blueBg={props.blueBg}
+          icon="playbook"
         />
       )}
 
