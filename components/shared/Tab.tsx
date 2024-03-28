@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Text, Pressable, useColorScheme } from "react-native";
+import { StyleSheet, View, Text, Pressable, useColorScheme, Linking } from "react-native";
 import { useRouter } from "expo-router";
 import { Image } from "expo-image";
 import { Href } from "expo-router/build/link/href";
@@ -24,6 +24,7 @@ type TabProps = {
   destination?: string;
   blueBg?: boolean;
   icon?: string;
+  url?: string;
 };
 
 const icons = {
@@ -89,17 +90,36 @@ export default function Tab(props: TabProps) {
             color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
           />
         </Pressable>
+      ) : props.destination ? (
+        <Pressable
+          onPress={destinationClick}
+          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+          hitSlop={8}
+        >
+          <Image
+            source={icons[colorScheme === "light" ? "place" : "placeWhite"]}
+            style={[styles.icon, { width: 12 }]}
+            contentFit="contain"
+          />
+
+          <Text
+            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
+            allowFontScaling={false}
+          >
+            {props.cta}
+          </Text>
+        </Pressable>
       ) : (
-        props.destination && (
+        props.url && (
           <Pressable
-            onPress={destinationClick}
+            onPress={() => Linking.openURL(props.url as string)}
             style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
             hitSlop={8}
           >
-            <Image
-              source={icons[colorScheme === "light" ? "place" : "placeWhite"]}
-              style={[styles.icon, { width: 12 }]}
-              contentFit="contain"
+            <Ionicons
+              name="globe-outline"
+              size={12}
+              color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
             />
 
             <Text

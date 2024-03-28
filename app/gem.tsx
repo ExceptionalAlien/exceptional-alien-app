@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
 import { Ionicons } from "@expo/vector-icons";
@@ -8,6 +9,7 @@ import Title from "components/gem/Title";
 import Hero from "components/gem/Hero";
 import QuoteSlider from "components/shared/QuoteSlider";
 import BigButton from "components/shared/BigButton";
+import About from "components/gem/About";
 import { storeData, getData } from "utils/helpers";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
@@ -21,7 +23,7 @@ type GemData = {
   playbooks: [{ playbook: PlaybookType }];
   image: { url: string };
   about: [{ text: string }];
-  website: string;
+  website: { url: string };
 };
 
 export type GemType = {
@@ -34,6 +36,7 @@ export default function Gem() {
   const params = useLocalSearchParams<{ uid: string; ref?: string }>();
   const { uid, ref } = params;
   const colorScheme = useColorScheme();
+  const insets = useSafeAreaInsets();
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [isFav, setIsFav] = useState(false);
@@ -111,7 +114,7 @@ export default function Gem() {
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={isLoading && { flex: 1 }}>
       <Stack.Screen
         options={{
           title: "Gem",
@@ -160,9 +163,15 @@ export default function Gem() {
         gem &&
         playbooks &&
         playbooks.length && (
-          <>
+          <View style={{ paddingBottom: insets.bottom + 16 }}>
             <Hero url={gem.data.image.url} />
-            <Title text={gem.data.title} category={gem.data.category} description={gem.data.description} />
+
+            <Title
+              text={gem.data.title}
+              category={gem.data.category}
+              description={gem.data.description}
+              address={gem.data.address}
+            />
 
             <View style={styles.quotes}>
               <QuoteSlider gem={uid as string} playbooks={playbooks} />
@@ -174,8 +183,8 @@ export default function Gem() {
               alert="Will ask which Playbook to add Gem to or create a new Playbook"
             />
 
-            <Text style={styles.about}>{gem.data.about[0].text}</Text>
-          </>
+            <About text={gem.data.about[0].text} website={gem.data.website.url} />
+          </View>
         )
       )}
     </ScrollView>
@@ -183,9 +192,6 @@ export default function Gem() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   headerBar: {
     flexDirection: "row",
     gap: 16,
@@ -193,11 +199,6 @@ const styles = StyleSheet.create({
   quotes: {
     marginTop: 8,
     marginBottom: 24,
-  },
-  about: {
-    margin: 16,
-    fontSize: 16,
-    fontFamily: "Neue-Haas-Grotesk",
   },
   offline: {
     flex: 1,

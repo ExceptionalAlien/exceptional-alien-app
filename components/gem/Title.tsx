@@ -1,12 +1,15 @@
 import React from "react";
-import { StyleSheet, View, Text, useColorScheme } from "react-native";
+import { StyleSheet, View, Text, useColorScheme, Pressable, Platform, Linking } from "react-native";
 import { Image } from "expo-image";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { styleVars } from "utils/styles";
+import { pressedDefault } from "utils/helpers";
 
 type TitleProps = {
   text: string;
   category: string;
   description: string;
+  address: string;
 };
 
 const icons = {
@@ -31,6 +34,15 @@ const icons = {
 export default function Title(props: TitleProps) {
   const colorScheme = useColorScheme();
 
+  const openMaps = () => {
+    const url = Platform.select({
+      ios: `maps:0,0?q=${props.address}`,
+      android: `geo:0,0?q=${props.address}`,
+    });
+
+    Linking.openURL(url as string);
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -53,11 +65,25 @@ export default function Title(props: TitleProps) {
         </Text>
 
         <Text
-          style={[styles.description, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
+          style={[styles.description, { color: colorScheme === "light" ? "black" : "white" }]}
           allowFontScaling={false}
         >
           {props.description}
         </Text>
+
+        <Pressable onPress={openMaps} style={({ pressed }) => pressedDefault(pressed)} hitSlop={8}>
+          <Text
+            style={[styles.address, { color: colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey }]}
+            allowFontScaling={false}
+          >
+            {props.address}{" "}
+            <MaterialCommunityIcons
+              name="arrow-u-right-top"
+              size={16}
+              color={colorScheme === "light" ? styleVars.eaGrey : styleVars.eaLightGrey}
+            />
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -79,10 +105,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 24,
+    fontSize: 20,
   },
   description: {
     fontFamily: "Neue-Haas-Grotesk",
-    fontSize: 18,
+    fontSize: 16,
+    lineHeight: 16,
+  },
+  address: {
+    fontFamily: "Neue-Haas-Grotesk",
+    fontSize: 14,
   },
 });
