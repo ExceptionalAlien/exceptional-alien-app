@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Neue-Haas-Grotesk",
     marginHorizontal: 16,
+    fontSize: 16,
   },
 });
