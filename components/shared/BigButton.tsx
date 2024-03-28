@@ -57,18 +57,14 @@ export default function BigButton(props: BigButtonProps) {
         hitSlop={8}
         disabled={props.disabled ? true : false}
       >
-        {props.icon === "map" ? (
-          <Ionicons name="map-outline" size={20} color="white" style={styles.icon} />
-        ) : props.icon === "lock" ? (
-          <Ionicons name="lock-closed" size={20} color="white" style={styles.icon} />
+        {props.icon === "gem" || props.icon === "playbook" ? (
+          <Image
+            source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : ""}` as keyof typeof icons]}
+            style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
+            contentFit="contain"
+          />
         ) : (
-          props.icon && (
-            <Image
-              source={icons[`${props.icon}${props.bgColor === "white" ? "Blue" : ""}` as keyof typeof icons]}
-              style={[styles.icon, props.icon === "playbook" && { width: 28 }]}
-              contentFit="contain"
-            />
-          )
+          props.icon && <Ionicons name={props.icon as any} size={20} color="white" style={styles.icon} />
         )}
 
         <Text

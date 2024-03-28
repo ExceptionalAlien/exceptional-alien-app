@@ -254,7 +254,7 @@ export default function Playbook() {
 
                 <BigButton
                   title="View on Map"
-                  icon="map"
+                  icon="map-outline"
                   disabled={isUnlocked ? false : true}
                   alert="Will filter map and only show Gems included in this Playbook"
                 />

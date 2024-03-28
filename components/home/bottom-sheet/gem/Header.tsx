@@ -127,9 +127,18 @@ export default function Header(props: HeaderProps) {
         </View>
       </View>
 
-      <Pressable onPress={toggleFav} style={({ pressed }) => [pressedDefault(pressed), styles.fav]}>
-        <Ionicons name={isFav ? "heart" : "heart-outline"} size={28} color={isFav ? styleVars.eaRed : "white"} />
-      </Pressable>
+      <View style={styles.toolbar}>
+        <Pressable
+          onPress={() => alert("Will ask which Playbook to add Gem to or create a new Playbook")}
+          style={({ pressed }) => pressedDefault(pressed)}
+        >
+          <Ionicons name="add-circle-outline" size={28} color="white" />
+        </Pressable>
+
+        <Pressable onPress={toggleFav} style={({ pressed }) => pressedDefault(pressed)}>
+          <Ionicons name={isFav ? "heart" : "heart-outline"} size={28} color={isFav ? styleVars.eaRed : "white"} />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -186,9 +195,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: styleVars.eaLightGrey,
   },
-  fav: {
+  toolbar: {
     position: "absolute",
     right: 0,
     padding: 8,
+    flexDirection: "row",
+    gap: 12,
   },
 });

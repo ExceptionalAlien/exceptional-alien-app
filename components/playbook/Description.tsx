@@ -38,7 +38,9 @@ export default function Description(props: DescriptionProps) {
         </View>
       )}
 
-      {props.locked && <BigButton title="Unlock" icon="lock" price="4.99" alert="Will trigger in app purchase" />}
+      {props.locked && (
+        <BigButton title="Unlock" icon="lock-closed" price="4.99" alert="Will trigger in app purchase" />
+      )}
     </View>
   );
 }

@@ -118,7 +118,7 @@ export default function Gem() {
           headerLargeTitle: false,
           headerRight: () =>
             gem && (
-              <View style={styles.headerNav}>
+              <View style={styles.headerBar}>
                 <Pressable onPress={toggleFav} style={({ pressed }) => pressedDefault(pressed)}>
                   <Ionicons
                     name={isFav ? "heart" : "heart-outline"}
@@ -170,7 +170,7 @@ export default function Gem() {
 
             <BigButton
               title="Add to Playbook"
-              icon="playbook"
+              icon="add-circle-outline"
               alert="Will ask which Playbook to add Gem to or create a new Playbook"
             />
 
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  headerNav: {
+  headerBar: {
     flexDirection: "row",
     gap: 16,
   },
