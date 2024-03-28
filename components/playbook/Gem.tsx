@@ -12,6 +12,7 @@ import { pressedDefault } from "utils/helpers";
 type GemProps = {
   gem: GemType;
   hidden: boolean;
+  playbook: string;
   creator?: CreatorType;
 };
 
@@ -47,6 +48,7 @@ export default function Gem(props: GemProps) {
           pathname: "/gem",
           params: {
             uid: props.gem.uid,
+            ref: props.playbook,
           },
         })
       }

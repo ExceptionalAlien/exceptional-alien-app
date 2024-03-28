@@ -3,8 +3,8 @@ import { StyleSheet, View, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
 import { styleVars } from "utils/styles";
 
-type HeaderProps = {
-  title: string;
+type TitleProps = {
+  text: string;
   category: string;
   description: string;
 };
@@ -28,7 +28,7 @@ const icons = {
   Accommodation: require("assets/img/icon-accommodation.svg"),
 };
 
-export default function Header(props: HeaderProps) {
+export default function Title(props: TitleProps) {
   const colorScheme = useColorScheme();
 
   return (
@@ -49,7 +49,7 @@ export default function Header(props: HeaderProps) {
           style={[styles.title, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}
           allowFontScaling={false}
         >
-          {props.title}
+          {props.text}
         </Text>
 
         <Text

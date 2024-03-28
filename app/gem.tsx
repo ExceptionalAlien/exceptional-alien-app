@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme } from "react-native";
+import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme, Text } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
-import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { PlaybookType } from "./playbook";
-import Header from "components/gem/Header";
+import Title from "components/gem/Title";
+import Hero from "components/gem/Hero";
+import QuoteSlider from "components/shared/QuoteSlider";
+import BigButton from "components/shared/BigButton";
 import { storeData, getData } from "utils/helpers";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
@@ -18,6 +20,8 @@ type GemData = {
   location: { latitude: number; longitude: number };
   playbooks: [{ playbook: PlaybookType }];
   image: { url: string };
+  about: [{ text: string }];
+  website: string;
 };
 
 export type GemType = {
@@ -27,13 +31,14 @@ export type GemType = {
 };
 
 export default function Gem() {
-  const params = useLocalSearchParams<{ uid: string }>();
-  const { uid } = params;
+  const params = useLocalSearchParams<{ uid: string; ref?: string }>();
+  const { uid, ref } = params;
   const colorScheme = useColorScheme();
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [isFav, setIsFav] = useState(false);
   const [gem, setGem] = useState<GemType>();
+  const [playbooks, setPlaybooks] = useState<[{ playbook: PlaybookType }]>();
 
   const getGem = async () => {
     const network = await Network.getNetworkStateAsync();
@@ -45,6 +50,25 @@ export default function Gem() {
         const response = await fetch(`https://www.exceptionalalien.com/api/gem/${uid}`);
         const json = await response.json();
         setGem(json);
+
+        // Order Playbooks
+        const gemPlaybooks = [];
+
+        // Locate quote from ref Playbook and position first
+        if (ref) {
+          for (let i = 0; i < json.data.playbooks.length; i++) {
+            let pb = json.data.playbooks[i];
+            if (pb.playbook.uid === ref) gemPlaybooks.push(pb);
+          }
+        }
+
+        // Add all Playbooks excluding ref (if included)
+        for (let i = 0; i < json.data.playbooks.length; i++) {
+          let pb = json.data.playbooks[i];
+          if (pb.playbook.uid !== ref) gemPlaybooks.push(pb);
+        }
+
+        setPlaybooks(gemPlaybooks as [{ playbook: PlaybookType }]);
       } catch (error) {
         console.error(error);
         Alert.alert("Error", "Unable to load Gem");
@@ -90,7 +114,7 @@ export default function Gem() {
     <ScrollView contentContainerStyle={styles.container}>
       <Stack.Screen
         options={{
-          title: "",
+          title: "Gem",
           headerLargeTitle: false,
           headerRight: () =>
             gem && (
@@ -133,10 +157,24 @@ export default function Gem() {
           style={styles.loader}
         />
       ) : (
-        gem && (
+        gem &&
+        playbooks &&
+        playbooks.length && (
           <>
-            <Image source={gem.data.image.url} transition={500} style={styles.image} />
-            <Header title={gem.data.title} category={gem.data.category} description={gem.data.description} />
+            <Hero url={gem.data.image.url} />
+            <Title text={gem.data.title} category={gem.data.category} description={gem.data.description} />
+
+            <View style={styles.quotes}>
+              <QuoteSlider gem={uid as string} playbooks={playbooks} />
+            </View>
+
+            <BigButton
+              title="Add to Playbook"
+              icon="playbook"
+              alert="Will ask which Playbook to add Gem to or create a new Playbook"
+            />
+
+            <Text style={styles.about}>{gem.data.about[0].text}</Text>
           </>
         )
       )}
@@ -152,9 +190,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 16,
   },
-  image: {
-    width: "100%",
-    aspectRatio: "4/2",
+  quotes: {
+    marginTop: 8,
+    marginBottom: 24,
+  },
+  about: {
+    margin: 16,
+    fontSize: 16,
+    fontFamily: "Neue-Haas-Grotesk",
   },
   offline: {
     flex: 1,

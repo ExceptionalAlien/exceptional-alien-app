@@ -43,6 +43,7 @@ type QuoteSliderProps = {
 
 export default function QuoteSlider(props: QuoteSliderProps) {
   const [quotes, setQuotes] = useState<Slice[]>([]);
+  const [mounted, setMounted] = useState(false);
 
   const getQuotes = async () => {
     const playbookQuotes: Slice[] = [];
@@ -69,33 +70,39 @@ export default function QuoteSlider(props: QuoteSliderProps) {
     }
 
     setQuotes(playbookQuotes);
+    setMounted(true);
   };
 
   useEffect(() => {
+    setMounted(false);
     getQuotes();
   }, [props.gem]);
 
   return (
-    <FlatList
-      data={quotes}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <Quote slice={item.primary} />}
-      horizontal
-      decelerationRate="fast"
-      snapToInterval={248}
-      contentContainerStyle={{
-        gap: 8,
-        paddingLeft: 16,
-        paddingRight: 16,
-        minWidth: "100%",
-      }}
-      showsHorizontalScrollIndicator={false}
-      style={!quotes.length && { display: "none" }}
-    />
+    <View style={[styles.container, !quotes.length && mounted && { display: "none" }]}>
+      <FlatList
+        data={quotes}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <Quote slice={item.primary} />}
+        horizontal
+        decelerationRate="fast"
+        snapToInterval={248}
+        contentContainerStyle={{
+          gap: 8,
+          paddingLeft: 16,
+          paddingRight: 16,
+          minWidth: "100%",
+        }}
+        showsHorizontalScrollIndicator={false}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: 240,
+  },
   quote: {
     borderWidth: 1,
     padding: 8,

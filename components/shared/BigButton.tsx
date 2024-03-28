@@ -10,7 +10,7 @@ import { styleVars } from "utils/styles";
 
 type BigButtonRoute = {
   pathname: string;
-  params: { uid: string };
+  params?: { uid: string };
 };
 
 type BigButtonProps = {

@@ -140,7 +140,7 @@ export default function Playbook() {
 
       <Stack.Screen
         options={{
-          title: "",
+          title: "Playbook",
           headerTransparent: true,
           headerLargeTitle: false,
           headerStyle: {
@@ -241,6 +241,7 @@ export default function Playbook() {
                       key={index}
                       gem={item.primary.gem}
                       hidden={isUnlocked ? false : true}
+                      playbook={playbook.uid}
                       creator={
                         curators && item.primary.creator.data && curators.length !== 1
                           ? item.primary.creator

@@ -1397,13 +1397,13 @@
     "name": "Regional Victoria",
     "uid": "regional-victoria",
     "keywords": "Australia VIC Victoria",
-    "lat": -36.984781,
-    "lng": 143.390607,
+    "lat": -36.757016,
+    "lng": 144.279391,
     "bounds": {
-      "latitudeStart": -39.198361,
-      "longitudeStart": 140.961859,
-      "latitudeEnd": -33.98065,
-      "longitudeEnd": 149.976499
+      "latitudeStart": -36.833285,
+      "longitudeStart": 144.183904,
+      "latitudeEnd": -36.641032,
+      "longitudeEnd": 144.380745
     }
   },
   {
