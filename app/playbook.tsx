@@ -221,6 +221,7 @@ export default function Playbook() {
                   },
                 ]}
                 onTouchStart={() => setIsScrolling(true)}
+                onTouchEnd={() => setIsScrolling(false)}
               >
                 <Description
                   text={playbook.data.description[0].text}
