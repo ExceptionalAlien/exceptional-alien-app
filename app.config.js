@@ -17,7 +17,9 @@ module.exports = ({ config }) => {
       package: "com.exceptionalalien.app",
       versionCode: 1,
       config: {
-        googleMapsApiKey: process.env.MAPS_ANDROID_API_KEY,
+        googleMaps: {
+          apiKey: process.env.MAPS_ANDROID_API_KEY,
+        },
       },
     },
   };
