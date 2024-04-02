@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, Pressable, Alert, Linking } from "react-native";
 import * as Location from "expo-location";
 import * as Network from "expo-network";
+import { useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView from "react-native-maps";
 import { DestinationType } from "context/destination";
@@ -17,11 +18,7 @@ type ControlsProps = {
 };
 
 export default function Controls(props: ControlsProps) {
-  const options = () => {
-    alert(
-      "WIP - will show filters including Gem categories, favourite Playbooks only and option to only show Playbooks you created"
-    );
-  };
+  const router = useRouter();
 
   const locate = async () => {
     props.setIsLoading(true);
@@ -72,8 +69,12 @@ export default function Controls(props: ControlsProps) {
 
   return (
     <View style={styles.container}>
-      {/* Options */}
-      <Pressable onPress={options} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={6}>
+      {/* Filters */}
+      <Pressable
+        onPress={() => router.push("/filters")}
+        style={({ pressed }) => [pressedDefault(pressed), styles.button]}
+        hitSlop={6}
+      >
         <Ionicons name="options-outline" size={24} color="black" />
       </Pressable>
 

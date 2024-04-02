@@ -60,7 +60,14 @@ export default function Layout() {
                 backgroundColor: colorScheme === "light" ? "white" : "black",
               },
             }}
-          />
+          >
+            <Stack.Screen
+              name="filters"
+              options={{
+                presentation: "modal",
+              }}
+            />
+          </Stack>
         </GestureHandlerRootView>
       </FavsContext.Provider>
     </DestinationContext.Provider>
