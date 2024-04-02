@@ -24,20 +24,36 @@ type MapProps = {
 const icons = {
   FoodAndDrink: require("assets/img/markers/food-and-drink.png"),
   FoodAndDrinkSelected: require("assets/img/markers/food-and-drink-selected.png"),
+  FoodAndDrinkFav: require("assets/img/markers/food-and-drink-fav.png"),
+  FoodAndDrinkSelectedFav: require("assets/img/markers/food-and-drink-selected-fav.png"),
   Culture: require("assets/img/markers/culture.png"),
   CultureSelected: require("assets/img/markers/culture-selected.png"),
+  CultureFav: require("assets/img/markers/culture-fav.png"),
+  CultureSelectedFav: require("assets/img/markers/culture-selected-fav.png"),
   Nature: require("assets/img/markers/nature.png"),
   NatureSelected: require("assets/img/markers/nature-selected.png"),
+  NatureFav: require("assets/img/markers/nature-fav.png"),
+  NatureSelectedFav: require("assets/img/markers/nature-selected-fav.png"),
   Retail: require("assets/img/markers/retail.png"),
   RetailSelected: require("assets/img/markers/retail-selected.png"),
+  RetailFav: require("assets/img/markers/retail-fav.png"),
+  RetailSelectedFav: require("assets/img/markers/retail-selected-fav.png"),
   Neighbourhoods: require("assets/img/markers/neighbourhoods.png"),
   NeighbourhoodsSelected: require("assets/img/markers/neighbourhoods-selected.png"),
+  NeighbourhoodsFav: require("assets/img/markers/neighbourhoods-fav.png"),
+  NeighbourhoodsSelectedFav: require("assets/img/markers/neighbourhoods-selected-fav.png"),
   Wellness: require("assets/img/markers/wellness.png"),
   WellnessSelected: require("assets/img/markers/wellness-selected.png"),
+  WellnessFav: require("assets/img/markers/wellness-fav.png"),
+  WellnessSelectedFav: require("assets/img/markers/wellness-selected-fav.png"),
   Events: require("assets/img/markers/events.png"),
   EventsSelected: require("assets/img/markers/events-selected.png"),
+  EventsFav: require("assets/img/markers/events-fav.png"),
+  EventsSelectedFav: require("assets/img/markers/events-selected-fav.png"),
   Accommodation: require("assets/img/markers/accommodation.png"),
   AccommodationSelected: require("assets/img/markers/accommodation-selected.png"),
+  AccommodationFav: require("assets/img/markers/accommodation-fav.png"),
+  AccommodationSelectedFav: require("assets/img/markers/accommodation-selected-fav.png"),
   Hidden: require("assets/img/markers/hidden.png"),
   HiddenSelected: require("assets/img/markers/hidden-selected.png"),
 };
@@ -64,6 +80,7 @@ export default function Map(props: MapProps) {
       // Online
       try {
         const unlocked = await getData("unlockedPBs");
+        const favs = await getData("favs");
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const json = await response.json();
 
@@ -93,6 +110,7 @@ export default function Map(props: MapProps) {
               hiddenGems.current.push(gem);
             }
 
+            if (favs && favs.includes(gem.uid)) gem.fav = true; // Gem is a favourite
             if (gem.data.location.latitude && gem.data.location.longitude) gems.push(gem);
           }
 
@@ -208,8 +226,16 @@ export default function Map(props: MapProps) {
                     : item.hidden
                     ? icons["Hidden"]
                     : props.selectedGem?.uid === item.uid
-                    ? icons[`${item.data.category.replace(/ /g, "").replace("&", "And")}Selected` as keyof typeof icons]
-                    : icons[item.data.category.replace(/ /g, "").replace("&", "And") as keyof typeof icons]
+                    ? icons[
+                        `${item.data.category.replace(/ /g, "").replace("&", "And")}Selected${
+                          item.fav ? "Fav" : ""
+                        }` as keyof typeof icons
+                      ]
+                    : icons[
+                        `${item.data.category.replace(/ /g, "").replace("&", "And")}${
+                          item.fav ? "Fav" : ""
+                        }` as keyof typeof icons
+                      ]
                 }
                 tracksViewChanges={false}
                 onPress={() => pressed(item)}

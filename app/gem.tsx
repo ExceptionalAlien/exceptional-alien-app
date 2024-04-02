@@ -30,6 +30,7 @@ export type GemType = {
   uid: string;
   data: GemData;
   hidden: boolean;
+  fav: boolean;
 };
 
 export default function Gem() {
