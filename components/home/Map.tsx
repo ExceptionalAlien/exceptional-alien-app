@@ -87,59 +87,39 @@ export default function Map(props: MapProps) {
         const favs = await getData("favs");
         setFavs(favs); // Init
 
-        mapRef.current
-          ?.getMapBoundaries()
-          .then((bounds) => {
-            if (id === mountedID.current) {
-              const gems = [];
-              var visibleCount = 0;
+        if (id === mountedID.current) {
+          const gems = [];
 
-              // Loop all returned Gems
-              for (let i = 0; i < json.length; i++) {
-                let gem = json[i];
-                let hiddenPBCount = 0;
+          // Loop all returned Gems
+          for (let i = 0; i < json.length; i++) {
+            let gem = json[i];
+            let hiddenPBCount = 0;
 
-                // Loop Playbooks Gem is featured in
-                for (let i = 0; i < gem.data.playbooks.length; i++) {
-                  if (
-                    (!unlocked && gem.data.playbooks[i].playbook.uid && gem.data.playbooks[i].playbook.data.locked) ||
-                    (unlocked &&
-                      gem.data.playbooks[i].playbook.uid &&
-                      gem.data.playbooks[i].playbook.data.locked &&
-                      !unlocked.includes(gem.data.playbooks[i].playbook.uid))
-                  )
-                    hiddenPBCount++; // Playbook is locked
-                }
-
-                if (gem.data.playbooks.length && hiddenPBCount === gem.data.playbooks.length) {
-                  // Gem is only featured in locked Playbooks
-                  gem.hidden = true;
-                  hiddenGems.current.push(gem);
-                }
-
-                if (gem.data.location.latitude && gem.data.location.longitude) {
-                  let lat = gem.data.location.latitude;
-                  let lng = gem.data.location.longitude;
-
-                  // Count if Gem is visible on map
-                  if (
-                    lat >= bounds.southWest.latitude &&
-                    lat <= bounds.northEast.latitude &&
-                    lng >= bounds.southWest.longitude &&
-                    lng <= bounds.northEast.longitude
-                  )
-                    visibleCount++;
-
-                  gems.push(gem);
-                }
-              }
-
-              setData(gems);
-              detectHiddenGems();
-              if (visibleCount <= 1) mapRef.current?.animateCamera({ zoom: visibleCount === 1 ? 14 : 12 }); // Zoom out if 1 or less Gems visible on map
+            // Loop Playbooks Gem is featured in
+            for (let i = 0; i < gem.data.playbooks.length; i++) {
+              if (
+                (!unlocked && gem.data.playbooks[i].playbook.uid && gem.data.playbooks[i].playbook.data.locked) ||
+                (unlocked &&
+                  gem.data.playbooks[i].playbook.uid &&
+                  gem.data.playbooks[i].playbook.data.locked &&
+                  !unlocked.includes(gem.data.playbooks[i].playbook.uid))
+              )
+                hiddenPBCount++; // Playbook is locked
             }
-          })
-          .catch((err) => console.log(err));
+
+            if (gem.data.playbooks.length && hiddenPBCount === gem.data.playbooks.length) {
+              // Gem is only featured in locked Playbooks
+              gem.hidden = true;
+              hiddenGems.current.push(gem);
+            }
+
+            if (gem.data.location.latitude && gem.data.location.longitude) gems.push(gem);
+          }
+
+          setData(gems);
+          detectHiddenGems();
+          autoZoom(gems); // Zoom out if 1 or less Gems visible on map
+        }
       } catch (error) {
         if (id === mountedID.current) {
           console.error(error);
@@ -152,6 +132,31 @@ export default function Map(props: MapProps) {
       // Offline - do not load Gems
       if (id === mountedID.current) setIsLoading(false);
     }
+  };
+
+  const autoZoom = (gems: GemType[]) => {
+    var visibleCount = 0;
+
+    mapRef.current
+      ?.getMapBoundaries()
+      .then((bounds) => {
+        for (let i = 0; i < gems.length; i++) {
+          let gem = gems[i];
+          let lat = gem.data.location.latitude;
+          let lng = gem.data.location.longitude;
+
+          if (
+            lat >= bounds.southWest.latitude &&
+            lat <= bounds.northEast.latitude &&
+            lng >= bounds.southWest.longitude &&
+            lng <= bounds.northEast.longitude
+          )
+            visibleCount++;
+        }
+
+        if (visibleCount <= 1) mapRef.current?.animateCamera({ zoom: visibleCount === 1 ? 12.5 : 10 });
+      })
+      .catch((err) => console.log(err));
   };
 
   const setBounds = () => {
