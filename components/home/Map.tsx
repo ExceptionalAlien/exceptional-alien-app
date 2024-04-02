@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
+import { FavsContext, FavsContextType } from "context/favs";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenGemsDetected from "./map/HiddenGemsDetected";
@@ -60,6 +61,7 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
+  const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
@@ -80,9 +82,10 @@ export default function Map(props: MapProps) {
       // Online
       try {
         const unlocked = await getData("unlockedPBs");
-        const favs = await getData("favs");
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const json = await response.json();
+        const favs = await getData("favs");
+        setFavs(favs); // Init
 
         if (id === mountedID.current) {
           const gems = [];
@@ -110,7 +113,6 @@ export default function Map(props: MapProps) {
               hiddenGems.current.push(gem);
             }
 
-            if (favs && favs.includes(gem.uid)) gem.fav = true; // Gem is a favourite
             if (gem.data.location.latitude && gem.data.location.longitude) gems.push(gem);
           }
 
@@ -228,12 +230,12 @@ export default function Map(props: MapProps) {
                     : props.selectedGem?.uid === item.uid
                     ? icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}Selected${
-                          item.fav ? "Fav" : ""
+                          favs?.includes(item.uid) ? "Fav" : ""
                         }` as keyof typeof icons
                       ]
                     : icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}${
-                          item.fav ? "Fav" : ""
+                          favs?.includes(item.uid) ? "Fav" : ""
                         }` as keyof typeof icons
                       ]
                 }

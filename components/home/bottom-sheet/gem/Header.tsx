@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -12,13 +12,12 @@ import {
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Device from "expo-device";
-import { useNavigation } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FavsContext, FavsContextType } from "context/favs";
 import { GemType } from "app/gem";
-import { storeData, getData } from "utils/helpers";
+import { storeData, getData, pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
-import { pressedDefault } from "utils/helpers";
 
 type HeaderProps = {
   gem: GemType;
@@ -37,7 +36,7 @@ const icons = {
 
 export default function Header(props: HeaderProps) {
   const { width, height } = useWindowDimensions();
-  const navigation = useNavigation<any>();
+  const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const [isFav, setIsFav] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -56,7 +55,8 @@ export default function Header(props: HeaderProps) {
       setIsFav(true);
     }
 
-    storeData("favs", updated);
+    storeData("favs", updated); // Store
+    setFavs(updated); // Update context
   };
 
   const setFav = async () => {
@@ -74,13 +74,8 @@ export default function Header(props: HeaderProps) {
   };
 
   useEffect(() => {
-    const focus = navigation.addListener("focus", () => {
-      setFav();
-    });
-
     setFav();
-    return focus;
-  }, [props.gem]);
+  }, [props.gem, favs]);
 
   return (
     <View style={{ aspectRatio: Device.deviceType !== 2 ? "4/2" : width >= height ? "6/1" : "5/2" }}>

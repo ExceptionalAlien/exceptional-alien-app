@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, ScrollView, Pressable, ActivityIndicator, Alert, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams } from "expo-router";
 import * as Network from "expo-network";
 import { Ionicons } from "@expo/vector-icons";
+import { FavsContext, FavsContextType } from "context/favs";
 import { PlaybookType } from "./playbook";
 import Title from "components/gem/Title";
 import Hero from "components/gem/Hero";
@@ -38,6 +39,7 @@ export default function Gem() {
   const { uid, ref } = params;
   const colorScheme = useColorScheme();
   const insets = useSafeAreaInsets();
+  const { setFavs } = useContext<FavsContextType>(FavsContext);
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [isFav, setIsFav] = useState(false);
@@ -105,7 +107,8 @@ export default function Gem() {
       setIsFav(true);
     }
 
-    storeData("favs", updated);
+    storeData("favs", updated); // Store
+    setFavs(updated); // Update context
   };
 
   const setFav = async () => {
