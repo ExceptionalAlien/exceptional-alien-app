@@ -118,7 +118,7 @@ export default function Map(props: MapProps) {
 
           setData(gems);
           detectHiddenGems();
-          autoZoom(gems); // Zoom out if 1 or less Gems visible on map
+          autoZoom(gems, 12, id); // Zoom out if 1 or less Gems visible on map
         }
       } catch (error) {
         if (id === mountedID.current) {
@@ -134,12 +134,13 @@ export default function Map(props: MapProps) {
     }
   };
 
-  const autoZoom = (gems: GemType[]) => {
+  const autoZoom = (gems: GemType[], zoom: number, id: string) => {
     var visibleCount = 0;
 
     mapRef.current
       ?.getMapBoundaries()
       .then((bounds) => {
+        // Loop Gems and check if currently visible on map
         for (let i = 0; i < gems.length; i++) {
           let gem = gems[i];
           let lat = gem.data.location.latitude;
@@ -154,7 +155,17 @@ export default function Map(props: MapProps) {
             visibleCount++;
         }
 
-        if (visibleCount <= 1) mapRef.current?.animateCamera({ zoom: visibleCount === 1 ? 12.5 : 10 });
+        if (visibleCount <= 1) {
+          mapRef.current?.animateCamera({ zoom: zoom });
+
+          setTimeout(() => {
+            if (id === mountedID.current && zoom === 12) {
+              autoZoom(gems, 10, id); // Zoom more if needed
+            } else if (id === mountedID.current) {
+              setBounds(); // Show all Gems
+            }
+          }, 750);
+        }
       })
       .catch((err) => console.log(err));
   };

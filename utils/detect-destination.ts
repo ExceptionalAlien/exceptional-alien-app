@@ -16,6 +16,12 @@ export const detectDestination = (lat: number, lng: number, latDelta?: number, l
       latitudeDelta: latDelta ? latDelta : 0.015,
       longitudeDelta: lngDelta ? lngDelta : 0.015,
     },
+    bounds: {
+      latitudeStart: 0,
+      longitudeStart: 0,
+      latitudeEnd: 0,
+      longitudeEnd: 0,
+    },
   };
 
   // Loop destinations and detect if device is within a destination's bounds
@@ -31,6 +37,7 @@ export const detectDestination = (lat: number, lng: number, latDelta?: number, l
       userDestination.id = json[i].id;
       userDestination.name = json[i].name;
       userDestination.uid = json[i].uid;
+      userDestination.bounds = json[i].bounds;
       break;
     }
   }

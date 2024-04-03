@@ -65,6 +65,7 @@ export default function Layout() {
               name="filters"
               options={{
                 presentation: "modal",
+                headerLargeTitle: false,
               }}
             />
           </Stack>
