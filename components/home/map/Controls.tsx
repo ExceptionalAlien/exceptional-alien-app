@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View, Pressable, Alert, Linking } from "react-native";
 import * as Location from "expo-location";
 import * as Network from "expo-network";
@@ -6,6 +6,7 @@ import { useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView from "react-native-maps";
 import { DestinationType } from "context/destination";
+import { FiltersContext, FiltersContextType } from "context/filters";
 import { pressedDefault } from "utils/helpers";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -19,6 +20,7 @@ type ControlsProps = {
 
 export default function Controls(props: ControlsProps) {
   const router = useRouter();
+  const { filters } = useContext<FiltersContextType>(FiltersContext);
 
   const locate = async () => {
     props.setIsLoading(true);
@@ -82,6 +84,8 @@ export default function Controls(props: ControlsProps) {
       <Pressable onPress={locate} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={6}>
         <Ionicons name="locate-outline" size={24} color="black" />
       </Pressable>
+
+      {filters.categories.length >= 1 && <View style={styles.indicator}></View>}
     </View>
   );
 }
@@ -94,6 +98,15 @@ const styles = StyleSheet.create({
     marginRight: 12,
     marginBottom: 12,
     gap: 12,
+  },
+  indicator: {
+    position: "absolute",
+    width: 8,
+    height: 8,
+    backgroundColor: styleVars.eaRed,
+    borderRadius: 999,
+    right: 0,
+    margin: 2,
   },
   button: {
     backgroundColor: styleVars.eaLightGrey,

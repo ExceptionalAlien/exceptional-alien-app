@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { StyleSheet, Pressable, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
-import { FiltersContext, FiltersContextType, FiltersType } from "context/filters";
+import { FiltersContext, FiltersContextType } from "context/filters";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 

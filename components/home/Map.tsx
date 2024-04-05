@@ -4,6 +4,7 @@ import * as Network from "expo-network";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
+import { FiltersContext, FiltersContextType } from "context/filters";
 import { FavsContext, FavsContextType } from "context/favs";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
@@ -61,6 +62,7 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
+  const { filters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
@@ -253,7 +255,15 @@ export default function Map(props: MapProps) {
         }}
       >
         {data.map((item, index) => {
-          if (!item.hidden || (item.hidden && visibleHiddenGems.includes(item.uid))) {
+          if (
+            (!item.hidden && !filters.categories.length) ||
+            (!item.hidden && filters.categories.length && filters.categories.includes(item.data.category)) ||
+            (item.hidden && visibleHiddenGems.includes(item.uid) && !filters.categories.length) ||
+            (item.hidden &&
+              visibleHiddenGems.includes(item.uid) &&
+              filters.categories.length &&
+              filters.categories.includes(item.data.category))
+          ) {
             return (
               <Marker
                 key={index}
