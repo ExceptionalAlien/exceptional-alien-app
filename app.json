@@ -7,6 +7,7 @@
     "scheme": "ea-app-scheme",
     "userInterfaceStyle": "automatic",
     "orientation": "portrait",
+    "backgroundColor": "#2220C1",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

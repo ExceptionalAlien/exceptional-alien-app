@@ -282,7 +282,6 @@ const styles = StyleSheet.create({
     gap: 16,
     marginHorizontal: 16,
     marginBottom: 24,
-    marginTop: 4,
   },
   offline: {
     flex: 1,
