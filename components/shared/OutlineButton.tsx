@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Pressable, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
+import { FiltersContext, FiltersContextType, FiltersType } from "context/filters";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -30,8 +31,21 @@ const icons = {
 
 export default function OutlineButton(props: OutlineButtonProps) {
   const colorScheme = useColorScheme();
+  const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
 
-  const press = () => {};
+  const press = () => {
+    if (props.category) {
+      if (filters.categories.includes(props.title)) {
+        // Remove
+        setFilters({ ...filters, categories: filters.categories.filter((item) => item !== props.title) });
+      } else {
+        // Add
+        setFilters({ ...filters, categories: [...filters.categories, props.title] });
+      }
+
+      console.log(filters);
+    }
+  };
 
   return (
     <Pressable
@@ -39,7 +53,14 @@ export default function OutlineButton(props: OutlineButtonProps) {
       style={({ pressed }) => [
         pressedDefault(pressed),
         styles.button,
-        { borderColor: colorScheme === "light" ? styleVars.eaBlue : "white" },
+        {
+          borderColor:
+            colorScheme === "light" ||
+            (colorScheme === "dark" && props.category && filters.categories.includes(props.title))
+              ? styleVars.eaBlue
+              : "white",
+        },
+        props.category && filters.categories.includes(props.title) && { backgroundColor: styleVars.eaBlue },
       ]}
       hitSlop={4}
     >
@@ -48,7 +69,7 @@ export default function OutlineButton(props: OutlineButtonProps) {
           source={
             icons[
               `${props.title.replace(/ /g, "").replace("&", "And")}${
-                colorScheme === "dark" ? "White" : ""
+                colorScheme === "dark" || (props.category && filters.categories.includes(props.title)) ? "White" : ""
               }` as keyof typeof icons
             ]
           }
@@ -57,7 +78,18 @@ export default function OutlineButton(props: OutlineButtonProps) {
         />
       )}
 
-      <Text style={[styles.text, { color: colorScheme === "light" ? styleVars.eaBlue : "white" }]}>
+      <Text
+        style={[
+          styles.text,
+          {
+            color:
+              (colorScheme === "light" && !props.category) ||
+              (colorScheme === "light" && !filters.categories.includes(props.title))
+                ? styleVars.eaBlue
+                : "white",
+          },
+        ]}
+      >
         {props.title.replace("Neighbourhoods", "Neighborhoods")}
       </Text>
     </Pressable>
