@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Text, useColorScheme, useWindowDimensions, Pressable } from "react-native";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { BookmarksContext, BookmarksContextType } from "context/bookmarks";
 import { PlaybookType } from "app/playbook";
 import { getData } from "utils/helpers";
 import { styleVars } from "utils/styles";
@@ -18,16 +19,24 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
   const router = useRouter();
+  const { bookmarks } = useContext<BookmarksContextType>(BookmarksContext);
   const [isUnlocked, setIsUnlocked] = useState(!props.playbook.data.locked ? true : false);
+  const [isBookmark, setIsBookmark] = useState(false);
 
   const checkIfOwned = async () => {
     const unlocked = await getData("unlockedPBs");
     if (unlocked && unlocked.includes(props.playbook.uid)) setIsUnlocked(true);
   };
 
+  const setBookmark = async () => {
+    const bookmarks = await getData("bookmarks");
+    setIsBookmark(bookmarks && bookmarks.includes(props.playbook.uid) ? true : false);
+  };
+
   useEffect(() => {
     if (!isUnlocked) checkIfOwned();
-  }, []);
+    setBookmark();
+  }, [bookmarks]);
 
   return (
     <Pressable
@@ -67,10 +76,16 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
               }`}
         </Text>
 
-        {!isUnlocked && (
-          <View style={styles.locked}>
+        {!isUnlocked ? (
+          <View style={styles.badge}>
             <Ionicons name="lock-closed" size={12} color={styleVars.eaBlue} style={{ paddingBottom: 1 }} />
           </View>
+        ) : (
+          isBookmark && (
+            <View style={styles.badge}>
+              <Ionicons name="bookmark" size={12} color={styleVars.eaBlue} />
+            </View>
+          )
         )}
       </View>
 
@@ -119,7 +134,7 @@ const styles = StyleSheet.create({
     color: "white",
     padding: 4,
   },
-  locked: {
+  badge: {
     position: "absolute",
     backgroundColor: "rgba(255,255,255,0.75)",
     borderRadius: 999,

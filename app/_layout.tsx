@@ -8,6 +8,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { DestinationContext, DestinationType } from "context/destination";
 import { FiltersContext, FiltersType } from "context/filters";
 import { FavsContext } from "context/favs";
+import { BookmarksContext } from "context/bookmarks";
 import { styleVars } from "utils/styles";
 
 SplashScreen.preventAutoHideAsync();
@@ -17,6 +18,7 @@ export default function Layout() {
   const [destination, setDestination] = useState<DestinationType>();
   const [filters, setFilters] = useState<FiltersType>({ categories: [], favsOnly: false, myPlaybooksOnly: false });
   const [favs, setFavs] = useState<string[]>();
+  const [bookmarks, setBookmarks] = useState<string[]>();
 
   const [fontsLoaded, fontError] = useFonts({
     "Helvetica-Monospaced": require("../assets/fonts/Helvetica-Monospaced-W06-Rg.ttf"),
@@ -42,37 +44,39 @@ export default function Layout() {
     <DestinationContext.Provider value={{ destination, setDestination }}>
       <FiltersContext.Provider value={{ filters, setFilters }}>
         <FavsContext.Provider value={{ favs, setFavs }}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack
-              screenOptions={{
-                contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
-                headerTintColor: colorScheme === "light" ? styleVars.eaBlue : "white",
-                headerTitleStyle: {
-                  fontFamily: "Neue-Haas-Grotesk-Med",
-                },
-                headerLargeTitle: true,
-                headerLargeTitleStyle: {
-                  fontFamily: "Neue-Haas-Grotesk-Med",
-                },
-                headerBackTitle: "Back",
-                headerBackTitleStyle: {
-                  fontFamily: "Neue-Haas-Grotesk",
-                },
-                headerShadowVisible: false,
-                headerStyle: {
-                  backgroundColor: colorScheme === "light" ? "white" : "black",
-                },
-              }}
-            >
-              <Stack.Screen
-                name="filters"
-                options={{
-                  presentation: "modal",
-                  headerLargeTitle: false,
+          <BookmarksContext.Provider value={{ bookmarks, setBookmarks }}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <Stack
+                screenOptions={{
+                  contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
+                  headerTintColor: colorScheme === "light" ? styleVars.eaBlue : "white",
+                  headerTitleStyle: {
+                    fontFamily: "Neue-Haas-Grotesk-Med",
+                  },
+                  headerLargeTitle: true,
+                  headerLargeTitleStyle: {
+                    fontFamily: "Neue-Haas-Grotesk-Med",
+                  },
+                  headerBackTitle: "Back",
+                  headerBackTitleStyle: {
+                    fontFamily: "Neue-Haas-Grotesk",
+                  },
+                  headerShadowVisible: false,
+                  headerStyle: {
+                    backgroundColor: colorScheme === "light" ? "white" : "black",
+                  },
                 }}
-              />
-            </Stack>
-          </GestureHandlerRootView>
+              >
+                <Stack.Screen
+                  name="filters"
+                  options={{
+                    presentation: "modal",
+                    headerLargeTitle: false,
+                  }}
+                />
+              </Stack>
+            </GestureHandlerRootView>
+          </BookmarksContext.Provider>
         </FavsContext.Provider>
       </FiltersContext.Provider>
     </DestinationContext.Provider>
