@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, Switch, Text, useColorScheme } from "react-native";
+import { Image } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { FiltersContext, FiltersContextType, FiltersType } from "context/filters";
 import { styleVars } from "utils/styles";
@@ -8,6 +9,11 @@ type ToggleProps = {
   label: string;
   icon?: string;
   filter?: string;
+};
+
+const icons = {
+  playbookWhite: require("assets/img/icon-playbook-white.svg"),
+  playbook: require("assets/img/icon-playbook.svg"),
 };
 
 export default function Toggle(props: ToggleProps) {
@@ -29,12 +35,20 @@ export default function Toggle(props: ToggleProps) {
   return (
     <View style={styles.container}>
       <View style={styles.label}>
-        {props.icon && (
-          <Ionicons
-            name={props.icon as any}
-            size={24}
-            color={props.icon === "heart" ? styleVars.eaRed : colorScheme === "light" ? "black" : "white"}
+        {props.icon && props.icon === "playbook" ? (
+          <Image
+            source={icons[`${props.icon}${colorScheme === "dark" ? "White" : ""}` as keyof typeof icons]}
+            style={styles.icon}
+            contentFit="contain"
           />
+        ) : (
+          props.icon && (
+            <Ionicons
+              name={props.icon as any}
+              size={28}
+              color={props.icon === "heart" ? styleVars.eaRed : colorScheme === "light" ? "black" : "white"}
+            />
+          )
         )}
 
         <Text style={[styles.text, { color: colorScheme === "light" ? "black" : "white" }]}>{props.label}</Text>
@@ -65,6 +79,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 8,
     alignItems: "center",
+  },
+  icon: {
+    width: 28,
+    height: 28,
   },
   text: {
     fontFamily: "Neue-Haas-Grotesk",

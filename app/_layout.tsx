@@ -15,7 +15,7 @@ SplashScreen.preventAutoHideAsync();
 export default function Layout() {
   const colorScheme = useColorScheme();
   const [destination, setDestination] = useState<DestinationType>();
-  const [filters, setFilters] = useState<FiltersType>({ categories: [], favsOnly: false, bookmarksOnly: false });
+  const [filters, setFilters] = useState<FiltersType>({ categories: [], favsOnly: false, myPlaybooksOnly: false });
   const [favs, setFavs] = useState<string[]>();
 
   const [fontsLoaded, fontError] = useFonts({

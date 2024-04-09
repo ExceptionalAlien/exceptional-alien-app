@@ -85,7 +85,7 @@ export default function Controls(props: ControlsProps) {
         <Ionicons name="locate-outline" size={24} color="black" />
       </Pressable>
 
-      {(filters.categories.length >= 1 || filters.favsOnly || filters.bookmarksOnly) && (
+      {(filters.categories.length >= 1 || filters.favsOnly || filters.myPlaybooksOnly) && (
         <View style={styles.indicator}></View>
       )}
     </View>

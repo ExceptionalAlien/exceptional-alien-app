@@ -41,7 +41,7 @@ export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
 
   useEffect(() => {
     // Show/hide banner
-    if (props.hiddenGemCount && !filters.categories.length && !filters.favsOnly && !filters.bookmarksOnly) {
+    if (props.hiddenGemCount && !filters.categories.length && !filters.favsOnly && !filters.myPlaybooksOnly) {
       marginBottom.value = withTiming(12, { duration: 200, easing: Easing.out(Easing.quad) }); // Show
     } else {
       marginBottom.value = withTiming(-52, { duration: 200, easing: Easing.in(Easing.quad) }); // Hide

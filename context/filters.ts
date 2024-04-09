@@ -3,7 +3,7 @@ import { createContext } from "react";
 export type FiltersType = {
   categories: string[];
   favsOnly: boolean;
-  bookmarksOnly: boolean;
+  myPlaybooksOnly: boolean;
 };
 
 export type FiltersContextType = {
@@ -12,6 +12,6 @@ export type FiltersContextType = {
 };
 
 export const FiltersContext = createContext<FiltersContextType>({
-  filters: { categories: [], favsOnly: false, bookmarksOnly: false },
+  filters: { categories: [], favsOnly: false, myPlaybooksOnly: false },
   setFilters: () => null,
 });

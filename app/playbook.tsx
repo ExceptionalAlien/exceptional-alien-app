@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -22,13 +22,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { useHeaderHeight } from "@react-navigation/elements";
 import { GemType } from "./gem";
 import { CreatorType } from "./profile";
+import { BookmarksContext, BookmarksContextType } from "context/bookmarks";
 import Cover from "components/playbook/Cover";
 import Gem from "components/playbook/Gem";
 import Tab from "components/shared/Tab";
 import BigButton from "components/shared/BigButton";
 import Description from "components/playbook/Description";
 import { styleVars } from "utils/styles";
-import { getData, pressedDefault } from "utils/helpers";
+import { getData, pressedDefault, storeData } from "utils/helpers";
 
 type PlaybookImage = {
   mobile: {
@@ -78,6 +79,7 @@ export default function Playbook() {
   const colorScheme = useColorScheme();
   const headerHeight = useHeaderHeight();
   const { width, height } = useWindowDimensions();
+  const { setBookmarks } = useContext<BookmarksContextType>(BookmarksContext);
   const [isOffline, setIsOffline] = useState(false);
   const [isLoading, setIsloading] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -86,6 +88,7 @@ export default function Playbook() {
   const [playbook, setPlaybook] = useState<PlaybookType>();
   const [curators, setCurators] = useState<CreatorType[]>();
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isBookmark, setIsBookmark] = useState(false);
 
   const getPlaybook = async () => {
     const network = await Network.getNetworkStateAsync();
@@ -129,9 +132,34 @@ export default function Playbook() {
     setScrollOffset(percentage >= 100 ? 1 : percentage / 100);
   };
 
+  const toggleBookmark = async () => {
+    const bookmarks = await getData("bookmarks");
+    var updated: string[] = bookmarks ? bookmarks : [];
+
+    if (updated.includes(uid as string)) {
+      // Remove
+      const index = updated.indexOf(uid as string);
+      updated.splice(index, 1);
+      setIsBookmark(false);
+    } else {
+      // Add
+      updated.push(uid as string);
+      setIsBookmark(true);
+    }
+
+    storeData("bookmarks", updated); // Store
+    setBookmarks(updated); // Update context
+  };
+
+  const setBookmark = async () => {
+    const bookmarks = await getData("bookmarks");
+    setIsBookmark(bookmarks && bookmarks.includes(uid) ? true : false);
+  };
+
   useEffect(() => {
     setIsloading(true);
     getPlaybook();
+    setBookmark();
   }, []);
 
   return (
@@ -149,12 +177,18 @@ export default function Playbook() {
           headerTintColor: "white",
           headerRight: () =>
             playbook && (
-              <Pressable
-                onPress={() => alert("Will open share sheet")}
-                style={({ pressed }) => pressedDefault(pressed)}
-              >
-                <Ionicons name="share-outline" size={28} color="white" />
-              </Pressable>
+              <View style={styles.headerBar}>
+                <Pressable onPress={toggleBookmark} style={({ pressed }) => pressedDefault(pressed)}>
+                  <Ionicons name={isBookmark ? "bookmark" : "bookmark-outline"} size={28} color="white" />
+                </Pressable>
+
+                <Pressable
+                  onPress={() => alert("Will open share sheet")}
+                  style={({ pressed }) => pressedDefault(pressed)}
+                >
+                  <Ionicons name="share-outline" size={28} color="white" />
+                </Pressable>
+              </View>
             ),
         }}
       />
@@ -270,6 +304,10 @@ export default function Playbook() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  headerBar: {
+    flexDirection: "row",
+    gap: 16,
   },
   blur: {
     position: "absolute",

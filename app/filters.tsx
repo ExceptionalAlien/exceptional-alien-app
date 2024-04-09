@@ -30,7 +30,7 @@ export default function Filters() {
 
       <Categories />
       <Toggle label="Favorite Gems only" icon="heart" filter="favsOnly" />
-      <Toggle label="Bookmarked Playbooks only" icon="bookmarks-sharp" filter="bookmarksOnly" />
+      <Toggle label="My Playbooks only" icon="playbook" filter="myPlaybooksOnly" />
     </View>
   );
 }
