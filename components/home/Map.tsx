@@ -256,13 +256,28 @@ export default function Map(props: MapProps) {
       >
         {data.map((item, index) => {
           if (
-            (!item.hidden && !filters.categories.length) ||
-            (!item.hidden && filters.categories.length && filters.categories.includes(item.data.category)) ||
-            (item.hidden && visibleHiddenGems.includes(item.uid) && !filters.categories.length) ||
+            (!item.hidden && !filters.categories.length && !filters.favsOnly && !filters.bookmarksOnly) ||
+            (!item.hidden &&
+              filters.categories.length &&
+              filters.categories.includes(item.data.category) &&
+              !filters.favsOnly &&
+              !filters.bookmarksOnly) ||
+            (!item.hidden &&
+              !filters.categories.length &&
+              filters.favsOnly &&
+              favs?.includes(item.uid) &&
+              !filters.bookmarksOnly) ||
+            (!item.hidden &&
+              filters.categories.length &&
+              filters.categories.includes(item.data.category) &&
+              filters.favsOnly &&
+              favs?.includes(item.uid) &&
+              !filters.bookmarksOnly) ||
             (item.hidden &&
               visibleHiddenGems.includes(item.uid) &&
-              filters.categories.length &&
-              filters.categories.includes(item.data.category))
+              !filters.categories.length &&
+              !filters.favsOnly &&
+              !filters.bookmarksOnly)
           ) {
             return (
               <Marker

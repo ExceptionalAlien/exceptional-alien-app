@@ -42,8 +42,6 @@ export default function OutlineButton(props: OutlineButtonProps) {
         // Add
         setFilters({ ...filters, categories: [...filters.categories, props.title] });
       }
-
-      console.log(filters);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Animated, {
@@ -9,6 +9,7 @@ import Animated, {
   useSharedValue,
   cancelAnimation,
 } from "react-native-reanimated";
+import { FiltersContext, FiltersContextType } from "context/filters";
 import { styleVars } from "utils/styles";
 
 type HiddenGemsDetectedProps = {
@@ -18,6 +19,7 @@ type HiddenGemsDetectedProps = {
 export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
   const rotate = useSharedValue(0);
   const marginBottom = useSharedValue(-52);
+  const { filters } = useContext<FiltersContextType>(FiltersContext);
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [
@@ -39,12 +41,12 @@ export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
 
   useEffect(() => {
     // Show/hide banner
-    if (props.hiddenGemCount) {
+    if (props.hiddenGemCount && !filters.categories.length && !filters.favsOnly && !filters.bookmarksOnly) {
       marginBottom.value = withTiming(12, { duration: 200, easing: Easing.out(Easing.quad) }); // Show
     } else {
       marginBottom.value = withTiming(-52, { duration: 200, easing: Easing.in(Easing.quad) }); // Hide
     }
-  }, [props.hiddenGemCount]);
+  }, [props.hiddenGemCount, filters]);
 
   return (
     <Animated.View style={[styles.container, { marginBottom }]}>

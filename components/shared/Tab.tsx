@@ -6,6 +6,7 @@ import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import destinationsData from "data/destinations.json";
 import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
+import { FiltersContext, FiltersContextType } from "context/filters";
 import { pressedDefault, storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -25,6 +26,7 @@ type TabProps = {
   blueBg?: boolean;
   icon?: string;
   url?: string;
+  filterReset?: boolean;
 };
 
 const icons = {
@@ -40,6 +42,7 @@ export default function Tab(props: TabProps) {
   const router = useRouter();
   const colorScheme = useColorScheme();
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
+  const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
 
   const destinationClick = () => {
     const data = JSON.stringify(destinationsData);
@@ -115,6 +118,19 @@ export default function Tab(props: TabProps) {
             allowFontScaling={false}
           >
             {props.cta}
+          </Text>
+        </Pressable>
+      ) : props.filterReset && filters.categories.length ? (
+        <Pressable
+          onPress={() => setFilters({ ...filters, categories: [] })}
+          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+          hitSlop={8}
+        >
+          <Text
+            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
+            allowFontScaling={false}
+          >
+            RESET
           </Text>
         </Pressable>
       ) : (

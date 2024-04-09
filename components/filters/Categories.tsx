@@ -5,8 +5,8 @@ import OutlineButton from "components/shared/OutlineButton";
 
 export default function Categories() {
   return (
-    <View style={styles.container}>
-      <Tab title="GEM CATEGORIES" icon="gem" />
+    <View>
+      <Tab title="GEM CATEGORIES" icon="gem" filterReset />
 
       <View style={styles.buttons}>
         <OutlineButton title="Accommodation" category />
@@ -23,9 +23,6 @@ export default function Categories() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   buttons: {
     marginHorizontal: 16,
     alignItems: "flex-start",
