@@ -24,6 +24,7 @@ export default function CreatorIcon(props: CreatorIconProps) {
       onPress={() =>
         router.push({
           pathname: "/profile",
+          params: { uid: props.creator.uid },
         })
       }
       style={({ pressed }) => [styles.container, pressedDefault(pressed)]}

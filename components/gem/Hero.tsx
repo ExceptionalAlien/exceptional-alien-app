@@ -23,6 +23,7 @@ export default function Hero(props: HeroProps) {
         onLoadStart={() => setShowLoader(true)}
         onLoadEnd={() => setShowLoader(false)}
       />
+
       <ActivityIndicator style={styles.loader} color="white" animating={showLoader} />
     </View>
   );

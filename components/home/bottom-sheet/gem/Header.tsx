@@ -82,7 +82,7 @@ export default function Header(props: HeaderProps) {
       <View style={styles.bg} />
 
       <Image
-        source={props.gem.data.image.url}
+        source={props.gem.data.image.seo.url}
         transition={500}
         style={styles.hero}
         recyclingKey={props.gem.uid}

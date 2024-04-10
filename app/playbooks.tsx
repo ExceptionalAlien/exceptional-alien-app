@@ -9,7 +9,7 @@ type Data = {
   playbook: PlaybookType;
 };
 
-export default function Profile() {
+export default function Playbooks() {
   const params = useLocalSearchParams<{ headerTitle: string; destinationUID: string }>();
   const { headerTitle, destinationUID } = params;
   const colorScheme = useColorScheme();

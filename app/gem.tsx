@@ -15,6 +15,12 @@ import PlaybookSlider from "components/shared/PlaybookSlider";
 import { storeData, getData, pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
+type GemImage = {
+  seo: {
+    url: string;
+  };
+};
+
 type GemData = {
   title: string;
   description: string;
@@ -22,7 +28,7 @@ type GemData = {
   address: string;
   location: { latitude: number; longitude: number };
   playbooks: [{ playbook: PlaybookType }];
-  image: { url: string };
+  image: GemImage;
   about: [{ text: string }];
   website: { url: string };
 };
@@ -173,7 +179,7 @@ export default function Gem() {
         playbooks &&
         playbooks.length && (
           <View style={{ paddingBottom: insets.bottom + 16 }}>
-            <Hero url={gem.data.image.url} />
+            <Hero url={gem.data.image.seo.url} />
 
             <Title
               text={gem.data.title}

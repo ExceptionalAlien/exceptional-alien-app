@@ -69,7 +69,7 @@ export default function PlaybookSlider(props: PlaybookSliderProps) {
   }, [props.destination, props.playbooks]);
 
   return (
-    <View style={{ minHeight: props.hideTab ? 176 : 208, display: isOffline ? "none" : "flex" }}>
+    <View style={{ minHeight: props.hideTab ? 176 : 224, display: isOffline ? "none" : "flex" }}>
       {!props.hideTab && (
         <Tab
           title={
