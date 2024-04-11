@@ -179,7 +179,7 @@ export default function Gem() {
         playbooks &&
         playbooks.length && (
           <View style={{ paddingBottom: insets.bottom + 16 }}>
-            <Hero url={gem.data.image.seo.url} />
+            <Hero url={gem.data.image.seo.url} location={gem.data.location} />
 
             <Title
               text={gem.data.title}
