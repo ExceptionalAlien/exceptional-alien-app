@@ -27,6 +27,7 @@ type TabProps = {
   icon?: string;
   url?: string;
   filterReset?: boolean;
+  instagram?: string;
 };
 
 const icons = {
@@ -82,68 +83,50 @@ export default function Tab(props: TabProps) {
         </Text>
       </View>
 
-      {props.route ? (
-        <Pressable
-          onPress={() => router.push(props.route as Href)}
-          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
-          hitSlop={8}
-        >
-          <Text
-            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
-            allowFontScaling={false}
-          >
-            {props.cta}
-          </Text>
-
-          <Ionicons
-            name="arrow-forward-sharp"
-            size={12}
-            color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
-          />
-        </Pressable>
-      ) : props.destination ? (
-        <Pressable
-          onPress={destinationClick}
-          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
-          hitSlop={8}
-        >
-          <Image
-            source={icons[colorScheme === "light" ? "place" : "placeWhite"]}
-            style={[styles.icon, { width: 12 }]}
-            contentFit="contain"
-          />
-
-          <Text
-            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
-            allowFontScaling={false}
-          >
-            {props.cta}
-          </Text>
-        </Pressable>
-      ) : props.filterReset && filters.categories.length ? (
-        <Pressable
-          onPress={() => setFilters({ ...filters, categories: [] })}
-          style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
-          hitSlop={8}
-        >
-          <Text
-            style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
-            allowFontScaling={false}
-          >
-            RESET
-          </Text>
-        </Pressable>
-      ) : (
-        props.url && (
+      <View style={styles.cta}>
+        {props.instagram && (
           <Pressable
-            onPress={() => Linking.openURL(props.url as string)}
+            onPress={() => Linking.openURL(("https://instagram.com/" + props.instagram) as string)}
             style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
             hitSlop={8}
           >
             <Ionicons
-              name="globe-outline"
-              size={16}
+              name="logo-instagram"
+              size={20}
               color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
+            />
+          </Pressable>
+        )}
+
+        {props.route ? (
+          <Pressable
+            onPress={() => router.push(props.route as Href)}
+            style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+            hitSlop={8}
+          >
+            <Text
+              style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
+              allowFontScaling={false}
+            >
+              {props.cta}
+            </Text>
+
+            <Ionicons
+              name="arrow-forward-sharp"
+              size={12}
+              color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
+            />
+          </Pressable>
+        ) : props.destination ? (
+          <Pressable
+            onPress={destinationClick}
+            style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+            hitSlop={8}
+          >
+            <Image
+              source={icons[colorScheme === "light" ? "place" : "placeWhite"]}
+              style={[styles.icon, { width: 12 }]}
+              contentFit="contain"
             />
 
             <Text
@@ -153,8 +136,44 @@ export default function Tab(props: TabProps) {
               {props.cta}
             </Text>
           </Pressable>
-        )
-      )}
+        ) : props.filterReset && filters.categories.length ? (
+          <Pressable
+            onPress={() => setFilters({ ...filters, categories: [] })}
+            style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+            hitSlop={8}
+          >
+            <Text
+              style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
+              allowFontScaling={false}
+            >
+              RESET
+            </Text>
+          </Pressable>
+        ) : (
+          props.url && (
+            <Pressable
+              onPress={() => Linking.openURL(props.url as string)}
+              style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
+              hitSlop={8}
+            >
+              <Ionicons
+                name="globe-outline"
+                size={props.cta ? 16 : 20}
+                color={props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue}
+              />
+
+              {props.cta && (
+                <Text
+                  style={[styles.text, { color: props.blueBg || colorScheme === "dark" ? "white" : styleVars.eaBlue }]}
+                  allowFontScaling={false}
+                >
+                  {props.cta}
+                </Text>
+              )}
+            </Pressable>
+          )
+        )}
+      </View>
     </View>
   );
 }
@@ -168,6 +187,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  cta: {
+    flexDirection: "row",
+    gap: 16,
   },
   iconText: {
     flexDirection: "row",

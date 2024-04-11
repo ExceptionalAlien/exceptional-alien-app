@@ -5,6 +5,7 @@ import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import * as Network from "expo-network";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Hero from "components/profile/Hero";
+import About from "components/profile/About";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -22,6 +23,9 @@ export type CreatorType = {
     title: string;
     profile_image: { url: string };
     hero_image: CreatorHero;
+    description: [{ text: string }];
+    website: { url: string };
+    instagram: string;
   };
 };
 
@@ -72,7 +76,14 @@ export default function Profile() {
           title: uid ? "Contributor" : "Profile",
           headerLargeTitle: uid ? false : true,
           headerRight: () =>
-            !uid && (
+            uid ? (
+              <Pressable
+                onPress={() => alert("Will open share sheet")}
+                style={({ pressed }) => pressedDefault(pressed)}
+              >
+                <Ionicons name="share-outline" size={28} color={colorScheme === "light" ? styleVars.eaBlue : "white"} />
+              </Pressable>
+            ) : (
               <Pressable onPress={() => router.push("/settings")} style={({ pressed }) => pressedDefault(pressed)}>
                 <Ionicons
                   name="settings-outline"
@@ -100,8 +111,13 @@ export default function Profile() {
         />
       ) : (
         creator && (
-          <View style={{ paddingBottom: insets.bottom + 16 }}>
+          <View style={[styles.wrapper, { paddingBottom: insets.bottom + 16 }]}>
             <Hero creator={creator} />
+            <About
+              description={creator.data.description}
+              website={creator.data.website.url}
+              instagram={creator.data.instagram}
+            />
           </View>
         )
       )}
@@ -117,5 +133,8 @@ const styles = StyleSheet.create({
   },
   loader: {
     flex: 1,
+  },
+  wrapper: {
+    gap: 16,
   },
 });
