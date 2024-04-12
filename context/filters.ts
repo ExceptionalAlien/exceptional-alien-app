@@ -11,7 +11,9 @@ export type FiltersContextType = {
   setFilters: (filters: FiltersType) => void;
 };
 
+export const FiltersInit = { categories: [], favsOnly: false, myPlaybooksOnly: false };
+
 export const FiltersContext = createContext<FiltersContextType>({
-  filters: { categories: [], favsOnly: false, myPlaybooksOnly: false },
+  filters: FiltersInit,
   setFilters: () => null,
 });

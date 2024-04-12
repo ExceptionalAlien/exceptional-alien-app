@@ -88,7 +88,7 @@ export default function Tab(props: TabProps) {
           <Pressable
             onPress={() => Linking.openURL(("https://instagram.com/" + props.instagram) as string)}
             style={({ pressed }) => [pressedDefault(pressed), styles.iconText]}
-            hitSlop={8}
+            hitSlop={4}
           >
             <Ionicons
               name="logo-instagram"
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   cta: {
     flexDirection: "row",
-    gap: 16,
+    gap: 12,
   },
   iconText: {
     flexDirection: "row",

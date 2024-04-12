@@ -216,8 +216,8 @@ export default function Playbook() {
                 title={
                   playbook.data.app_title
                     ? playbook.data.app_title
-                    : playbook.data.destination?.data.title
-                    ? `${playbook.data.destination?.data.title} with ${playbook.data.creator.data.first_name}${
+                    : playbook.data.destination.uid && playbook.data.destination.data.title
+                    ? `${playbook.data.destination.data.title} with ${playbook.data.creator.data.first_name}${
                         playbook.data.creator.data.last_name
                           ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
                           : ""
@@ -265,7 +265,7 @@ export default function Playbook() {
 
                 <Tab
                   title={`${playbook.data.slices.length} GEMS`}
-                  cta={playbook.data.destination.data?.title}
+                  cta={playbook.data.destination.uid && playbook.data.destination.data.title}
                   destination={playbook.data.destination.uid}
                   icon="gem"
                 />
@@ -320,7 +320,6 @@ const styles = StyleSheet.create({
     gap: 16,
     marginHorizontal: 16,
     marginBottom: 24,
-    marginTop: 4,
   },
   offline: {
     flex: 1,
