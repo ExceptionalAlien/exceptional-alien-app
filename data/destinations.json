@@ -1533,6 +1533,27 @@
     }
   },
   {
+    "id": "ZSYmLRAAAFFXra53",
+    "name": "Singapore",
+    "uid": "singapore",
+    "keywords": "South Asia",
+    "lat": 1.352083,
+    "lng": 103.819836,
+    "region": {
+      "latitude": 1.294388,
+      "longitude": 103.845803,
+      "latitudeDelta": 0.05,
+      "longitudeDelta": 0.05
+    },
+    "bounds": {
+      "latitudeStart": 1.1496,
+      "longitudeStart": 103.594,
+      "latitudeEnd": 1.4784,
+      "longitudeEnd": 104.0945
+    },
+    "trending": true
+  },
+  {
     "id": "ZSYl1BAAAPRXrazb",
     "name": "South Island",
     "uid": "south-island",
