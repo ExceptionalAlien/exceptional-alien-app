@@ -1,30 +1,41 @@
-import React from "react";
-import { View, Text, StyleSheet, useColorScheme } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { ScrollView, StyleSheet, SafeAreaView, View } from "react-native";
 import { Stack } from "expo-router";
+import { SettingsContext, SettingsContextType } from "context/settings";
+import Toggle from "components/shared/Toggle";
+import Tab from "components/shared/Tab";
+import { getData } from "utils/helpers";
 
-export default function Profile() {
-  const colorScheme = useColorScheme();
+export default function Settings() {
+  const { setSettings } = useContext<SettingsContextType>(SettingsContext);
+
+  useEffect(() => {
+    async () => {
+      const settingsData = await getData("settings");
+      if (settingsData) setSettings(settingsData); // Init
+    };
+  }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView>
       <Stack.Screen
         options={{
           title: "Settings",
         }}
       />
 
-      <Text style={{ textAlign: "center", color: colorScheme === "light" ? "black" : "white" }}>
-        WIP - will show user settings including logout
-      </Text>
-    </View>
+      <SafeAreaView>
+        <View style={styles.container}>
+          <Tab title="MAP SETTINGS" />
+          <Toggle label="Detect hidden Gems" icon="radar" setting="detectGems" />
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
+    marginTop: 16,
   },
 });

@@ -10,6 +10,7 @@ import Animated, {
   cancelAnimation,
 } from "react-native-reanimated";
 import { FiltersContext, FiltersContextType } from "context/filters";
+import { SettingsContext, SettingsContextType } from "context/settings";
 import { styleVars } from "utils/styles";
 
 type HiddenGemsDetectedProps = {
@@ -20,6 +21,7 @@ export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
   const rotate = useSharedValue(0);
   const marginBottom = useSharedValue(-52);
   const { filters } = useContext<FiltersContextType>(FiltersContext);
+  const { settings } = useContext<SettingsContextType>(SettingsContext);
 
   const animatedStyles = useAnimatedStyle(() => ({
     transform: [
@@ -41,12 +43,18 @@ export default function HiddenGemsDetected(props: HiddenGemsDetectedProps) {
 
   useEffect(() => {
     // Show/hide banner
-    if (props.hiddenGemCount && !filters.categories.length && !filters.favsOnly && !filters.myPlaybooksOnly) {
+    if (
+      props.hiddenGemCount &&
+      !filters.categories.length &&
+      !filters.favsOnly &&
+      !filters.myPlaybooksOnly &&
+      settings.detectGems
+    ) {
       marginBottom.value = withTiming(12, { duration: 200, easing: Easing.out(Easing.quad) }); // Show
     } else {
       marginBottom.value = withTiming(-52, { duration: 200, easing: Easing.in(Easing.quad) }); // Hide
     }
-  }, [props.hiddenGemCount, filters]);
+  }, [props.hiddenGemCount, filters, settings]);
 
   return (
     <Animated.View style={[styles.container, { marginBottom }]}>

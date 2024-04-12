@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DestinationType } from "context/destination";
+import { SettingsType } from "context/settings";
 
 /* Pressable */
 export const pressedDefault = (pressed: boolean) => {
@@ -9,7 +10,7 @@ export const pressedDefault = (pressed: boolean) => {
 };
 
 /* Async Storage */
-export const storeData = async (item: string, value: string | boolean | string[] | DestinationType) => {
+export const storeData = async (item: string, value: string | boolean | string[] | DestinationType | SettingsType) => {
   try {
     const json = JSON.stringify(value);
     await AsyncStorage.setItem(item, json);

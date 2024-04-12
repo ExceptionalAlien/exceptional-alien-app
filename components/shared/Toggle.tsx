@@ -2,13 +2,17 @@ import React, { useContext } from "react";
 import { View, StyleSheet, Switch, Text, useColorScheme } from "react-native";
 import { Image } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FiltersContext, FiltersContextType, FiltersType } from "context/filters";
+import { SettingsContext, SettingsContextType, SettingsType } from "context/settings";
+import { storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type ToggleProps = {
   label: string;
   icon?: string;
   filter?: string;
+  setting?: string;
 };
 
 const icons = {
@@ -19,16 +23,15 @@ const icons = {
 export default function Toggle(props: ToggleProps) {
   const colorScheme = useColorScheme();
   const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
+  const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
 
   const toggleSwitch = () => {
     if (props.filter) {
-      if (filters[props.filter as keyof FiltersType]) {
-        // Off
-        setFilters({ ...filters, [props.filter]: false });
-      } else {
-        // On
-        setFilters({ ...filters, [props.filter]: true });
-      }
+      setFilters({ ...filters, [props.filter]: filters[props.filter as keyof FiltersType] ? false : true });
+    } else if (props.setting) {
+      const updated = { ...settings, [props.setting]: settings[props.setting as keyof SettingsType] ? false : true };
+      setSettings(updated);
+      storeData("settings", updated);
     }
   };
 
@@ -41,6 +44,8 @@ export default function Toggle(props: ToggleProps) {
             style={styles.icon}
             contentFit="contain"
           />
+        ) : props.icon && props.icon === "radar" ? (
+          <MaterialCommunityIcons name="radar" size={28} color={colorScheme === "light" ? "black" : "white"} />
         ) : (
           props.icon && (
             <Ionicons
@@ -62,7 +67,13 @@ export default function Toggle(props: ToggleProps) {
         thumbColor="white"
         ios_backgroundColor={colorScheme === "light" ? styleVars.eaLightGrey : styleVars.eaGrey}
         onValueChange={toggleSwitch}
-        value={props.filter !== "" && (filters[props.filter as keyof FiltersType] as boolean)}
+        value={
+          props.filter
+            ? (filters[props.filter as keyof FiltersType] as boolean)
+            : props.setting
+            ? (settings[props.setting as keyof SettingsType] as boolean)
+            : undefined
+        }
       />
     </View>
   );

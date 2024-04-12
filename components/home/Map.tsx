@@ -278,7 +278,7 @@ export default function Map(props: MapProps) {
               favs?.includes(item.uid) &&
               !filters.myPlaybooksOnly) ||
             (item.hidden &&
-              !settings.disableGemDetection &&
+              settings.detectGems &&
               visibleHiddenGems.includes(item.uid) &&
               !filters.categories.length &&
               !filters.favsOnly &&
