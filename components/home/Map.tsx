@@ -6,6 +6,7 @@ import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { FiltersContext, FiltersContextType } from "context/filters";
 import { FavsContext, FavsContextType } from "context/favs";
+import { SettingsContext, SettingsContextType } from "context/settings";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenGemsDetected from "./map/HiddenGemsDetected";
@@ -64,6 +65,7 @@ export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
   const { filters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
+  const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
@@ -83,11 +85,13 @@ export default function Map(props: MapProps) {
     if (network.isInternetReachable) {
       // Online
       try {
-        const unlocked = await getData("unlockedPBs");
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
-        const json = await response.json();
+        const unlocked = await getData("unlockedPBs");
         const favs = await getData("favs");
         setFavs(favs); // Init
+        const settingsData = await getData("settings");
+        if (settingsData) setSettings(settingsData); // Init
+        const json = await response.json();
 
         if (id === mountedID.current) {
           const gems = [];
@@ -274,6 +278,7 @@ export default function Map(props: MapProps) {
               favs?.includes(item.uid) &&
               !filters.myPlaybooksOnly) ||
             (item.hidden &&
+              !settings.disableGemDetection &&
               visibleHiddenGems.includes(item.uid) &&
               !filters.categories.length &&
               !filters.favsOnly &&
