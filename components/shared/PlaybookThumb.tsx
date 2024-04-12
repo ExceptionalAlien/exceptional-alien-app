@@ -29,8 +29,8 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   };
 
   const setBookmark = async () => {
-    const bookmarks = await getData("bookmarks");
-    setIsBookmark(bookmarks && bookmarks.includes(props.playbook.uid) ? true : false);
+    const bookmarksData = await getData("bookmarks");
+    setIsBookmark(bookmarksData && bookmarksData.includes(props.playbook.uid) ? true : false);
   };
 
   useEffect(() => {

@@ -14,8 +14,8 @@ import NoGems from "./map/NoGems";
 import SelectDestination from "./map/SelectDestination";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
-import { styleVars } from "utils/styles";
 import { getData } from "utils/helpers";
+import { styleVars } from "utils/styles";
 
 type MapProps = {
   destination: DestinationType;
@@ -87,8 +87,8 @@ export default function Map(props: MapProps) {
       try {
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const unlocked = await getData("unlockedPBs");
-        const favs = await getData("favs");
-        setFavs(favs); // Init
+        const favsData = await getData("favs");
+        setFavs(favsData); // Init
         const settingsData = await getData("settings");
         if (settingsData) setSettings(settingsData); // Init
         const json = await response.json();

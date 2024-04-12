@@ -87,6 +87,7 @@ export default function OutlineButton(props: OutlineButtonProps) {
                 : "white",
           },
         ]}
+        allowFontScaling={false}
       >
         {props.title.replace("Neighbourhoods", "Neighborhoods")}
       </Text>

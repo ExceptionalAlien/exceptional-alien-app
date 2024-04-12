@@ -23,16 +23,18 @@ export default function Home() {
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
   //removeData("favs"); // Used for testing
+  //removeData("bookmarks"); // Used for testing
   //removeData("settings"); // Used for testing
   //storeData("unlockedPBs", []); // Used for testing
 
+  const initLocalData = async () => {
+    const shown = await getData("onboarding");
+    setOnboardingComplete(shown ? true : false); // Get location if onboarding already complete
+    setShowOnboarding(!shown ? true : false); // Show onboarding view if not seen already
+  };
+
   useEffect(() => {
-    // Check if onboarding already shown on init
-    (async () => {
-      const shown = await getData("onboarding");
-      setOnboardingComplete(shown ? true : false); // Get location if onboarding already complete
-      setShowOnboarding(!shown ? true : false); // Show onboarding view if not seen already
-    })();
+    initLocalData(); // Check if onboarding already shown on init
   }, []);
 
   useEffect(() => {

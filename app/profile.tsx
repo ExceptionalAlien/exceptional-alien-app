@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, useColorScheme, ScrollView, View, ActivityIndicator, Alert } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  useColorScheme,
+  ScrollView,
+  View,
+  ActivityIndicator,
+  Alert,
+  SafeAreaView,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import * as Network from "expo-network";
@@ -8,6 +17,7 @@ import { PlaybookType } from "./playbook";
 import Hero from "components/profile/Hero";
 import About from "components/profile/About";
 import PlaybookSlider from "components/shared/PlaybookSlider";
+import Saved from "components/profile/Saved";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -26,6 +36,7 @@ export type CreatorType = {
     profile_image: { url: string };
     hero_image: CreatorHero;
     description: [{ text: string }];
+    short_description: string;
     website: { url: string };
     instagram: string;
     playbooks: [{ playbook: PlaybookType }];
@@ -112,20 +123,25 @@ export default function Profile() {
           size="large"
           style={styles.loader}
         />
+      ) : creator ? (
+        <View style={[styles.creator, { paddingBottom: insets.bottom + 16 }]}>
+          <Hero creator={creator} />
+
+          <About
+            description={creator.data.description}
+            website={creator.data.website.url}
+            instagram={creator.data.instagram}
+          />
+
+          <PlaybookSlider playbooks={creator.data.playbooks} title="Playbooks" hideCTA />
+          <Saved userID={1} />
+        </View>
       ) : (
-        creator && (
-          <View style={[styles.wrapper, { paddingBottom: insets.bottom + 16 }]}>
-            <Hero creator={creator} />
-
-            <About
-              description={creator.data.description}
-              website={creator.data.website.url}
-              instagram={creator.data.instagram}
-            />
-
-            <PlaybookSlider playbooks={creator.data.playbooks} title="Playbooks" hideCTA />
+        <SafeAreaView>
+          <View style={styles.wrapper}>
+            <Saved />
           </View>
-        )
+        </SafeAreaView>
       )}
     </ScrollView>
   );
@@ -140,7 +156,10 @@ const styles = StyleSheet.create({
   loader: {
     flex: 1,
   },
-  wrapper: {
+  creator: {
     gap: 16,
+  },
+  wrapper: {
+    marginTop: 16,
   },
 });

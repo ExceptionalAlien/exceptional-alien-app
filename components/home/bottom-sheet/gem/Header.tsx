@@ -41,8 +41,8 @@ export default function Header(props: HeaderProps) {
   const [showLoader, setShowLoader] = useState(false);
 
   const toggleFav = async () => {
-    const favs = await getData("favs");
-    var updated: string[] = favs ? favs : [];
+    const favsData = await getData("favs");
+    var updated: string[] = favsData ? favsData : [];
 
     if (updated.includes(props.gem.uid)) {
       // Remove
@@ -60,8 +60,8 @@ export default function Header(props: HeaderProps) {
   };
 
   const setFav = async () => {
-    const favs = await getData("favs");
-    setIsFav(favs && favs.includes(props.gem.uid) ? true : false);
+    const favsData = await getData("favs");
+    setIsFav(favsData && favsData.includes(props.gem.uid) ? true : false);
   };
 
   const openMaps = () => {

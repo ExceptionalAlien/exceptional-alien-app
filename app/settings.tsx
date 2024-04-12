@@ -9,11 +9,13 @@ import { getData } from "utils/helpers";
 export default function Settings() {
   const { setSettings } = useContext<SettingsContextType>(SettingsContext);
 
+  const initLocalData = async () => {
+    const settingsData = await getData("settings");
+    if (settingsData) setSettings(settingsData); // Init
+  };
+
   useEffect(() => {
-    async () => {
-      const settingsData = await getData("settings");
-      if (settingsData) setSettings(settingsData); // Init
-    };
+    initLocalData();
   }, []);
 
   return (

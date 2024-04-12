@@ -56,7 +56,9 @@ export default function Toggle(props: ToggleProps) {
           )
         )}
 
-        <Text style={[styles.text, { color: colorScheme === "light" ? "black" : "white" }]}>{props.label}</Text>
+        <Text style={[styles.text, { color: colorScheme === "light" ? "black" : "white" }]} allowFontScaling={false}>
+          {props.label}
+        </Text>
       </View>
 
       <Switch

@@ -4,7 +4,7 @@ module.exports = ({ config }) => {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.exceptionalalien.app",
-      buildNumber: "126",
+      buildNumber: "127",
       config: {
         googleMapsApiKey: process.env.MAPS_IOS_API_KEY,
       },
@@ -15,7 +15,7 @@ module.exports = ({ config }) => {
         backgroundColor: "#2220C1",
       },
       package: "com.exceptionalalien.app",
-      versionCode: 2,
+      versionCode: 3,
       config: {
         googleMaps: {
           apiKey: process.env.MAPS_ANDROID_API_KEY,
