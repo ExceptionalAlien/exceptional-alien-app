@@ -4,8 +4,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import * as Network from "expo-network";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { PlaybookType } from "./playbook";
 import Hero from "components/profile/Hero";
 import About from "components/profile/About";
+import PlaybookSlider from "components/shared/PlaybookSlider";
 import { styleVars } from "utils/styles";
 import { pressedDefault } from "utils/helpers";
 
@@ -26,6 +28,7 @@ export type CreatorType = {
     description: [{ text: string }];
     website: { url: string };
     instagram: string;
+    playbooks: [{ playbook: PlaybookType }];
   };
 };
 
@@ -113,11 +116,14 @@ export default function Profile() {
         creator && (
           <View style={[styles.wrapper, { paddingBottom: insets.bottom + 16 }]}>
             <Hero creator={creator} />
+
             <About
               description={creator.data.description}
               website={creator.data.website.url}
               instagram={creator.data.instagram}
             />
+
+            <PlaybookSlider playbooks={creator.data.playbooks} title="Playbooks" hideCTA />
           </View>
         )
       )}
