@@ -48,7 +48,7 @@ export default function Layout() {
         <SettingsContext.Provider value={{ settings, setSettings }}>
           <FavsContext.Provider value={{ favs, setFavs }}>
             <BookmarksContext.Provider value={{ bookmarks, setBookmarks }}>
-              <GestureHandlerRootView style={{ flex: 1 }}>
+              <GestureHandlerRootView style={{ flex: 1, backgroundColor: colorScheme === "light" ? "white" : "black" }}>
                 <Stack
                   screenOptions={{
                     contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
