@@ -10,6 +10,7 @@ import { FiltersContext, FiltersType, FiltersInit } from "context/filters";
 import { SettingsContext, SettingsType, SettingsInit } from "context/settings";
 import { FavsContext } from "context/favs";
 import { BookmarksContext } from "context/bookmarks";
+import { StoredItem } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 SplashScreen.preventAutoHideAsync();
@@ -20,7 +21,7 @@ export default function Layout() {
   const [filters, setFilters] = useState<FiltersType>(FiltersInit);
   const [settings, setSettings] = useState<SettingsType>(SettingsInit);
   const [favs, setFavs] = useState<string[]>();
-  const [bookmarks, setBookmarks] = useState<string[]>();
+  const [bookmarks, setBookmarks] = useState<StoredItem[]>();
 
   const [fontsLoaded, fontError] = useFonts({
     "Helvetica-Monospaced": require("../assets/fonts/Helvetica-Monospaced-W06-Rg.ttf"),

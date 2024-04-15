@@ -1,20 +1,29 @@
 import React from "react";
 import { StyleSheet, Pressable, Text, useColorScheme, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
+
+type Route = {
+  pathname: string;
+  params?: { headerTitle: string };
+};
 
 type ListButtonProps = {
   title: string;
   icon?: string;
   count?: number;
+  route?: Route;
 };
 
 export default function ListButton(props: ListButtonProps) {
   const colorScheme = useColorScheme();
+  const router = useRouter();
 
   const press = () => {
-    alert("Will show list");
+    if (props.route) router.push(props.route as Href);
   };
 
   return (

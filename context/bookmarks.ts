@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { StoredItem } from "utils/helpers";
 
 export type BookmarksContextType = {
-  bookmarks: string[] | undefined;
-  setBookmarks: (bookmarks: string[]) => void;
+  bookmarks: StoredItem[] | undefined;
+  setBookmarks: (bookmarks: StoredItem[]) => void;
 };
 
 export const BookmarksContext = createContext<BookmarksContextType>({

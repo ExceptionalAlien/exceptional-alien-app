@@ -29,7 +29,7 @@ import Tab from "components/shared/Tab";
 import BigButton from "components/shared/BigButton";
 import Description from "components/playbook/Description";
 import { styleVars } from "utils/styles";
-import { getData, pressedDefault, storeData } from "utils/helpers";
+import { getData, pressedDefault, storeData, StoredItem } from "utils/helpers";
 
 type PlaybookImage = {
   mobile: {
@@ -100,9 +100,11 @@ export default function Playbook() {
         const unlocked = await getData("unlockedPBs");
         const response = await fetch(`https://www.exceptionalalien.com/api/playbook/${uid}`);
         const json = await response.json();
+
         setIsUnlocked(
           (unlocked && json.data.locked && !unlocked.includes(uid)) || (!unlocked && json.data.locked) ? false : true
         );
+
         setPlaybook(json);
 
         // Detect if Gems selected by other Creator/s
@@ -114,6 +116,7 @@ export default function Playbook() {
         }
 
         setCurators(creators);
+        setBookmark(json);
       } catch (error) {
         console.error(error);
         Alert.alert("Error", "Unable to load Playbook");
@@ -132,34 +135,80 @@ export default function Playbook() {
     setScrollOffset(percentage >= 100 ? 1 : percentage / 100);
   };
 
-  const toggleBookmark = async () => {
-    const bookmarks = await getData("bookmarks");
-    var updated: string[] = bookmarks ? bookmarks : [];
+  const getTitle = (pb: PlaybookType) => {
+    return pb.data.app_title
+      ? pb.data.app_title
+      : pb.data.destination.uid && pb.data.destination.data.title
+      ? `${pb.data.destination.data.title} with ${pb.data.creator.data.first_name}${
+          pb.data.creator.data.last_name ? ` ${pb.data.creator.data.last_name?.toUpperCase()}` : ""
+        }`
+      : `Global with ${pb.data.creator.data.first_name}${
+          pb.data.creator.data.last_name ? ` ${pb.data.creator.data.last_name?.toUpperCase()}` : ""
+        }`;
+  };
 
-    if (updated.includes(uid as string)) {
+  const getSubtitle = (pb: PlaybookType) => {
+    return pb.data.sub_title ? pb.data.sub_title.substring(0, 60) : pb.data.creator.data.title.substring(0, 40);
+  };
+
+  const toggleBookmark = async () => {
+    const bookmarksData = await getData("bookmarkedPBs");
+    const updated: StoredItem[] = bookmarksData ? bookmarksData : [];
+    const item = updated.find((item: StoredItem) => item.uid === uid);
+
+    if (item) {
       // Remove
-      const index = updated.indexOf(uid as string);
+      const index = updated.indexOf(item);
       updated.splice(index, 1);
       setIsBookmark(false);
-    } else {
+    } else if (playbook) {
       // Add
-      updated.push(uid as string);
+      updated.push({
+        uid: uid as string,
+        title: getTitle(playbook),
+        subTitle: getSubtitle(playbook),
+        destination: playbook.data.destination.uid,
+      });
+
       setIsBookmark(true);
     }
 
-    storeData("bookmarks", updated); // Store
+    storeData("bookmarkedPBs", updated); // Store
     setBookmarks(updated); // Update context
   };
 
-  const setBookmark = async () => {
-    const bookmarks = await getData("bookmarks");
-    setIsBookmark(bookmarks && bookmarks.includes(uid) ? true : false);
+  const setBookmark = async (pb?: PlaybookType) => {
+    const bookmarksData = await getData("bookmarkedPBs");
+
+    if (bookmarksData) {
+      const item = bookmarksData.find((item: StoredItem) => item.uid === uid);
+      setIsBookmark(item ? true : false);
+
+      if (item && pb) {
+        // Update stored details (incase outdated title shown)
+        const updated: StoredItem[] = bookmarksData;
+        const index = bookmarksData.indexOf(item);
+
+        updated[index] = {
+          uid: uid as string,
+          title: getTitle(pb),
+          subTitle: getSubtitle(pb),
+          destination: pb.data.destination.uid,
+        };
+
+        storeData("bookmarkedPBs", updated); // Store
+        setBookmarks(updated); // Update context
+      }
+    }
   };
 
   useEffect(() => {
     setIsloading(true);
-    getPlaybook();
     setBookmark();
+
+    setTimeout(() => {
+      getPlaybook();
+    }, 500); // Hack! - Pause to allow header color change to stick on iOS
   }, []);
 
   return (
@@ -172,24 +221,27 @@ export default function Playbook() {
           headerTransparent: true,
           headerLargeTitle: false,
           headerStyle: {
-            backgroundColor: `rgba(34,32,193,${isOffline ? 1 : scrollOffset})`,
+            backgroundColor: `rgba(34,32,193,${scrollOffset})`,
           },
-          headerTintColor: "white",
-          headerRight: () =>
-            playbook && (
-              <View style={styles.headerBar}>
-                <Pressable onPress={toggleBookmark} style={({ pressed }) => pressedDefault(pressed)}>
-                  <Ionicons name={isBookmark ? "bookmark" : "bookmark-outline"} size={28} color="white" />
-                </Pressable>
+          headerTintColor: playbook ? "white" : styleVars.eaBlue,
+          headerRight: () => (
+            <View style={styles.headerBar}>
+              <Pressable onPress={toggleBookmark} style={({ pressed }) => pressedDefault(pressed)}>
+                <Ionicons
+                  name={isBookmark ? "bookmark" : "bookmark-outline"}
+                  size={28}
+                  color={playbook ? "white" : styleVars.eaBlue}
+                />
+              </Pressable>
 
-                <Pressable
-                  onPress={() => alert("Will open share sheet")}
-                  style={({ pressed }) => pressedDefault(pressed)}
-                >
-                  <Ionicons name="share-outline" size={28} color="white" />
-                </Pressable>
-              </View>
-            ),
+              <Pressable
+                onPress={() => alert("Will open share sheet")}
+                style={({ pressed }) => pressedDefault(pressed)}
+              >
+                <Ionicons name="share-outline" size={28} color={playbook ? "white" : styleVars.eaBlue} />
+              </Pressable>
+            </View>
+          ),
         }}
       />
 
@@ -213,21 +265,7 @@ export default function Playbook() {
             <View style={scrollOffset === 0 && !isScrolling && { zIndex: 1 }}>
               <Cover
                 image={playbook.data.image.mobile.url}
-                title={
-                  playbook.data.app_title
-                    ? playbook.data.app_title
-                    : playbook.data.destination.uid && playbook.data.destination.data.title
-                    ? `${playbook.data.destination.data.title} with ${playbook.data.creator.data.first_name}${
-                        playbook.data.creator.data.last_name
-                          ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
-                          : ""
-                      }`
-                    : `Global with ${playbook.data.creator.data.first_name}${
-                        playbook.data.creator.data.last_name
-                          ? ` ${playbook.data.creator.data.last_name?.toUpperCase()}`
-                          : ""
-                      }`
-                }
+                title={getTitle(playbook)}
                 creator={playbook.data.creator}
                 setCoverHeight={setCoverHeight}
               />

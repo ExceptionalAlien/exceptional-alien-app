@@ -6,7 +6,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { BookmarksContext, BookmarksContextType } from "context/bookmarks";
 import { PlaybookType } from "app/playbook";
-import { getData } from "utils/helpers";
+import { getData, StoredItem } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type PlaybookThumbProps = {
@@ -29,8 +29,11 @@ export default function PlaybookThumb(props: PlaybookThumbProps) {
   };
 
   const setBookmark = async () => {
-    const bookmarksData = await getData("bookmarks");
-    setIsBookmark(bookmarksData && bookmarksData.includes(props.playbook.uid) ? true : false);
+    const bookmarksData = await getData("bookmarkedPBs");
+
+    setIsBookmark(
+      bookmarksData && bookmarksData.find((item: StoredItem) => item.uid === props.playbook.uid) ? true : false
+    );
   };
 
   useEffect(() => {

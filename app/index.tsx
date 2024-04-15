@@ -23,7 +23,7 @@ export default function Home() {
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
   //removeData("favs"); // Used for testing
-  //removeData("bookmarks"); // Used for testing
+  //removeData("bookmarkedPBs"); // Used for testing
   //removeData("settings"); // Used for testing
   //storeData("unlockedPBs", []); // Used for testing
 

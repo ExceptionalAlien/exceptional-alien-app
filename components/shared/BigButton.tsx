@@ -8,14 +8,14 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
-type BigButtonRoute = {
+type Route = {
   pathname: string;
   params?: { uid: string };
 };
 
 type BigButtonProps = {
   title: string;
-  route?: BigButtonRoute;
+  route?: Route;
   icon?: string; // playbook, gem
   bgColor?: string;
   home?: boolean;

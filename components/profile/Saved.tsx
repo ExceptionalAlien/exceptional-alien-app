@@ -16,7 +16,7 @@ export default function Saved(props: SavedProps) {
   const initLocalData = async () => {
     const favsData = await getData("favs");
     setFavs(favsData);
-    const bookmarksData = await getData("bookmarks");
+    const bookmarksData = await getData("bookmarkedPBs");
     setBookmarks(bookmarksData);
   };
 
@@ -32,6 +32,12 @@ export default function Saved(props: SavedProps) {
         title="Bookmarked Playbooks"
         icon="bookmarks-outline"
         count={!props.userID && bookmarks ? bookmarks.length : 0}
+        route={{
+          pathname: "/playbooks",
+          params: {
+            headerTitle: "Bookmarked",
+          },
+        }}
       />
     </View>
   );
