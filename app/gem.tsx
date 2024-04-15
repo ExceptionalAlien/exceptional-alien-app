@@ -12,13 +12,17 @@ import QuoteSlider from "components/shared/QuoteSlider";
 import BigButton from "components/shared/BigButton";
 import About from "components/gem/About";
 import PlaybookSlider from "components/shared/PlaybookSlider";
-import { storeData, getData, pressedDefault } from "utils/helpers";
+import { storeData, getData, pressedDefault, StoredItem } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type GemImage = {
   seo: {
     url: string;
   };
+};
+
+type GemDestination = {
+  data: { title: string };
 };
 
 type GemData = {
@@ -31,6 +35,7 @@ type GemData = {
   image: GemImage;
   about: [{ text: string }];
   website: { url: string };
+  destination: GemDestination;
 };
 
 export type GemType = {
@@ -86,6 +91,7 @@ export default function Gem() {
         }
 
         setPlaybooks(gemPlaybooks as [{ playbook: PlaybookType }]);
+        setFav(json); // Called again to update with latest data
       } catch (error) {
         console.error(error);
         Alert.alert("Error", "Unable to load Gem");
@@ -99,27 +105,54 @@ export default function Gem() {
   };
 
   const toggleFav = async () => {
-    const favs = await getData("favs");
-    var updated: string[] = favs ? favs : [];
+    const favsData = await getData("favGems");
+    const updated: StoredItem[] = favsData ? favsData : [];
+    const item = updated.find((item: StoredItem) => item.uid === uid);
 
-    if (updated.includes(uid as string)) {
+    if (item) {
       // Remove
-      const index = updated.indexOf(uid as string);
+      const index = updated.indexOf(item);
       updated.splice(index, 1);
       setIsFav(false);
-    } else {
+    } else if (gem) {
       // Add
-      updated.push(uid as string);
+      updated.push({
+        uid: uid as string,
+        title: gem.data.title,
+        subTitle: gem.data.description,
+        destination: gem.data.destination.data.title,
+      });
+
       setIsFav(true);
     }
 
-    storeData("favs", updated); // Store
+    storeData("favGems", updated); // Store
     setFavs(updated); // Update context
   };
 
-  const setFav = async () => {
-    const favs = await getData("favs");
-    setIsFav(favs && favs.includes(uid) ? true : false);
+  const setFav = async (g?: GemType) => {
+    const favsData = await getData("favGems");
+
+    if (favsData) {
+      const item = favsData.find((item: StoredItem) => item.uid === uid);
+      setIsFav(item ? true : false);
+
+      if (item && g) {
+        // Update stored details (incase outdated title shown)
+        const updated: StoredItem[] = favsData;
+        const index = favsData.indexOf(item);
+
+        updated[index] = {
+          uid: uid as string,
+          title: g.data.title,
+          subTitle: g.data.description,
+          destination: g.data.destination.data.title,
+        };
+
+        storeData("favGems", updated); // Store
+        setFavs(updated); // Update context
+      }
+    }
   };
 
   useEffect(() => {

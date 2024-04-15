@@ -16,7 +16,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FavsContext, FavsContextType } from "context/favs";
 import { GemType } from "app/gem";
-import { storeData, getData, pressedDefault } from "utils/helpers";
+import { storeData, getData, pressedDefault, StoredItem } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type HeaderProps = {
@@ -41,27 +41,34 @@ export default function Header(props: HeaderProps) {
   const [showLoader, setShowLoader] = useState(false);
 
   const toggleFav = async () => {
-    const favsData = await getData("favs");
-    var updated: string[] = favsData ? favsData : [];
+    const favsData = await getData("favGems");
+    const updated: StoredItem[] = favsData ? favsData : [];
+    const item = updated.find((item: StoredItem) => item.uid === props.gem.uid);
 
-    if (updated.includes(props.gem.uid)) {
+    if (item) {
       // Remove
-      const index = updated.indexOf(props.gem.uid);
+      const index = updated.indexOf(item);
       updated.splice(index, 1);
       setIsFav(false);
     } else {
       // Add
-      updated.push(props.gem.uid);
+      updated.push({
+        uid: props.gem.uid as string,
+        title: props.gem.data.title,
+        subTitle: props.gem.data.description,
+        destination: props.gem.data.destination?.data.title,
+      });
+
       setIsFav(true);
     }
 
-    storeData("favs", updated); // Store
+    storeData("favGems", updated); // Store
     setFavs(updated); // Update context
   };
 
   const setFav = async () => {
-    const favsData = await getData("favs");
-    setIsFav(favsData && favsData.includes(props.gem.uid) ? true : false);
+    const favsData = await getData("favGems");
+    setIsFav(favsData && favsData.find((item: StoredItem) => item.uid === props.gem.uid) ? true : false);
   };
 
   const openMaps = () => {

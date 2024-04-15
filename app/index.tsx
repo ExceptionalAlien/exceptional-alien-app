@@ -22,7 +22,7 @@ export default function Home() {
   const [selectedGem, setSelectedGem] = useState<GemType>();
   //removeData("onboarding"); // Used for testing
   //removeData("destination"); // Used for testing
-  //removeData("favs"); // Used for testing
+  //removeData("favGems"); // Used for testing
   //removeData("bookmarkedPBs"); // Used for testing
   //removeData("settings"); // Used for testing
   //storeData("unlockedPBs", []); // Used for testing

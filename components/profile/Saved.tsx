@@ -14,7 +14,7 @@ export default function Saved(props: SavedProps) {
   const { bookmarks, setBookmarks } = useContext<BookmarksContextType>(BookmarksContext);
 
   const initLocalData = async () => {
-    const favsData = await getData("favs");
+    const favsData = await getData("favGems");
     setFavs(favsData);
     const bookmarksData = await getData("bookmarkedPBs");
     setBookmarks(bookmarksData);

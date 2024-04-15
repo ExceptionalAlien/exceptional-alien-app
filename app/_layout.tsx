@@ -20,7 +20,7 @@ export default function Layout() {
   const [destination, setDestination] = useState<DestinationType>();
   const [filters, setFilters] = useState<FiltersType>(FiltersInit);
   const [settings, setSettings] = useState<SettingsType>(SettingsInit);
-  const [favs, setFavs] = useState<string[]>();
+  const [favs, setFavs] = useState<StoredItem[]>();
   const [bookmarks, setBookmarks] = useState<StoredItem[]>();
 
   const [fontsLoaded, fontError] = useFonts({

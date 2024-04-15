@@ -14,7 +14,7 @@ import NoGems from "./map/NoGems";
 import SelectDestination from "./map/SelectDestination";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
-import { getData } from "utils/helpers";
+import { getData, StoredItem } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type MapProps = {
@@ -87,7 +87,7 @@ export default function Map(props: MapProps) {
       try {
         const response = await fetch(`https://www.exceptionalalien.com/api/gems/${id}`);
         const unlocked = await getData("unlockedPBs");
-        const favsData = await getData("favs");
+        const favsData = await getData("favGems");
         setFavs(favsData); // Init
         const settingsData = await getData("settings");
         if (settingsData) setSettings(settingsData); // Init
@@ -269,13 +269,13 @@ export default function Map(props: MapProps) {
             (!item.hidden &&
               !filters.categories.length &&
               filters.favsOnly &&
-              favs?.includes(item.uid) &&
+              favs?.find((gem: StoredItem) => gem.uid === item.uid) &&
               !filters.myPlaybooksOnly) ||
             (!item.hidden &&
               filters.categories.length &&
               filters.categories.includes(item.data.category) &&
               filters.favsOnly &&
-              favs?.includes(item.uid) &&
+              favs?.find((gem: StoredItem) => gem.uid === item.uid) &&
               !filters.myPlaybooksOnly) ||
             (item.hidden &&
               settings.detectGems &&
@@ -297,12 +297,12 @@ export default function Map(props: MapProps) {
                     : props.selectedGem?.uid === item.uid
                     ? icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}Selected${
-                          favs?.includes(item.uid) ? "Fav" : ""
+                          favs?.find((gem: StoredItem) => gem.uid === item.uid) ? "Fav" : ""
                         }` as keyof typeof icons
                       ]
                     : icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}${
-                          favs?.includes(item.uid) ? "Fav" : ""
+                          favs?.find((gem: StoredItem) => gem.uid === item.uid) ? "Fav" : ""
                         }` as keyof typeof icons
                       ]
                 }

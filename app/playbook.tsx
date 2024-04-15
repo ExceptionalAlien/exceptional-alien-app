@@ -116,7 +116,7 @@ export default function Playbook() {
         }
 
         setCurators(creators);
-        setBookmark(json);
+        setBookmark(json); // Called again to update with latest data
       } catch (error) {
         console.error(error);
         Alert.alert("Error", "Unable to load Playbook");
