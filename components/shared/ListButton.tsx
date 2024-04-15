@@ -16,6 +16,7 @@ type ListButtonProps = {
   icon?: string;
   count?: number;
   route?: Route;
+  disabled?: boolean;
 };
 
 export default function ListButton(props: ListButtonProps) {
@@ -27,7 +28,12 @@ export default function ListButton(props: ListButtonProps) {
   };
 
   return (
-    <Pressable onPress={press} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={8}>
+    <Pressable
+      onPress={press}
+      style={({ pressed }) => [pressedDefault(pressed), styles.button]}
+      hitSlop={8}
+      disabled={props.disabled}
+    >
       <View style={styles.group}>
         {props.icon && (
           <Ionicons
@@ -47,7 +53,12 @@ export default function ListButton(props: ListButtonProps) {
           {props.count}
         </Text>
 
-        <Ionicons name="chevron-forward" size={20} color={styleVars.eaLightGrey} />
+        <Ionicons
+          name="chevron-forward"
+          size={20}
+          color={styleVars.eaLightGrey}
+          style={props.disabled && { opacity: 0 }}
+        />
       </View>
     </Pressable>
   );

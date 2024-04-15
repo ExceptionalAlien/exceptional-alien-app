@@ -26,7 +26,12 @@ export default function Saved(props: SavedProps) {
 
   return (
     <View style={styles.container}>
-      <ListButton title="Favorite Gems" icon="heart" count={!props.userID && favs ? favs.length : 0} />
+      <ListButton
+        title="Favorite Gems"
+        icon="heart"
+        count={!props.userID && favs ? favs.length : 0}
+        disabled={((!props.userID && !favs) || (!props.userID && favs && favs.length === 0)) && true}
+      />
 
       <ListButton
         title="Bookmarked Playbooks"
@@ -38,6 +43,7 @@ export default function Saved(props: SavedProps) {
             headerTitle: "Bookmarked",
           },
         }}
+        disabled={((!props.userID && !bookmarks) || (!props.userID && bookmarks && bookmarks.length === 0)) && true}
       />
     </View>
   );
