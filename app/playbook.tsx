@@ -223,14 +223,14 @@ export default function Playbook() {
           headerStyle: {
             backgroundColor: `rgba(34,32,193,${scrollOffset})`,
           },
-          headerTintColor: playbook ? "white" : styleVars.eaBlue,
+          headerTintColor: playbook || colorScheme === "dark" ? "white" : styleVars.eaBlue,
           headerRight: () => (
             <View style={styles.headerBar}>
               <Pressable onPress={toggleBookmark} style={({ pressed }) => pressedDefault(pressed)}>
                 <Ionicons
                   name={isBookmark ? "bookmark" : "bookmark-outline"}
                   size={28}
-                  color={playbook ? "white" : styleVars.eaBlue}
+                  color={playbook || colorScheme === "dark" ? "white" : styleVars.eaBlue}
                 />
               </Pressable>
 
@@ -238,7 +238,11 @@ export default function Playbook() {
                 onPress={() => alert("Will open share sheet")}
                 style={({ pressed }) => pressedDefault(pressed)}
               >
-                <Ionicons name="share-outline" size={28} color={playbook ? "white" : styleVars.eaBlue} />
+                <Ionicons
+                  name="share-outline"
+                  size={28}
+                  color={playbook || colorScheme === "dark" ? "white" : styleVars.eaBlue}
+                />
               </Pressable>
             </View>
           ),

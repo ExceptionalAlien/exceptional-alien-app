@@ -8,7 +8,7 @@ import { styleVars } from "utils/styles";
 
 type Route = {
   pathname: string;
-  params?: { headerTitle: string };
+  params?: { savedType?: string };
 };
 
 type ListButtonProps = {
@@ -39,7 +39,7 @@ export default function ListButton(props: ListButtonProps) {
           <Ionicons
             name={props.icon as any}
             size={28}
-            color={props.icon === "heart" ? styleVars.eaRed : colorScheme === "light" ? "black" : "white"}
+            color={props.icon === "heart" ? styleVars.eaRed : styleVars.eaBlue}
           />
         )}
 

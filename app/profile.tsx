@@ -134,7 +134,6 @@ export default function Profile() {
           />
 
           <PlaybookSlider playbooks={creator.data.playbooks} title="Playbooks" hideCTA />
-          <Saved userID={1} />
         </View>
       ) : (
         <SafeAreaView>
