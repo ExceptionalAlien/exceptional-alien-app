@@ -83,6 +83,7 @@ export default function Gem() {
         // Add all Playbooks excluding ref (if included) and locked
         for (let i = 0; i < json.data.playbooks.length; i++) {
           let pb = json.data.playbooks[i];
+
           if (
             (pb.playbook.uid !== ref && !pb.playbook.data.locked) ||
             (pb.playbook.uid !== ref && pb.playbook.data.locked && unlocked && unlocked.includes(pb.playbook.uid))
@@ -90,7 +91,7 @@ export default function Gem() {
             gemPlaybooks.push(pb);
         }
 
-        setPlaybooks(gemPlaybooks as [{ playbook: PlaybookType }]);
+        setPlaybooks(gemPlaybooks.length ? (gemPlaybooks as [{ playbook: PlaybookType }]) : undefined);
         setFav(json); // Called again to update with latest data
       } catch (error) {
         console.error(error);
@@ -208,9 +209,7 @@ export default function Gem() {
           style={styles.loader}
         />
       ) : (
-        gem &&
-        playbooks &&
-        playbooks.length && (
+        gem && (
           <View style={{ paddingBottom: insets.bottom + 16 }}>
             <Hero url={gem.data.image.seo.url} location={gem.data.location} />
 
@@ -221,9 +220,11 @@ export default function Gem() {
               address={gem.data.address}
             />
 
-            <View style={styles.quotes}>
-              <QuoteSlider gem={uid as string} playbooks={playbooks} />
-            </View>
+            {playbooks && (
+              <View style={styles.quotes}>
+                <QuoteSlider gem={uid as string} playbooks={playbooks} />
+              </View>
+            )}
 
             <BigButton
               title="Add to Playbook"
@@ -232,7 +233,7 @@ export default function Gem() {
             />
 
             <About text={gem.data.about[0].text} website={gem.data.website.url} />
-            <PlaybookSlider playbooks={playbooks} title="Featured In" hideCTA />
+            {playbooks && <PlaybookSlider playbooks={playbooks} title="Featured In" hideCTA />}
           </View>
         )
       )}
