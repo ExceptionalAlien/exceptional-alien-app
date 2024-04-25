@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
+import { useNavigation } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
+import { GemsContext, GemsContextType } from "context/gems";
 import { FiltersContext, FiltersContextType } from "context/filters";
 import { FavsContext, FavsContextType } from "context/favs";
 import { SettingsContext, SettingsContextType } from "context/settings";
@@ -63,9 +65,11 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation<any>();
   const { filters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
+  const { gems } = useContext<GemsContextType>(GemsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
@@ -241,6 +245,20 @@ export default function Map(props: MapProps) {
     if (props.destination.id) getGems(props.destination.id);
   }, [props.destination]);
 
+  useEffect(() => {
+    // Wait for page transition to end
+    const unsubscribe = navigation.addListener("transitionEnd", () => {
+      if (gems?.length) {
+        // Show Playbook Gems only
+        props.setSelectedGem(undefined); // Reset
+        hiddenGems.current = []; // Reset
+        setData(gems);
+      }
+    });
+
+    return unsubscribe;
+  }, [navigation, gems]);
+
   return (
     <View style={styles.container}>
       <MapView
@@ -286,7 +304,7 @@ export default function Map(props: MapProps) {
           ) {
             return (
               <Marker
-                key={index}
+                key={gems ? item.uid : index}
                 coordinate={item.data.location}
                 zIndex={props.selectedGem?.uid === item.uid ? 1 : undefined}
                 icon={

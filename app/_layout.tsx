@@ -5,7 +5,9 @@ import { useFonts } from "expo-font";
 import * as Device from "expo-device";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { GemType } from "./gem";
 import { DestinationContext, DestinationType } from "context/destination";
+import { GemsContext } from "context/gems";
 import { FiltersContext, FiltersType, FiltersInit } from "context/filters";
 import { SettingsContext, SettingsType, SettingsInit } from "context/settings";
 import { FavsContext } from "context/favs";
@@ -18,6 +20,7 @@ SplashScreen.preventAutoHideAsync();
 export default function Layout() {
   const colorScheme = useColorScheme();
   const [destination, setDestination] = useState<DestinationType>();
+  const [gems, setGems] = useState<GemType[]>();
   const [filters, setFilters] = useState<FiltersType>(FiltersInit);
   const [settings, setSettings] = useState<SettingsType>(SettingsInit);
   const [favs, setFavs] = useState<StoredItem[]>();
@@ -45,45 +48,49 @@ export default function Layout() {
 
   return (
     <DestinationContext.Provider value={{ destination, setDestination }}>
-      <FiltersContext.Provider value={{ filters, setFilters }}>
-        <SettingsContext.Provider value={{ settings, setSettings }}>
-          <FavsContext.Provider value={{ favs, setFavs }}>
-            <BookmarksContext.Provider value={{ bookmarks, setBookmarks }}>
-              <GestureHandlerRootView style={{ flex: 1, backgroundColor: colorScheme === "light" ? "white" : "black" }}>
-                <Stack
-                  screenOptions={{
-                    contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
-                    headerTintColor: colorScheme === "light" ? styleVars.eaBlue : "white",
-                    headerTitleStyle: {
-                      fontFamily: "Neue-Haas-Grotesk-Med",
-                    },
-                    headerLargeTitle: true,
-                    headerLargeTitleStyle: {
-                      fontFamily: "Neue-Haas-Grotesk-Med",
-                    },
-                    headerBackTitle: "Back",
-                    headerBackTitleStyle: {
-                      fontFamily: "Neue-Haas-Grotesk",
-                    },
-                    headerShadowVisible: false,
-                    headerStyle: {
-                      backgroundColor: colorScheme === "light" ? "white" : "black",
-                    },
-                  }}
+      <GemsContext.Provider value={{ gems, setGems }}>
+        <FiltersContext.Provider value={{ filters, setFilters }}>
+          <SettingsContext.Provider value={{ settings, setSettings }}>
+            <FavsContext.Provider value={{ favs, setFavs }}>
+              <BookmarksContext.Provider value={{ bookmarks, setBookmarks }}>
+                <GestureHandlerRootView
+                  style={{ flex: 1, backgroundColor: colorScheme === "light" ? "white" : "black" }}
                 >
-                  <Stack.Screen
-                    name="filters"
-                    options={{
-                      presentation: "modal",
-                      headerLargeTitle: false,
+                  <Stack
+                    screenOptions={{
+                      contentStyle: { backgroundColor: colorScheme === "light" ? "white" : "black" },
+                      headerTintColor: colorScheme === "light" ? styleVars.eaBlue : "white",
+                      headerTitleStyle: {
+                        fontFamily: "Neue-Haas-Grotesk-Med",
+                      },
+                      headerLargeTitle: true,
+                      headerLargeTitleStyle: {
+                        fontFamily: "Neue-Haas-Grotesk-Med",
+                      },
+                      headerBackTitle: "Back",
+                      headerBackTitleStyle: {
+                        fontFamily: "Neue-Haas-Grotesk",
+                      },
+                      headerShadowVisible: false,
+                      headerStyle: {
+                        backgroundColor: colorScheme === "light" ? "white" : "black",
+                      },
                     }}
-                  />
-                </Stack>
-              </GestureHandlerRootView>
-            </BookmarksContext.Provider>
-          </FavsContext.Provider>
-        </SettingsContext.Provider>
-      </FiltersContext.Provider>
+                  >
+                    <Stack.Screen
+                      name="filters"
+                      options={{
+                        presentation: "modal",
+                        headerLargeTitle: false,
+                      }}
+                    />
+                  </Stack>
+                </GestureHandlerRootView>
+              </BookmarksContext.Provider>
+            </FavsContext.Provider>
+          </SettingsContext.Provider>
+        </FiltersContext.Provider>
+      </GemsContext.Provider>
     </DestinationContext.Provider>
   );
 }

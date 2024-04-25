@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, Pressable, View } from "react-native";
 import { useRouter } from "expo-router";
 import * as Device from "expo-device";
 import { Image } from "expo-image";
 import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { pressedDefault } from "utils/helpers";
+import destinationsData from "data/destinations.json";
+import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
+import { GemsContext, GemsContextType } from "context/gems";
+import { pressedDefault, storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
 type Route = {
@@ -19,9 +22,11 @@ type BigButtonProps = {
   icon?: string; // playbook, gem
   bgColor?: string;
   home?: boolean;
+  destination?: string;
   disabled?: boolean;
   price?: string;
   alert?: string;
+  playbook?: any;
 };
 
 const icons = {
@@ -33,10 +38,31 @@ const icons = {
 
 export default function BigButton(props: BigButtonProps) {
   const router = useRouter();
+  const { setDestination } = useContext<DestinationContextType>(DestinationContext);
+  const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const press = () => {
     if (props.home) {
-      router.navigate("/");
+      if (props.playbook) {
+        const gems = [];
+
+        for (let i = 0; i < props.playbook.data.slices.length; i++) {
+          let gem = props.playbook.data.slices[i].primary.gem;
+          gem.data.playbooks = [{ playbook: props.playbook }]; // Inlude only originating Playbook
+          gems.push(gem);
+        }
+
+        setGems(gems); // Set Gems context to update map
+      }
+
+      router.navigate("/"); // Home
+    } else if (props.destination) {
+      const data = JSON.stringify(destinationsData);
+      const destinations: DestinationType[] = JSON.parse(data);
+      const destination = destinations.filter((item) => item.uid === props.destination); // Find destination by uid
+      setDestination(destination[0]); // Set context
+      storeData("destination", destination[0]);
+      router.navigate("/"); // Home
     } else if (props.alert) {
       alert(props.alert);
     } else {

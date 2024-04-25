@@ -332,7 +332,8 @@ export default function Playbook() {
                   title="View on Map"
                   icon="map-outline"
                   disabled={isUnlocked ? false : true}
-                  alert="Will filter map and only show Gems included in this Playbook"
+                  home
+                  playbook={playbook}
                 />
               </View>
             </ScrollView>
