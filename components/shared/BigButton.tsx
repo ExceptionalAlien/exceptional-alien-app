@@ -42,19 +42,16 @@ export default function BigButton(props: BigButtonProps) {
   const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const press = () => {
-    if (props.home) {
-      if (props.playbook) {
-        const gems = [];
+    if (props.playbook) {
+      const gems = [];
 
-        for (let i = 0; i < props.playbook.data.slices.length; i++) {
-          let gem = props.playbook.data.slices[i].primary.gem;
-          gem.data.playbooks = [{ playbook: props.playbook }]; // Inlude only originating Playbook
-          gems.push(gem);
-        }
-
-        setGems(gems); // Set Gems context to update map
+      for (let i = 0; i < props.playbook.data.slices.length; i++) {
+        let gem = props.playbook.data.slices[i].primary.gem;
+        gem.data.playbooks = [{ playbook: props.playbook }]; // Only include originating Playbook
+        gems.push(gem);
       }
 
+      setGems(gems); // Set Gems context to update map
       router.navigate("/"); // Home
     } else if (props.destination) {
       const data = JSON.stringify(destinationsData);
@@ -65,6 +62,8 @@ export default function BigButton(props: BigButtonProps) {
       router.navigate("/"); // Home
     } else if (props.alert) {
       alert(props.alert);
+    } else if (props.home) {
+      router.navigate("/"); // Home
     } else {
       router.push(props.route as Href);
     }

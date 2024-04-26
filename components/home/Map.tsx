@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { StyleSheet, View, ActivityIndicator, Alert } from "react-native";
 import * as Network from "expo-network";
-import { useNavigation } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
@@ -65,11 +64,10 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
   const { filters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
-  const { gems } = useContext<GemsContextType>(GemsContext);
+  const { gems, setGems } = useContext<GemsContextType>(GemsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
@@ -220,18 +218,20 @@ export default function Map(props: MapProps) {
   };
 
   const regionChanged = (region: Region) => {
-    // Detect if location is within a destination
-    const destination = detectDestination(
-      region.latitude,
-      region.longitude,
-      region.latitudeDelta,
-      region.longitudeDelta
-    );
+    if (!gems?.length) {
+      // Detect if location is within a destination
+      const destination = detectDestination(
+        region.latitude,
+        region.longitude,
+        region.latitudeDelta,
+        region.longitudeDelta
+      );
 
-    if (destination.uid && destination.uid !== props.destination.uid) {
-      props.setDestination(destination);
-    } else {
-      detectHiddenGems();
+      if (destination.uid && destination.uid !== props.destination.uid) {
+        props.setDestination(destination);
+      } else {
+        detectHiddenGems();
+      }
     }
   };
 
@@ -239,6 +239,7 @@ export default function Map(props: MapProps) {
     setIsLoading(false);
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
     setData([]); // Empty
+    setGems([]); // Clear
     props.setSelectedGem(undefined); // Reset
     hiddenGems.current = []; // Reset
     if (!props.destination.region) setBounds(); // Only if destination isn't device location
@@ -246,18 +247,23 @@ export default function Map(props: MapProps) {
   }, [props.destination]);
 
   useEffect(() => {
-    // Wait for page transition to end
-    const unsubscribe = navigation.addListener("transitionEnd", () => {
-      if (gems?.length) {
-        // Show Playbook Gems only
-        props.setSelectedGem(undefined); // Reset
-        hiddenGems.current = []; // Reset
-        setData(gems);
-      }
-    });
+    var timeout: undefined | ReturnType<typeof setTimeout>;
 
-    return unsubscribe;
-  }, [navigation, gems]);
+    if (gems?.length) {
+      props.setSelectedGem(undefined); // Reset
+      hiddenGems.current = []; // Reset
+      setData(gems);
+
+      // Show all markers on map
+      timeout = setTimeout(() => {
+        mapRef.current?.fitToElements({
+          edgePadding: { top: 160, left: 48, bottom: 64, right: 48 },
+        });
+      }, 500); // Wait for markers to render
+    }
+
+    return () => clearTimeout(timeout);
+  }, [gems]);
 
   return (
     <View style={styles.container}>

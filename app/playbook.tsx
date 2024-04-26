@@ -203,12 +203,15 @@ export default function Playbook() {
   };
 
   useEffect(() => {
+    var timeout: undefined | ReturnType<typeof setTimeout>;
     setIsloading(true);
     setBookmark();
 
-    setTimeout(() => {
+    timeout = setTimeout(() => {
       getPlaybook();
     }, 500); // Hack! - Pause to allow header color change to stick on iOS
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
@@ -332,7 +335,6 @@ export default function Playbook() {
                   title="View on Map"
                   icon="map-outline"
                   disabled={isUnlocked ? false : true}
-                  home
                   playbook={playbook}
                 />
               </View>
