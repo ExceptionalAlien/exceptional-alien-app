@@ -3,11 +3,12 @@ import { StyleSheet, Text } from "react-native";
 import Animated, { withTiming, Easing, useSharedValue } from "react-native-reanimated";
 import { styleVars } from "utils/styles";
 
-type NoGemsProps = {
+type BannerProps = {
+  text: string;
   visible: boolean;
 };
 
-export default function NoGems(props: NoGemsProps) {
+export default function Banner(props: BannerProps) {
   const marginBottom = useSharedValue(-52);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function NoGems(props: NoGemsProps) {
   return (
     <Animated.View style={[styles.container, { marginBottom }]}>
       <Text style={styles.text} allowFontScaling={false}>
-        No Gems nearby
+        {props.text}
       </Text>
     </Animated.View>
   );

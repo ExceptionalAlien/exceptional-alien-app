@@ -11,8 +11,8 @@ import { SettingsContext, SettingsContextType } from "context/settings";
 import { GemType } from "app/gem";
 import Controls from "./map/Controls";
 import HiddenGemsDetected from "./map/HiddenGemsDetected";
-import NoGems from "./map/NoGems";
-import SelectDestination from "./map/SelectDestination";
+import Banner from "./map/Banner";
+import Action from "./map/Action";
 import mapStyle from "assets/map-style.json";
 import { detectDestination } from "utils/detect-destination";
 import { getData, StoredItem } from "utils/helpers";
@@ -70,7 +70,9 @@ export default function Map(props: MapProps) {
   const { gems, setGems } = useContext<GemsContextType>(GemsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
+  const [markerCount, setMarkerCount] = useState<number | undefined>();
   const [visibleHiddenGems, setVisibleHiddenGems] = useState<string[]>([]);
+  const [showingPBGems, setShowingPBGems] = useState(false);
   const mountedID = useRef<string | undefined>();
   const mapRef = useRef<MapView>(null);
   const hiddenGems = useRef<GemType[]>([]);
@@ -96,7 +98,7 @@ export default function Map(props: MapProps) {
         const json = await response.json();
 
         if (id === mountedID.current) {
-          const gems = [];
+          const availableGems = [];
 
           // Loop all returned Gems
           for (let i = 0; i < json.length; i++) {
@@ -121,12 +123,12 @@ export default function Map(props: MapProps) {
               hiddenGems.current.push(gem);
             }
 
-            if (gem.data.location.latitude && gem.data.location.longitude) gems.push(gem);
+            if (gem.data.location.latitude && gem.data.location.longitude) availableGems.push(gem);
           }
 
-          setData(gems);
+          setData(availableGems);
           detectHiddenGems();
-          autoZoom(gems, 12, id); // Zoom out if 1 or less Gems visible on map
+          autoZoom(availableGems, 12, id); // Zoom out if no Gems visible on map
         }
       } catch (error) {
         if (id === mountedID.current) {
@@ -142,15 +144,15 @@ export default function Map(props: MapProps) {
     }
   };
 
-  const autoZoom = (gems: GemType[], zoom: number, id: string) => {
+  const autoZoom = (allGems: GemType[], zoom: number, id: string) => {
     var visibleCount = 0;
 
     mapRef.current
       ?.getMapBoundaries()
       .then((bounds) => {
         // Loop Gems and check if currently visible on map
-        for (let i = 0; i < gems.length; i++) {
-          let gem = gems[i];
+        for (let i = 0; i < allGems.length; i++) {
+          let gem = allGems[i];
           let lat = gem.data.location.latitude;
           let lng = gem.data.location.longitude;
 
@@ -163,16 +165,14 @@ export default function Map(props: MapProps) {
             visibleCount++;
         }
 
-        if (visibleCount <= 1) {
+        if (!visibleCount && zoom) {
           mapRef.current?.animateCamera({ zoom: zoom });
 
           setTimeout(() => {
-            if (id === mountedID.current && zoom === 12) {
-              autoZoom(gems, 10, id); // Zoom more if needed
-            } else if (id === mountedID.current) {
-              setBounds(); // Show all Gems
-            }
+            if (id === mountedID.current && !showingPBGems) autoZoom(allGems, 0, id); // See if Gems no visible
           }, 750);
+        } else if (!visibleCount) {
+          setBounds(); // Show all Gems
         }
       })
       .catch((err) => console.log(err));
@@ -185,12 +185,12 @@ export default function Map(props: MapProps) {
     ];
 
     mapRef.current?.fitToCoordinates(coords, {
-      edgePadding: { top: 160, left: 48, bottom: 64, right: 48 },
+      edgePadding: { top: 0, left: 40, bottom: 56, right: 40 },
     });
   };
 
   const detectHiddenGems = async () => {
-    const gems: string[] = [];
+    const hidden: string[] = [];
     const coords = await mapRef?.current?.getCamera();
 
     mapRef.current
@@ -206,19 +206,19 @@ export default function Map(props: MapProps) {
             lng >= bounds.southWest.longitude &&
             lng <= bounds.northEast.longitude &&
             coords?.zoom &&
-            coords.zoom >= 15
+            coords.zoom >= 14
           ) {
-            gems.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
+            hidden.push(hiddenGems.current[i].uid); // Gem is within map bounds and map is zoomed in
           }
         }
 
-        setVisibleHiddenGems(gems);
+        setVisibleHiddenGems(hidden);
       })
       .catch((err) => console.log(err));
   };
 
   const regionChanged = (region: Region) => {
-    if (!gems?.length) {
+    if (!showingPBGems) {
       // Detect if location is within a destination
       const destination = detectDestination(
         region.latitude,
@@ -253,17 +253,29 @@ export default function Map(props: MapProps) {
       props.setSelectedGem(undefined); // Reset
       hiddenGems.current = []; // Reset
       setData(gems);
+      setShowingPBGems(true);
 
       // Show all markers on map
       timeout = setTimeout(() => {
         mapRef.current?.fitToElements({
-          edgePadding: { top: 160, left: 48, bottom: 64, right: 48 },
+          edgePadding: { top: 32, left: 40, bottom: 56, right: 40 },
         });
       }, 500); // Wait for markers to render
     }
 
     return () => clearTimeout(timeout);
   }, [gems]);
+
+  useEffect(() => {
+    const markers: any = mapRef?.current?.props.children;
+    var count = 0;
+
+    for (let i = 0; i < markers.length; i++) {
+      if (markers[i]) count++; // Check if defined
+    }
+
+    setMarkerCount(count);
+  }, [mapRef?.current?.props.children, filters]);
 
   return (
     <View style={styles.container}>
@@ -281,6 +293,7 @@ export default function Map(props: MapProps) {
         onPress={(e) => {
           if (e.nativeEvent.action !== "marker-press") props.setSelectedGem(undefined);
         }}
+        mapPadding={{ top: 160, left: 8, bottom: 8, right: 8 }}
       >
         {data.map((item, index) => {
           if (
@@ -338,8 +351,9 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
-      <SelectDestination visible={!props.destination.uid ? true : false} />
-      <NoGems visible={!props.destination.uid ? true : false} />
+      <Action text="Select a destination" visible={!props.destination.uid ? true : false} icon />
+      <Action text="Show all Gems" visible={showingPBGems ? true : false} />
+      <Banner text="No Gems found" visible={!props.destination.uid || (data.length && !markerCount) ? true : false} />
       <HiddenGemsDetected hiddenGemCount={visibleHiddenGems.length} />
 
       <Controls

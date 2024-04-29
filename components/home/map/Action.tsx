@@ -7,14 +7,20 @@ import Animated, { withTiming, Easing, useSharedValue } from "react-native-reani
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
-type SelectDestinationProps = {
+type ActionProps = {
+  text: string;
   visible: boolean;
+  icon?: boolean;
 };
 
-export default function SelectDestination(props: SelectDestinationProps) {
+export default function Action(props: ActionProps) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const opacity = useSharedValue(0);
+
+  const click = () => {
+    router.push({ pathname: "/search", params: { destinationsOnly: true } });
+  };
 
   useEffect(() => {
     // Show/hide banner
@@ -36,15 +42,12 @@ export default function SelectDestination(props: SelectDestinationProps) {
         },
       ]}
     >
-      <Pressable
-        onPress={() => router.push({ pathname: "/search", params: { destinationsOnly: true } })}
-        style={({ pressed }) => [pressedDefault(pressed), styles.button]}
-      >
+      <Pressable onPress={click} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={8}>
         <Text style={styles.text} allowFontScaling={false}>
-          Select a destination
+          {props.text}
         </Text>
 
-        <Ionicons name="arrow-forward-sharp" size={16} color={styleVars.eaBlue} />
+        {props.icon && <Ionicons name="arrow-forward-sharp" size={16} color={styleVars.eaBlue} />}
       </Pressable>
     </Animated.View>
   );
@@ -53,21 +56,20 @@ export default function SelectDestination(props: SelectDestinationProps) {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    left: "50%",
-    marginLeft: -96,
     opacity: 0,
+    alignSelf: "center",
   },
   button: {
-    width: 192,
     flexDirection: "row",
     backgroundColor: "white",
     borderRadius: 999,
-    height: 40,
+    height: 32,
     justifyContent: "center",
     alignItems: "center",
     gap: 4,
     borderColor: styleVars.eaBlue,
     borderWidth: 1,
+    paddingHorizontal: 12,
   },
   text: {
     color: styleVars.eaBlue,
