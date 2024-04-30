@@ -6,6 +6,7 @@ import { Image } from "expo-image";
 import { Href } from "expo-router/build/link/href";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import destinationsData from "data/destinations.json";
+import { PlaybookType } from "app/playbook";
 import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
 import { GemsContext, GemsContextType } from "context/gems";
 import { pressedDefault, storeData } from "utils/helpers";
@@ -26,7 +27,7 @@ type BigButtonProps = {
   disabled?: boolean;
   price?: string;
   alert?: string;
-  playbook?: any;
+  playbook?: PlaybookType;
 };
 
 const icons = {
@@ -41,6 +42,15 @@ export default function BigButton(props: BigButtonProps) {
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
   const { setGems } = useContext<GemsContextType>(GemsContext);
 
+  const goToDestination = (dest: string) => {
+    const data = JSON.stringify(destinationsData);
+    const destinations: DestinationType[] = JSON.parse(data);
+    const destination = destinations.filter((item) => item.uid === dest); // Find destination by uid
+    setDestination(destination[0]); // Set context
+    storeData("destination", destination[0]);
+    router.navigate("/"); // Home
+  };
+
   const press = () => {
     if (props.playbook) {
       const gems = [];
@@ -52,14 +62,14 @@ export default function BigButton(props: BigButtonProps) {
       }
 
       setGems(gems); // Set Gems context to update map
-      router.navigate("/"); // Home
+
+      if (props.playbook.data.destination.uid) {
+        goToDestination(props.playbook.data.destination.uid);
+      } else {
+        router.navigate("/"); // Home
+      }
     } else if (props.destination) {
-      const data = JSON.stringify(destinationsData);
-      const destinations: DestinationType[] = JSON.parse(data);
-      const destination = destinations.filter((item) => item.uid === props.destination); // Find destination by uid
-      setDestination(destination[0]); // Set context
-      storeData("destination", destination[0]);
-      router.navigate("/"); // Home
+      goToDestination(props.destination);
     } else if (props.alert) {
       alert(props.alert);
     } else if (props.home) {

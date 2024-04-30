@@ -3,6 +3,7 @@ import { StyleSheet, Text, Pressable, useWindowDimensions, useColorScheme } from
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { DestinationType, DestinationContext, DestinationContextType } from "context/destination";
+import { GemsContext, GemsContextType } from "context/gems";
 import { pressedDefault, storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -20,8 +21,10 @@ export default function Destination(props: DestinationProps) {
   const colorScheme = useColorScheme();
   const { width } = useWindowDimensions();
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
+  const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const destinationClick = (destination: DestinationType) => {
+    setGems([]); // Clear
     setDestination(destination);
     storeData("destination", destination);
     router.back();

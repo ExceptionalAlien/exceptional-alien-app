@@ -1,25 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import { Image } from "expo-image";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, { withTiming, Easing, useSharedValue } from "react-native-reanimated";
+import { GemsContext, GemsContextType } from "context/gems";
 import { pressedDefault } from "utils/helpers";
 import { styleVars } from "utils/styles";
+
+type ActionRoute = {
+  pathname: string;
+  params: {
+    destinationsOnly?: boolean;
+  };
+};
 
 type ActionProps = {
   text: string;
   visible: boolean;
-  icon?: boolean;
+  route?: ActionRoute;
 };
 
 export default function Action(props: ActionProps) {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { setGems } = useContext<GemsContextType>(GemsContext);
   const opacity = useSharedValue(0);
 
   const click = () => {
-    router.push({ pathname: "/search", params: { destinationsOnly: true } });
+    if (props.route) {
+      router.push(props.route);
+    } else {
+      setGems([]); // Clear Playbook Gems
+    }
   };
 
   useEffect(() => {
@@ -43,11 +57,15 @@ export default function Action(props: ActionProps) {
       ]}
     >
       <Pressable onPress={click} style={({ pressed }) => [pressedDefault(pressed), styles.button]} hitSlop={8}>
+        {!props.route && (
+          <Image source={require("assets/img/icon-gem-blue.svg")} style={styles.icon} contentFit="contain" />
+        )}
+
         <Text style={styles.text} allowFontScaling={false}>
           {props.text}
         </Text>
 
-        {props.icon && <Ionicons name="arrow-forward-sharp" size={16} color={styleVars.eaBlue} />}
+        {props.route && <Ionicons name="arrow-forward-sharp" size={16} color={styleVars.eaBlue} />}
       </Pressable>
     </Animated.View>
   );
@@ -70,6 +88,10 @@ const styles = StyleSheet.create({
     borderColor: styleVars.eaBlue,
     borderWidth: 1,
     paddingHorizontal: 12,
+  },
+  icon: {
+    width: 16,
+    height: 16,
   },
   text: {
     color: styleVars.eaBlue,

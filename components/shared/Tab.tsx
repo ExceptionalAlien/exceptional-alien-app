@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import destinationsData from "data/destinations.json";
 import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
 import { FiltersContext, FiltersContextType } from "context/filters";
+import { GemsContext, GemsContextType } from "context/gems";
 import { pressedDefault, storeData } from "utils/helpers";
 import { styleVars } from "utils/styles";
 
@@ -44,11 +45,13 @@ export default function Tab(props: TabProps) {
   const colorScheme = useColorScheme();
   const { setDestination } = useContext<DestinationContextType>(DestinationContext);
   const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
+  const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const destinationClick = () => {
     const data = JSON.stringify(destinationsData);
     const destinations: DestinationType[] = JSON.parse(data);
     const destination = destinations.filter((item) => item.uid === props.destination); // Find destination by uid
+    setGems([]); // Clear
     setDestination(destination[0]); // Set context
     storeData("destination", destination[0]);
 

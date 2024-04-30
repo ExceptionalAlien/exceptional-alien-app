@@ -232,7 +232,7 @@ export default function Gem() {
               alert="Will ask which Playbook to add Gem to or create a new Playbook"
             />
 
-            <About text={gem.data.about[0].text} website={gem.data.website.url} />
+            <About text={gem.data.about[0]?.text} website={gem.data.website.url} />
             {playbooks && <PlaybookSlider playbooks={playbooks} title="Featured In" hideCTA />}
           </View>
         )

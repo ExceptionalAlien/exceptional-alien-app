@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, View, useWindowDimensions, useColorScheme, StatusBar } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ScreenOrientation from "expo-screen-orientation";
@@ -12,7 +12,8 @@ import Animated, {
   measure,
   interpolateColor,
 } from "react-native-reanimated";
-import { DestinationType } from "context/destination";
+import { DestinationContext, DestinationContextType, DestinationType } from "context/destination";
+import { GemsContext, GemsContextType } from "context/gems";
 import { GemType } from "app/gem";
 import Playbooks from "./bottom-sheet/Playbooks";
 import Gem from "./bottom-sheet/Gem";
@@ -31,6 +32,8 @@ export default function BottomSheet(props: BottomSheetProps) {
   const container = useAnimatedRef();
   const offset = useSharedValue(0);
   const bgColor = useSharedValue(0);
+  const { destination } = useContext<DestinationContextType>(DestinationContext);
+  const { gems } = useContext<GemsContextType>(GemsContext);
   const statusBar = StatusBar.currentHeight ? StatusBar.currentHeight : 0; // Android only
   const collapsedHeight = ((height + statusBar) / 100) * 35; // 35% of window height
 
@@ -56,6 +59,10 @@ export default function BottomSheet(props: BottomSheetProps) {
       [styleVars.eaBlue, colorScheme === "light" ? "white" : "black"]
     ),
   }));
+
+  useEffect(() => {
+    offset.value = 0; // Close/reset
+  }, [gems, destination]);
 
   useEffect(() => {
     // Sheet bg should be white when a Gem is selected

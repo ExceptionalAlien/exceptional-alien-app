@@ -5,7 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import MapView, { PROVIDER_GOOGLE, Marker, Region } from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { GemsContext, GemsContextType } from "context/gems";
-import { FiltersContext, FiltersContextType } from "context/filters";
+import { FiltersContext, FiltersContextType, FiltersInit } from "context/filters";
 import { FavsContext, FavsContextType } from "context/favs";
 import { SettingsContext, SettingsContextType } from "context/settings";
 import { GemType } from "app/gem";
@@ -64,7 +64,7 @@ const icons = {
 
 export default function Map(props: MapProps) {
   const insets = useSafeAreaInsets();
-  const { filters } = useContext<FiltersContextType>(FiltersContext);
+  const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
   const { gems, setGems } = useContext<GemsContextType>(GemsContext);
@@ -169,7 +169,7 @@ export default function Map(props: MapProps) {
           mapRef.current?.animateCamera({ zoom: zoom });
 
           setTimeout(() => {
-            if (id === mountedID.current && !showingPBGems) autoZoom(allGems, 0, id); // See if Gems no visible
+            if (id === mountedID.current && !gems?.length) autoZoom(allGems, 0, id); // See if Gems not visible
           }, 750);
         } else if (!visibleCount) {
           setBounds(); // Show all Gems
@@ -218,7 +218,7 @@ export default function Map(props: MapProps) {
   };
 
   const regionChanged = (region: Region) => {
-    if (!showingPBGems) {
+    if (!gems?.length) {
       // Detect if location is within a destination
       const destination = detectDestination(
         region.latitude,
@@ -236,14 +236,16 @@ export default function Map(props: MapProps) {
   };
 
   useEffect(() => {
-    setIsLoading(false);
     mountedID.current = props.destination.id; // Used to make sure correct destination gems show if user switches during load
-    setData([]); // Empty
-    setGems([]); // Clear
-    props.setSelectedGem(undefined); // Reset
-    hiddenGems.current = []; // Reset
-    if (!props.destination.region) setBounds(); // Only if destination isn't device location
-    if (props.destination.id) getGems(props.destination.id);
+
+    if (!gems?.length) {
+      setIsLoading(false);
+      setData([]); // Empty
+      props.setSelectedGem(undefined); // Reset
+      hiddenGems.current = []; // Reset
+      if (!props.destination.region) setBounds(); // Only if destination isn't device location
+      if (props.destination.id) getGems(props.destination.id);
+    }
   }, [props.destination]);
 
   useEffect(() => {
@@ -252,6 +254,8 @@ export default function Map(props: MapProps) {
     if (gems?.length) {
       props.setSelectedGem(undefined); // Reset
       hiddenGems.current = []; // Reset
+      setVisibleHiddenGems([]); // Reset
+      setFilters(FiltersInit); // Clear
       setData(gems);
       setShowingPBGems(true);
 
@@ -261,6 +265,9 @@ export default function Map(props: MapProps) {
           edgePadding: { top: 32, left: 40, bottom: 56, right: 40 },
         });
       }, 500); // Wait for markers to render
+    } else if (showingPBGems) {
+      setShowingPBGems(false);
+      if (props.destination.id) getGems(props.destination.id);
     }
 
     return () => clearTimeout(timeout);
@@ -351,8 +358,13 @@ export default function Map(props: MapProps) {
         })}
       </MapView>
 
-      <Action text="Select a destination" visible={!props.destination.uid ? true : false} icon />
-      <Action text="Show all Gems" visible={showingPBGems ? true : false} />
+      <Action
+        text="Select a destination"
+        visible={!props.destination.uid ? true : false}
+        route={{ pathname: "/search", params: { destinationsOnly: true } }}
+      />
+
+      <Action text="Show all Gems" visible={gems?.length ? true : false} />
       <Banner text="No Gems found" visible={!props.destination.uid || (data.length && !markerCount) ? true : false} />
       <HiddenGemsDetected hiddenGemCount={visibleHiddenGems.length} />
 
