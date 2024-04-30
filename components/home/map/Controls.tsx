@@ -7,6 +7,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import MapView from "react-native-maps";
 import { DestinationType } from "context/destination";
 import { FiltersContext, FiltersContextType } from "context/filters";
+import { GemsContext, GemsContextType } from "context/gems";
 import { pressedDefault } from "utils/helpers";
 import { detectDestination } from "utils/detect-destination";
 import { styleVars } from "utils/styles";
@@ -21,6 +22,7 @@ type ControlsProps = {
 export default function Controls(props: ControlsProps) {
   const router = useRouter();
   const { filters } = useContext<FiltersContextType>(FiltersContext);
+  const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const locate = async () => {
     props.setIsLoading(true);
@@ -52,6 +54,7 @@ export default function Controls(props: ControlsProps) {
         });
       } else {
         // Device location is different
+        setGems([]); // Clear Playbook Gems
         const destination = detectDestination(location.coords.latitude, location.coords.longitude);
         props.setDestination(destination);
       }

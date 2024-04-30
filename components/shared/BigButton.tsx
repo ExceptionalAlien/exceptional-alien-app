@@ -39,7 +39,7 @@ const icons = {
 
 export default function BigButton(props: BigButtonProps) {
   const router = useRouter();
-  const { setDestination } = useContext<DestinationContextType>(DestinationContext);
+  const { destination, setDestination } = useContext<DestinationContextType>(DestinationContext);
   const { setGems } = useContext<GemsContextType>(GemsContext);
 
   const goToDestination = (dest: string) => {
@@ -63,7 +63,7 @@ export default function BigButton(props: BigButtonProps) {
 
       setGems(gems); // Set Gems context to update map
 
-      if (props.playbook.data.destination.uid) {
+      if (props.playbook.data.destination.uid && props.playbook.data.destination.uid !== destination?.uid) {
         goToDestination(props.playbook.data.destination.uid);
       } else {
         router.navigate("/"); // Home
