@@ -67,7 +67,7 @@ export default function Map(props: MapProps) {
   const { filters, setFilters } = useContext<FiltersContextType>(FiltersContext);
   const { favs, setFavs } = useContext<FavsContextType>(FavsContext);
   const { settings, setSettings } = useContext<SettingsContextType>(SettingsContext);
-  const { gems, setGems } = useContext<GemsContextType>(GemsContext);
+  const { gems } = useContext<GemsContextType>(GemsContext);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<GemType[]>([]);
   const [markerCount, setMarkerCount] = useState<number | undefined>();
@@ -281,7 +281,7 @@ export default function Map(props: MapProps) {
       if (markers[i]) count++; // Check if defined
     }
 
-    setMarkerCount(count);
+    setMarkerCount(markers.length ? count : undefined);
   }, [mapRef?.current?.props.children, filters]);
 
   return (
@@ -365,7 +365,10 @@ export default function Map(props: MapProps) {
       />
 
       <Action text="Show all Gems" visible={gems?.length ? true : false} />
-      <Banner text="No Gems found" visible={!props.destination.uid || (data.length && !markerCount) ? true : false} />
+      <Banner
+        text="No Gems found"
+        visible={!props.destination.uid || (data.length && markerCount === 0) ? true : false}
+      />
       <HiddenGemsDetected hiddenGemCount={visibleHiddenGems.length} />
 
       <Controls
