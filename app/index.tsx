@@ -20,15 +20,16 @@ export default function Home() {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [showChooseDestination, setShowChooseDestination] = useState(false);
   const [selectedGem, setSelectedGem] = useState<GemType>();
-  //removeData("onboarding"); // Used for testing
-  //removeData("destination"); // Used for testing
-  //removeData("favGems"); // Used for testing
-  //removeData("bookmarkedPBs"); // Used for testing
-  //removeData("settings"); // Used for testing
-  //storeData("unlockedPBs", []); // Used for testing
+  /* removeData("onboarding"); // Used for testing
+  removeData("destination"); // Used for testing
+  removeData("favGems"); // Used for testing
+  removeData("bookmarkedPBs"); // Used for testing
+  removeData("settings"); // Used for testing
+  storeData("unlockedPBs", []); // Used for testing */
 
   const initLocalData = async () => {
-    const shown = await getData("onboarding");
+    //const shown = await getData("onboarding");
+    const shown = true; // !!!!! Remove this and enable above when ready to work on onboarding screens
     setOnboardingComplete(shown ? true : false); // Get location if onboarding already complete
     setShowOnboarding(!shown ? true : false); // Show onboarding view if not seen already
   };
