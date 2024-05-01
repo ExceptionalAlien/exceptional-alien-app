@@ -62,7 +62,7 @@ export default function SavedList() {
       />
 
       <FlatList
-        data={savedType === "bookmarks" ? bookmarks : favs}
+        data={savedType === "bookmarks" ? bookmarks?.reverse() : favs?.reverse()}
         keyExtractor={(item) => item.uid}
         renderItem={({ item }) => <Item item={item} type={savedType!} />}
         contentContainerStyle={{
