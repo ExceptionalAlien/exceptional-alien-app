@@ -26,7 +26,7 @@ function Item(props: { item: StoredItem; type: string }) {
     >
       <Ionicons
         name={props.type === "favs" ? "heart" : "bookmark"}
-        size={28}
+        size={24}
         color={props.type === "favs" ? styleVars.eaRed : styleVars.eaBlue}
       />
 
@@ -66,7 +66,7 @@ export default function SavedList() {
         keyExtractor={(item) => item.uid}
         renderItem={({ item }) => <Item item={item} type={savedType!} />}
         contentContainerStyle={{
-          gap: 16,
+          gap: 12,
           paddingVertical: 16,
         }}
         contentInsetAdjustmentBehavior="automatic"
@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: "Neue-Haas-Grotesk-Med",
-    fontSize: 24,
+    fontSize: 20,
   },
   subTitle: {
     fontFamily: "Neue-Haas-Grotesk",
-    fontSize: 16,
+    fontSize: 14,
     color: styleVars.eaGrey,
   },
 });

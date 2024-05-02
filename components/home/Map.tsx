@@ -30,34 +30,50 @@ const icons = {
   FoodAndDrinkSelected: require("assets/img/markers/food-and-drink-selected.png"),
   FoodAndDrinkFav: require("assets/img/markers/food-and-drink-fav.png"),
   FoodAndDrinkSelectedFav: require("assets/img/markers/food-and-drink-selected-fav.png"),
+  FoodAndDrinkPopular: require("assets/img/markers/food-and-drink-popular.png"),
+  FoodAndDrinkSelectedPopular: require("assets/img/markers/food-and-drink-selected-popular.png"),
   Culture: require("assets/img/markers/culture.png"),
   CultureSelected: require("assets/img/markers/culture-selected.png"),
   CultureFav: require("assets/img/markers/culture-fav.png"),
   CultureSelectedFav: require("assets/img/markers/culture-selected-fav.png"),
+  CulturePopular: require("assets/img/markers/culture-popular.png"),
+  CultureSelectedPopular: require("assets/img/markers/culture-selected-popular.png"),
   Nature: require("assets/img/markers/nature.png"),
   NatureSelected: require("assets/img/markers/nature-selected.png"),
   NatureFav: require("assets/img/markers/nature-fav.png"),
   NatureSelectedFav: require("assets/img/markers/nature-selected-fav.png"),
+  NaturePopular: require("assets/img/markers/nature-popular.png"),
+  NatureSelectedPopular: require("assets/img/markers/nature-selected-popular.png"),
   Retail: require("assets/img/markers/retail.png"),
   RetailSelected: require("assets/img/markers/retail-selected.png"),
   RetailFav: require("assets/img/markers/retail-fav.png"),
   RetailSelectedFav: require("assets/img/markers/retail-selected-fav.png"),
+  RetailPopular: require("assets/img/markers/retail-popular.png"),
+  RetailSelectedPopular: require("assets/img/markers/retail-selected-popular.png"),
   Neighbourhoods: require("assets/img/markers/neighbourhoods.png"),
   NeighbourhoodsSelected: require("assets/img/markers/neighbourhoods-selected.png"),
   NeighbourhoodsFav: require("assets/img/markers/neighbourhoods-fav.png"),
   NeighbourhoodsSelectedFav: require("assets/img/markers/neighbourhoods-selected-fav.png"),
+  NeighbourhoodsPopular: require("assets/img/markers/neighbourhoods-popular.png"),
+  NeighbourhoodsSelectedPopular: require("assets/img/markers/neighbourhoods-selected-popular.png"),
   Wellness: require("assets/img/markers/wellness.png"),
   WellnessSelected: require("assets/img/markers/wellness-selected.png"),
   WellnessFav: require("assets/img/markers/wellness-fav.png"),
   WellnessSelectedFav: require("assets/img/markers/wellness-selected-fav.png"),
+  WellnessPopular: require("assets/img/markers/wellness-popular.png"),
+  WellnessSelectedPopular: require("assets/img/markers/wellness-selected-popular.png"),
   Events: require("assets/img/markers/events.png"),
   EventsSelected: require("assets/img/markers/events-selected.png"),
   EventsFav: require("assets/img/markers/events-fav.png"),
   EventsSelectedFav: require("assets/img/markers/events-selected-fav.png"),
+  EventsPopular: require("assets/img/markers/events-popular.png"),
+  EventsSelectedPopular: require("assets/img/markers/events-selected-popular.png"),
   Accommodation: require("assets/img/markers/accommodation.png"),
   AccommodationSelected: require("assets/img/markers/accommodation-selected.png"),
   AccommodationFav: require("assets/img/markers/accommodation-fav.png"),
   AccommodationSelectedFav: require("assets/img/markers/accommodation-selected-fav.png"),
+  AccommodationPopular: require("assets/img/markers/accommodation-popular.png"),
+  AccommodationSelectedPopular: require("assets/img/markers/accommodation-selected-popular.png"),
   Hidden: require("assets/img/markers/hidden.png"),
   HiddenSelected: require("assets/img/markers/hidden-selected.png"),
 };
@@ -341,12 +357,20 @@ export default function Map(props: MapProps) {
                     : props.selectedGem?.uid === item.uid
                     ? icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}Selected${
-                          favs?.find((gem: StoredItem) => gem.uid === item.uid) ? "Fav" : ""
+                          favs?.find((gem: StoredItem) => gem.uid === item.uid)
+                            ? "Fav"
+                            : item.data.playbooks.length > 2
+                            ? "Popular"
+                            : ""
                         }` as keyof typeof icons
                       ]
                     : icons[
                         `${item.data.category.replace(/ /g, "").replace("&", "And")}${
-                          favs?.find((gem: StoredItem) => gem.uid === item.uid) ? "Fav" : ""
+                          favs?.find((gem: StoredItem) => gem.uid === item.uid)
+                            ? "Fav"
+                            : item.data.playbooks.length > 2
+                            ? "Popular"
+                            : ""
                         }` as keyof typeof icons
                       ]
                 }
